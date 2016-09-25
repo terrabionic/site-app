@@ -24,11 +24,16 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to survey_questions_url(@survey), notice: 'Survey was successfully updated.'
+      redirect_to survey_questions_url(@survey), notice: 'Question was successfully updated.'
     else
       render :edit
     end
 
+  end
+
+  def destroy
+    @question.destroy
+    redirect_to survey_questions_url(@survey), notice: 'Question was successfully destroy.'
   end
 
   private
