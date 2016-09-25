@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :category do
+    title "MyString"
+  end
 
   factory :question do
     title "Factory Question"
