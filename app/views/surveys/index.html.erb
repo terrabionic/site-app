@@ -17,6 +17,7 @@
         <td><%= link_to 'Show', survey %></td>
         <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
         <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Questions', survey_questions_path(survey) %></td>
       </tr>
     <% end %>
   </tbody>

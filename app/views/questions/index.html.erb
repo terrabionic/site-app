@@ -1,3 +1,28 @@
-<h1>Listing Questions - <%= @survey.title %></h1>
+<p id="notice"><%= notice %></p>
 
+<h1>Listing Questions - <small><%= @survey.title %></small></h1>
 
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @survey.questions.each do |question| %>
+      <tr>
+        <td><%= question.title %></td>
+        <td><%= question.value %></td>
+        <td><%= link_to 'Edit', edit_survey_question_path(@survey, question) %></td>
+        <td><%= link_to 'Destroy', survey_question_path(@survey, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question', new_survey_question_path %>
