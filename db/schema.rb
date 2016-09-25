@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925060421) do
+ActiveRecord::Schema.define(version: 20160925063725) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -23,10 +23,12 @@ ActiveRecord::Schema.define(version: 20160925060421) do
     t.integer  "survey_id"
     t.string   "title"
     t.integer  "grade"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "category_id"
   end
 
+  add_index "questions", ["category_id"], name: "index_questions_on_category_id"
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id"
 
   create_table "surveys", force: :cascade do |t|
