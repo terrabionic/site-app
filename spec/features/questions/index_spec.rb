@@ -26,4 +26,19 @@ describe "Viewing questions" do
     expect(page).to have_content("Factory Question")
   end
 
+  it "redirects to surveys index by clicking the Back button" do
+    survey = FactoryGirl.create(:survey)
+
+    visit surveys_path
+
+    click_link "Questions"
+
+    expect(page).to have_content("Factory Survey")
+
+    click_link "Back"
+
+    expect(page).to have_content("Listing Surveys")
+
+  end
+
 end

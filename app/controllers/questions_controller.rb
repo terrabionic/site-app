@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_survey
+  before_action :set_question, only:[:edit, :update, :destroy]
 
   def index
   end
@@ -12,10 +13,22 @@ class QuestionsController < ApplicationController
   def create
     @question = @survey.questions.new(question_params)
     if @question.save
-      redirect_to survey_questions_path(@survey), notice: 'Question was successfully created.'
+      redirect_to survey_questions_url(@survey), notice: 'Question was successfully created.'
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @question.update(question_params)
+      redirect_to survey_questions_url(@survey), notice: 'Survey was successfully updated.'
+    else
+      render :edit
+    end
+
   end
 
   private
@@ -25,6 +38,10 @@ class QuestionsController < ApplicationController
 
     def question_params
       params.require(:question).permit(:title, :grade)
+    end
+
+    def set_question
+      @question = @survey.questions.find(params[:id])
     end
 
 end
