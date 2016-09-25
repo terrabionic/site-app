@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :note do
+    title "MyString"
+    description "MyText"
+    points 1
+    question nil
+  end
   factory :category do
     sequence(:title) { |n| "Category #{n}" }
   end
