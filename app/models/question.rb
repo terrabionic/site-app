@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   belongs_to :category
 
   validates :title, presence: true
+  validates :category, presence: true
   validates :grade, presence: true,
                     numericality: true
 

@@ -7,6 +7,7 @@ FactoryGirl.define do
     title "Factory Question"
     grade 10
     survey
+    category
   end
 
   factory :survey do
@@ -18,7 +19,7 @@ FactoryGirl.define do
       end
 
       after(:create) do |survey, evaluator|
-        create_list(:question, evaluator.questions_count, survey: survey)
+        create_list(:question, evaluator.questions_count, survey: survey, category_id: 1)
       end
     end
 

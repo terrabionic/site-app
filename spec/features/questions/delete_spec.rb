@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "Deleting questions" do
   it "redirects to the questions index page on succes" do
+    FactoryGirl.create(:category)
     survey = FactoryGirl.create(:survey_with_questions, questions_count: 1)
 
     visit surveys_path

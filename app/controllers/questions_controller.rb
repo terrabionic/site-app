@@ -7,7 +7,6 @@ class QuestionsController < ApplicationController
 
   def new
     @question = @survey.questions.new
-
   end
 
   def create
@@ -42,7 +41,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:title, :grade)
+      params.require(:question).permit(:title, :grade, :category_id)
     end
 
     def set_question

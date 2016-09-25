@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe "Adding questions" do
+  let!(:category) { FactoryGirl.create(:category) }
   let!(:survey) { FactoryGirl.create(:survey) }
 
   def visit_question_create
@@ -18,12 +19,14 @@ describe "Adding questions" do
 
     fill_in "Title", with: "What is your name?"
     fill_in "Grade", with: "10"
+    select('Factory Category', :from => 'question_category_id')
 
     click_button "Create Question"
 
     expect(page).to have_content "success"
     expect(page).to have_content "What is your name?"
     expect(page).to have_content "10"
+    expect(page).to have_content "Factory Category"
 
   end
 
