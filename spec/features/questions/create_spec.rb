@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe "Adding questions" do
-  let!(:category) { FactoryGirl.create(:category) }
   let!(:survey) { FactoryGirl.create(:survey) }
 
   def visit_question_create
@@ -13,20 +12,22 @@ describe "Adding questions" do
   end
 
   it "is successful with valid content" do
+    category = FactoryGirl.create(:category)
+
     visit_question_create
 
     expect(page).to have_content("New Question")
 
     fill_in "Title", with: "What is your name?"
     fill_in "Grade", with: "10"
-    select('Factory Category', :from => 'question_category_id')
+    select(category.title, :from => 'question_category_id')
 
     click_button "Create Question"
 
     expect(page).to have_content "success"
     expect(page).to have_content "What is your name?"
     expect(page).to have_content "10"
-    expect(page).to have_content "Factory Category"
+    expect(page).to have_content "#{category.title}"
 
   end
 
@@ -39,18 +40,25 @@ describe "Adding questions" do
     click_button "Create Question"
 
     expect(page).to have_content "error"
+    expect(page).to have_content "Category can't be blank"
+    expect(page).to have_content "Title can't be blank"
+    expect(page).to have_content "Grade can't be blank"
 
   end
 
   it "displays error with invalid content" do
+    category = FactoryGirl.create(:category)
+
     visit_question_create
 
     fill_in "Title", with: "Something cool"
     fill_in "Grade", with: "diez"
+    select(category.title, :from => 'question_category_id')
 
     click_button "Create Question"
 
     expect(page).to have_content "error"
+    expect(page).to have_content "Grade is not a number"
 
   end
 

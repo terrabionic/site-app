@@ -54,10 +54,14 @@ class SurveysController < ApplicationController
   # DELETE /surveys/1
   # DELETE /surveys/1.json
   def destroy
-    @survey.destroy
     respond_to do |format|
-      format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
-      format.json { head :no_content }
+      if @survey.destroy
+        format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
+        format.json { head :no_content }
+      else
+        format.html { render :show }
+        format.json { render json: @survey.errors, status: :unprocessable_entity }
+      end
     end
   end
 

@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe "Editing questions" do
-  let!(:category) { FactoryGirl.create(:category) }
-  let!(:survey) { FactoryGirl.create(:survey_with_questions, questions_count: 1) }
 
   def visit_question_edit
+    FactoryGirl.create(:category)
+    FactoryGirl.create(:survey_with_questions, questions_count: 1)
+
     visit surveys_path
 
     click_link "Questions"
@@ -13,18 +14,20 @@ describe "Editing questions" do
   end
 
   it "updates a survey successfully with correct information" do
+    category_2 = FactoryGirl.create(:category)
+
     visit_question_edit
 
     fill_in "Title", with: "Another Title"
     fill_in "Grade", with: "7"
-    select('Factory Category', :from => 'question_category_id')
+    select(category_2.title, :from => 'question_category_id')
 
     click_button "Update Question"
 
     expect(page).to have_content("success")
     expect(page).to have_content("Another Title")
     expect(page).to have_content("7")
-    expect(page).to have_content("Factory Category")
+    expect(page).to have_content(category_2.title)
 
   end
 
