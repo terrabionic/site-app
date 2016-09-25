@@ -17,7 +17,7 @@ describe "Adding questions" do
     expect(page).to have_content("New Question")
 
     fill_in "Title", with: "What is your name?"
-    fill_in "Value", with: "10"
+    fill_in "Grade", with: "10"
 
     click_button "Create Question"
 
@@ -31,7 +31,7 @@ describe "Adding questions" do
     visit_question_create
 
     fill_in "Title", with: ""
-    fill_in "Value", with: ""
+    fill_in "Grade", with: ""
 
     click_button "Create Question"
 
@@ -43,7 +43,7 @@ describe "Adding questions" do
     visit_question_create
 
     fill_in "Title", with: "Something cool"
-    fill_in "Value", with: "diez"
+    fill_in "Grade", with: "diez"
 
     click_button "Create Question"
 

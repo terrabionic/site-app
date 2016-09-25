@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160924211358) do
   create_table "questions", force: :cascade do |t|
     t.integer  "survey_id"
     t.string   "title"
-    t.integer  "value"
+    t.integer  "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

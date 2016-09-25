@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :question do
     title "Factory Question"
-    value 10
+    grade 10
     survey
   end
 
