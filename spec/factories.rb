@@ -1,4 +1,12 @@
 FactoryGirl.define do
+  factory :answer do
+    reply nil
+    question nil
+    value "MyString"
+  end
+  factory :reply do
+    survey nil
+  end
 
   factory :note do
     sequence(:title) { |n| "Note #{n}" }
