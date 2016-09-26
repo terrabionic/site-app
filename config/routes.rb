@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :surveys do
     resources :questions, except: :show
+    resources :replies, except: :show
   end
 
   get '/questions/:question_id/notes', to: 'notes#index', as: 'question_notes'
