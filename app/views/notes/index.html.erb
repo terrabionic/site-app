@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <h1>Listing Notes - <small><%= @question.title %></small></h1>
 
 <table>
@@ -25,5 +27,5 @@
 
 <br>
 
-<%# link_to 'New Question', new_survey_question_path %>
+<%= link_to 'New Note', new_question_note_path(@question) %>
 <%= link_to 'Survey', survey_questions_path(@question.survey) %>
