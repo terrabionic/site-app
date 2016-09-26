@@ -62,4 +62,20 @@ describe "Adding questions" do
 
   end
 
+  it "displays error with negative grade" do
+    category = FactoryGirl.create(:category)
+
+    visit_question_create
+
+    fill_in "Title", with: "Something cool"
+    fill_in "Grade", with: "-10"
+    select(category.title, :from => 'question_category_id')
+
+    click_button "Create Question"
+
+    expect(page).to have_content "error"
+    expect(page).to have_content "greater than or equal to 0"
+
+  end
+
 end

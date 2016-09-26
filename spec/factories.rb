@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :note do
     sequence(:title) { |n| "Note #{n}" }
     description "MyText"
-    sequence(:points) { |n| n * 2 }
+    sequence(:points) { |n| n }
     question
   end
 
@@ -13,7 +13,7 @@ FactoryGirl.define do
 
   factory :question do
     title "Factory Question"
-    grade 6
+    grade 10
     survey
     category
 

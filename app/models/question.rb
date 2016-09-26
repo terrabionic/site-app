@@ -6,7 +6,6 @@ class Question < ActiveRecord::Base
   validates :title, presence: true
   validates :category, presence: true
   validates :survey, presence: true
-  validates :grade, presence: true,
-                    numericality: true
+  validates :grade, presence: true, :numericality => { :greater_than_or_equal_to => 0 }
 
 end

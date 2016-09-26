@@ -42,13 +42,13 @@ describe "Editing notes" do
 
     fill_in "Title", with: ""
     fill_in "Description", with: ""
-    fill_in "Points", with: "Where are we runnin?"
+    fill_in "Points", with: "1000"
 
     click_button "Update Note"
 
     expect(page).to have_content "error"
     expect(page).to have_content "Title can't be blank"
-    expect(page).to have_content "Points is not a number"
+    expect(page).to have_content "can't be greater than question grade"
     expect(page).to have_content "Description can't be blank"
 
   end

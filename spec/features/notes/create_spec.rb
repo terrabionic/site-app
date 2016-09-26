@@ -69,4 +69,33 @@ describe "Adding notes" do
 
   end
 
+  it "dislays error when points are greater than question grade" do
+    visit_notes_new
+
+    fill_in "Title", with: "Baptism"
+    fill_in "Description", with: "13 Songs 54 min"
+    fill_in "Points", with: "100"
+
+    click_button "Create Note"
+
+    expect(page).to have_content "error"
+    expect(page).to have_content "can't be greater than question grade"
+    expect(Note.count).to eq(0)
+
+  end
+
+  it "dislays error when points are lower than 0" do
+    visit_notes_new
+
+    fill_in "Title", with: "Baptism"
+    fill_in "Description", with: "13 Songs 54 min"
+    fill_in "Points", with: "-100"
+
+    click_button "Create Note"
+
+    expect(page).to have_content "error"
+    expect(page).to have_content "must be greater than or equal to 0"
+    expect(Note.count).to eq(0)
+  end
+
 end
