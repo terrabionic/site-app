@@ -4,4 +4,5 @@ class Note < ActiveRecord::Base
   validates :title, presence: true
   validates :description, presence: true
   validates :points, presence: true, numericality: true
+  validates :question, presence: true
 end
