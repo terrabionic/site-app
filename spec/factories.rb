@@ -1,11 +1,12 @@
 FactoryGirl.define do
   factory :answer do
-    reply nil
-    question nil
+    reply
+    question
     value "MyString"
   end
+
   factory :reply do
-    survey nil
+    survey
   end
 
   factory :note do
@@ -50,5 +51,16 @@ FactoryGirl.define do
       end
     end
 
+    factory :survey_with_replies do
+      transient do
+        replies_count 2
+      end
+
+      after(:create) do |survey, evaluator|
+        create_list(:reply, evaluator.replies_count, survey: survey)
+      end
+    end
+
   end
+
 end
