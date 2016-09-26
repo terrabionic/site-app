@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/questions/:question_id/notes', to: 'notes#index', as: 'question_notes'
   post '/questions/:question_id/notes', to: 'notes#create'
   get '/questions/:question_id/notes/new', to: 'notes#new', as: 'new_question_note'
+  get '/questions/:question_id/notes/:id/edit', to: 'notes#edit', as: 'edit_question_note'
+  patch '/questions/:question_id/notes/:id', to: 'notes#update', as: 'question_note'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
