@@ -1,19 +1,32 @@
 FactoryGirl.define do
+
   factory :note do
-    title "MyString"
+    sequence(:title) { |n| "Note #{n}" }
     description "MyText"
-    points 1
-    question nil
+    sequence(:points) { |n| n * 2 }
+    question
   end
+
   factory :category do
     sequence(:title) { |n| "Category #{n}" }
   end
 
   factory :question do
     title "Factory Question"
-    grade 10
+    grade 6
     survey
     category
+
+    factory :question_with_notes do
+      transient do
+        notes_count 3
+      end
+
+      after(:create) do |question, evaluator|
+        create_list(:note, evaluator.notes_count, question: question)
+      end
+
+    end
   end
 
   factory :survey do

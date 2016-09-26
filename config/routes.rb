@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
 
   resources :categories
+
   resources :surveys do
     resources :questions, except: :show
   end
+
+  get '/questions/:question_id/notes', to: 'notes#index', as: 'question_notes'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,29 @@
+<h1>Listing Notes - <small><%= @question.title %></small></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Points</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @question.notes.each do |note| %>
+      <tr>
+        <td><%= note.title %></td>
+        <td><%= note.description %></td>
+        <td><%= note.points %></td>
+        <td><%# link_to 'Edit', edit_survey_question_path(@survey, question) %></td>
+        <td><%# link_to 'Destroy', survey_question_path(@survey, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%# link_to 'New Question', new_survey_question_path %>
+<%= link_to 'Survey', survey_questions_path(@question.survey) %>
