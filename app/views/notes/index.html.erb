@@ -19,7 +19,7 @@
         <td><%= note.description %></td>
         <td><%= note.points %></td>
         <td><%= link_to 'Edit', edit_question_note_path(@question, note) %></td>
-        <td><%# link_to 'Destroy', survey_question_path(@survey, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', question_note_path(@question, note), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

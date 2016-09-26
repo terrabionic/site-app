@@ -31,9 +31,9 @@ describe "Listing notes" do
     expect(page).to have_content("Factory Question")
 
     # First two notes where created in edit_spec.rb
-    expect(page).to have_content("Note 3")
     expect(page).to have_content("Note 4")
     expect(page).to have_content("Note 5")
+    expect(page).to have_content("Note 6")
 
     expect(page.all("tbody tr").size).to eq(3)
   end

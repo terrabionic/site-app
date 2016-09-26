@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to survey_questions_url(@survey), notice: 'Question was successfully destroy.'
+    redirect_to survey_questions_url(@survey), notice: 'Question was successfully destroyed.'
   end
 
   private

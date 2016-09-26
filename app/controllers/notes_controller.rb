@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_question
-  before_action :set_note, only: [:edit, :update]
+  before_action :set_note, only: [:edit, :update, :destroy]
 
   def index
   end
@@ -27,6 +27,11 @@ class NotesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @note.destroy
+    redirect_to question_notes_url(@question), notice: 'Note was successfully destroyed.'
   end
 
   private
