@@ -1,0 +1,10 @@
+<%= form_for [@survey, @reply] do |f| %>
+  <%= f.fields_for :answers do |c| %>
+   <%= c.label :content, c.object.question.title %>
+    <%= c.text_field :content %>
+    <%= c.hidden_field :question_id %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

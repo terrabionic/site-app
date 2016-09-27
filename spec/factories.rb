@@ -21,7 +21,7 @@ FactoryGirl.define do
   end
 
   factory :question do
-    title "Factory Question"
+    sequence(:title) { |n| "Factory Question #{n}" }
     grade 10
     survey
     category
