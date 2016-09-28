@@ -3,12 +3,13 @@ require 'rails_helper'
 describe "Editing questions" do
 
   def visit_question_edit
-    FactoryGirl.create(:category)
-    FactoryGirl.create(:survey_with_questions, questions_count: 1)
+    survey = FactoryGirl.create(:full_survey, questions_count: 1)
 
     visit surveys_path
 
-    click_link "Questions"
+    within "#survey_#{survey.id}" do
+      click_link "Questions"
+    end
 
     click_link "Edit"
   end
@@ -55,7 +56,7 @@ describe "Editing questions" do
 
   end
 
-  it "goes redirects to index questions on back click back button" do
+  it "redirects to index questions on back click back button" do
     visit_question_edit
 
     click_link "Back"

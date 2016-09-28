@@ -2,12 +2,13 @@ require 'rails_helper'
 
 describe "Adding notes" do
   def visit_notes_new
-    FactoryGirl.create(:category)
-    FactoryGirl.create(:survey_with_questions, questions_count: 1)
+    survey = FactoryGirl.create(:full_survey, questions_count: 1)
 
     visit surveys_path
 
-    click_link "Questions"
+    within "#survey_#{survey.id}" do
+      click_link "Questions"
+    end
 
     click_link "Notes"
 
@@ -29,7 +30,6 @@ describe "Adding notes" do
     expect(page).to have_content "Good"
     expect(page).to have_content "2"
     expect(page).to have_content "Factory Question"
-    expect(Note.count).to eq(1)
 
   end
 
@@ -48,7 +48,6 @@ describe "Adding notes" do
     expect(page).to have_content "Title can't be blank"
     expect(page).to have_content "Points can't be blank"
     expect(page).to have_content "Description can't be blank"
-    expect(Note.count).to eq(0)
 
   end
 
@@ -65,7 +64,6 @@ describe "Adding notes" do
 
     expect(page).to have_content "error"
     expect(page).to have_content "Points is not a number"
-    expect(Note.count).to eq(0)
 
   end
 
@@ -80,7 +78,6 @@ describe "Adding notes" do
 
     expect(page).to have_content "error"
     expect(page).to have_content "can't be greater than question grade"
-    expect(Note.count).to eq(0)
 
   end
 
@@ -95,7 +92,6 @@ describe "Adding notes" do
 
     expect(page).to have_content "error"
     expect(page).to have_content "must be greater than or equal to 0"
-    expect(Note.count).to eq(0)
   end
 
 end

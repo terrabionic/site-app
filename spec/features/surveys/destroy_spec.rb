@@ -14,12 +14,13 @@ describe "Deleting surveys" do
   end
 
   it "displays an error if there is an associated object" do
-    category = FactoryGirl.create(:category)
-    survey = FactoryGirl.create(:survey_with_questions)
+    survey = FactoryGirl.create(:full_survey)
 
     visit surveys_path
 
-    click_link "Destroy"
+    within "#survey_#{survey.id}" do
+      click_link "Destroy"
+    end
 
     expect(page).to have_content("error")
     expect(survey.questions.count).to eq(5)

@@ -15,17 +15,18 @@ describe "Viewing questions" do
   end
 
   it "displays questions when a survey is not empty" do
-    category = FactoryGirl.create(:category)
-    survey = FactoryGirl.create(:survey_with_questions)
+    survey = FactoryGirl.create(:full_survey)
 
     visit surveys_path
 
-    click_link "Questions"
+    within "#survey_#{survey.id}" do
+      click_link "Questions"
+    end
 
     expect(survey.questions.count).to eq(5)
     expect(page.all("tbody tr").size).to eq(5)
-    expect(page).to have_content("Factory Question")
-    expect(page).to have_content(category.title)
+    expect(page).to have_content(survey.questions.first.title)
+    expect(page).to have_content(survey.questions.last.title)
   end
 
   it "redirects to surveys index by clicking the Back button" do

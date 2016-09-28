@@ -14,15 +14,17 @@ describe "Deleting categories" do
   end
 
   it "displays an error if there is an associated object" do
-    category = FactoryGirl.create(:category)
-    FactoryGirl.create(:survey_with_questions)
+    survey = FactoryGirl.create(:full_survey)
+
+    category = survey.questions.first.category
 
     visit categories_path
 
-    click_link "Destroy"
+    within "#category_#{category.id}" do
+      click_link "Destroy"
+    end
 
     expect(page).to have_content("error")
-    expect(category.questions.count).to eq(5)
     expect(page).to have_content(category.title)
 
   end
