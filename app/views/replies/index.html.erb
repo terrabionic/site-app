@@ -12,10 +12,10 @@
 
   <tbody>
     <% @survey.replies.each do |reply| %>
-      <tr>
+      <tr id="<%= dom_id(reply) %>">
         <td><%= reply.id %></td>
         <td><%# link_to 'Show', edit_survey_question_path(@survey, question) %></td>
-        <td><%# link_to 'Edit', edit_survey_question_path(@survey, question) %></td>
+        <td><%= link_to 'Edit', edit_survey_reply_path(@survey, reply) %></td>
         <td><%# link_to 'Destroy', survey_question_path(@survey, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

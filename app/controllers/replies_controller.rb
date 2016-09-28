@@ -11,7 +11,7 @@ class RepliesController < ApplicationController
 
   def create
     @survey = Survey.find(params[:survey_id])
-    @reply = @survey.replies.new(reply_params)
+    @reply = @survey.replies.build(reply_params)
     if @reply.save
       redirect_to survey_replies_url(@survey), notice: 'Reply was successfully created.'
     else
@@ -19,10 +19,27 @@ class RepliesController < ApplicationController
     end
   end
 
+  def edit
+    @survey = Survey.find(params[:survey_id])
+    @reply = @survey.replies.find(params[:id])
+  end
+
+  def update
+    @survey = Survey.find(params[:survey_id])
+    @reply = @survey.replies.find(params[:id])
+
+    if @reply.update_attributes(reply_params)
+      redirect_to survey_replies_url(@survey), notice: 'Reply was successfully updated.'
+    else
+      render :edit
+    end
+
+  end
+
   private
     def reply_params
-      params.require(:reply).permit(:poll_id, {
-        answers_attributes: [:content, :reply_id, :question_id]
+      params.require(:reply).permit(:id, :survey_id, {
+        answers_attributes: [:id, :content, :reply_id, :question_id]
       })
     end
 
