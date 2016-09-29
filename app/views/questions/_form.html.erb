@@ -16,10 +16,6 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :grade %><br>
-    <%= f.text_field :grade %>
-  </div>
-  <div class="field">
     <%= f.label :category_id %><br>
     <%= f.collection_select(:category_id, Category.all, :id, :title) %>
   </div>

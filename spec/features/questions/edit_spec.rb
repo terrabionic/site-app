@@ -20,14 +20,12 @@ describe "Editing questions" do
     visit_question_edit
 
     fill_in "Title", with: "Another Title"
-    fill_in "Grade", with: "7"
     select(category_2.title, :from => 'question_category_id')
 
     click_button "Update Question"
 
     expect(page).to have_content("success")
     expect(page).to have_content("Another Title")
-    expect(page).to have_content("7")
     expect(page).to have_content(category_2.title)
 
   end
@@ -36,19 +34,6 @@ describe "Editing questions" do
     visit_question_edit
 
     fill_in "Title", with: ""
-    fill_in "Grade", with: ""
-
-    click_button "Update Question"
-
-    expect(page).to have_content("error")
-
-  end
-
-  it "displays error with invalid data" do
-    visit_question_edit
-
-    fill_in "Title", with: "Woot"
-    fill_in "Grade", with: "diez"
 
     click_button "Update Question"
 
