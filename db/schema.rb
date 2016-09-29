@@ -11,16 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160926203005) do
+ActiveRecord::Schema.define(version: 20160929000052) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
     t.integer  "question_id"
-    t.string   "content"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "possible_answer_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
+  add_index "answers", ["possible_answer_id"], name: "index_answers_on_possible_answer_id"
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["reply_id"], name: "index_answers_on_reply_id"
 
@@ -30,24 +31,24 @@ ActiveRecord::Schema.define(version: 20160926203005) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "notes", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "points"
+  create_table "possible_answers", force: :cascade do |t|
     t.integer  "question_id"
+    t.string   "title"
+    t.string   "description"
+    t.string   "grade"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "notes", ["question_id"], name: "index_notes_on_question_id"
+  add_index "possible_answers", ["question_id"], name: "index_possible_answers_on_question_id"
 
   create_table "questions", force: :cascade do |t|
     t.integer  "survey_id"
+    t.integer  "category_id"
     t.string   "title"
     t.integer  "grade"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "category_id"
   end
 
   add_index "questions", ["category_id"], name: "index_questions_on_category_id"
