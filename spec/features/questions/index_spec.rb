@@ -23,6 +23,14 @@ describe "Viewing questions" do
       click_link "Questions"
     end
 
+    survey.questions.first.possible_answers.first.update(grade: 10)
+
+    expect(survey.questions.first.possible_answers.count).to eq(3)
+
+    expect(survey.questions.first.possible_answers.minimum("grade")).to eq(5)
+
+    expect(survey.questions.first.grade).to eq(10)
+
     expect(survey.questions.count).to eq(5)
     expect(page.all("tbody tr").size).to eq(5)
     expect(page).to have_content(survey.questions.first.title)

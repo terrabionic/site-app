@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20160929000052) do
     t.integer  "question_id"
     t.string   "title"
     t.string   "description"
-    t.string   "grade"
+    t.integer  "grade"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20160929000052) do
     t.integer  "survey_id"
     t.integer  "category_id"
     t.string   "title"
-    t.integer  "grade"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

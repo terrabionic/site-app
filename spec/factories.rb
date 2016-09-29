@@ -29,10 +29,12 @@ FactoryGirl.define do
     factory :full_question do
       transient do
         answers_count 3
+        possible_answers_count 3
       end
 
       after(:create) do |question, evaluator|
-        create_list(:answer, evaluator.answers_count, question: question)
+        create_list(:answer, evaluator.answers_count, question: question, possible_answer_id: 1)
+        create_list(:possible_answer, evaluator.possible_answers_count, question: question)
       end
 
     end
@@ -43,8 +45,8 @@ FactoryGirl.define do
 
     factory :full_survey do
       transient do
-        questions_count 5
         replies_count 5
+        questions_count 5
       end
 
       after(:create) do |survey, evaluator|

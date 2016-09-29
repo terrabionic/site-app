@@ -4,7 +4,7 @@ class CreatePossibleAnswers < ActiveRecord::Migration
       t.references :question, index: true, foreign_key: true
       t.string :title
       t.string :description
-      t.string :grade
+      t.integer :grade
 
       t.timestamps null: false
     end
