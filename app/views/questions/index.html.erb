@@ -20,7 +20,6 @@
         <td><%= question.category.title %></td>
         <td><%= link_to 'Edit', edit_survey_question_path(@survey, question) %></td>
         <td><%= link_to 'Destroy', survey_question_path(@survey, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Notes', question_notes_path(question) %></td>
       </tr>
     <% end %>
   </tbody>
