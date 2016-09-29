@@ -1,19 +1,20 @@
 FactoryGirl.define do
+
+  factory :possible_answer do
+    question
+    title "MyString"
+    description "MyString"
+    grade 5
+  end
+
   factory :answer do
     reply
     question
-    content "MyString"
+    possible_answer
   end
 
   factory :reply do
     survey
-  end
-
-  factory :note do
-    sequence(:title) { |n| "Note #{n}" }
-    description "MyText"
-    points 7
-    question
   end
 
   factory :category do
@@ -22,18 +23,15 @@ FactoryGirl.define do
 
   factory :question do
     sequence(:title) { |n| "Factory Question #{n}" }
-    grade 10
     survey
     category
 
     factory :full_question do
       transient do
-        notes_count 3
         answers_count 3
       end
 
       after(:create) do |question, evaluator|
-        create_list(:note, evaluator.notes_count, question: question)
         create_list(:answer, evaluator.answers_count, question: question)
       end
 

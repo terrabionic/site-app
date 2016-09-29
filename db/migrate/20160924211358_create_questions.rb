@@ -4,7 +4,6 @@ class CreateQuestions < ActiveRecord::Migration
       t.references :survey, index: true
       t.references :category, index: true
       t.string :title
-      t.integer :grade
 
       t.timestamps null: false
     end
