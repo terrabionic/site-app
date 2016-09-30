@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Possible answers - <small><%= @question.title %></small></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Grade</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @question.possible_answers.each do |possible_answer| %>
+      <tr id="<%= dom_id(possible_answer) %>">
+        <td><%= possible_answer.title %></td>
+        <td><%= possible_answer.grade %></td>
+        <td><%= possible_answer.description %></td>
+        <td><%# link_to 'Edit', edit_survey_question_path(@survey, possible_answer) %></td>
+        <td><%# link_to 'Destroy', survey_question_path(@survey, possible_answer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Possible answer', new_question_possible_answer_path(@question) %>
+<%# link_to 'Back', surveys_path %>

@@ -2,7 +2,7 @@ FactoryGirl.define do
 
   factory :possible_answer do
     question
-    title "MyString"
+    sequence(:title) { |n| "Possible answer #{n}" }
     description "MyString"
     grade 5
   end

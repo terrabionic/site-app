@@ -14,12 +14,13 @@
 
   <tbody>
     <% @survey.questions.each do |question| %>
-      <tr>
+      <tr id="<%= dom_id(question) %>">
         <td><%= question.title %></td>
         <td><%= question.grade %></td>
         <td><%= question.category.title %></td>
         <td><%= link_to 'Edit', edit_survey_question_path(@survey, question) %></td>
         <td><%= link_to 'Destroy', survey_question_path(@survey, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Possible answers', question_possible_answers_path(question) %></td>
       </tr>
     <% end %>
   </tbody>

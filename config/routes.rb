@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :replies, except: :destroy
   end
 
+  get '/questions/:question_id/possible_answers', to: 'possible_answers#index', as: 'question_possible_answers'
+  post '/questions/:question_id/possible_answers', to: 'possible_answers#create'
+  get '/questions/:question_id/possible_answers/new', to: 'possible_answers#new', as: 'new_question_possible_answer'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
