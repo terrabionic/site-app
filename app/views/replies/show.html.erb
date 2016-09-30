@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<% if @reply.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
+
+    <ul>
+    <% @reply.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @survey.title %>
+</p>
+
+<ul>
+  <% @reply.answers.each do |answer| %>
+    <li>
+      <strong><%= answer.question.title %></strong>
+      <mark><%= answer.grade %> / <%= answer.question.grade %></mark>
+      <br>
+      <em><%= answer.title %></em>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back', survey_replies_path(@survey) %>

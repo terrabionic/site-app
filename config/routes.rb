@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :surveys do
     resources :questions, except: :show
-    resources :replies
+    resources :replies, except: :destroy
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

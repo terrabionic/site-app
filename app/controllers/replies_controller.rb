@@ -36,6 +36,11 @@ class RepliesController < ApplicationController
 
   end
 
+  def show
+    @survey = Survey.find(params[:survey_id])
+    @reply = @survey.replies.find(params[:id])
+  end
+
   private
     def reply_params
       params.require(:reply).permit(:id, :survey_id, {
