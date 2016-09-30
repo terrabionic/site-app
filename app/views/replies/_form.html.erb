@@ -1,8 +1,13 @@
 <%= form_for [@survey, @reply] do |f| %>
   <%= f.fields_for :answers do |c| %>
-   <%= c.label :content, c.object.question.title %>
-    <%= c.text_field :content %>
-    <%= c.hidden_field :question_id %>
+    <p><%= c.object.question.title %></p>
+    <% c.object.question.possible_answers.each do |possible_answer| %>
+      <label>
+          <%= possible_answer.title %>
+          <%= c.radio_button(:possible_answer_id, possible_answer.id) %>
+      </label>
+      <%= c.hidden_field(:question_id) %>
+    <% end %>
   <% end %>
   <div class="actions">
     <%= f.submit %>

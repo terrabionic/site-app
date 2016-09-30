@@ -39,7 +39,7 @@ class RepliesController < ApplicationController
   private
     def reply_params
       params.require(:reply).permit(:id, :survey_id, {
-        answers_attributes: [:id, :content, :reply_id, :question_id]
+        answers_attributes: [:id, :reply_id, :question_id, :possible_answer_id]
       })
     end
 
