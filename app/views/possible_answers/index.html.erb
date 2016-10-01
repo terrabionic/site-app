@@ -28,4 +28,4 @@
 <br>
 
 <%= link_to 'New Possible answer', new_question_possible_answer_path(@question) %>
-<%# link_to 'Back', surveys_path %>
+<%= link_to 'Back', survey_questions_path(@question.survey) %>
