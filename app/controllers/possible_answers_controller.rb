@@ -29,6 +29,11 @@ class PossibleAnswersController < ApplicationController
     end
   end
 
+  def destroy
+    @possible_answer.destroy
+    redirect_to question_possible_answers_url(@question), notice: 'Possible answer was successfully destroyed.'
+  end
+
   private
     def set_question
       @question = Question.find(params[:question_id])
