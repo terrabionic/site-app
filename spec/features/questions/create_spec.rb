@@ -41,4 +41,16 @@ describe "Adding questions" do
     expect(page).to have_content "Title can't be blank"
 
   end
+
+  it "redirects to survey questions by clicking the back button" do
+    visit_question_create
+
+    click_link "Back"
+
+    expect(page).to have_content "Listing Questions"
+
+
+  end
+
+
 end
