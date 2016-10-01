@@ -18,7 +18,7 @@
         <td><%= possible_answer.title %></td>
         <td><%= possible_answer.grade %></td>
         <td><%= possible_answer.description %></td>
-        <td><%# link_to 'Edit', edit_survey_question_path(@survey, possible_answer) %></td>
+        <td><%= link_to 'Edit', edit_question_possible_answer_path(@question, possible_answer) %></td>
         <td><%# link_to 'Destroy', survey_question_path(@survey, possible_answer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
