@@ -1,27 +1,33 @@
 require 'rails_helper'
 
 describe "Editing categories" do
+
+  let!(:category) { FactoryGirl.create(:category) }
+
+  def update_category(options = {})
+    options[:title] ||= "Title"
+
+    fill_in "Title", with: options[:title]
+
+    click_button "Update Category"
+
+  end
+
   it "updates a category successfully with correct information" do
-    category = FactoryGirl.create(:category)
 
     visit edit_category_path(category)
 
-    fill_in "Title", with: "Have Changed"
-
-    click_button "Update Category"
+    update_category(title: "Have Changed")
 
     expect(page).to have_content("success")
     expect(page).to have_content("Have Changed")
   end
 
   it "displays error with empty title" do
-    category = FactoryGirl.create(:category)
 
     visit edit_category_path(category)
 
-    fill_in "Title", with: ""
-
-    click_button "Update Category"
+    update_category(title: "")
 
     expect(page).to have_content("error")
 

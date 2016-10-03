@@ -1,30 +1,48 @@
 require 'rails_helper'
 
 describe "Creating possible answers" do
-  it "is successful with valid data" do
-    survey = FactoryGirl.create(:full_survey, questions_count: 2)
 
+  let!(:survey) { FactoryGirl.create(:full_survey, questions_count: 2) }
+
+  def visit_survey_questions(survey)
     visit surveys_path
 
     within "#survey_#{survey.id}" do
       click_link "Questions"
     end
+  end
 
-    question = survey.questions.first
-
+  def visit_new_question_possible_answer(question)
     within "#question_#{question.id}" do
       click_link "Possible answers"
     end
 
     click_link "New Possible answer"
+  end
+
+  def create_possible_answer(options = {})
+    options[:title] ||= "Title"
+    options[:description] ||= "Description"
+    options[:grade] ||= 10
+
+    fill_in "Title", with: options[:title]
+    fill_in "Description", with: options[:description]
+    fill_in "Grade", with: options[:grade]
+
+    click_button "Create Possible answer"
+  end
+
+  it "is successful with valid data" do
+
+    visit_survey_questions(survey)
+
+    question = survey.questions.first
+
+    visit_new_question_possible_answer(question)
 
     expect(page).to have_content("New Possible Answer")
 
-    fill_in "Title", with: "Blue"
-    fill_in "Description", with: "Blue is cool"
-    fill_in "Grade", with: 13
-
-    click_button "Create Possible answer"
+    create_possible_answer(title: "Blue", description: "Blue is cool", grade: 13)
 
     expect(page).to have_content("success")
 
@@ -40,27 +58,13 @@ describe "Creating possible answers" do
 
   it "displays error with invalid data" do
 
-    survey = FactoryGirl.create(:full_survey, questions_count: 2)
-
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Questions"
-    end
+    visit_survey_questions(survey)
 
     question = survey.questions.first
 
-    within "#question_#{question.id}" do
-      click_link "Possible answers"
-    end
+    visit_new_question_possible_answer(question)
 
-    click_link "New Possible answer"
-
-    fill_in "Title", with: ""
-    fill_in "Description", with: ""
-    fill_in "Grade", with: "diez"
-
-    click_button "Create Possible answer"
+    create_possible_answer(title: "", description: "", grade: "diez")
 
     expect(page).to have_content("error")
 

@@ -2,6 +2,14 @@ require 'rails_helper'
 
 describe "Editing replies" do
 
+  def visit_survey_replies(survey)
+    visit surveys_path
+
+    within "#survey_#{survey.id}" do
+      click_link "Replies"
+    end
+  end
+
   it "updates a reply successfully with answers" do
 
     survey = FactoryGirl.create(:full_survey, questions_count: 1, replies_count: 1)
@@ -12,11 +20,7 @@ describe "Editing replies" do
     first_possible_answer.update(title: 'Bad')
     last_possible_answer.update(title: 'Good')
 
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
+    visit_survey_replies(survey)
 
     click_link "New Reply"
 
@@ -36,11 +40,7 @@ describe "Editing replies" do
 
     expect(first_answer.possible_answer_id).to eq(last_possible_answer.id)
 
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
+    visit_survey_replies(survey)
 
     within "#reply_#{survey.replies.last.id}" do
       click_link "Edit"
@@ -71,11 +71,7 @@ describe "Editing replies" do
     first_possible_answer.update(title: 'Bad')
     last_possible_answer.update(title: 'Good')
 
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
+    visit_survey_replies(survey)
 
     click_link "Edit"
 

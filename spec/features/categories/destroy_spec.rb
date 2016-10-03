@@ -1,12 +1,18 @@
 require 'rails_helper'
 
 describe "Deleting categories" do
+  def destroy_category(category)
+    visit categories_path
+
+    within "#category_#{category.id}" do
+      click_link "Destroy"
+    end
+  end
+
   it "redirects to the categories index page on succes" do
     category = FactoryGirl.create(:category)
 
-    visit categories_path
-
-    click_link "Destroy"
+    destroy_category(category)
 
     expect(page).to_not have_content(category.title)
     expect(category.questions.count).to eq(0)
@@ -18,11 +24,7 @@ describe "Deleting categories" do
 
     category = survey.questions.first.category
 
-    visit categories_path
-
-    within "#category_#{category.id}" do
-      click_link "Destroy"
-    end
+    destroy_category(category)
 
     expect(page).to have_content("error")
     expect(page).to have_content(category.title)

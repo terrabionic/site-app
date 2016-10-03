@@ -2,6 +2,15 @@ require 'rails_helper'
 
 describe "Viewing questions" do
 
+  def visit_survey_questions(survey)
+    visit surveys_path
+
+    within "#survey_#{survey.id}" do
+      click_link "Questions"
+    end
+
+  end
+
   it "displays no questions when survey is empty" do
     survey = FactoryGirl.create(:survey)
 
@@ -17,11 +26,7 @@ describe "Viewing questions" do
   it "displays questions when a survey is not empty" do
     survey = FactoryGirl.create(:full_survey)
 
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Questions"
-    end
+    visit_survey_questions(survey)
 
     survey.questions.first.possible_answers.first.update(grade: 10)
 
@@ -38,11 +43,9 @@ describe "Viewing questions" do
   end
 
   it "redirects to surveys index by clicking the Back button" do
-    FactoryGirl.create(:survey)
+    survey = FactoryGirl.create(:survey)
 
-    visit surveys_path
-
-    click_link "Questions"
+    visit_survey_questions(survey)
 
     expect(page).to have_content("Factory Survey")
 

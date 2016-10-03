@@ -1,12 +1,21 @@
 require 'rails_helper'
 
 describe "Viewing replies" do
-  it "displays no items when survey has not been replied" do
-    survey = FactoryGirl.create(:survey)
+
+  def visit_survey_replies(survey)
 
     visit surveys_path
 
-    click_link "Replies"
+    within "#survey_#{survey.id}" do
+      click_link "Replies"
+    end
+
+  end
+
+  it "displays no items when survey has not been replied" do
+    survey = FactoryGirl.create(:survey)
+
+    visit_survey_replies(survey)
 
     expect(page).to have_content("Listing Replies")
 
@@ -19,11 +28,7 @@ describe "Viewing replies" do
   it "displays items when survey has been replied" do
     survey = FactoryGirl.create(:full_survey, replies_count: 3)
 
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
+    visit_survey_replies(survey)
 
     expect(page).to have_content("Listing Replies")
     expect(page).to have_content(survey.title)
@@ -35,11 +40,7 @@ describe "Viewing replies" do
   it "redirects to surveys index by clicking the Back button" do
     survey = FactoryGirl.create(:full_survey, replies_count: 3)
 
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
+    visit_survey_replies(survey)
 
     click_link "Back"
 

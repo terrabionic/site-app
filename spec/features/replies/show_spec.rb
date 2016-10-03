@@ -1,9 +1,24 @@
 require 'rails_helper'
 
 describe "Showing a reply" do
-  it "displays question/answer and its grade" do
 
-    survey = FactoryGirl.create(:full_survey, questions_count: 2, replies_count: 1)
+  let!(:survey) { FactoryGirl.create(:full_survey, questions_count: 2, replies_count: 1) }
+
+  def visit_survey_replies(survey)
+    visit surveys_path
+
+    within "#survey_#{survey.id}" do
+      click_link "Replies"
+    end
+  end
+
+  def visit_show_reply(reply)
+    within "#reply_#{reply.id}" do
+      click_link "Show"
+    end
+  end
+
+  it "displays question/answer and its grade" do
 
     first_possible_answer = survey.questions.first.possible_answers.first
     last_possible_answer = survey.questions.last.possible_answers.last
@@ -11,11 +26,7 @@ describe "Showing a reply" do
     first_possible_answer.update(title: 'Bad', grade: 10)
     last_possible_answer.update(title: 'Good', grade: 3)
 
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
+    visit_survey_replies(survey)
 
     click_link "New Reply"
 
@@ -28,15 +39,11 @@ describe "Showing a reply" do
 
     expect(page).to have_content "success"
 
-    visit surveys_path
+    visit_survey_replies(survey)
 
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
+    reply = survey.replies.last
 
-    within "#reply_#{survey.replies.last.id}" do
-      click_link "Show"
-    end
+    visit_show_reply(reply)
 
     expect(page).to have_content "Bad"
     expect(page).to have_content "Good"
@@ -48,17 +55,11 @@ describe "Showing a reply" do
 
   it "redirects to replies index clicking the back button" do
 
-    survey = FactoryGirl.create(:full_survey, questions_count: 2, replies_count: 1)
+    visit_survey_replies(survey)
 
-    visit surveys_path
+    reply = survey.replies.last
 
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
-
-    within "#reply_#{survey.replies.last.id}" do
-      click_link "Show"
-    end
+    visit_show_reply(reply)
 
     click_link "Back"
 

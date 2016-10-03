@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "Adding questions" do
   let!(:survey) { FactoryGirl.create(:survey) }
 
-  def visit_question_create
+  def visit_new_survey_question
     visit surveys_path
 
     click_link "Questions"
@@ -14,7 +14,7 @@ describe "Adding questions" do
   it "is successful with valid content" do
     category = FactoryGirl.create(:category)
 
-    visit_question_create
+    visit_new_survey_question
 
     expect(page).to have_content("New Question")
 
@@ -30,7 +30,7 @@ describe "Adding questions" do
   end
 
   it "displays error with no content" do
-    visit_question_create
+    visit_new_survey_question
 
     fill_in "Title", with: ""
 
@@ -43,7 +43,7 @@ describe "Adding questions" do
   end
 
   it "redirects to survey questions by clicking the back button" do
-    visit_question_create
+    visit_new_survey_question
 
     click_link "Back"
 

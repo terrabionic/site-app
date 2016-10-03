@@ -1,20 +1,30 @@
 require 'rails_helper'
 
 describe "Deleting Possible Answers" do
-  it "redirects to question possible answers page on susccess" do
-    survey = FactoryGirl.create(:full_survey)
 
+  let!(:survey) { FactoryGirl.create(:full_survey) }
+
+  def visit_survey_questions(survey)
     visit surveys_path
 
     within "#survey_#{survey.id}" do
       click_link "Questions"
     end
+  end
 
-    question = survey.questions.first
-
+  def visit_question_possible_answers(question)
     within "#question_#{question.id}" do
       click_link "Possible answers"
     end
+  end
+
+  it "redirects to question possible answers page on susccess" do
+
+    visit_survey_questions(survey)
+
+    question = survey.questions.first
+
+    visit_question_possible_answers(question)
 
     possible_answer = question.possible_answers.first
 
