@@ -34,7 +34,9 @@ describe "Editing replies" do
 
     visit_survey_replies(survey)
 
-    within "#reply_#{survey.replies.last.id}" do
+    last_reply = survey.replies.last
+
+    within "#reply_#{last_reply.id}" do
       click_link "Edit"
     end
 

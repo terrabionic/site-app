@@ -22,9 +22,7 @@ describe "Showing a reply" do
 
     last_reply = survey.replies.last
 
-    within "#reply_#{last_reply.id}" do
-      click_link "Show"
-    end
+    visit_show_reply(last_reply)
 
     expect(last_reply.answers.first.possible_answer_id).to eq(nil)
     expect(last_reply.answers.last.possible_answer_id).to eq(nil)
@@ -56,9 +54,9 @@ describe "Showing a reply" do
 
     visit_survey_replies(survey)
 
-    reply = survey.replies.last
+    last_reply = survey.replies.last
 
-    visit_show_reply(reply)
+    visit_show_reply(last_reply)
 
     expect(page).to have_content "Bad"
     expect(page).to have_content "Good"
@@ -72,9 +70,9 @@ describe "Showing a reply" do
 
     visit_survey_replies(survey)
 
-    reply = survey.replies.last
+    last_reply = survey.replies.last
 
-    visit_show_reply(reply)
+    visit_show_reply(last_reply)
 
     click_link "Back"
 
