@@ -2,14 +2,6 @@ require 'rails_helper'
 
 describe "Editing replies" do
 
-  def visit_survey_replies(survey)
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
-  end
-
   it "updates a reply successfully with answers" do
 
     survey = FactoryGirl.create(:full_survey, questions_count: 1, replies_count: 1)

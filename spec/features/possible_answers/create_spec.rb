@@ -4,14 +4,6 @@ describe "Creating possible answers" do
 
   let!(:survey) { FactoryGirl.create(:full_survey, questions_count: 2) }
 
-  def visit_survey_questions(survey)
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Questions"
-    end
-  end
-
   def visit_new_question_possible_answer(question)
     within "#question_#{question.id}" do
       click_link "Possible answers"

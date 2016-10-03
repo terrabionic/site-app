@@ -2,15 +2,6 @@ require 'rails_helper'
 
 describe "Viewing questions" do
 
-  def visit_survey_questions(survey)
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Questions"
-    end
-
-  end
-
   it "displays no questions when survey is empty" do
     survey = FactoryGirl.create(:survey)
 

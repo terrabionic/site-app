@@ -2,16 +2,6 @@ require 'rails_helper'
 
 describe "Viewing replies" do
 
-  def visit_survey_replies(survey)
-
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
-
-  end
-
   it "displays no items when survey has not been replied" do
     survey = FactoryGirl.create(:survey)
 

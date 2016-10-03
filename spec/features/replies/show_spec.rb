@@ -4,14 +4,6 @@ describe "Showing a reply" do
 
   let!(:survey) { FactoryGirl.create(:full_survey, questions_count: 2, replies_count: 1) }
 
-  def visit_survey_replies(survey)
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
-  end
-
   def visit_show_reply(reply)
     within "#reply_#{reply.id}" do
       click_link "Show"

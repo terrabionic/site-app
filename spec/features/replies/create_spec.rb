@@ -2,14 +2,6 @@ require 'rails_helper'
 
 describe "Adding replies" do
 
-  def visit_survey_replies(survey)
-    visit surveys_path
-
-    within "#survey_#{survey.id}" do
-      click_link "Replies"
-    end
-  end
-
   it "is successfully created with anwers" do
     survey = FactoryGirl.create(:full_survey, questions_count: 2, replies_count: 1)
 

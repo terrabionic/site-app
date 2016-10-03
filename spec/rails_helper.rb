@@ -29,6 +29,10 @@ require 'capybara/rspec'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include QuestionsHelper, :type => :feature
+  config.include PossibleAnswersHelper, :type => :feature
+  config.include RepliesHelper, :type => :feature
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
