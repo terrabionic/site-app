@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :companies
+  resources :sectors
+  devise_for :users
   resources :categories
 
   resources :surveys do
@@ -13,12 +16,14 @@ Rails.application.routes.draw do
   get '/questions/:question_id/possible_answers/:id/edit', to: 'possible_answers#edit', as: 'edit_question_possible_answer'
   patch '/questions/:question_id/possible_answers/:id', to: 'possible_answers#update', as: 'question_possible_answer'
   delete '/questions/:question_id/possible_answers/:id', to: 'possible_answers#destroy'
+  post "/deactivate", to: "companies#deactivate"
+  post "/action_activate", to: "companies#action_activate"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'surveys#index'
+  root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

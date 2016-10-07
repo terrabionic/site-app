@@ -1,0 +1,55 @@
+<%= form_for(@company) do |f| %>
+  <% if @company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% @company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <strong>Empresa:</strong><br>
+    <%= f.text_field :company_name %>
+  </div>
+  <div class="field">
+    <strong>Rol:</strong><br>
+    <%= f.collection_select :role, Company::ROLES, :to_s, :humanize %>
+  </div>
+  <div class="field">
+    <strong>Direccion:</strong><br>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <strong>Telefono convencional:</strong><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <strong>Email:</strong><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <strong>Representante:</strong><br>
+    <%= f.text_field :name_agent %>
+  </div>
+  
+  <div class="field">
+    <strong>Sector:</strong><br>
+    <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
+  </div>
+  <div class="field">
+    <strong>Nombre de usuario:</strong><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <strong>Email usuario:</strong><br>
+    <%= f.text_field :email_user %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

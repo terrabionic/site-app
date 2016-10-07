@@ -1,4 +1,78 @@
 FactoryGirl.define do
+  factory :company do
+    company_name "MyString"
+    role "MyString"
+    address "MyString"
+    phone "MyString"
+    email "MyString"
+    name_agent "MyString"
+    state "MyString"
+    sector nil
+    name "MyString"
+    email_user "MyString"
+    active false
+    agent nil
+    company_type "MyString"
+    vat "MyString"
+    street "MyString"
+    street2 "MyString"
+    city "MyString"
+    cel "MyString"
+    date_start "2016-10-06"
+    line_business "MyString"
+    num_workers 1
+    annual_sales "MyString"
+    company_history "MyText"
+    company_products "MyString"
+    company_market "MyString"
+    company_problems "MyString"
+    name_director "MyString"
+    staff_interviewed "MyString"
+    survey_period "MyString"
+    name_created "MyString"
+    completed false
+  end
+  factory :compnay do
+    company_name "MyString"
+    role "MyString"
+    address "MyString"
+    phone "MyString"
+    email "MyString"
+    name_agent "MyString"
+    state "MyString"
+    sector nil
+    name "MyString"
+    email_user "MyString"
+    active false
+    agent nil
+    company_type "MyString"
+    vat "MyString"
+    street "MyString"
+    street2 "MyString"
+    city "MyString"
+    cel "MyString"
+    date_start "2016-10-06"
+    line_business "MyString"
+    num_workers 1
+    annual_sales "MyString"
+    company_history "MyText"
+    company_products "MyString"
+    company_market "MyString"
+    company_problems "MyString"
+    name_director "MyString"
+    staff_interviewed "MyString"
+    survey_period "MyString"
+    name_created "MyString"
+    completed false
+  end
+  factory :sector do
+    name "MyString"
+    description "MyText"
+    image_sector ""
+  end
+  factory :user do
+    
+  end
 
   factory :possible_answer do
     question

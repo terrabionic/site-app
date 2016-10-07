@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160929000052) do
+ActiveRecord::Schema.define(version: 20161006170457) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -30,6 +30,45 @@ ActiveRecord::Schema.define(version: 20160929000052) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "companies", force: :cascade do |t|
+    t.string   "company_name"
+    t.string   "role",              default: "company"
+    t.string   "address"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "name_agent"
+    t.string   "state",             default: "Nuevo"
+    t.integer  "sector_id"
+    t.string   "name"
+    t.string   "email_user"
+    t.boolean  "active",            default: true
+    t.integer  "agent_id"
+    t.string   "company_type"
+    t.string   "vat"
+    t.string   "street"
+    t.string   "street2"
+    t.string   "city"
+    t.string   "cel"
+    t.date     "date_start"
+    t.string   "line_business"
+    t.integer  "num_workers"
+    t.string   "annual_sales"
+    t.text     "company_history"
+    t.string   "company_products"
+    t.string   "company_market"
+    t.string   "company_problems"
+    t.string   "name_director"
+    t.string   "staff_interviewed"
+    t.string   "survey_period"
+    t.string   "name_created"
+    t.boolean  "completed",         default: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
+  add_index "companies", ["sector_id"], name: "index_companies_on_sector_id"
 
   create_table "possible_answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -61,10 +100,37 @@ ActiveRecord::Schema.define(version: 20160929000052) do
 
   add_index "replies", ["survey_id"], name: "index_replies_on_survey_id"
 
+  create_table "sectors", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.binary   "image_sector"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "surveys", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "role"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
