@@ -1,15 +1,19 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: [:show, :edit, :update, :destroy, :create_user, :asign_agent_company, :update_user_company]
+  after_action :update_user_company, only:[:update]
 
   # GET /companies
   # GET /companies.json
   def index
     @companies = Company.all
+    @sectors = Sector.all
+    @users = User.all
   end
 
   # GET /companies/1
   # GET /companies/1.json
   def show
+
   end
 
   # GET /companies/new
@@ -19,6 +23,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
+    authorize! :update, @company
   end
 
   # POST /companies
@@ -27,7 +32,9 @@ class CompaniesController < ApplicationController
     #@company = Company.new(company_params)
     @user = current_user
     @company = @user.companies.build(company_params)
-
+    if @company.save
+      create_user
+    end
     respond_to do |format|
       if @company.save
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
@@ -52,6 +59,17 @@ class CompaniesController < ApplicationController
         format.json { render json: @company.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def update_user_company
+    @user_login = User.find(@company.user_login)
+    if @user_login.email != @company.email_user
+      @user_login.email = @company.email_user
+    end
+    if @user_login.name != @company.name
+      @user_login.name = @company.name
+    end
+    @user_login.save
   end
 
   def registration_completed
@@ -92,6 +110,16 @@ class CompaniesController < ApplicationController
       format.html { redirect_to companies_url, notice: 'Company was successfully activate.' }
       format.json { head :no_content }
     end
+  end
+
+  def create_user
+    user_id = User.create(name: @company.name ,email:@company.email_user, password:"123456", password_confirmation: '123456', role:'company')
+    @company.user_login = user_id
+    @company.save
+  end
+
+  def asign_agent_company
+
   end
 
   private

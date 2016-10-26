@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   rescue_from CanCan::AccessDenied do | exception |
-    redirect_to questions_url, alert: exception.message
+    redirect_to companies_path, alert: exception.message
   end
 
   protected
@@ -14,14 +14,14 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     # Permit the `subscribe_newsletter` parameter along with the other
     # sign up parameters.
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :name])
   end
 
   # Metodo para enviar a la pagina segun su perfil
   def after_sign_in_path_for(resource)
     @user = current_user
     if @user.role == 'admin'
-      sectors_path
+      companies_path
     else
       companies_path
     end

@@ -44,31 +44,33 @@ ActiveRecord::Schema.define(version: 20161006170457) do
     t.string   "email_user"
     t.boolean  "active",            default: true
     t.integer  "agent_id"
-    t.string   "company_type"
-    t.string   "vat"
-    t.string   "street"
-    t.string   "street2"
-    t.string   "city"
-    t.string   "cel"
+    t.string   "company_type",      default: ""
+    t.string   "vat",               default: ""
+    t.string   "street",            default: ""
+    t.string   "street2",           default: ""
+    t.string   "city",              default: ""
+    t.string   "cel",               default: ""
     t.date     "date_start"
-    t.string   "line_business"
-    t.integer  "num_workers"
-    t.string   "annual_sales"
-    t.text     "company_history"
-    t.string   "company_products"
-    t.string   "company_market"
-    t.string   "company_problems"
-    t.string   "name_director"
-    t.string   "staff_interviewed"
-    t.string   "survey_period"
-    t.string   "name_created"
+    t.string   "line_business",     default: ""
+    t.integer  "num_workers",       default: 0
+    t.string   "annual_sales",      default: ""
+    t.text     "company_history",   default: ""
+    t.string   "company_products",  default: ""
+    t.string   "company_market",    default: ""
+    t.string   "company_problems",  default: ""
+    t.string   "name_director",     default: ""
+    t.string   "staff_interviewed", default: ""
+    t.string   "survey_period",     default: ""
+    t.string   "name_created",      default: ""
     t.boolean  "completed",         default: false
+    t.integer  "user_login_id"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end
 
   add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
   add_index "companies", ["sector_id"], name: "index_companies_on_sector_id"
+  add_index "companies", ["user_login_id"], name: "index_companies_on_user_login_id"
 
   create_table "possible_answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -116,6 +118,7 @@ ActiveRecord::Schema.define(version: 20161006170457) do
 
   create_table "users", force: :cascade do |t|
     t.string   "role"
+    t.string   "name"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"

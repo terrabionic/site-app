@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Rol:</strong>
+  <%= @user.role %>
+</p>
+
+<h2>Compañias asignadas</h2>
+<table>
+	<thead>
+		<tr>
+		  <th>Nombre de Empresa</th>
+		  <th>Direccion</th>
+		  <th>Telefono convencional</th>
+		  <th>Email</th>
+		  <th>Representante</th>
+		  <th>Sector</th>
+		  <th>Usuario</th>
+		  <th>Email Usuario</th>
+		  <th>Activo</th>
+		  <th>Estado</th>
+		</tr>
+	</thead>
+	<tbody>
+	    <% @user.companies.each do |company| %>
+	    	<% if can? :read, company %>
+		        <tr>
+		          <td><%= link_to company.company_name, company %></td>
+		          <td><%= company.address %></td>
+		          <td><%= company.phone %></td>
+		          <td><%= company.email %></td>
+		          <td><%= company.name_agent %></td>
+		          <td>
+		            <% if company.sector %>
+		              <%= company.sector.name %>
+		            <% end %>
+		          </td>
+		          <td><%= company.name %></td>
+		          <td><%= company.email_user %></td>
+		          <td><%= company.active %></td>
+		          <td><%= company.state %></td>
+		        </tr>
+	      	<% end %>
+	    <% end %>
+	</tbody>
+</table>
+
+<%= link_to 'Editar', edit_user_registration_path(@user) %>
+<%= link_to 'Back', users_path %>

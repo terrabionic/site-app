@@ -4,7 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ROLES = %w[admin agent emprered company].freeze
+  validates :name, presence: true
+
+  ROLES = %w[admin agent emprered].freeze
                                                                                                                                                                             
   has_many :companies, :class_name => 'Company', :foreign_key => 'agent_id'
 

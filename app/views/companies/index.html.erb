@@ -2,7 +2,19 @@
 
 <h1>Lista de Empresas</h1>
 
-<table>
+<br>
+
+<% if can? :create, Company %>
+  <%= link_to 'New Company', new_company_path %>
+<% end %>
+<% if can? :create, @sectors %>
+  <%= link_to 'Sectores', sectors_path %>
+<% end %>
+<% if can? :create, @users %>
+  <%= link_to 'Usuarios', users_path %>
+<% end %>
+
+  <table>
   <thead>
     <tr>
       <th>Nombre de Empresa</th>
@@ -11,7 +23,6 @@
       <th>Email</th>
       <th>Representante</th>
       <th>Sector</th>
-      <th>Rol</th>
       <th>Usuario</th>
       <th>Email Usuario</th>
       <th>Activo</th>
@@ -35,23 +46,25 @@
               <%= company.sector.name %>
             <% end %>
           </td>
-          <td><%= company.role %></td>
           <td><%= company.name %></td>
           <td><%= company.email_user %></td>
           <td><%= company.active %></td>
           <td>
             <% if company.agent %>
-              <%= company.agent.email %>
+
+              <% if current_user.is? 'admin' %>
+                <%= link_to company.agent.name, show_user_admin_path(company.agent) %> 
+              <% else %>
+                <%= company.agent.name %>
+              <% end %>
             <% end %>
           </td>
           <td><%= company.state %></td>
-          <td><%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <%= link_to 'Asignar', edit_asign_agent_path(company) %> 
+          </td>
         </tr>
       <% end %>
     <% end %>
   </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Company', new_company_path %>
+  </table>
