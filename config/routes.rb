@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :companies
+  resources :sectors
+  devise_for :users, controllers: { registrations: "registrations" }
   resources :categories
 
   resources :surveys do
@@ -7,18 +10,35 @@ Rails.application.routes.draw do
     resources :replies, except: :destroy
   end
 
+  resources :users, only: [:index, :new_user, :show]
+
+
   get '/questions/:question_id/possible_answers', to: 'possible_answers#index', as: 'question_possible_answers'
   post '/questions/:question_id/possible_answers', to: 'possible_answers#create'
   get '/questions/:question_id/possible_answers/new', to: 'possible_answers#new', as: 'new_question_possible_answer'
   get '/questions/:question_id/possible_answers/:id/edit', to: 'possible_answers#edit', as: 'edit_question_possible_answer'
   patch '/questions/:question_id/possible_answers/:id', to: 'possible_answers#update', as: 'question_possible_answer'
   delete '/questions/:question_id/possible_answers/:id', to: 'possible_answers#destroy'
+  post "/deactivate", to: "companies#deactivate"
+  post "/action_activate", to: "companies#action_activate"
 
+  # Crear usuario en base a una compañia creada
+  post "/create_user", to: "companies#create_user"
+  # Crear usuario desde un usuario logeado
+  get '/users/new_user', to: 'users#new_user', as: 'new_user_admin'
+  # Mostrar datos de los usuario
+  get '/users/show/:id', to: 'users#show', as: 'show_user_admin'
+  # Vista para cambiar el agente
+  get '/companies/:id/asign_agent_company', to: 'companies#asign_agent_company', as: 'edit_asign_agent_company'
+  # Vista 2 para cambiar el agente
+  get '/asigns/asign_agent/:id', to: 'asigns#asign_agent', as: 'edit_asign_agent'
+  # Asignamos encargado a la compañia
+  post "/asignar", to: "asigns#action_asign"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'surveys#index'
+  root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -1,0 +1,154 @@
+<p id="notice"><%= notice %></p>
+<h1>Informacion General</h1>
+<p>
+  <strong>Company name:</strong>
+  <%= @company.company_name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @company.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @company.phone %>
+</p>
+
+<p>
+  <strong>Email user:</strong>
+  <%= @company.email_user %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @company.name %>
+</p>
+
+<p>
+  <strong>Sector:</strong>
+  <% if @company.sector %>
+    <%= @company.sector.name %>
+  <% end %>
+</p>
+
+<p>
+    <strong>Role:</strong>
+    <%= @company.role %>
+</p>
+
+<p>
+  <strong>
+    <% if @company.active %>
+      <h2>ACTIVO</h2>
+      <%=link_to "Desactivar", deactivate_path(company_id: @company), method: :post, data: { confirm: "¿Estas seguro de desactivar la compania?" } %>
+    <% else %>
+      <h2>DESACTIVADO</h2>
+      <%=link_to "Activar", action_activate_path(company_id: @company), method: :post, data: { confirm: "¿Estas seguro de activar la compania?" } %>
+    <% end %>
+  </strong>
+</p>
+
+<h1>Registro en SITE</h1>
+
+<div>
+  <p>
+    <strong>Tipo de Compania:</strong>
+    <%= @company.company_type %>
+  </p>
+  <p>
+    <strong>Nombre o Razon social:</strong>
+    <%= @company.company_name %>
+  </p>
+  <p>
+    <strong>RFC:</strong>
+    <%= @company.vat %>
+  </p>
+  <p>
+    <strong>Calle:</strong>
+    <%= @company.street %>
+  </p>
+  <p>
+    <strong>Colonia:</strong>
+    <%= @company.street2 %>
+  </p>
+  <p>
+    <strong>Municipio:</strong>
+    <%= @company.city %>
+  </p>
+  <p>
+    <strong>Email Empresa:</strong>
+    <%= @company.email %>
+  </p>
+  <p>
+    <strong>Telefono convencional:</strong>
+    <%= @company.phone %>
+  </p>
+  <p>
+    <strong>Telefono celular:</strong>
+    <%= @company.cel %>
+  </p>
+  <p>
+    <strong>Fecha de inicio de operaciones:</strong>
+    <%= @company.date_start %>
+  </p>
+  <p>
+    <strong>Giro de la empresa:</strong>
+    <%= @company.line_business %>
+  </p>
+  <p>
+    <strong>Num de trabajadores:</strong>
+    <%= @company.num_workers %>
+  </p>
+  <p>
+    <strong>Ventas anuales:</strong>
+    <%= @company.annual_sales %>
+  </p>
+  <p>
+    <strong>Historia de la empresa:</strong>
+    <%= @company.company_history %>
+  </p>
+  <p>
+    <strong>Producto que genera:</strong>
+    <%= @company.company_products %>
+  </p>
+  <p>
+    <strong>Mercados atendidos:</strong>
+    <%= @company.company_market %>
+  </p>
+  <p>
+    <strong>Problemas de la empresa:</strong>
+    <%= @company.company_problems %>
+  </p>
+  <p>
+    <strong>Nombre del Director:</strong>
+    <%= @company.name_director %>
+  </p>
+  <p>
+    <strong>Personal Entrevistado:</strong>
+    <%= @company.staff_interviewed %>
+  </p>
+  <p>
+    <strong>Periodo de diagnostico:</strong>
+    <%= @company.survey_period %>
+  </p>
+  <p>
+    <strong>Nombre de quien elaboro el reporte inicial:</strong>
+    <%= @company.name_created %>
+  </p>
+
+  <p>
+    <strong>
+      <% if @company.completed %>
+        <h2>ENVIAR DIAGNOSTICO</h2>
+      <% else %>
+        <h2>NO ENVIAR DIAGNOSTICO</h2>
+      <% end %>
+    </strong>
+  </p>
+
+</div>
+<% if can? :update, @company %>
+  <%= link_to 'Edit', edit_company_path(@company) %> |
+<% end %>
+<%= link_to 'Back', companies_path %>
