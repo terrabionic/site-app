@@ -20,11 +20,7 @@ class ApplicationController < ActionController::Base
   # Metodo para enviar a la pagina segun su perfil
   def after_sign_in_path_for(resource)
     @user = current_user
-    if @user.role == 'admin'
-      companies_path
-    else
-      companies_path
-    end
+    companies_path
   end
 
 end
