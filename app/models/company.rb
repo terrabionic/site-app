@@ -12,4 +12,9 @@ class Company < ActiveRecord::Base
   validates :sector, presence: true
   validates :email_user, presence: true
   validates :name, presence: true
+
+  def self.search(search)
+    where("company_name LIKE ?", "%#{search}%")
+  end
+  
 end
