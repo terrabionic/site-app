@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :replies, except: :destroy
   end
 
-  resources :users, only: [:index, :new_user, :show]
+  resources :users, only: [:edit_user, :index, :new_user, :show, :update]
 
 
   get '/questions/:question_id/possible_answers', to: 'possible_answers#index', as: 'question_possible_answers'
@@ -34,6 +34,8 @@ Rails.application.routes.draw do
   get '/asigns/asign_agent/:id', to: 'asigns#asign_agent', as: 'edit_asign_agent'
   # Asignamos encargado a la compañia
   post "/asignar", to: "asigns#action_asign"
+
+  get '/users/:id/edit_user', to: 'users#edit_user', as: 'edit_user'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
