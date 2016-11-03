@@ -4,8 +4,10 @@ class CreateSectors < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.binary :image_sector
+      t.boolean :active, default: false
 
       t.timestamps null: false
     end
+    add_attachment :sectors, :image
   end
 end

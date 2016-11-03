@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   delete '/questions/:question_id/possible_answers/:id', to: 'possible_answers#destroy'
   post "/deactivate", to: "companies#deactivate"
   post "/action_activate", to: "companies#action_activate"
+  post "/action_activate_deactivate", to: "sectors#action_activate_deactivate"
 
   # Crear usuario en base a una compañia creada
   post "/create_user", to: "companies#create_user"

@@ -9,10 +9,14 @@
   <strong>Description:</strong>
   <%= @sector.description %>
 </p>
+<p>
+  <strong>Activo:</strong>
+  <%= @sector.active %>
+</p>
 
 <p>
   <strong>Image sector:</strong>
-  <%= @sector.image_sector %>
+  <%= image_tag @sector.image.url(:medium) %>
 </p>
 
 <%= link_to 'Edit', edit_sector_path(@sector) %> |
