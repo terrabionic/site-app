@@ -11,8 +11,6 @@
 <% if current_user %>
     <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
     Logged in as <strong><%= current_user.name %> (<%=current_user.email%>)</strong>.
-<% else %>
-    <%= link_to 'Login', new_user_session_path %>
 <% end %>
 
 <%= yield %>

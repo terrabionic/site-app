@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006170457) do
+ActiveRecord::Schema.define(version: 20161104165956) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 20161006170457) do
   add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
   add_index "companies", ["sector_id"], name: "index_companies_on_sector_id"
   add_index "companies", ["user_login_id"], name: "index_companies_on_user_login_id"
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "possible_answers", force: :cascade do |t|
     t.integer  "question_id"

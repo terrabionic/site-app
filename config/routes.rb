@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :contacts
   resources :companies
   resources :sectors
   devise_for :users, controllers: { registrations: "registrations" }
@@ -35,13 +36,19 @@ Rails.application.routes.draw do
   get '/asigns/asign_agent/:id', to: 'asigns#asign_agent', as: 'edit_asign_agent'
   # Asignamos encargado a la compañia
   post "/asignar", to: "asigns#action_asign"
-
+  # Editar usuario
   get '/users/:id/edit_user', to: 'users#edit_user', as: 'edit_user'
+  # Pagina de inicio
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  # Pagina de inicio
+  get '/about_us', to: 'home#about_us', as: 'about_us'
+  get '/we_do', to: 'home#we_do', as: 'we_do'
+ 
+  get '/privacy', to: 'home#privacy', as: 'privacy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
