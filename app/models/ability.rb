@@ -42,7 +42,7 @@ class Ability
                 company.agent == user
             end
             can :read, Company do |company|
-                company.agent == user
+                company.agent == user || company.emprered == user
             end
         end
     end

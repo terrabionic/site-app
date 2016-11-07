@@ -14,13 +14,21 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     # Permit the `subscribe_newsletter` parameter along with the other
     # sign up parameters.
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :name, :location, :active, :available, :num_max_companies ])
   end
 
   # Metodo para enviar a la pagina segun su perfil
   def after_sign_in_path_for(resource)
     @user = current_user
-    companies_path
+    if @user
+      if @user.active
+        companies_path
+      else
+        root_path
+      end
+    else
+      root_path
+    end
   end
 
 end

@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+<div>
+<%= link_to 'Back', companies_path %>
+<h1><%= @company.company_name %></h1>
+</div>
+<br>
+<h2>General</h2>
+
+<h3>Acerca de la empresa</h3>
+<p>
+  <strong>Empresa:</strong>
+  <%= @company.company_name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @company.state %>
+</p>
+
+<p>
+  <strong>Etapa:</strong>
+  <%= @company.stage %>
+</p>
+
+<p>
+  <strong>Sector:</strong>
+  <% if @company.sector %>
+    <%= @company.sector.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Consultor Emprered:</strong>
+  <% if @company.emprered %>
+    <%= @company.emprered.name %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Consultor AIE:</strong>
+  <% if @company.agent %>
+    <%= @company.agent.name %>
+  <% end %>
+</p>
+
+<h2>Role</h2>
+<p>
+    <strong>Role:</strong>
+    <%= @company.role %>
+</p>
+

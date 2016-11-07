@@ -36,8 +36,20 @@ Rails.application.routes.draw do
   get '/asigns/asign_agent/:id', to: 'asigns#asign_agent', as: 'edit_asign_agent'
   # Asignamos encargado a la compañia
   post "/asignar", to: "asigns#action_asign"
+  # Vista 3 para cambiar el agente
+  get '/asigns/asign_emprered/:id', to: 'asigns#asign_emprered', as: 'edit_asign_emprered'
+  # Asignar Emprered
+  post "/asignar_emprered", to: "asigns#action_asign_emprered"
   # Editar usuario
   get '/users/:id/edit_user', to: 'users#edit_user', as: 'edit_user'
+  # Editar usuario
+  get '/users/:id/edit_role', to: 'users#edit_role', as: 'edit_role'
+  # Mostrar datos de Generales de la Empresa
+  get '/companies/show_general/:id', to: 'companies#show_general', as: 'show_general'
+  # Accion para desactivar Usuario
+  post "users/deactivate", to: "users#deactivate"
+  # Accion para activar Usuario
+  post "users/action_activate", to: "users#action_activate"
   # Pagina de inicio
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

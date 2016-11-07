@@ -39,11 +39,13 @@ ActiveRecord::Schema.define(version: 20161104165956) do
     t.string   "email"
     t.string   "name_agent"
     t.string   "state",             default: "Nuevo"
+    t.string   "stage",             default: "Prealta"
     t.integer  "sector_id"
     t.string   "name"
     t.string   "email_user"
     t.boolean  "active",            default: true
     t.integer  "agent_id"
+    t.integer  "emprered_id"
     t.string   "company_type",      default: ""
     t.string   "vat",               default: ""
     t.string   "street",            default: ""
@@ -51,6 +53,7 @@ ActiveRecord::Schema.define(version: 20161104165956) do
     t.string   "city",              default: ""
     t.string   "cel",               default: ""
     t.date     "date_start"
+    t.date     "date_end"
     t.string   "line_business",     default: ""
     t.integer  "num_workers",       default: 0
     t.string   "annual_sales",      default: ""
@@ -69,6 +72,7 @@ ActiveRecord::Schema.define(version: 20161104165956) do
   end
 
   add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
+  add_index "companies", ["emprered_id"], name: "index_companies_on_emprered_id"
   add_index "companies", ["sector_id"], name: "index_companies_on_sector_id"
   add_index "companies", ["user_login_id"], name: "index_companies_on_user_login_id"
 
@@ -133,18 +137,22 @@ ActiveRecord::Schema.define(version: 20161104165956) do
   create_table "users", force: :cascade do |t|
     t.string   "role"
     t.string   "name"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "location"
+    t.boolean  "active",                 default: true
+    t.boolean  "available",              default: true
+    t.integer  "num_max_companies",      default: 5,    null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

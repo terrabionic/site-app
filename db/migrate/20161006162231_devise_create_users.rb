@@ -5,6 +5,12 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :role
       # Nombre de usuario
       t.string :name
+      # Ubicacion
+      t.string :location
+      # Ubicacion
+      t.boolean :active, default: true
+      t.boolean :available, default: true
+      t.integer :num_max_companies, default: 5, null: false
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""

@@ -21,6 +21,10 @@ class CompaniesController < ApplicationController
 
   end
 
+  def show_general
+    @company = Company.find(params[:id])
+  end
+
   # GET /companies/new
   def new
     @company = Company.new
@@ -34,9 +38,9 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    #@company = Company.new(company_params)
-    @user = current_user
-    @company = @user.companies.build(company_params)
+    @company = Company.new(company_params)
+    #@user = current_user
+    #@company = @user.companies.build(company_params)
     if @company.save
       create_user
     end
@@ -135,6 +139,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:company_name, :role, :address, :phone, :email, :name_agent, :state, :sector_id, :name, :email_user, :active, :agent_id, :company_type, :vat, :street, :street2, :city, :cel, :date_start, :line_business, :num_workers, :annual_sales, :company_history, :company_products, :company_market, :company_problems, :name_director, :staff_interviewed, :survey_period, :name_created, :completed)
+      params.require(:company).permit(:company_name, :role, :address, :phone, :email, :name_agent, :state, :sector_id, :name, :email_user, :active, :agent_id, :company_type, :vat, :street, :street2, :city, :cel, :date_start, :date_end, :line_business, :num_workers, :annual_sales, :company_history, :company_products, :company_market, :company_problems, :name_director, :staff_interviewed, :survey_period, :name_created, :completed, :stage, :emprered)
     end
 end

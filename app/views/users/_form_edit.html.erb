@@ -7,13 +7,18 @@
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
+    <%= f.label :location %><br />
+    <%= f.text_field :location%>
   </div>
 
   <div class="field">
-    <%= f.label :role %><br />
-    <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+    <%= f.label :num_max_companies %><br />
+    <%= f.text_field :num_max_companies%>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
   </div>
 
   <div class="actions">
