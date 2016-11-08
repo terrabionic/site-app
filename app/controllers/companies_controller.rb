@@ -7,7 +7,11 @@ class CompaniesController < ApplicationController
   def index
     @companies = Company.all
     if params[:search]
-      @companies = Company.search(params[:search]).order("created_at DESC")
+      if params[:sort]
+        @companies = Company.search(params[:search]).order("? DESC",params[:sort])
+      else
+        @companies = Company.search(params[:search]).order("created_at DESC")
+      end
     else
       @companies = Company.all.order('created_at DESC')
     end

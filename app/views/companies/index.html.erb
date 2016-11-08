@@ -3,24 +3,41 @@
 <h1>Status de empresas y consultores</h1>
 
 <br>
-<div>
-  <% if can? :create, Company %>
-    <%= link_to 'New Company', new_company_path %>
-  <% end %>
-  <% if can? :create, @sectors %>
-    <%= link_to 'Sectores', sectors_path %>
-  <% end %>
-  <% if can? :create, @users %>
-    <%= link_to 'Usuarios', users_path %>
-  <% end %>
-</div>
-<div>
-  <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-    <%= submit_tag "Search" %>
-  <% end %>
-</div>
-<div>
+<table align="center">
+  <tr>
+    <td></td>
+    <td align="right">
+      <% if can? :create, Company %>
+        <%= link_to 'Dar de alta nueva empresa', new_company_path %>
+      <% end %>
+      <% if can? :create, @sectors %>
+        <%= link_to 'Sectores', sectors_path %>
+      <% end %>
+      <% if can? :create, @users %>
+        <%= link_to 'Dar de alta nuevo consultor', users_path %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <select name="sort">
+        <option value="company_name">Nombre</option>
+        <option value="state">Estado</option>
+        <option value="sector">Sector</option>
+      </select>
+    </td>
+    <td>
+      <div align="right">
+        <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+          <%= submit_tag "Buscar" %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+
+</table>
+<div div align="center">
   <br>
   <table>
     <thead>
@@ -32,7 +49,6 @@
         <th>Sector</th>
         <th>Consultor Emprered</th>
         <th>Consultor AE</th>
-        <th></th>
       </tr>
     </thead>
 
@@ -55,7 +71,17 @@
             <td>
               <% if company.emprered %>
                 <% if current_user.is? 'admin' %>
-                  <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %> 
+                  <% if company.state == 'Nuevo' %>
+                    <% if company.emprered %>
+                      <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %>
+                      <br> 
+                      <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(company) %>
+                    <% else %>
+                      <%= link_to 'Asignar', edit_asign_emprered_path(company) %>
+                    <% end %>
+                  <% elsif company.state == 'Terminado' %>
+                    <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %> 
+                  <% end %>
                 <% else %>
                   <%= company.emprered.name %>
                 <% end %>
@@ -64,18 +90,33 @@
             <td>
               <% if company.agent %>
                 <% if current_user.is? 'admin' %>
-                  <%= link_to company.agent.name, show_user_admin_path(company.agent) %> 
+
+                  <% if company.state == 'Nuevo' %>
+                    <% if company.agent %>
+                      <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+                    <% end %>
+                    <%= link_to 'Asignar', edit_asign_agent_path(company) %>
+                  <% elsif company.state == 'Retrasado' %>
+                    <% if company.agent %>
+                      <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+                      <%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
+                    <% else %>
+                      Aún no se llega a etapa de análisis de diagnóstico
+                    <% end %>
+                  <% elsif company.state == 'Terminado' %>
+                    <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+                  <% else %>
+                    <% if company.agent %>
+                      <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+                      <%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
+                    <% else %>
+                      <%= link_to 'Asignar', edit_asign_agent_path(company) %> 
+                    <% end %>
+                  <% end %>
                 <% else %>
                   <%= company.agent.name %>
                 <% end %>
               <% end %>
-            </td>
-            <td></td>
-            <td>
-            <% if current_user.is? 'admin' %>
-              <%= link_to 'AsignarA', edit_asign_agent_path(company) %> 
-              <%= link_to 'AsignarE', edit_asign_emprered_path(company) %> 
-            <% end %>
             </td>
           </tr>
         <% end %>

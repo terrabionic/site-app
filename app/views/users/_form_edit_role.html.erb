@@ -1,5 +1,6 @@
 <%= form_for(@user, html: { method: :put }) do |f| %>
-
+  
+  <h3>Roles</h3>
   <div class="field">
     <% User::ROLES.each do |role| %>
       <label>

@@ -15,10 +15,7 @@
     <strong>Empresa:</strong><br>
     <%= f.text_field :company_name %>
   </div>
-  <div class="field">
-    <strong>Rol:</strong><br>
-    <%= f.collection_select :role, Company::ROLES, :to_s, :humanize %>
-  </div>
+
   <div class="field">
     <strong>Direccion:</strong><br>
     <%= f.text_field :address %>
