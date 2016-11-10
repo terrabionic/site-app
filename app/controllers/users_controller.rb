@@ -17,6 +17,22 @@ class UsersController < ApplicationController
     authorize! :update, @user
   end
 
+  def index_role
+    @role = params[:role_id]
+    if params[:search]
+      if params[:sort]
+        @users = User.search(params[:search]).where("role_id = ?", params[:role_id])
+      else
+        @users = User.search(params[:search]).where("role_id = ?", params[:role_id])
+      end
+    else
+      @users = User.where("role_id = ?", params[:role_id])
+    end
+    #@users = User.where("role_id = ?", params[:role_id])
+    #@users = User.all
+    authorize! :update, @user
+  end
+
   def new_user
   	@user = User.new
   end
@@ -29,7 +45,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def edit_role
+  def edit_role_u
     @user = User.find(params[:id])
   end
 
@@ -47,8 +63,8 @@ class UsersController < ApplicationController
     if params[:user][:location]
       @user.update(location:params[:user][:location])
     end
-    if params[:user][:role]
-      @user.update(role:params[:user][:role])
+    if params[:user][:role_id]
+      @user.update(role_id:params[:user][:role_id])
     end
     @user.save
     redirect_to show_user_admin_path(@user)

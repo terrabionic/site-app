@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     # Permit the `subscribe_newsletter` parameter along with the other
     # sign up parameters.
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:role, :name, :location, :active, :available, :num_max_companies ])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:role_id, :role_model, :name, :location, :active, :available, :num_max_companies ])
   end
 
   # Metodo para enviar a la pagina segun su perfil

@@ -5,9 +5,15 @@
 
   <h3>Roles</h3>
   <br>
-  <div class="field">
-    <%= f.label :role %><br />
-    <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+ 
+  <div>
+    <% User::Role.all.each do |role_id| %>
+        <label>
+            <%= f.radio_button(:role_id, role_id.id) %>
+            <%= role_id.name %>
+        </label>
+        <br>
+    <% end %>
   </div>
 
    <h3>Acerca del usuario</h3>

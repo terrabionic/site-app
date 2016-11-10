@@ -29,6 +29,7 @@ class Ability
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
     if user
+        #can :manage, :all
         if user.is? 'admin'
             can :manage, :all
         elsif user.is? 'company'

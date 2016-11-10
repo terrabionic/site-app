@@ -17,6 +17,7 @@ class CompaniesController < ApplicationController
     end
     @sectors = Sector.all
     @users = User.all
+    @roles = Role.all
   end
 
   # GET /companies/1
@@ -126,7 +127,13 @@ class CompaniesController < ApplicationController
   end
 
   def create_user
-    user_id = User.create(name: @company.name ,email:@company.email_user, password:"123456", password_confirmation: '123456', role:'company')
+    @role_company = Role.where("role = ?", 'company')
+    if @role_company.length > 0
+      @role_company = @role_company[0]
+    else
+      @role_company = Role.create(name: 'Compañia' , role:'company')
+    end
+    user_id = User.create(name: @company.name ,email:@company.email_user, password:"123456", password_confirmation: '123456', role: @role_company )
     @company.user_login = user_id
     @company.save
   end

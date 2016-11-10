@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104165956) do
+ActiveRecord::Schema.define(version: 20161108223513) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -115,6 +115,14 @@ ActiveRecord::Schema.define(version: 20161104165956) do
 
   add_index "replies", ["survey_id"], name: "index_replies_on_survey_id"
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "role"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "sectors", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -135,9 +143,9 @@ ActiveRecord::Schema.define(version: 20161104165956) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "role"
     t.string   "name"
     t.string   "location"
+    t.integer  "role_id"
     t.boolean  "active",                 default: true
     t.boolean  "available",              default: true
     t.integer  "num_max_companies",      default: 5,    null: false
@@ -157,5 +165,6 @@ ActiveRecord::Schema.define(version: 20161104165956) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
 
 end

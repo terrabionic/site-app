@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :contacts
   resources :companies
   resources :sectors
+  resources :roles
   devise_for :users, controllers: { registrations: "registrations" }
   resources :categories
 
@@ -43,7 +44,7 @@ Rails.application.routes.draw do
   # Editar usuario
   get '/users/:id/edit_user', to: 'users#edit_user', as: 'edit_user'
   # Editar usuario
-  get '/users/:id/edit_role', to: 'users#edit_role', as: 'edit_role'
+  get '/users/:id/edit_role_u', to: 'users#edit_role_u', as: 'edit_role_u'
   # Mostrar datos de Generales de la Empresa
   get '/companies/show_general/:id', to: 'companies#show_general', as: 'show_general'
   # Accion para desactivar Usuario
@@ -61,6 +62,10 @@ Rails.application.routes.draw do
   get '/we_do', to: 'home#we_do', as: 'we_do'
  
   get '/privacy', to: 'home#privacy', as: 'privacy'
+
+  # Editar permisos del role
+  get '/role/:id/edit_permissions', to: 'roles#edit_permissions', as: 'edit_permissions'
+  get '/user/index_role', to: 'users#index_role', as: 'index_role'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

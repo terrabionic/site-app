@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Atras', roles_path %>
+<p>
+<h1>Role: <%= @role.name %></h1>
+
+<h2>General</h2>
+
+<h2>Acerca del role</h2>
+<%= link_to 'Editar', edit_role_path(@role) %>
+<p>
+  <strong>Nombre del role:</strong>
+  <%= @role.name %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @role.description %>
+</p>
+
+<p>
+  <strong>Usuarios:</strong>
+  <%= @role.get_user_by_role(@role) %>
+</p>
+
+<h2>Permisos</h2>
+
+<h3>Permisos del role</h3>
+<%= link_to 'Editar', edit_permissions_path(@role) %>
+<p>
+  <strong>Role:</strong>
+  <%= @role.get_role_name(@role.role)%>
+</p>
+
+<h2>Eliminar Role</h2>
+
+<p>Esta acción eliminará permanentemente este role de su cuenta. Cualquier usuario que estuviera asignado con este role asumirá automáticamente la función de sólo vista.</p>
+
+<%= link_to 'Eliminar', @role, method: :delete, data: { confirm: '¿Deseas eliminar este role?
+' } %>

@@ -10,9 +10,18 @@ class User < ActiveRecord::Base
                                                                                                                                                                             
   has_many :companies, :class_name => 'Company', :foreign_key => 'agent_id'
   has_many :companies, :class_name => 'Company', :foreign_key => 'emprered_id'
+  belongs_to :role, class_name: 'Role'
 
   def is?( requested_role )
-    self.role == requested_role.to_s
+    self.role.role == requested_role.to_s
+  end
+
+  def is_role
+    if self.role.role == requested_role.to_s
+      return true
+    else
+      return false
+    end
   end
 
   def account_active?
@@ -22,6 +31,10 @@ class User < ActiveRecord::Base
   def active_for_authentication?
         # Uncomment the below debug statement to view the properties of the returned self model values.
         # logger.debug self.to_yaml
-        super && account_active?
-      end
+    super && account_active?
+  end
+
+  def self.search(search)
+    where("name LIKE ?", "%#{search}%")
+  end
 end

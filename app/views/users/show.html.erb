@@ -38,10 +38,12 @@
 		</p>
 
 		<h2>Role</h2>
-		<%= link_to 'Editar', edit_role_path(@user) %>
+		<%= link_to 'Editar', edit_role_u_path(@user) %>
 		<p>
 		  <strong>Rol:</strong>
-		  <%= @user.role %>
+		  <% if @user.role %>
+		  	<%= @user.role.name %>
+		  <% end %>
 		</p>
 
 		<p>

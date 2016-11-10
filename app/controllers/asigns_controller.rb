@@ -1,6 +1,10 @@
 class AsignsController < ApplicationController
 	def asign_agent
-		@agents = User.where("role = 'agent'")
+		@role_agente = Role.where("role = ?", 'agente')
+		@agents = false
+		if @role_agente.length > 0
+			@agents = User.where("role_id = ?",@role_agente[0].id)
+		end
 		@company = Company.find(params[:id])
 	end
 
@@ -26,7 +30,10 @@ class AsignsController < ApplicationController
 	end
 
 	def asign_emprered
-		@emprereds = User.where("role = 'emprered'")
+		@role_emprered = Role.where("role = ?", 'emprered')
+		if @role_emprered.length > 0
+			@emprereds = User.where("role_id = ?",@role_emprered[0].id)
+		end
 		@company = Company.find(params[:id])
 	end
 
