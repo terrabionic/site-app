@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy, :create_user, :asign_agent_company, :update_user_company]
+  before_action :set_company, only: [:show, :edit, :edit_site, :update, :destroy, :create_user, :asign_agent_company, :update_user_company]
   after_action :update_user_company, only:[:update]
 
   # GET /companies
@@ -37,6 +37,10 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1/edit
   def edit
+    authorize! :update, @company
+  end
+
+  def edit_site
     authorize! :update, @company
   end
 
@@ -111,7 +115,7 @@ class CompaniesController < ApplicationController
     @company.active = false
     @company.save
     respond_to do |format|
-      format.html { redirect_to companies_url, notice: 'Company was successfully deactivate.' }
+      format.html { redirect_to company_url(@company), notice: 'Company was successfully deactivate.' }
       format.json { head :no_content }
     end
   end
@@ -121,7 +125,7 @@ class CompaniesController < ApplicationController
     @company.active = true
     @company.save
     respond_to do |format|
-      format.html { redirect_to companies_url, notice: 'Company was successfully activate.' }
+      format.html { redirect_to company_url(@company), notice: 'Company was successfully activate.' }
       format.json { head :no_content }
     end
   end

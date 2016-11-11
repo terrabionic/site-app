@@ -94,7 +94,9 @@
                   <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %> 
                 <% end %>
               <% else %>
-                <%= company.emprered.name %>
+                <% if company.emprered %>
+                  <%= company.emprered.name %>
+                <% end %>
               <% end %>
             </td>
             <td>
@@ -122,7 +124,9 @@
                   <% end %>
                 <% end %>
               <% else %>
-                <%= company.agent.name %>
+                <% if company.agent %>
+                  <%= company.agent.name %>
+                <% end %>
               <% end %>
             </td>
           </tr>

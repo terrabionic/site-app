@@ -4,9 +4,15 @@
   <li class="tab-title active"><a href="#general">Informcion General</a></li>
   <li class="tab-title"><a href="#inf_site">Registro en SITE</a></li>
 </ul>
+<%= link_to 'Atras', index_emprered_path %>
+<h1>Empresa: <%= @company.company_name %></h1>
+<br>
 <div class="tabs-content">
   <div class="content active" id="general">
     <h1>Informacion General</h1>
+    <% if can? :update, @company %>
+      <%= link_to 'Editar', edit_company_path(@company) %>
+    <% end %>
     <p>
       <strong>Nombre de la empresa:</strong>
       <%= @company.company_name %>
@@ -38,10 +44,17 @@
         <%= @company.sector.name %>
       <% end %>
     </p>
-
+    <h2>Role</h2>
     <p>
         <strong>Role:</strong>
-        <%= @company.role %>
+        <% if @company.user_login %>
+          <%= @company.user_login.role.name %>
+        <% end %>
+        <br>
+        <strong>Descripción:</strong>
+        <% if @company.user_login %>
+          <%= @company.user_login.role.description %>
+        <% end %>
     </p>
 
     <p>
@@ -57,9 +70,11 @@
     </p>
   </div>
     
-
   <div class="content active" id="inf_site">
     <h1>Registro en SITE</h1>
+    <% if can? :update, @company %>
+      <%= link_to 'Editar', edit_site_path(@company) %>
+    <% end %>
     <p>
       <strong>Tipo de Compania:</strong>
       <%= @company.company_type %>
@@ -159,7 +174,5 @@
 
 
 </div>
-<% if can? :update, @company %>
-  <%= link_to 'Edit', edit_company_path(@company) %> |
-<% end %>
-<%= link_to 'Back', companies_path %>
+
+

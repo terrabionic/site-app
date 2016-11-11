@@ -9,7 +9,13 @@
 		<table>
 			<tr>
 				<td>LOGO</td>
-				<td><%= link_to 'DASHBOARD', companies_path %></td>
+				<td>
+					<% if current_user.is? 'admin' %>
+						<%= link_to 'DASHBOARD admin', companies_path %>
+					<% elsif current_user.is? 'emprered' %>
+						<%= link_to 'DASHBOARD emprered', index_emprered_path %>
+					<% end %>
+				</td>
 				<td>
 					<select name="perfil">
 						<option>Hola <strong><%= current_user.name %> (<%=current_user.email%>)</strong>.</option>

@@ -40,7 +40,7 @@ class Ability
             can :create, Company
             
             can :update, Company do |company|
-                company.agent == user
+                company.emprered == user
             end
             can :read, Company do |company|
                 company.agent == user || company.emprered == user

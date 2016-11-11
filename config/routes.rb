@@ -65,7 +65,13 @@ Rails.application.routes.draw do
 
   # Editar permisos del role
   get '/role/:id/edit_permissions', to: 'roles#edit_permissions', as: 'edit_permissions'
+  # Vista lista de usuarios por rol
   get '/user/index_role', to: 'users#index_role', as: 'index_role'
+  # Dashboard de Emprered
+  get '/companyroles/index_emprered', to: 'companyroles#index_emprered', as: 'index_emprered'
+  # Editar Empresa Site
+  # Editar permisos del role
+  get '/companies/:id/edit_site', to: 'companies#edit_site', as: 'edit_site'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
