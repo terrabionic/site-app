@@ -8,11 +8,13 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :email
       t.string :name_agent
       t.string :state, default: 'Nuevo'
+      t.string :stage, default: 'Prealta'
       t.references :sector, index: true, foreign_key: true
       t.string :name
       t.string :email_user
       t.boolean :active, default: true
       t.references :agent, index: true, foreign_key: true
+      t.references :emprered, index: true, foreign_key: true
       t.string :company_type , default: ''
       t.string :vat, default: ''
       t.string :street, default: ''
@@ -20,6 +22,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :city, default: ''
       t.string :cel, default: ''
       t.date :date_start
+      t.date :date_end
       t.string :line_business, default: ''
       t.integer :num_workers, default: 0
       t.string :annual_sales, default: ''

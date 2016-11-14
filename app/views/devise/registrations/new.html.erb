@@ -1,7 +1,22 @@
-<h2>Sign up</h2>
+<h2>Dar de alta nuevo consultor</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+
+  <h3>Roles</h3>
+  <br>
+ 
+  <div>
+    <% User::Role.all.each do |role_id| %>
+        <label>
+            <%= f.radio_button(:role_id, role_id.id) %>
+            <%= role_id.name %>
+        </label>
+        <br>
+    <% end %>
+  </div>
+
+   <h3>Acerca del usuario</h3>
 
   <div class="field">
     <%= f.label :name %><br />
@@ -9,13 +24,18 @@
   </div>
 
   <div class="field">
-    <%= f.label :role %><br />
-    <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+    <%= f.label :email %><br />
+    <%= f.email_field :email%>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email%>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+      <%= f.label :num_max_companies %><br />
+      <%= f.text_field :num_max_companies%>
   </div>
 
   <div class="field">
@@ -31,8 +51,12 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <div>
+    <p>Será enviado un email que contiene un enlace a la dirección de correo electrónico proporcionada.El destinatario la usara para iniciar sesión y establecer su contraseña</p>
+  </div>
+
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Crear Usuario" %>
   </div>
 <% end %>
 

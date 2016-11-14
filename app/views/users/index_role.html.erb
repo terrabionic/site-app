@@ -1,0 +1,43 @@
+<%= link_to 'Atras', roles_path %>
+<h1>Usuarios</h1>
+<br>
+
+<div align="right">
+    <%= form_tag(index_role_path(role_id:@role),:role_id => @role, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search],placeholder: "Search Posts" %>
+      <%= text_field_tag :role_id, @role,placeholder: "Search Posts" %>
+      <%= submit_tag "Buscar" %>
+    <% end %>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Rol
+            </th>
+            <th>
+                Ubicación
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @users.each do |user| %>
+            <tr>
+                <td>
+                    <%= link_to user.name, show_user_admin_path(user) %>  
+                </td>
+                <td>
+                    <% if user.role %>
+                        <%= user.role.name %>
+                    <% end %>
+                </td>
+                <td>
+                    <%= user.location %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

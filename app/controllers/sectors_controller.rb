@@ -61,6 +61,20 @@ class SectorsController < ApplicationController
     end
   end
 
+  def action_activate_deactivate
+    @sector = Sector.find(params[:sector_id])
+    if @sector.active == false
+      @sector.active = true
+    else
+      @sector.active = false
+    end
+    @sector.save
+    respond_to do |format|
+      format.html { redirect_to sectors_url, notice: 'Sector was successfully upodated.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sector
@@ -69,6 +83,6 @@ class SectorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sector_params
-      params.require(:sector).permit(:name, :description, :image_sector)
+      params.require(:sector).permit(:name, :description, :image_sector, :image)
     end
 end

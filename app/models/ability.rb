@@ -28,21 +28,23 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-
-    if user.is? 'admin'
-        can :manage, :all
-    elsif user.is? 'company'
-        can :read, Company do |company|
-            company.user_login == user
-        end
-    else
-        can :create, Company
-        
-        can :update, Company do |company|
-            company.agent == user
-        end
-        can :read, Company do |company|
-            company.agent == user
+    if user
+        #can :manage, :all
+        if user.is? 'admin'
+            can :manage, :all
+        elsif user.is? 'company'
+            can :read, Company do |company|
+                company.user_login == user
+            end
+        else
+            can :create, Company
+            
+            can :update, Company do |company|
+                company.emprered == user
+            end
+            can :read, Company do |company|
+                company.agent == user || company.emprered == user
+            end
         end
     end
 
