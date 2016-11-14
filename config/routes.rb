@@ -72,6 +72,10 @@ Rails.application.routes.draw do
   # Editar Empresa Site
   # Editar permisos del role
   get '/companies/:id/edit_site', to: 'companies#edit_site', as: 'edit_site'
+  # Dashboard de Empresa
+  get '/companyroles/index_company', to: 'companyroles#index_company', as: 'index_company'
+  # Mostrar encuesta a empresa
+  get 'companyroles/show_reply/:company_id', to: 'companyroles#show_reply', as: 'show_reply'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

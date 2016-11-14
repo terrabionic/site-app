@@ -44,6 +44,19 @@ class CompaniesController < ApplicationController
     authorize! :update, @company
   end
 
+  def show_reply
+    @user = current_user
+    @replies = Reply.where("user_id = ?", @user.id)
+    if @replies.length > 0
+      redirect_to survey_reply_path(survey_id:@replies.survey, id: @replies[0])
+    else
+      @survey = Survey.first
+      redirect_to new_survey_reply_path(survey_id:@survey)
+    end
+    
+    #@company = @user.companies.build(company_params)
+  end
+
   # POST /companies
   # POST /companies.json
   def create

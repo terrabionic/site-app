@@ -14,6 +14,8 @@
 						<%= link_to 'DASHBOARD admin', companies_path %>
 					<% elsif current_user.is? 'emprered' %>
 						<%= link_to 'DASHBOARD emprered', index_emprered_path %>
+					<% elsif current_user.is? 'company' %>
+						<%= link_to 'DASHBOARD company', index_company_path %>
 					<% end %>
 				</td>
 				<td>
@@ -22,7 +24,8 @@
 						<option>Editar Perfil</option>
 						<option><%= link_to 'Logout', destroy_user_session_path, method: :delete %></option>
 					</select>
-					<option><%= link_to 'Logout', destroy_user_session_path, method: :delete %></option>
+					<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+					
 				</td>
 			</tr>
 		</table>

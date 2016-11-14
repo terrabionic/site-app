@@ -21,8 +21,12 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     @user = current_user
     if @user
-      if @user.is? 'emprered'
+      if @user.is? 'admin'
+        companies_path
+      elsif @user.is? 'emprered'
         index_emprered_path
+      elsif @user.is? 'company'
+        index_company_path
       else
         companies_path
       end
