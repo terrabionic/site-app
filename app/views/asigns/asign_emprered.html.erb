@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Agentes disponibres</h2>
+<h2>Emprered</h2>
+<table>
+	<thead>
+		<tr>
+		  <th>Nombre</th>
+		  <th></th>
+		  <th></th>
+		</tr>
+	</thead>
+	<tbody>
+	    <% @emprereds.each do |emprered| %>
+	        <tr>
+	          <td><%= emprered.name %></td>
+	          <td>
+	          	<% if emprered.available %>
+	          		<strong>Disponible</strong>
+	          	<% else %>
+	          		<strong>Ocupado</strong>
+	          	<% end %>
+	          </td>
+	          <td>
+	          	<% if emprered.available %>
+	          		<%=link_to "Asignar", asignar_emprered_path(user_id: emprered, company_id: @company ), method: :post %>	
+	          	<% end %>
+	          </td>
+	        </tr>
+	    <% end %>
+	</tbody>
+</table>
+<br>
+<%= link_to 'Back', companies_path %>

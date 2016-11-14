@@ -1,0 +1,19 @@
+<h2>Olvidaste tu contraseña??</h2>
+<h3>Escribe tu email para iniciar la recuperación de tu contraseña</h3>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <h3>Enviaremos un link al mail que proporcionaste donde podras restablecer tu contraseña </h3>
+  
+  <div class="actions">
+    <%= f.submit "Enviar" %>
+  </div>
+  
+<% end %>
+<%= render "devise/shared/links" %>

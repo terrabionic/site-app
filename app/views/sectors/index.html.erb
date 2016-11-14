@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Sectors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image sector</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Acttivo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sectors.each do |sector| %>
+      <tr>
+        <td><%= link_to (image_tag (sector.image.url(:thumb)), class: 'work'), action_activate_deactivate_path(sector_id:sector), method: :post %></td>
+        <td><%= sector.name %></td>
+        <td><%= sector.description %></td>
+        <td><%= sector.active %></td>
+        <td><%= link_to 'Show', sector %></td>
+        <td><%= link_to 'Edit', edit_sector_path(sector) %></td>
+        <td><%= link_to 'Destroy', sector, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sector', new_sector_path %> | 
+<%= link_to 'Back', companies_path %>

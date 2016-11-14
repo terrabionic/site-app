@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Siteapp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<title>Siteapp</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  	<%= csrf_meta_tags %>
+	<% if current_user %>
+		<table>
+			<tr>
+				<td>LOGO</td>
+				<td>
+					<% if current_user.is? 'admin' %>
+						<%= link_to 'DASHBOARD admin', companies_path %>
+					<% elsif current_user.is? 'emprered' %>
+						<%= link_to 'DASHBOARD emprered', index_emprered_path %>
+					<% elsif current_user.is? 'company' %>
+						<%= link_to 'DASHBOARD company', index_company_path %>
+					<% end %>
+				</td>
+				<td>
+					<select name="perfil">
+						<option>Hola <strong><%= current_user.name %> (<%=current_user.email%>)</strong>.</option>
+						<option>Editar Perfil</option>
+						<option><%= link_to 'Logout', destroy_user_session_path, method: :delete %></option>
+					</select>
+					<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+					
+				</td>
+			</tr>
+		</table>
+	<% end %>
 </head>
 <body>
+
+
 
 <%= yield %>
 

@@ -1,0 +1,2 @@
+json.extract! company, :id, :company_name, :role, :address, :phone, :email, :name_agent, :state, :sector_id, :name, :email_user, :active, :agent_id, :company_type, :vat, :street, :street2, :city, :cel, :date_start, :line_business, :num_workers, :annual_sales, :company_history, :company_products, :company_market, :company_problems, :name_director, :staff_interviewed, :survey_period, :name_created, :completed, :created_at, :updated_at
+json.url company_url(company, format: :json)

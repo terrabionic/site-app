@@ -13,6 +13,8 @@ class RepliesController < ApplicationController
   def create
     @reply = @survey.replies.build(reply_params)
     if @reply.save
+      @reply.user = current_user
+      @reply.save
       redirect_to survey_replies_url(@survey), notice: 'Reply was successfully created.'
     else
       render :new
@@ -36,7 +38,7 @@ class RepliesController < ApplicationController
 
   private
     def reply_params
-      params.require(:reply).permit(:id, :survey_id, {
+      params.require(:reply).permit(:id, :user_id, :survey_id, {
         answers_attributes: [:id, :reply_id, :question_id, :possible_answer_id]
       })
     end
