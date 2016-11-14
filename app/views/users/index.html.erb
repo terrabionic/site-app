@@ -1,43 +1,44 @@
+<%= link_to 'Atras', companies_path %>
 <h1>Usuarios</h1>
-
+<%= link_to 'Crear nuevo consultor', new_user_registration_path %>
 <table>
-  	<thead>
-    	<tr>
+    <thead>
+        <tr>
             <th>
                 Nombre
             </th>
-    		<th>
-    			Email
-    		</th>
-    		<th>
-    			Rol
-    		</th>
-    		<th>
-    		</th>
-    	</tr>
+            <th>
+                Email
+            </th>
+            <th>
+                Rol
+            </th>
+            <th>
+            </th>
+        </tr>
     </thead>
     <tbody>
-    	<% @users.each do |user| %>
-    		<% unless user.is? 'company' %>
-				<tr>
-                    <td>
-                        <%= user.name %>
-                    </td>
-					<td>
-						<%= user.email %>
-					</td>
-					<td>
-						<%= user.role %>
-					</td>
-					<td>
-                         <%= link_to 'Mostrar', show_user_admin_path(user) %>  
-                         <%= link_to 'Editar', edit_user_registration_path(user) %>             
-                    </td>
-				</tr>
-			<% end %>
-	    <% end %>
+        <% @users.each do |user| %>
+            <% if user.role %>
+                <% unless user.role.role == 'company' %>
+                    <tr>
+                        <td>
+                            <%= link_to user.name, show_user_admin_path(user) %>
+                        </td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                        <td>
+                            <% if user.role %>
+                                <%= user.role.name %>
+                            <% end %>
+                        </td>
+                        <td>
+                             
+                        </td>
+                    </tr>
+                <% end %>
+            <% end %>
+        <% end %>
     </tbody>
 </table>
-
-<%= link_to 'Back', companies_path %>
-<%= link_to 'Nuevo Usuario', new_user_registration_path %>

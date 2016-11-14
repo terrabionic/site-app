@@ -1,70 +1,137 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Lista de Empresas</h1>
+<h1>Status de empresas y consultores</h1>
+
+<br>
+<table align="center">
+  <tr>
+    <td align="right">
+      <% if can? :create, Company %>
+        <%= link_to 'Dar de alta nueva empresa', new_company_path %>
+      <% end %>
+    </td>
+    <td align="right">
+      <% if can? :create, @roles %>
+        <%= link_to 'Roles', roles_path %>
+      <% end %>
+    </td>
+    <td align="right">
+      
+    </td>
+    <td align="right">
+      <% if can? :create, @sectors %>
+        <%= link_to 'Sectores', sectors_path %>
+      <% end %>
+    </td>
+    <td align="right">
+      <% if can? :create, @users %>
+        <%= link_to 'Dar de alta nuevo consultor', users_path %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <select name="sort">
+        <option value="company_name">Nombre</option>
+        <option value="state">Estado</option>
+        <option value="sector">Sector</option>
+      </select>
+    </td>
+    <td>
+      <div align="right">
+        <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+          <%= submit_tag "Buscar" %>
+        <% end %>
+      </div>
+    </td>
+  </tr>
+</table>
 
 <br>
 
-<% if can? :create, Company %>
-  <%= link_to 'New Company', new_company_path %>
-<% end %>
-<% if can? :create, @sectors %>
-  <%= link_to 'Sectores', sectors_path %>
-<% end %>
-<% if can? :create, @users %>
-  <%= link_to 'Usuarios', users_path %>
-<% end %>
-
+<div div align="center">
   <table>
-  <thead>
-    <tr>
-      <th>Nombre de Empresa</th>
-      <th>Direccion</th>
-      <th>Telefono convencional</th>
-      <th>Email</th>
-      <th>Representante</th>
-      <th>Sector</th>
-      <th>Usuario</th>
-      <th>Email Usuario</th>
-      <th>Activo</th>
-      <th>Encargado</th>
-      <th>Estado</th>
-      <th></th>
-    </tr>
-  </thead>
+    <thead>
+      <tr>
+        <th>Nombre de Empresa</th>
+        <th>Estado</th>
+        <th>Etapa</th>
+        <th>Fecha</th>
+        <th>Sector</th>
+        <th>Consultor Emprered</th>
+        <th>Consultor AE</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @companies.each do |company| %>
-      <% if can? :read, company %>
-        <tr>
-          <td><%= link_to company.company_name, company %></td>
-          <td><%= company.address %></td>
-          <td><%= company.phone %></td>
-          <td><%= company.email %></td>
-          <td><%= company.name_agent %></td>
-          <td>
-            <% if company.sector %>
-              <%= company.sector.name %>
-            <% end %>
-          </td>
-          <td><%= company.name %></td>
-          <td><%= company.email_user %></td>
-          <td><%= company.active %></td>
-          <td>
-            <% if company.agent %>
-
-              <% if current_user.is? 'admin' %>
-                <%= link_to company.agent.name, show_user_admin_path(company.agent) %> 
-              <% else %>
-                <%= company.agent.name %>
+    <tbody>
+      <% @companies.each do |company| %>
+        <% if can? :read, company %>
+          <tr>
+            <td><%= link_to company.company_name, show_general_path(id:company) %></td>
+            <td><%= company.state %></td>
+            <td><%= company.stage %></td>
+            <td>
+              <%= company.date_start %>
+              <%= company.date_end %>
+            </td>
+            <td>
+              <% if company.sector %>
+                <%= company.sector.name %>
               <% end %>
-            <% end %>
-          </td>
-          <td><%= company.state %></td>
-          <td>
-            <%= link_to 'Asignar', edit_asign_agent_path(company) %> 
-          </td>
-        </tr>
+            </td>
+            <td>
+              <% if current_user.is? 'admin' %>
+                <% if company.state == 'Nuevo' %>
+                  <% if company.emprered %>
+                    <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %>
+                    <br> 
+                    <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(company) %>
+                  <% else %>
+                    <%= link_to 'Asignar', edit_asign_emprered_path(company) %>
+                  <% end %>
+                <% elsif company.state == 'Terminado' %>
+                  <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %> 
+                <% end %>
+              <% else %>
+                <% if company.emprered %>
+                  <%= company.emprered.name %>
+                <% end %>
+              <% end %>
+            </td>
+            <td>
+              <% if current_user.is? 'admin' %>
+                <% if company.state == 'Nuevo' %>
+                  <% if company.agent %>
+                    <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+                  <% end %>
+                  <%= link_to 'Asignar', edit_asign_agent_path(company) %>
+                <% elsif company.state == 'Retrasado' %>
+                  <% if company.agent %>
+                    <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+                    <%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
+                  <% else %>
+                    Aún no se llega a etapa de análisis de diagnóstico
+                  <% end %>
+                <% elsif company.state == 'Terminado' %>
+                  <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+                <% else %>
+                  <% if company.agent %>
+                    <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+                    <%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
+                  <% else %>
+                    <%= link_to 'Asignar', edit_asign_agent_path(company) %> 
+                  <% end %>
+                <% end %>
+              <% else %>
+                <% if company.agent %>
+                  <%= company.agent.name %>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </tbody>
-  </table>
+    </tbody>
+    </table>
+  </div>

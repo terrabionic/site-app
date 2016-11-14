@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006170457) do
+ActiveRecord::Schema.define(version: 20161108223513) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -39,11 +39,13 @@ ActiveRecord::Schema.define(version: 20161006170457) do
     t.string   "email"
     t.string   "name_agent"
     t.string   "state",             default: "Nuevo"
+    t.string   "stage",             default: "Prealta"
     t.integer  "sector_id"
     t.string   "name"
     t.string   "email_user"
     t.boolean  "active",            default: true
     t.integer  "agent_id"
+    t.integer  "emprered_id"
     t.string   "company_type",      default: ""
     t.string   "vat",               default: ""
     t.string   "street",            default: ""
@@ -51,6 +53,7 @@ ActiveRecord::Schema.define(version: 20161006170457) do
     t.string   "city",              default: ""
     t.string   "cel",               default: ""
     t.date     "date_start"
+    t.date     "date_end"
     t.string   "line_business",     default: ""
     t.integer  "num_workers",       default: 0
     t.string   "annual_sales",      default: ""
@@ -69,8 +72,18 @@ ActiveRecord::Schema.define(version: 20161006170457) do
   end
 
   add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
+  add_index "companies", ["emprered_id"], name: "index_companies_on_emprered_id"
   add_index "companies", ["sector_id"], name: "index_companies_on_sector_id"
   add_index "companies", ["user_login_id"], name: "index_companies_on_user_login_id"
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "possible_answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -96,18 +109,33 @@ ActiveRecord::Schema.define(version: 20161006170457) do
 
   create_table "replies", force: :cascade do |t|
     t.integer  "survey_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_index "replies", ["survey_id"], name: "index_replies_on_survey_id"
+  add_index "replies", ["user_id"], name: "index_replies_on_user_id"
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "role"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "sectors", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.binary   "image_sector"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.boolean  "active",             default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "surveys", force: :cascade do |t|
@@ -117,23 +145,28 @@ ActiveRecord::Schema.define(version: 20161006170457) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "role"
     t.string   "name"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "location"
+    t.integer  "role_id"
+    t.boolean  "active",                 default: true
+    t.boolean  "available",              default: true
+    t.integer  "num_max_companies",      default: 5,    null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["role_id"], name: "index_users_on_role_id"
 
 end

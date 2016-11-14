@@ -13,9 +13,14 @@
     <%= f.email_field :email %>
   </div>
 
-  <div class="field">
-    <%= f.label :role %><br />
-    <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+  <div>
+    <% Role.all.each do |role_id| %>
+        <label>
+            <%= f.radio_button(:role, role_id.id) %>
+            <%= role_id.name %>
+        </label>
+        <br>
+    <% end %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

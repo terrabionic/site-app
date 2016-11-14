@@ -15,10 +15,7 @@
     <strong>Empresa:</strong><br>
     <%= f.text_field :company_name %>
   </div>
-  <div class="field">
-    <strong>Rol:</strong><br>
-    <%= f.collection_select :role, Company::ROLES, :to_s, :humanize %>
-  </div>
+
   <div class="field">
     <strong>Direccion:</strong><br>
     <%= f.text_field :address %>
@@ -39,6 +36,14 @@
   <div class="field">
     <strong>Sector:</strong><br>
     <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
+    <br>
+    <% Sector.where('active = ?',true).each do |sector| %>
+      <label>
+          <%= image_tag (sector.image.url(:thumb)) %>
+          <%= f.radio_button(:sector_id, sector.id) %>
+      </label>
+      
+    <% end %>
   </div>
   <div class="field">
     <strong>Nombre de usuario:</strong><br>

@@ -15,10 +15,7 @@
     <strong>Empresa:</strong><br>
     <%= f.text_field :company_name %>
   </div>
-  <div class="field">
-    <strong>Rol:</strong><br>
-    <%= f.collection_select :role, Company::ROLES, :to_s, :humanize %>
-  </div>
+  
   <div class="field">
     <strong>Direccion:</strong><br>
     <%= f.text_field :address %>
@@ -31,97 +28,18 @@
     <strong>Email:</strong><br>
     <%= f.text_field :email %>
   </div>
-  <div class="field">
-    <strong>Representante:</strong><br>
-    <%= f.text_field :name_agent %>
-  </div>
   
   <div class="field">
-    <strong>Sector:</strong><br>
+    <strong>Tipo de industria (Sector):</strong><br>
     <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
-  </div>
-  <div class="field">
-    <strong>Nombre Usuario:</strong><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <strong>Email usuario:</strong><br>
-    <%= f.text_field :email_user %>
-  </div>
-
-  <h1>Registro en SITE</h1>
-
-  <div class="field">
-    <strong>Tipo de empresa:</strong><br>
-    <%= f.text_field :company_type %>
-  </div>
-  <div class="field">
-    <strong>RFC:</strong><br>
-    <%= f.text_field :vat %>
-  </div>
-  <div class="field">
-    <strong>Calle:</strong><br>
-    <%= f.text_field :street %>
-  </div>
-  <div class="field">
-    <strong>Colonia:</strong><br>
-    <%= f.text_field :street2 %>
-  </div>
-  <div class="field">
-    <strong>Municipio:</strong><br>
-    <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <strong>Celular:</strong><br>
-    <%= f.text_field :cel %>
-  </div>
-  <div class="field">
-    <strong>Fecha de inicio de operaciones:</strong><br>
-    <%= f.date_select :date_start %>
-  </div>
-  <div class="field">
-    <strong>Giro de la empresa:</strong><br>
-    <%= f.text_field :line_business %>
-  </div>
-  <div class="field">
-    <strong>Num de Presonas:</strong><br>
-    <%= f.number_field :num_workers %>
-  </div>
-  <div class="field">
-    <strong>Ventas anuales:</strong><br>
-    <%= f.text_field :annual_sales %>
-  </div>
-  <div class="field">
-    <strong>Historia de la empresa:</strong><br>
-    <%= f.text_area :company_history %>
-  </div>
-  <div class="field">
-    <strong>Productos que genera:</strong><br>
-    <%= f.text_field :company_products %>
-  </div>
-  <div class="field">
-    <strong>Mercados atendios:</strong><br>
-    <%= f.text_field :company_market %>
-  </div>
-  <div class="field">
-    <strong>Problemas de la empresa:</strong><br>
-    <%= f.text_field :company_problems %>
-  </div>
-  <div class="field">
-    <strong>Nombre del Director:</strong><br>
-    <%= f.text_field :name_director %>
-  </div>
-  <div class="field">
-    <strong>Personal entrvitado:</strong><br>
-    <%= f.text_field :staff_interviewed %>
-  </div>
-  <div class="field">
-    <strong>Periodo del diagnostico:</strong><br>
-    <%= f.text_field :survey_period %>
-  </div>
-  <div class="field">
-    <strong>Nombre de quien elaboro el reporte inicial:</strong><br>
-    <%= f.text_field :name_created %>
+    <br>
+    <% Sector.where('active = ?',true).each do |sector| %>
+      <label>
+          <%= image_tag (sector.image.url(:thumb)) %>
+          <%= f.radio_button(:sector_id, sector.id) %>
+      </label>
+      
+    <% end %>
   </div>
 
   <div class="actions">

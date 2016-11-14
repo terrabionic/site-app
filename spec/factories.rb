@@ -1,4 +1,17 @@
 FactoryGirl.define do
+  factory :role do
+    name "MyString"
+    description "MyText"
+    admin false
+    emprered false
+    agentae false
+  end
+  factory :contact do
+    name "MyString"
+    email "MyString"
+    subject "MyString"
+    message "MyText"
+  end
   factory :company do
     company_name "MyString"
     role "MyString"

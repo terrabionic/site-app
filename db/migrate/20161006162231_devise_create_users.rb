@@ -2,9 +2,17 @@ class DeviseCreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       # ROLES
-      t.string :role
+      #t.string :role
       # Nombre de usuario
       t.string :name
+      # Ubicacion
+      t.string :location
+      # Role modelo
+      t.references :role, index: true, foreign_key: true
+      # Ubicacion
+      t.boolean :active, default: true
+      t.boolean :available, default: true
+      t.integer :num_max_companies, default: 5, null: false
 
       ## Database authenticatable
       t.string :email,              null: false, default: ""
