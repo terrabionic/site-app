@@ -6,17 +6,9 @@
 <table align="center">
   <tr>
     <td align="right">
-      <% if can? :create, Company %>
-        <%= link_to 'Dar de alta nueva empresa', new_company_path %>
-      <% end %>
-    </td>
-    <td align="right">
       <% if can? :create, @roles %>
         <%= link_to 'Roles', roles_path %>
       <% end %>
-    </td>
-    <td align="right">
-      
     </td>
     <td align="right">
       <% if can? :create, @sectors %>
@@ -31,11 +23,10 @@
   </tr>
   <tr>
     <td>
-      <select name="sort">
-        <option value="company_name">Nombre</option>
-        <option value="state">Estado</option>
-        <option value="sector">Sector</option>
-      </select>
+    </td>
+    <td>
+    </td>
+    <td>
     </td>
     <td>
       <div align="right">
@@ -105,7 +96,7 @@
                   <% if company.agent %>
                     <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
                   <% end %>
-                  <%= link_to 'Asignar', edit_asign_agent_path(company) %>
+                  Aún no se llega a etapa de análisis de diagnóstico
                 <% elsif company.state == 'Retrasado' %>
                   <% if company.agent %>
                     <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
