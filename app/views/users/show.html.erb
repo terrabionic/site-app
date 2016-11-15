@@ -6,7 +6,7 @@
 </ul>
 <div class="tabs-content">
   <div class="content active" id="consultor">
-    <%= link_to 'Back', users_path %>
+    <%= link_to 'Atras', users_path %>
 	<h1>Consultor Emprered</h1>
 	<br>
 	<h2>GENERAL</h2><%= link_to 'Editar', edit_user_path(@user) %>
@@ -107,40 +107,41 @@
 				                    <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %> 
 				                  <% end %>
 				                <% else %>
-				                  <%= company.emprered.name %>
+									<% if company.emprered %>
+									  <%= company.emprered.name %>
+									<% end %>
 				                <% end %>
 				              <% end %>
 				            </td>
 				            <td>
-				              <% if company.agent %>
-				                <% if current_user.is? 'admin' %>
-
-				                  <% if company.state == 'Nuevo' %>
-				                    <% if company.agent %>
-				                      <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
-				                    <% end %>
-				                    <%= link_to 'Asignar', edit_asign_agent_path(company) %>
-				                  <% elsif company.state == 'Retrasado' %>
-				                    <% if company.agent %>
-				                      <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
-				                      <%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
-				                    <% else %>
-				                      Aún no se llega a etapa de análisis de diagnóstico
-				                    <% end %>
-				                  <% elsif company.state == 'Terminado' %>
-				                    <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
-				                  <% else %>
-				                    <% if company.agent %>
-				                      <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
-				                      <%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
-				                    <% else %>
-				                      <%= link_to 'Asignar', edit_asign_agent_path(company) %> 
-				                    <% end %>
-				                  <% end %>
-				                <% else %>
-				                  <%= company.agent.name %>
-				                <% end %>
-				              <% end %>
+								<% if current_user.is? 'admin' %>
+									<% if company.state == 'Nuevo' %>
+									  <% if company.agent %>
+										<%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+									  <% end %>
+									  Aún no se llega a etapa de análisis de diagnóstico
+									<% elsif company.state == 'Retrasado' %>
+									  <% if company.agent %>
+										<%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+										<%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
+									  <% else %>
+										Aún no se llega a etapa de análisis de diagnóstico
+									  <% end %>
+									<% elsif company.state == 'Terminado' %>
+									  <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+									<% else %>
+									  <% if company.agent %>
+										<%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+										<%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
+									  <% else %>
+										<%= link_to 'Asignar', edit_asign_agent_path(company) %> 
+									  <% end %>
+									<% end %>
+								<% else %>
+									<% if company.agent %>
+									  <%= company.agent.name %>
+									<% end %>
+								<% end %>
 				            </td>
 						  </tr>
 			      	<% end %>

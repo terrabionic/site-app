@@ -7,6 +7,7 @@ class RepliesController < ApplicationController
 
   def new
     @reply = @survey.replies.new
+    @categories= get_categories(@survey)
     @survey.questions.each { |question| @reply.answers.build(question: question) }
   end
 
@@ -22,6 +23,7 @@ class RepliesController < ApplicationController
   end
 
   def edit
+	 @categories = get_categories(@survey)
   end
 
   def update
@@ -34,6 +36,17 @@ class RepliesController < ApplicationController
   end
 
   def show
+    @categories = get_categories(@survey)
+  end
+  
+  def get_categories(survey)
+	#~ @company_ids = Company.where("user_login_id = ?", self.id)
+	@categories = Question.where("survey_id = ?",survey).map{|s| s.category}
+	if @categories
+		@categories = @categories.uniq
+		return @categories
+	end
+	return false
   end
 
   private

@@ -56,7 +56,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  root :to => redirect("/users/sign_in")
   # Pagina de inicio
   get '/about_us', to: 'home#about_us', as: 'about_us'
   get '/we_do', to: 'home#we_do', as: 'we_do'

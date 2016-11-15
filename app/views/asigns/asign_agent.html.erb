@@ -2,6 +2,9 @@
 
 <h2>Agentes disponibres</h2>
 
+<%= link_to 'Atras', companies_path %>
+<br>
+
 <h2>Agentes</h2>
 <table>
 	<thead>
@@ -12,24 +15,25 @@
 		</tr>
 	</thead>
 	<tbody>
-	    <% @agents.each do |agent| %>
-	        <tr>
-	          <td><%= agent.name %></td>
-	          <td>
-	          	<% if agent.available %>
-	          		<strong>Disponible</strong>
-	          	<% else %>
-	          		<strong>Ocupado</strong>
-	          	<% end %>
-	          </td>
-	          <td>
-	          	<% if agent.available %>
-	          		<%=link_to "Asignar", asignar_path(user_id: agent, company_id: @company ), method: :post %>	
-	          	<% end %>
-	          </td>
-	        </tr>
-	    <% end %>
+		<% if @agents %>
+			<% @agents.each do |agent| %>
+				<tr>
+				  <td><%= agent.name %></td>
+				  <td>
+					<% if agent.available %>
+						<strong>Disponible</strong>
+					<% else %>
+						<strong>Ocupado</strong>
+					<% end %>
+				  </td>
+				  <td>
+					<% if agent.available %>
+						<%=link_to "Asignar", asignar_path(user_id: agent, company_id: @company ), method: :post %>	
+					<% end %>
+				  </td>
+				</tr>
+			<% end %>
+		<% end %>
 	</tbody>
 </table>
 <br>
-<%= link_to 'Back', companies_path %>

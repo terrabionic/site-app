@@ -1,5 +1,9 @@
 <div align="center">
-  <h2>Log in</h2>
+  <h1>SITE</h1>
+  <h3> 
+    Sistema de Inteligencia y Tecnologia Empresarial
+  </h3>
+  <h2>Iniciar sesión</h2>
 </div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -24,6 +28,29 @@
     <div class="actions">
       <%= f.submit "Log in" %>
     </div>
+    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      <%= link_to "Olvidaste tu contraseña?", new_password_path(resource_name) %><br />
+    <% end -%>
+
+    <table>
+      <tr>
+        <td>
+          <%= link_to 'Quienes somos', about_us_path %>
+        </td>
+        <td>
+          <%= link_to 'Que hacemos', we_do_path %>
+        </td>
+        <td>
+          <%= link_to 'Contacto', new_contact_path %>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= link_to 'Aviso de Privacidad', privacy_path %></td>
+        <td></td>
+      </tr>
+    </table>
+
   </div>
 <% end %>
 
