@@ -1,0 +1,34 @@
+<%= form_for(@role) do |f| %>
+  <% if @role.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
+
+      <ul>
+      <% @role.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <strong>Permiso del role</strong><br>
+    <% Role::ROLES.each do |role_name| %>
+      <label>
+          <%= f.radio_button(:role, role_name) %>
+          <% if role_name == 'admin'%>
+            Administrador
+          <% elsif  role_name == 'agente' %>
+            AgenteAE
+          <% else %>
+            Emprered
+          <% end %>
+          <br>
+      </label>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Guardar" %>
+  </div>
+<% end %>

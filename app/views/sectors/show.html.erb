@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Atras', sectors_path %>
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @sector.name %>
+  <%= link_to 'Editar', edit_sector_path(@sector) %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @sector.description %>
+</p>
+<p>
+  <strong>Activo:</strong>
+  <%= @sector.active %>
+</p>
+
+<p>
+  <strong>Image sector:</strong>
+  <%= image_tag @sector.image.url(:medium) %>
+</p>
+

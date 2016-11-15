@@ -11,20 +11,27 @@
   </div>
 <% end %>
 
+<%= link_to 'Atras', root_path %>
 <p>
-  <strong>Title:</strong>
+  <strong>Nombre de Encuesta:</strong>
   <%= @survey.title %>
 </p>
+<%= link_to 'Editar', edit_survey_reply_path(@survey, @reply)  %>
 
 <ul>
-  <% @reply.answers.each do |answer| %>
-    <li>
-      <strong><%= answer.question.title %></strong>
-      <mark><%= answer.grade %> / <%= answer.question.grade %></mark>
-      <br>
-      <em><%= answer.title %></em>
-    </li>
+  <% @categories.each do |category| %>
+    <h1><%= category.title %></h1>
+    <% @reply.answers.each do |answer| %>
+      <% if answer.question.category.id == category.id %>
+        <li>
+          <strong><%= answer.question.title %></strong>
+          <% if current_user.is? 'admin' or current_user.is? 'agente' %>
+            <mark><%= answer.grade %> / <%= answer.question.grade %></mark>
+          <% end %>
+          <br>
+          <em><%= answer.title %></em>
+        </li>
+      <% end %>
+    <% end %>
   <% end %>
 </ul>
-
-<%= link_to 'Back', survey_replies_path(@survey) %>

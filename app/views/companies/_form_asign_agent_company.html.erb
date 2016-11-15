@@ -1,0 +1,28 @@
+<%= form_for(@company) do |f| %>
+  <% if @company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% @company.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <h1><strong>Empresa: </strong>
+      <%= f.text_field :company_name %>
+    <h1>
+  </div>
+  
+  <div class="field">
+    <strong>Agente:</strong><br>
+    <%= f.select :agent_id, options_for_select(User.where("role in ('emprered','agent')").map{|s|[s.name, s.id]}) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

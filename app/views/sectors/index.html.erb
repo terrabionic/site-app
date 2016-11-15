@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Atras', companies_path %>
+<h1>Sectores</h1>
+<br>
+<%= link_to 'Nuevo Sector', new_sector_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Image sector</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Acttivo</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sectors.each do |sector| %>
+      <tr>
+        <td><%= link_to (image_tag (sector.image.url(:thumb)), class: 'work'), action_activate_deactivate_path(sector_id:sector), method: :post %></td>
+        <td><%= link_to sector.name, sector %></td>
+        <td><%= sector.description %></td>
+        <td><%= sector.active %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

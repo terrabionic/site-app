@@ -1,0 +1,36 @@
+<%= form_for(@user, html: { method: :put }) do |f| %>
+  
+  <h3>Roles</h3>
+
+  <div>
+    <table>
+      <tr>
+        <td>
+          <strong>Role</strong>
+        </td>
+        <td>
+          <strong>Descripción</strong>
+        </td>
+      </tr>
+     
+      <% Role.all.each do |role_id| %>
+        </tr>
+            <td>
+                <%= f.radio_button(:role_id, role_id.id) %>
+                <%= role_id.name %>
+            </td>
+            <td>
+                <%= role_id.description %>
+            </td>
+        </tr>
+      <% end %>
+
+    </table>
+    
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+
+<% end %>

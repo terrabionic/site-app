@@ -7,12 +7,15 @@ class RepliesController < ApplicationController
 
   def new
     @reply = @survey.replies.new
+    @categories= get_categories(@survey)
     @survey.questions.each { |question| @reply.answers.build(question: question) }
   end
 
   def create
     @reply = @survey.replies.build(reply_params)
     if @reply.save
+      @reply.user = current_user
+      @reply.save
       redirect_to survey_replies_url(@survey), notice: 'Reply was successfully created.'
     else
       render :new
@@ -20,6 +23,7 @@ class RepliesController < ApplicationController
   end
 
   def edit
+	 @categories = get_categories(@survey)
   end
 
   def update
@@ -32,11 +36,22 @@ class RepliesController < ApplicationController
   end
 
   def show
+    @categories = get_categories(@survey)
+  end
+  
+  def get_categories(survey)
+	#~ @company_ids = Company.where("user_login_id = ?", self.id)
+	@categories = Question.where("survey_id = ?",survey).map{|s| s.category}
+	if @categories
+		@categories = @categories.uniq
+		return @categories
+	end
+	return false
   end
 
   private
     def reply_params
-      params.require(:reply).permit(:id, :survey_id, {
+      params.require(:reply).permit(:id, :user_id, :survey_id, {
         answers_attributes: [:id, :reply_id, :question_id, :possible_answer_id]
       })
     end
