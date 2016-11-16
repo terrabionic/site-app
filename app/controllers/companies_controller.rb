@@ -18,6 +18,8 @@ class CompaniesController < ApplicationController
     @sectors = Sector.all
     @users = User.all
     @roles = Role.all
+    @surveys = Survey.all
+    @categories = Category.all
   end
 
   # GET /companies/1
