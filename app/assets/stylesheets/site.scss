@@ -118,3 +118,176 @@ textarea {
 		}
 	}
 }
+
+
+.site-header {
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	&:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;		
+	}
+}
+
+.site-header__logo {
+	float: left;
+}
+
+.header-actions {
+	float: right;
+}
+
+.header-actions__item {
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 3rem;
+	padding-right: 3rem;
+	position: relative;
+	&:after {
+		height: 40px;
+		width: 1px;
+		display: block;
+		background: #F6F6F6;
+		content: "";
+		right: 0;
+		top: 50%;
+		margin-top: -20px;
+		position: absolute;
+	}
+
+}
+
+
+
+.header-actions__item--dashboard {
+	a {
+		text-transform: uppercase;
+		font-size: 14px;
+		color: #32365D;
+		font-weight: 500;
+		&:hover {
+			color: #32365D;
+			&:after {
+				color: #70B23A;
+			}
+			
+		}
+		
+		&:after {
+			content: "\e91c";
+			font-family: icomoon;
+			margin-left: 1rem;
+			font-size: 1.5em;
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+}
+
+.header-actions__item--dropdown {
+	color: #32365D;
+	padding-right: 0;
+	cursor: pointer;
+
+
+	&:before {
+		content: "\e91b";
+		font-family: icomoon;
+		display: inline-block;
+		font-size: 50px;
+		vertical-align: middle;
+		margin-right: 10px;
+	}
+
+	&:after {
+		content: none;
+	}
+
+	> div {
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 14px;
+		font-weight: 500;
+		position: relative;
+		padding-right: 24px;
+		min-width: 160px;
+		&:before {
+			content: "\e916";
+			font-family: icomoon;
+			position: absolute;
+			right: 0;
+			top: 13px;
+			font-size: 10px;
+			transform: rotate(90deg);
+			color: #70B23A;
+		}
+	}
+
+	em {
+		font-style: normal;
+	}
+
+	
+}
+
+.header-dropdown {
+	display: none;
+	border: 1px solid #EFF0F2;
+	cursor: normal;
+	list-style: none;
+	position: absolute;
+	top: 130%;
+	left: 0;
+	right: 0;
+	margin: 0;
+
+}
+
+
+
+.header-dropdown__item {
+	display: block;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	&+li {
+		border-top: 1px solid #EFF0F2;
+	}
+
+	a {
+		color: #153E5E;
+		position: relative;
+		&:before {
+
+		}
+
+		&:hover {
+			color: #73B23B;
+		}
+
+	}
+}
+
+.header-dropdown__item--profile {
+	a {
+		&:before {
+			content: "\e91a";
+			font-family: icomoon;
+			display: inline-block;
+			margin-right: .5rem;
+		}
+	}
+}
+
+.header-dropdown__item--logout {
+	background: #F4F5F7;
+}
+
+
