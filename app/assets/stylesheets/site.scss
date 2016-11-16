@@ -1,3 +1,16 @@
+%clearfix {
+	&:before,
+	&:after {
+	    content: " "; /* 1 */
+    	display: table; /* 2 */
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+
 input,
 textarea {
 	border-radius: 4px !important;
@@ -125,6 +138,7 @@ textarea {
 	padding-right: 100px;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	border-bottom: 1px solid #EDEDED;
 	&:after {
 		visibility: hidden;
 		display: block;
@@ -246,6 +260,8 @@ textarea {
 	left: 0;
 	right: 0;
 	margin: 0;
+	background: white;
+	z-index: 23;
 
 }
 
@@ -290,4 +306,143 @@ textarea {
 	background: #F4F5F7;
 }
 
+.nav {
+	position: fixed;
+	background: #F4F5F7;
+	top: 115px;
+	left: 0;
+	bottom: 0;
+	width: 110px;
+	border-right: 1px solid #EDEDED;
+}
+
+.nav__item {
+	background: white;
+	display: block;
+	text-align: center;
+	font-size: 13px;
+	border-top: 1px solid #EDEDED;
+	padding-top: .25rem;
+	padding-bottom: 1rem;
+	padding-left: 8px;
+	padding-right: 8px;
+	color: #193E60;
+	font-weight: 500;
+}
+
+.main {
+	position: static;
+	margin-left: 110px;
+	padding: 1.618rem;
+
+}
+
+.main-headline {
+	font-size: 28px;
+	font-weight: 500;
+	color: #193E60;
+	position: relative;
+	margin-bottom: 1rem;
+	padding-bottom: .5rem;
+	&:before {
+		content: "";
+		width: 30px;
+		height: 1px;
+		background: #70B23A;
+		display: block;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
+}
+
+.actions-emprered {
+	@extend %clearfix;
+	margin-bottom: 1.618rem;
+
+	.main-headline {
+		float: left;
+	}
+	a {
+		display: inline-block;
+		background: #22A89E;
+		color: white;
+		width: auto;
+		padding: .5rem 3rem;
+		border-radius: 4px;
+		text-transform: uppercase;
+		font-size: 14px;
+		font-weight: 500;
+		float: right;
+		&:hover {
+			text-decoration: underline;
+			color: white;
+		}
+	}
+}
+
+#search-form {
+	position: relative;
+	margin-top: 1.618rem;
+	margin-bottom: 1.618rem;
+
+	&:before {
+		@extend %clearfix;
+		content: "\e917";
+		font-family: icomoon;
+		position: absolute;
+		left: 10px;
+		top: 9px;
+		color: #91989D;
+
+	}
+
+	input {
+		display: inline-block;
+		width: auto;
+		vertical-align: center;
+	}
+
+	[type="submit"] {
+		background: #71B23A;
+		border: none;
+		color: white;
+		font-size: 14px;
+		text-transform: uppercase;
+		font-weight: 500;
+		padding: .7rem 2rem;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	input[type="text"] {
+		padding-left: 32px;
+	}
+}
+
+.site-table {
+	color: #9BA1A1;
+
+	thead {
+		background: #043050;
+		color: white;
+		th {
+			font-size: 14px;
+			font-weight: 500;
+			text-transform: uppercase;
+		}
+	}
+
+	a {
+		color: #053054;
+		text-decoration: underline;
+		&:hover {
+			color: #22A89E;
+		}
+	}
+
+
+	
+}
 
