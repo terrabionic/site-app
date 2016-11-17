@@ -14,11 +14,11 @@
 				<td>LOGO</td>
 				<td>
 					<% if current_user.is? 'admin' %>
-						<%= link_to 'DASHBOARD admin', companies_path %>
+						<%= link_to 'DASHBOARD', companies_path %>
 					<% elsif current_user.is? 'emprered' %>
-						<%= link_to 'DASHBOARD emprered', index_emprered_path %>
+						<%= link_to 'DASHBOARD', index_emprered_path %>
 					<% elsif current_user.is? 'company' %>
-						<%= link_to 'DASHBOARD company', index_company_path %>
+						<%= link_to 'DASHBOARD', index_company_path %>
 					<% end %>
 				</td>
 				<td>

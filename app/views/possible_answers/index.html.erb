@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Possible answers - <small><%= @question.title %></small></h1>
-
+<%= link_to 'Atras', survey_questions_path(@question.survey) %>
+<h1>Posibles Respuestas - <small><%= @question.title %></small></h1>
+<%= link_to 'Nueva posible respuesta', new_question_possible_answer_path(@question) %>
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Grade</th>
+      <th>Respuesta</th>
+      <th>Descripción</th>
+      <th>Valor</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -15,11 +16,10 @@
   <tbody>
     <% @question.possible_answers.each do |possible_answer| %>
       <tr id="<%= dom_id(possible_answer) %>">
-        <td><%= possible_answer.title %></td>
+        <td><%= link_to possible_answer.title, edit_question_possible_answer_path(@question, possible_answer) %></td>
         <td><%= possible_answer.description %></td>
         <td><%= possible_answer.grade %></td>
-        <td><%= link_to 'Edit', edit_question_possible_answer_path(@question, possible_answer) %></td>
-        <td><%= link_to 'Destroy', question_possible_answer_path(@question, possible_answer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Eliminar', question_possible_answer_path(@question, possible_answer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,5 +27,4 @@
 
 <br>
 
-<%= link_to 'New Possible answer', new_question_possible_answer_path(@question) %>
-<%= link_to 'Back', survey_questions_path(@question.survey) %>
+

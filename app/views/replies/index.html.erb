@@ -1,11 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Atras', surveys_path %>
 <h1>Lista de respuestas - <small><%= @survey.title %></small></h1>
-
+<%= link_to 'Responder Nuevo Diagnostico', new_survey_reply_path(@survey) %>
 <table>
   <thead>
     <tr>
-      <th>Id</th>
+      <th>D. Respondido</th>
+      <th>Diagnostico</th>
+      <th>Usuario</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,10 +16,18 @@
   <tbody>
     <% @survey.replies.each do |reply| %>
       <tr id="<%= dom_id(reply) %>">
-        <td><%= reply.id %></td>
-        <td><%= link_to 'Show', survey_reply_path(@survey, reply) %></td>
-        <td><%= link_to 'Edit', edit_survey_reply_path(@survey, reply) %></td>
-        <td><%# link_to 'Destroy', survey_question_path(@survey, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to reply.id, survey_reply_path(@survey, reply) %></td>
+        <td>
+			<% if reply.survey %>
+				<%= reply.survey.title %>
+			<% end %>
+		</td>
+        <td>
+			<% if reply.user %>
+				<%= reply.user.name %>
+			<% end %>
+		</td>
+        <td><%# link_to 'Eliminar', survey_question_path(@survey, question), method: :delete, data: { confirm: '¿Estas seuro de eliminar la encuesta ?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,5 +35,5 @@
 
 <br>
 
-<%= link_to 'New Reply', new_survey_reply_path(@survey) %>
-<%= link_to 'Back', surveys_path %>
+
+
