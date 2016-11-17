@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <h3>Acerca del role</h3>
+  <h3>Acerca del rol</h3>
 
   <div class="field">
     <strong>Nombre</strong><br>
@@ -19,12 +19,12 @@
   </div>
 
   <div class="field">
-    <strong>Descripcion</strong><br>
+    <strong>Descripción</strong><br>
     <%= f.text_area :description %>
   </div>
 
   <div class="field">
-    <strong>Permiso del role</strong><br>
+    <strong>Permiso del rol</strong><br>
     <% Role::ROLES.each do |role_name| %>
       <label>
           <%= f.radio_button(:role, role_name) %>

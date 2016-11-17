@@ -1,17 +1,17 @@
 <%= form_for(@user, html: { method: :put }) do |f| %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <strong>Nombre</strong><br />
     <%= f.text_field :name, autofocus: true %>
   </div>
 
   <div class="field">
-    <%= f.label :location %><br />
+    <strong>Lugar</strong><br />
     <%= f.text_field :location%>
   </div>
 
   <div class="field">
-    <%= f.label :num_max_companies %><br />
+    <strong>Número máximo de empresas</strong><br />
     <%= f.text_field :num_max_companies%>
   </div>
 
@@ -21,7 +21,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "Guardar" %>
   </div>
 
 <% end %>

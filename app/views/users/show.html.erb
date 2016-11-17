@@ -6,7 +6,7 @@
 </ul>
 <div class="tabs-content">
   <div class="content active" id="consultor">
-    <%= link_to 'Atras', users_path %>
+    <%= link_to 'Atrás', users_path %>
 	<h1>Consultor Emprered</h1>
 	<br>
 	<h2>GENERAL</h2><%= link_to 'Editar', edit_user_path(@user) %>
@@ -23,21 +23,21 @@
 		</p>
 
 		<p>
-		  <strong>Ubicacion:</strong>
+		  <strong>Lugar:</strong>
 		  <%= @user.location %>
 		</p>
 
 		<p>
-		  <strong>Numero maximo de empresas asignadas:</strong>
+		  <strong>Número máximo de empresas:</strong>
 		  <%= @user.num_max_companies %>
 		</p>
 
 		<p>
-		  <strong>Ultimo inicio de sesión:</strong>
+		  <strong>Último inicio de sesión:</strong>
 		  <%= @user.last_sign_in_at %>
 		</p>
 
-		<h2>Role</h2>
+		<h2>Rol</h2>
 		<%= link_to 'Editar', edit_role_u_path(@user) %>
 		<p>
 		  <strong>Rol:</strong>
