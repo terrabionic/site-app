@@ -1,5 +1,30 @@
-<h1>Nueva Empresa</h1>
 
-<%= render 'form_new' %>
+<div class="layout">
 
-<%= link_to 'Back', companies_path %>
+  <div class="nav">
+    <a href="#" class="nav__item">
+      <%= image_tag "calificacion-empresa-tab.png" %>      
+      <span>Calificacion de la empresa</span>
+    </a>
+    
+  </div><!-- .nav -->
+
+  <div class="main">
+
+  	<div class="form-container">
+  		
+  		<%= link_to 'Back', companies_path, class: "back-button" %>
+	 	<h1 class="main-headline inline-block">
+	 		Alta de la empresa
+	 	</h1>
+
+		<%= render 'form_new' %>
+
+	</div>
+
+	
+
+  </div><!-- .main -->
+</div><!-- .layout -->
+
+

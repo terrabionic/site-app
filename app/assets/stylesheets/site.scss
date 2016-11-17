@@ -10,9 +10,13 @@
 	}
 }
 
+body, html {
+	background: #F4F5F7;
+}
 
 input,
-textarea {
+textarea,
+select {
 	border-radius: 4px !important;
 }
 
@@ -134,6 +138,7 @@ textarea {
 
 
 .site-header {
+	background: white;
 	padding-left: 120px;
 	padding-right: 120px;
 	padding-top: 20px;
@@ -175,6 +180,29 @@ textarea {
 		position: absolute;
 	}
 
+}
+
+.back-button {
+	font-size: 0;
+	text-decoration: none;
+	background: #70B23A;
+	color: white;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	text-decoration: none !important;
+	margin-right: 1rem;
+	border-radius: 50%;
+	&:before {
+		content: "\e913";
+		font-family: icomoon;
+		font-size: 24px;
+	}
+	&:hover {
+		color: white;
+	}
 }
 
 
@@ -307,7 +335,7 @@ textarea {
 }
 
 .nav {
-	position: fixed;
+	position: absolute;
 	background: #F4F5F7;
 	top: 115px;
 	left: 0;
@@ -331,6 +359,7 @@ textarea {
 }
 
 .main {
+	background: white;
 	position: static;
 	margin-left: 110px;
 	padding: 1.618rem;
@@ -446,3 +475,31 @@ textarea {
 	
 }
 
+.form-container {
+	max-width: 640px;
+	color: #0D3453;
+}
+
+.submit-btn {
+	background: #70B23A;
+	border: none;
+	color: white;
+	padding: .5rem 2rem;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 500;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+#company_sector_id {
+	display: none;
+}
+
+.sector-cool {
+	background: #EEEFF1;
+	border-radius: 4px;
+	padding: .5rem;
+}
