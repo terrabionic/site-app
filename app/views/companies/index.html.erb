@@ -5,6 +5,16 @@
 <br>
 <table align="center">
   <tr>
+	<td align="right">
+      <% if can? :create, @surveys %>
+        <%= link_to 'Diagnosticos', surveys_path %>
+      <% end %>
+    </td>
+	<td align="right">
+      <% if can? :create, @categories %>
+        <%= link_to 'Factores', categories_path %>
+      <% end %>
+    </td>
     <td align="right">
       <% if can? :create, @roles %>
         <%= link_to 'Roles', roles_path %>

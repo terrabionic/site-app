@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Questions - <small><%= @survey.title %></small></h1>
-
+<%= link_to 'Atras', surveys_path %>
+<h1>Preguntas - <small><%= @survey.title %></small></h1>
+<%= link_to 'Nueva Pregunta', new_survey_question_path(@survey) %>
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Grade</th>
-      <th>Category</th>
+      <th>Pregunta</th>
+      <th>Valor</th>
+      <th>Factor</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,18 +16,14 @@
   <tbody>
     <% @survey.questions.each do |question| %>
       <tr id="<%= dom_id(question) %>">
-        <td><%= question.title %></td>
+        <td><%= link_to question.title, edit_survey_question_path(@survey, question) %></td>
         <td><%= question.grade %></td>
         <td><%= question.category.title %></td>
-        <td><%= link_to 'Edit', edit_survey_question_path(@survey, question) %></td>
-        <td><%= link_to 'Destroy', survey_question_path(@survey, question), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Possible answers', question_possible_answers_path(question) %></td>
+        <td><%= link_to 'Posibles Respuestas', question_possible_answers_path(question) %></td>
+        <td><%= link_to 'Eliminar', survey_question_path(@survey, question), method: :delete, data: { confirm: '¿Estas seguro de eliminarlo?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Question', new_survey_question_path(@survey) %>
-<%= link_to 'Back', surveys_path %>
