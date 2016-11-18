@@ -41,15 +41,15 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <strong>Contraseña</strong>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> caracteres mínimo)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <strong>Confirmación de contraseña</strong><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 

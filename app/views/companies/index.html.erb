@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Status de empresas y consultores</h1>
+<h1>Estatus de empresas y consultores</h1>
 
 <br>
 <table align="center">
@@ -41,7 +41,7 @@
     <td>
       <div align="right">
         <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+          <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
           <%= submit_tag "Buscar" %>
         <% end %>
       </div>
