@@ -1,21 +1,33 @@
 <%= form_for [@survey, @reply] do |f| %>
+
 	<% @categories.each do |category| %>
-		<h1><%= category.title %></h1>
-		<%= f.fields_for :answers do |c| %>
-			<% if c.object.question.category.id == category.id %>
-				<p><%= c.object.question.title %></p>
-				<% c.object.question.possible_answers.each do |possible_answer| %>
-					<label>
-						<%= possible_answer.title %>
-						<%= c.radio_button(:possible_answer_id, possible_answer.id) %>
-					</label>
-					<%= c.hidden_field(:question_id) %>
+
+		<fieldset>
+		
+			<legend class="main-headline"><%= category.title %></legend>
+
+			<%= f.fields_for :answers do |c| %>
+				<% if c.object.question.category.id == category.id %>
+					<div class="question-item">
+						
+						<p><%= c.object.question.title %></p>
+						<% c.object.question.possible_answers.each do |possible_answer| %>
+							<label class="radio-custom">
+								<%= c.radio_button(:possible_answer_id, possible_answer.id) %>
+								<span></span>
+								<%= possible_answer.title %>
+							</label>
+							<%= c.hidden_field(:question_id) %>
+						<% end %>
+					</div>
+					
 				<% end %>
 			<% end %>
-		<% end %>
+
+		</fieldset>
+
 	<% end %>
-	<br>
-	<div class="actions">
-	<%= f.submit 'Guardar' %>
-	</div>
+
+	<%= f.submit 'Guardar', id: 'guardar', class: 'submit-btn' %>
+
 <% end %>

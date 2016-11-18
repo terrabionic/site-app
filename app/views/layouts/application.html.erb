@@ -31,7 +31,9 @@
 						<span>Hola <em><%= current_user.name %><br>(<%=current_user.email%>)</em></span>
 						<ul id="drop-down-menu" class="header-dropdown">
 							<li class="header-dropdown__item header-dropdown__item--profile"><a href="#">Editar Perfil</a></li>
-							<li class="header-dropdown__item header-dropdown__item--logout"><a href="#"><%= link_to 'Salir', destroy_user_session_path, method: :delete %></a></li>
+							<li class="header-dropdown__item header-dropdown__item--logout">
+								<%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+							</li>
 						</ul>	
 					</div>
 				</span><!-- .header-adctions__item -->

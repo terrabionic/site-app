@@ -3,7 +3,6 @@ var siteApp = (function($) {
 	'use strict';
 
 	var menuProfile = function() {
-		console.log($('#profile-menu'));
 		$('#profile-menu').on('click', function() {
   			$('#drop-down-menu').toggle();
 		});
@@ -50,14 +49,25 @@ var siteApp = (function($) {
 		$('#sector-cool').children().removeClass('is-active');
 	};
 
+	var wizardReply = function() {
+
+		if ($('#new_reply').length) {
+			$("#new_reply").formToWizard({
+  				submitButton: 'guardar'
+			});
+		}
+
+	};
+
 	var ready = function() {
 		menuProfile();
 		sectorCool();
-	}
+		wizardReply();
+	};
 
 	return {
 		ready: ready
-	}
+	};
 
 })(jQuery);
 
