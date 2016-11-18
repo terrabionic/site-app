@@ -24,6 +24,7 @@ select {
 	background-image: image-url("bg-login.png");
 	min-height: 100%;
 	padding-top: 8%;
+	background-size: cover !important;
 
 	form {
 		max-width: 400px;
