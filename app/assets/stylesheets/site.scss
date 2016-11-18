@@ -357,6 +357,11 @@ select {
 	padding-right: 8px;
 	color: #193E60;
 	font-weight: 500;
+
+	&:hover {
+		color: #193E60;
+		text-decoration: underline;
+	}
 }
 
 .main {
