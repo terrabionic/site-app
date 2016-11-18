@@ -1,10 +1,22 @@
-<div align="center">
-	<h1>Bienvenido a SITE</h1>
-	<h2>Sistema de Inteligencia y Tecnología Empresarial</h2>
-	<br>
-	<h2>Para dar inicio a la consultoria de tu empresa, por favor llena la siguiente información</h2>
-</div>
-<br>
-<div align="center">
-	<h2><%= link_to 'Iniciar diagnóstico de mi empresa', show_reply_path(user_id:current_user.id) %></h2>
-</div>
+
+<div class="layout">
+
+  <div class="nav">
+    <a href="#" class="nav__item">
+      <%= image_tag "calificacion-empresa-tab.png" %>      
+      <span>Calificacion de la empresa</span>
+    </a>
+    
+  </div><!-- .nav -->
+
+  <div class="main">
+
+	<div class="welcome-empresario">
+		<h1 class="welcome-empresario__title">Bienvenido a SITE</h1>
+		<h3 class="welcome-empresario__subtitle">Sistema de Inteligencia y Tecnología Empresarial</h3>
+		<p class="welcome-empresario__text">Para dar inicio a la consultoria de tu empresa, por favor llena la siguiente información</p>
+		<%= link_to 'Iniciar diagnóstico de mi empresa', show_reply_path(user_id:current_user.id) %>
+	</div><!-- .welcome-empresario -->
+
+  </div><!-- .main -->
+</div><!-- .layout -->
