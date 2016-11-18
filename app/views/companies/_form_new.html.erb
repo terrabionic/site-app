@@ -36,15 +36,15 @@
   <div class="field">
     Sector:
     <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
-    <div class="sector-cool">
 
+    <div id="sector-cool" class="sector-cool">
       <% Sector.all.each do |sector| %>
-        <div class="sector-cool__item" id="opt-<%= sector.id %>">
+        <div class="sector-cool__item" data-val="<%= sector.id %>">
           <%= image_tag (sector.image.url(:thumb)) %>
           <%= sector.name %>
         </div>
       <% end %>
-    </div>
+    </div><!-- .sector-cool -->
     
   </div>
   <div class="field">

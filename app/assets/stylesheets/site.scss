@@ -495,11 +495,58 @@ select {
 }
 
 #company_sector_id {
-	display: none;
+   position: absolute !important;
+   top: -9999px !important;
+   left: -9999px !important;
 }
 
 .sector-cool {
-	background: #EEEFF1;
+	overflow: hidden;
+	position: relative;
+	border: 1px solid #cacaca;
 	border-radius: 4px;
-	padding: .5rem;
+	height: 39px;
+	margin-bottom: 1rem;
+
+	.sector-cool__item {
+		display: none;
+		&.is-active {
+			display: block;
+		}
+	}
+
+	&:after {
+		content: "\e916";
+		font-family: icomoon;
+		transform: rotate(90deg);
+		position: absolute;
+		right: 14px;
+		top: 10px;
+		font-size: .8em;
+
+	}
+
+	&.is-active {
+		height: auto;
+
+		.sector-cool__item {
+			display: block;
+		}
+	}
+
+}
+
+.sector-cool__item {
+	line-height: 37px;
+	padding-left: .5rem;
+	padding-right: .5rem;
+	border-radius: 4px;
+
+	img {
+		width: 25px;
+	}
+
+	&.is-active {
+		background: #EEEFF1;
+	}
 }
