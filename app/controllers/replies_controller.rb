@@ -16,7 +16,7 @@ class RepliesController < ApplicationController
     if @reply.save
       @reply.user = current_user
       @reply.save
-      redirect_to survey_reply_path(@survey, @reply), notice: 'Reply was successfully created.'
+      redirect_to survey_reply_path(@survey, @reply), notice: 'La Encuesta se ha creado correctamente.'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class RepliesController < ApplicationController
 
   def update
     if @reply.update_attributes(reply_params)
-      redirect_to survey_reply_path(@survey, @reply), notice: 'Reply was successfully updated.'
+      redirect_to survey_reply_path(@survey, @reply), notice: 'La Pregunta fue actializada correctamente.'
     else
       render :edit
     end
