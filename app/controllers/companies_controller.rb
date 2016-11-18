@@ -62,9 +62,9 @@ class CompaniesController < ApplicationController
   # POST /companies
   # POST /companies.json
   def create
-    @company = Company.new(company_params)
-    #@user = current_user
-    #@company = @user.companies.build(company_params)
+    #@company = Company.new(company_params)
+    @user = current_user
+    @company = @user.companies.build(company_params)
     if @company.save
       create_user
     end
