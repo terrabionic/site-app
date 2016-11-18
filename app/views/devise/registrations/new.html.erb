@@ -8,10 +8,12 @@
  
   <div>
     <% User::Role.all.each do |role_id| %>
-        <label>
-            <%= f.radio_button(:role_id, role_id.id) %>
-            <%= role_id.name %>
-        </label>
+        <% unless role_id.role == 'company' %>
+          <label>
+              <%= f.radio_button(:role_id, role_id.id) %>
+              <%= role_id.name %>
+          </label>
+        <% end %>
         <br>
     <% end %>
   </div>
