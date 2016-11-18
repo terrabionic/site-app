@@ -95,14 +95,18 @@ class CompaniesController < ApplicationController
   end
 
   def update_user_company
-    @user_login = User.find(@company.user_login)
-    if @user_login.email != @company.email_user
-      @user_login.email = @company.email_user
+    if @company.user_login
+      @user_login = User.find(@company.user_login)
+      if @user_login.email != @company.email_user
+        @user_login.email = @company.email_user
+      end
+      if @user_login.name != @company.name
+        @user_login.name = @company.name
+      end
+      @user_login.save
+    else
+      create_user
     end
-    if @user_login.name != @company.name
-      @user_login.name = @company.name
-    end
-    @user_login.save
   end
 
   def registration_completed
