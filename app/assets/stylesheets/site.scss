@@ -369,6 +369,7 @@ select {
 	position: static;
 	margin-left: 110px;
 	padding: 1.618rem;
+	min-height: 100%;
 
 }
 
@@ -738,4 +739,60 @@ select {
 
 .question-item {
 	margin-bottom: 1.618em;
+}
+
+#notice {
+	margin-bottom: 0;
+}
+
+.site-footer {
+	clear: both;
+	background: #072F3F;
+	color: white;
+	padding-left: 120px;
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+	overflow: hidden;
+	position: relative;
+	z-index: 100;
+
+	a {
+		color: white;
+		display: inline-block;
+		text-decoration: underline;
+		&:hover {
+			color: white;
+			text-decoration: underline;
+		}
+	}
+
+	.btop {
+		width: 40px;
+		height: 40px;
+		display: block;
+		background: #70B23B;
+		float: right;
+		margin-right: 120px;
+		position: relative;
+		color: white;
+		text-decoration: none !important;
+
+		&:hover {
+			color: white;
+		}
+
+		&:before {
+			content: "\e916";
+			display: block;
+			font-family: icomoon;
+			line-height: 17px;
+			transform: rotate(-90deg);
+
+		}
+
+	}
+}
+
+.layout {
+	min-height: calc(100% - 136px);
 }
