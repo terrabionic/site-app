@@ -70,7 +70,7 @@ class CompaniesController < ApplicationController
     end
     respond_to do |format|
       if @company.save
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
+        format.html { redirect_to @company, notice: 'La Empresa se ha creado correctamente.' }
         format.json { render :show, status: :created, location: @company }
       else
         format.html { render :new }
@@ -85,7 +85,7 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       if @company.update(company_params)
         registration_completed
-        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
+        format.html { redirect_to @company, notice: 'La Empresa se ha actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @company }
       else
         format.html { render :edit }
@@ -95,14 +95,18 @@ class CompaniesController < ApplicationController
   end
 
   def update_user_company
-    @user_login = User.find(@company.user_login)
-    if @user_login.email != @company.email_user
-      @user_login.email = @company.email_user
+    if @company.user_login
+      @user_login = User.find(@company.user_login)
+      if @user_login.email != @company.email_user
+        @user_login.email = @company.email_user
+      end
+      if @user_login.name != @company.name
+        @user_login.name = @company.name
+      end
+      @user_login.save
+    else
+      create_user
     end
-    if @user_login.name != @company.name
-      @user_login.name = @company.name
-    end
-    @user_login.save
   end
 
   def registration_completed
@@ -120,7 +124,7 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
     respond_to do |format|
-      format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
+      format.html { redirect_to companies_url, notice: 'La Empresa se ha eliminado correctamente.' }
       format.json { head :no_content }
     end
   end
@@ -130,7 +134,7 @@ class CompaniesController < ApplicationController
     @company.active = false
     @company.save
     respond_to do |format|
-      format.html { redirect_to company_url(@company), notice: 'Company was successfully deactivate.' }
+      format.html { redirect_to company_url(@company), notice: 'La Empresa se ha desactivado.' }
       format.json { head :no_content }
     end
   end
@@ -140,7 +144,7 @@ class CompaniesController < ApplicationController
     @company.active = true
     @company.save
     respond_to do |format|
-      format.html { redirect_to company_url(@company), notice: 'Company was successfully activate.' }
+      format.html { redirect_to company_url(@company), notice: 'La Empresa se ha activado correctamente.' }
       format.json { head :no_content }
     end
   end

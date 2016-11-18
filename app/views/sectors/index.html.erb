@@ -11,7 +11,6 @@
       <th>Imagen</th>
       <th>Nombre</th>
       <th>Descripción</th>
-      <th>Activo</th>
     </tr>
   </thead>
 
@@ -21,7 +20,6 @@
         <td><%= link_to (image_tag (sector.image.url(:thumb)), class: 'work'), action_activate_deactivate_path(sector_id:sector), method: :post %></td>
         <td><%= link_to sector.name, sector %></td>
         <td><%= sector.description %></td>
-        <td><%= sector.active %></td>
       </tr>
     <% end %>
   </tbody>
