@@ -12,7 +12,7 @@ class QuestionsController < ApplicationController
   def create
     @question = @survey.questions.new(question_params)
     if @question.save
-      redirect_to survey_questions_url(@survey), notice: 'Question was successfully created.'
+      redirect_to survey_questions_url(@survey), notice: 'La Pregunta se ha creado correctamente.'
     else
       render :new
     end
@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to survey_questions_url(@survey), notice: 'Question was successfully updated.'
+      redirect_to survey_questions_url(@survey), notice: 'La Pregunta fue actualizada correctamente.'
     else
       render :edit
     end
@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question.destroy
-    redirect_to survey_questions_url(@survey), notice: 'Question was successfully destroyed.'
+    redirect_to survey_questions_url(@survey), notice: 'La Pregunta fue eliminada correctamente.'
   end
 
   private

@@ -12,7 +12,7 @@ class PossibleAnswersController < ApplicationController
   def create
     @possible_answer = @question.possible_answers.new(possible_answer_params)
     if @possible_answer.save
-      redirect_to question_possible_answers_url(@question), notice: 'Possible answer was successfully created.'
+      redirect_to question_possible_answers_url(@question), notice: 'La Posible respuesta se ha creado correctamente.'
     else
       render :new
     end
@@ -23,7 +23,7 @@ class PossibleAnswersController < ApplicationController
 
   def update
     if @possible_answer.update(possible_answer_params)
-      redirect_to question_possible_answers_url(@question), notice: 'Possible answer was successfully updated.'
+      redirect_to question_possible_answers_url(@question), notice: 'La Posible respuesta fue actializada correctamente.'
     else
       render :edit
     end
@@ -31,7 +31,7 @@ class PossibleAnswersController < ApplicationController
 
   def destroy
     @possible_answer.destroy
-    redirect_to question_possible_answers_url(@question), notice: 'Possible answer was successfully destroyed.'
+    redirect_to question_possible_answers_url(@question), notice: 'La Posible respuesta fue eliminada correctamente.'
   end
 
   private
