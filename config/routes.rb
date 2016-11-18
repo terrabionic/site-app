@@ -75,7 +75,7 @@ Rails.application.routes.draw do
   # Dashboard de Empresa
   get '/companyroles/index_company', to: 'companyroles#index_company', as: 'index_company'
   # Mostrar encuesta a empresa
-  get 'companyroles/show_reply/:company_id', to: 'companyroles#show_reply', as: 'show_reply'
+  get 'companyroles/show_reply/:user_id', to: 'companyroles#show_reply', as: 'show_reply'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
