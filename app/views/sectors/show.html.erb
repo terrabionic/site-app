@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Atras', sectors_path %>
+<%= link_to 'Atrás', sectors_path %>
 
 
 <p>
-  <strong>Name:</strong>
+  <strong>Nombre:</strong>
   <%= @sector.name %>
   <%= link_to 'Editar', edit_sector_path(@sector) %>
 </p>
 
 <p>
-  <strong>Description:</strong>
+  <strong>Descripción:</strong>
   <%= @sector.description %>
 </p>
 <p>
@@ -18,7 +18,7 @@
 </p>
 
 <p>
-  <strong>Image sector:</strong>
+  <strong>Imagen:</strong>
   <%= image_tag @sector.image.url(:medium) %>
 </p>
 

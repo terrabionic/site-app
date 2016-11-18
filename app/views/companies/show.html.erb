@@ -4,7 +4,7 @@
   <li class="tab-title active"><a href="#general">Informcion General</a></li>
   <li class="tab-title"><a href="#inf_site">Registro en SITE</a></li>
 </ul>
-<%= link_to 'Atras', index_emprered_path %>
+<%= link_to 'Atrás', index_emprered_path %>
 <h1>Empresa: <%= @company.company_name %></h1>
 <br>
 <div class="tabs-content">
@@ -19,12 +19,12 @@
     </p>
 
     <p>
-      <strong>Direccion:</strong>
+      <strong>Dirección:</strong>
       <%= @company.address %>
     </p>
 
     <p>
-      <strong>Telefono:</strong>
+      <strong>Teléfono:</strong>
       <%= @company.phone %>
     </p>
 
@@ -46,15 +46,15 @@
     </p>
 
     <p>
-      <strong>Ultimo inicio de sesion:</strong>
+      <strong>Último inicio de sesión:</strong>
       <% if @company.user_login %>
         <%= @company.user_login.last_sign_in_at %>
       <% end %>
     </p>
 
-    <h2>Role</h2>
+    <h2>Rol</h2>
     <p>
-        <strong>Role:</strong>
+        <strong>Rol:</strong>
         <% if @company.user_login %>
           <%= @company.user_login.role.name %>
         <% end %>
@@ -84,11 +84,11 @@
       <%= link_to 'Editar', edit_site_path(@company) %>
     <% end %>
     <p>
-      <strong>Tipo de Compania:</strong>
+      <strong>Tipo de Compañia:</strong>
       <%= @company.company_type %>
     </p>
     <p>
-      <strong>Nombre o Razon social:</strong>
+      <strong>Nombre o Razón social:</strong>
       <%= @company.company_name %>
     </p>
     <p>
@@ -112,11 +112,11 @@
       <%= @company.email %>
     </p>
     <p>
-      <strong>Telefono convencional:</strong>
+      <strong>Teléfono convencional:</strong>
       <%= @company.phone %>
     </p>
     <p>
-      <strong>Telefono celular:</strong>
+      <strong>Teléfono celular:</strong>
       <%= @company.cel %>
     </p>
     <p>
@@ -128,7 +128,7 @@
       <%= @company.line_business %>
     </p>
     <p>
-      <strong>Num de trabajadores:</strong>
+      <strong>Número de trabajadores:</strong>
       <%= @company.num_workers %>
     </p>
     <p>
@@ -160,7 +160,7 @@
       <%= @company.staff_interviewed %>
     </p>
     <p>
-      <strong>Periodo de diagnostico:</strong>
+      <strong>Periodo de Diagnóstico:</strong>
       <%= @company.survey_period %>
     </p>
     <p>
@@ -171,9 +171,9 @@
     <p>
       <strong>
         <% if @company.completed %>
-          <h2>ENVIAR DIAGNOSTICO</h2>
+          <h2>ENVIAR DIAGNÓSTICO</h2>
         <% else %>
-          <h2>NO ENVIAR DIAGNOSTICO</h2>
+          <h2>NO ENVIAR DIAGNÓSTICO</h2>
         <% end %>
       </strong>
     </p>
