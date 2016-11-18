@@ -12,7 +12,21 @@
 	<% if current_user %>
 		<div class="site-header">
 			<div class="site-header__logo">
-				<%= image_tag "site-logotipo-color.png" %>	
+
+				<% if current_user.is? 'admin' %>
+					<%= link_to companies_path do %>
+						<%= image_tag "site-logotipo-color.png" %>	
+					<% end %>
+				<% elsif current_user.is? 'emprered' %>
+					<%= link_to index_emprered_path do %>
+						<%= image_tag "site-logotipo-color.png" %>	
+					<% end %>				
+				<% elsif current_user.is? 'company' %>
+					<%= link_to index_company_path do %>
+						<%= image_tag "site-logotipo-color.png" %>	
+					<% end %>
+				<% end %>
+
 			</div><!-- .site-header__logo -->
 			
 			<div class="header-actions">
