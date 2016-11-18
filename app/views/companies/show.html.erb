@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <ul class="tabs" data-tab>
-  <li class="tab-title active"><a href="#general">Informcion General</a></li>
+  <li class="tab-title active"><a href="#general">Información General</a></li>
   <li class="tab-title"><a href="#inf_site">Registro en SITE</a></li>
 </ul>
 <%= link_to 'Atrás', index_emprered_path %>
@@ -9,7 +9,7 @@
 <br>
 <div class="tabs-content">
   <div class="content active" id="general">
-    <h1>Informacion General</h1>
+    <h1>Información General</h1>
     <% if can? :update, @company %>
       <%= link_to 'Editar', edit_company_path(@company) %>
     <% end %>
@@ -69,9 +69,11 @@
       <strong>
         <% if @company.active %>
           <h2>ACTIVO</h2>
+          <p>Esta acción desactivara a este usuario de su cuenta.</p>
           <%=link_to "Desactivar", deactivate_path(company_id: @company), method: :post, data: { confirm: "¿Estas seguro de desactivar la compania?" } %>
         <% else %>
           <h2>DESACTIVADO</h2>
+          <p>Esta acción activara a este usuario de su cuenta.</p>
           <%=link_to "Activar", action_activate_path(company_id: @company), method: :post, data: { confirm: "¿Estas seguro de activar la compania?" } %>
         <% end %>
       </strong>
@@ -164,16 +166,16 @@
       <%= @company.survey_period %>
     </p>
     <p>
-      <strong>Nombre de quien elaboro el reporte inicial:</strong>
+      <strong>Nombre de quien elaboró el reporte inicial:</strong>
       <%= @company.name_created %>
     </p>
 
     <p>
       <strong>
         <% if @company.completed %>
-          <h2>ENVIAR DIAGNÓSTICO</h2>
+          <h3>Enviar invitación a diagnóstico</h3>
         <% else %>
-          <h2>NO ENVIAR DIAGNÓSTICO</h2>
+          <h2></h2>
         <% end %>
       </strong>
     </p>

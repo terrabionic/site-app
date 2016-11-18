@@ -20,7 +20,7 @@
     </div>
 
     <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Encuentra un usuario" %>
+      <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
       <%= submit_tag "Buscar" %>
     <% end %>
 
