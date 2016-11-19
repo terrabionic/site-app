@@ -16,7 +16,7 @@ class RepliesController < ApplicationController
     if @reply.save
       @reply.user = current_user
       @reply.save
-      redirect_to survey_reply_path(@survey, @reply), notice: 'La Encuesta se ha creado correctamente.'
+      redirect_to index_company_path, notice: 'La Encuesta se ha creado correctamente.'
     else
       render :new
     end

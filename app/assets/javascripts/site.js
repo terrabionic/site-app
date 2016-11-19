@@ -59,10 +59,17 @@ var siteApp = (function($) {
 
 	};
 
+	var thxReqply = function() {
+		if ($('#reply-message').length && $('#reply-message').text() != '') {
+			$('#thx-link').click();
+		}
+	};
+
 	var ready = function() {
 		menuProfile();
 		sectorCool();
 		wizardReply();
+		thxReqply();
 	};
 
 	return {
