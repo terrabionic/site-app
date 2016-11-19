@@ -70,7 +70,7 @@ class CompaniesController < ApplicationController
     end
     respond_to do |format|
       if @company.save
-        format.html { redirect_to @company, notice: 'La Empresa se ha creado correctamente.' }
+        format.html { redirect_to root_path, notice: 'La Empresa se ha creado correctamente.' }
         format.json { render :show, status: :created, location: @company }
       else
         format.html { render :new }
