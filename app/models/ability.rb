@@ -36,14 +36,30 @@ class Ability
             can :read, Company do |company|
                 company.user_login == user
             end
-        else
+        elsif user.is? 'emprered'
+
             can :create, Company
-            
+
+            can :read, Company do |company|
+                company.emprered == user
+            end
+
             can :update, Company do |company|
                 company.emprered == user
             end
+
+            can :update, User do |user_edit|
+                user_edit = user
+            end
+
+        elsif user.is? 'agente'
+
             can :read, Company do |company|
-                company.agent == user || company.emprered == user
+                company.agent == user
+            end
+
+            can :update, User do |user_edit|
+                user_edit = user
             end
         end
     end
