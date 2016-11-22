@@ -50,7 +50,9 @@ class UsersController < ApplicationController
   end
 
   def update
+
     @user = User.find(params[:id])
+    authorize! :update,  @user
     #params_update2 = params[:user]
     #@user.update(name: params[:user][:name], email:params[:user][:email], location:params[:user][:location])
     #@user.name = params[:user][:name]

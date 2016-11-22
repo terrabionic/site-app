@@ -19,13 +19,13 @@ class SectorsController < ApplicationController
 
   # GET /sectors/1/edit
   def edit
+    authorize! :update, @sector
   end
 
   # POST /sectors
   # POST /sectors.json
   def create
     @sector = Sector.new(sector_params)
-
     respond_to do |format|
       if @sector.save
         format.html { redirect_to @sector, notice: 'El Sector se ha creado correctamente.' }

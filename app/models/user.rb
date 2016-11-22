@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
+  validates :role_id, presence: true
 
   ROLES = %w[admin agent emprered].freeze
                                                                                                                                                                             
