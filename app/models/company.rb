@@ -1,7 +1,7 @@
 class Company < ActiveRecord::Base
   ROLES = %w[company].freeze
   STATES = %w[Nuevo Progreso Retrasado Terminado].freeze
-  STAGE = %w[Prealta Alta Diagnostico Analisis Reporte].freeze
+  STAGE = %w[Prealta Alta Diagnóstico Analisis Reporte].freeze
   
   belongs_to :sector, class_name: 'Sector'
   belongs_to :agent, class_name: 'User'
