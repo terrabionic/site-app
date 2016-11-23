@@ -65,6 +65,10 @@ class CompaniesController < ApplicationController
     #@company = Company.new(company_params)
     @user = current_user
     @company = @user.companies.build(company_params)
+    t_start =Time.now
+    t_end = t_start + 345600
+    @company.date_start = t_start
+    @company.date_end = t_end
     if @company.save
       create_user
     end
@@ -158,6 +162,40 @@ class CompaniesController < ApplicationController
     end
     user_id = User.create(name: @company.name ,email:@company.email_user, password:"123456", password_confirmation: '123456', role: @role_company )
     @company.user_login = user_id
+    @company.save
+  end
+
+  def action_send_invitation
+    @company = Company.find(params[:id])
+    if @company.stage == 'Prealta'
+      if @company.state == 'Nuevo'
+        action_progress(id: params[:id])
+      end
+      @company.stage = 'Alta'
+      t_start =Time.now
+      t_end = t_start + 345600
+      @company.date_start = t_start
+      @company.date_end = t_end
+      @company.save
+    end
+    redirect_to company_path(id: params[:id])
+  end
+
+  def action_progress
+    @company = Company.find(params[:id])
+    @company.state = 'Progreso'
+    @company.save
+  end
+
+  def action_delayed
+    @company = Company.find(params[:id])
+    @company.state = 'Retrasado'
+    @company.save
+  end
+
+  def action_done
+    @company = Company.find(params[:id])
+    @company.state = 'Terminado'
     @company.save
   end
 

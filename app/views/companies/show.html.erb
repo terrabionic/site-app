@@ -173,7 +173,7 @@
     <p>
       <strong>
         <% if @company.completed %>
-          <h3>Enviar invitación a diagnóstico</h3>
+          <%=link_to "Enviar invitacion a Diagnóstico", action_send_invitation_path(id: @company), method: :post %>
         <% else %>
           <h2></h2>
         <% end %>

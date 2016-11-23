@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Estatus de empresas y consultores</h1>
-
+<% @states = ['Terminado']%>
 <br>
 <table align="center">
   <tr>
@@ -73,8 +73,13 @@
             <td><%= company.state %></td>
             <td><%= company.stage %></td>
             <td>
-              <%= company.date_start %>
-              <%= company.date_end %>
+              <% if company.date_start %>
+                <strong>Inicio: </strong><%= company.date_start %>
+                <br/>
+              <% end %>
+              <% if company.date_end %>
+                <strong>Fin: </strong><%= company.date_end %>
+              <% end %>
             </td>
             <td>
               <% if company.sector %>
@@ -83,7 +88,7 @@
             </td>
             <td>
               <% if current_user.is? 'admin' %>
-                <% if company.state == 'Nuevo' %>
+                <% unless @states.include?(company.state) %>
                   <% if company.emprered %>
                     <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %>
                     <br> 
@@ -91,8 +96,10 @@
                   <% else %>
                     <%= link_to 'Asignar', edit_asign_emprered_path(company) %>
                   <% end %>
-                <% elsif company.state == 'Terminado' %>
-                  <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %> 
+                <% else %>
+                    <% if company.emprered %>
+                      <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %>
+                    <% end %>
                 <% end %>
               <% else %>
                 <% if company.emprered %>
