@@ -169,7 +169,7 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     if @company.stage == 'Prealta'
       if @company.state == 'Nuevo'
-        action_progress(id: params[:id])
+        action_progress
       end
       @company.stage = 'Alta'
       t_start =Time.now

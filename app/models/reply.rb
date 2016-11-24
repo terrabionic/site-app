@@ -4,4 +4,5 @@ class Reply < ActiveRecord::Base
   belongs_to :user, class_name: 'User'
 
   accepts_nested_attributes_for :answers
+
 end

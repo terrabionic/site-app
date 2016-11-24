@@ -117,6 +117,7 @@
                 <% elsif company.state == 'Retrasado' %>
                   <% if company.agent %>
                     <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+                    <br>
                     <%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
                   <% else %>
                     Aún no se llega a etapa de análisis de diagnóstico
@@ -126,6 +127,7 @@
                 <% else %>
                   <% if company.agent %>
                     <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
+                    <br>
                     <%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
                   <% else %>
                     <%= link_to 'Asignar', edit_asign_agent_path(company) %> 

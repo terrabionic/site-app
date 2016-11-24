@@ -25,6 +25,8 @@ class ApplicationController < ActionController::Base
         companies_path
       elsif @user.is? 'emprered'
         index_emprered_path
+      elsif @user.is? 'agente'
+        index_agenteae_path
       elsif @user.is? 'company'
         index_company_path
       else

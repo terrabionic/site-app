@@ -71,6 +71,10 @@ Rails.application.routes.draw do
   get '/companyroles/index_company', to: 'companyroles#index_company', as: 'index_company'
   # Mostrar encuesta a empresa
   get 'companyroles/show_reply/:user_id', to: 'companyroles#show_reply', as: 'show_reply'
+  # Mostrar encuesta a empresa al agenteae
+  get 'companyroles/show_reply_company/:id', to: 'companyroles#show_reply_company', as: 'show_reply_company'
+  # Dashboard Agente AE
+  get '/companyroles/index_agenteae', to: 'companyroles#index_agenteae', as: 'index_agenteae'
   # Cambiar estados de la compañia
   post "/action_send_invitation", to: "companies#action_send_invitation"
 
