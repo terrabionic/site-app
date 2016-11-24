@@ -20,7 +20,11 @@
 				<% elsif current_user.is? 'emprered' %>
 					<%= link_to index_emprered_path do %>
 						<%= image_tag "site-logotipo-color.png" %>	
-					<% end %>				
+					<% end %>
+				<% elsif current_user.is? 'agenteae' %>
+					<%= link_to index_agenteae_path do %>
+						<%= image_tag "site-logotipo-color.png" %>	
+					<% end %>			
 				<% elsif current_user.is? 'company' %>
 					<%= link_to index_company_path do %>
 						<%= image_tag "site-logotipo-color.png" %>	
@@ -36,6 +40,8 @@
 						<%= link_to 'DASHBOARD', companies_path %>
 					<% elsif current_user.is? 'emprered' %>
 						<%= link_to 'DASHBOARD', index_emprered_path %>
+					<% elsif current_user.is? 'agente' %>
+						<%= link_to 'DASHBOARD', index_agenteae_path %>
 					<% elsif current_user.is? 'company' %>
 						<%= link_to 'DASHBOARD', index_company_path %>
 					<% end %>

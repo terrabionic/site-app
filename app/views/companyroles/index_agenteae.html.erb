@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<div class="layout">
+
+  <div class="nav">
+    <a href="#" class="nav__item">
+      <%= image_tag "calificacion-empresa-tab.png" %>      
+      <span>Calificación de la empresa</span>
+    </a>
+    
+  </div><!-- .nav -->
+
+  <div class="main">
+
+    <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
+      <%= submit_tag "Buscar" %>
+    <% end %>
+
+    <table class="site-table">
+      <thead>
+        <tr>
+          <th>Nombre de Empresa</th>
+          <th>Estatus</th>
+          <th>Etapa</th>
+          <th>Fecha</th>
+          <th>Municipio</th>
+          <th>Sector</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @companies.each do |company| %>
+          <% if can? :read, company %>
+            <tr>
+              <td><%= company.company_name %></td>
+              <td><%= company.state %></td>
+              <td><%= company.stage %></td>
+              <td>
+                <% if company.date_start %>
+                  <strong>Inicio: </strong><%= company.date_start %>
+                  <br/>
+                <% end %>
+                <% if company.date_end %>
+                  <strong>Fin: </strong><%= company.date_end %>
+                <% end %>
+              </td>
+              <td><%= company.city %></td>
+              <td>
+                <% if company.sector %>
+                  <%= company.sector.name %>
+                <% end %>
+              </td>
+              <td>
+                <% if company.done? %>
+                  <%= link_to 'Ver análisis IC', show_reply_company_path(id:company.id) %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div><!-- .main -->
+</div><!-- .layout -->
+
+<%= render "shared/footer" %>

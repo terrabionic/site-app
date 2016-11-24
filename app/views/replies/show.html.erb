@@ -16,7 +16,11 @@
   <strong>Nombre de Encuesta:</strong>
   <%= @survey.title %>
 </p>
-<%= link_to 'Editar', edit_survey_reply_path(@survey, @reply)  %>
+<% unless @reply.done %>
+  <% if current_user.is? 'company'%>
+    <%= link_to 'Editar', edit_survey_reply_path(@survey, @reply)  %>
+  <% end %>
+<% end %>
 
 <ul>
   <% @categories.each do |category| %>

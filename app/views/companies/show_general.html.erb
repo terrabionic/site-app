@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 <div>
+<% @states = ['Terminado']%>
 <%= link_to 'Atrás', companies_path %>
 <h1><%= @company.company_name %></h1>
 </div>
@@ -31,14 +32,14 @@
 
 <p>
   <strong>Consultor Emprered:</strong>
-  <% if @company.state == 'Nuevo' %>
+  <% unless @states.include?(@company.state) %>
     <% if @company.emprered %>
       <%= @company.emprered.name %>
       <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(@company) %>
     <% else %>
       <%= link_to 'Asignar', edit_asign_emprered_path(@company) %>
     <% end %>
-  <% elsif @company.state == 'Terminado' %>
+  <% else %>
     <%= @company.emprered.name %>
   <% end %>
   

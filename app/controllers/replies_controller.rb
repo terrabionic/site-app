@@ -14,6 +14,20 @@ class RepliesController < ApplicationController
   def create
     @reply = @survey.replies.build(reply_params)
     if @reply.save
+      done = true
+      @reply.answers.each do |answer|
+        unless answer.grade.to_f > 0
+           done = false
+        end
+      end
+      if done == true
+        @company = current_user.company
+        if @company
+          @company.done = true
+          @company.save
+        end
+        @reply.done = true
+      end
       @reply.user = current_user
       @reply.save
       redirect_to index_company_path, notice: 'La Encuesta se ha creado correctamente.'
@@ -28,7 +42,22 @@ class RepliesController < ApplicationController
 
   def update
     if @reply.update_attributes(reply_params)
-      redirect_to survey_reply_path(@survey, @reply), notice: 'La Pregunta fue actializada correctamente.'
+      done = true
+      @reply.answers.each do |answer|
+        unless answer.grade.to_f > 0
+           done = false
+        end
+      end
+      if done == true
+        @company = current_user.company
+        if @company
+          @company.done = true
+          @company.save
+        end
+        @reply.done = true
+      end
+      @reply.save
+      redirect_to survey_reply_path(@survey, @reply), notice: 'La Pregunta fue actualizada correctamente.'
     else
       render :edit
     end
@@ -61,7 +90,8 @@ class RepliesController < ApplicationController
     end
 
     def set_reply
-      @reply = @survey.replies.find(params[:id])
+      #@reply = @survey.replies.find(params[:id])
+      @reply = Reply.find(params[:id])
     end
 
 end

@@ -4,6 +4,22 @@ class CompanyrolesController < ApplicationController
 		@companies = Company.all
 	end
 
+	def index_agenteae
+		@companies = Company.all
+	end
+
+	def show_reply_company
+		 @company = Company.find(params[:id])
+		if @company.user_login
+			@replies = Reply.where("user_id = ?", @company.user_login.id)
+			if @replies.length > 0
+				redirect_to survey_reply_path(survey_id:@replies[0].survey, id: @replies[0])
+			else
+				redirect_to root_path
+			end
+		end
+	end
+
 	def show_reply
 	    @user = current_user
 	    #redirect_to root_path
