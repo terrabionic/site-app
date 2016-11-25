@@ -76,4 +76,17 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      address: "s137842.gridserver.com",
+      port: 587,
+      domain: "grupoaltegra.com.mx",
+      authentication: :login,
+      enable_starttls_auto: true,
+      user_name: "informacion@grupoaltegra.com.mx",
+      password: "Estecorreoesde1CRM#",
+  }
+  
 end

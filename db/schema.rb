@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108223513) do
+ActiveRecord::Schema.define(version: 20161123234142) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20161108223513) do
     t.integer  "user_login_id"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+    t.boolean  "done",              default: false
   end
 
   add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
@@ -110,8 +111,9 @@ ActiveRecord::Schema.define(version: 20161108223513) do
   create_table "replies", force: :cascade do |t|
     t.integer  "survey_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "done",       default: false
   end
 
   add_index "replies", ["survey_id"], name: "index_replies_on_survey_id"

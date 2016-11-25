@@ -178,6 +178,7 @@ class CompaniesController < ApplicationController
       @company.date_end = t_end
       @company.save
     end
+    NotificationSite.notify_invitation(@company.user_login).deliver_now
     redirect_to company_path(id: params[:id])
   end
 
