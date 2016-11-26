@@ -1,0 +1,12 @@
+<h1>Bienvenido a SITE</h1>
+
+<p>
+  Hola <strong><%= @user.name %></strong>
+</p>
+<p>
+	Te damos la bienvenida a site tu usuario para ingresar al sitio es <%= @user.email %>.
+</p>
+
+<p>
+	Ingresa a la siguiente liga para ir al sitio <%= link_to 'SITE', edit_password_url(@user, reset_password_token: @user.reset_password_token) %>
+</p>
