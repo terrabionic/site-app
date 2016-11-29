@@ -51,8 +51,13 @@
 					<div>
 						<span>Hola <em><%= current_user.name %><br>(<%=current_user.email%>)</em></span>
 						<ul id="drop-down-menu" class="header-dropdown">
+							<% unless current_user.is? 'company' %>
+								<li class="header-dropdown__item header-dropdown__item--profile">
+									<%= link_to 'Editar Perfil', edit_user_path(current_user) %>
+								</li>
+							<% end %>
 							<li class="header-dropdown__item header-dropdown__item--profile">
-								<%= link_to 'Editar Perfil', edit_user_path(current_user) %>
+								<%= link_to 'Cambiar Contraseña', edit_password_path(id:current_user) %>
 							</li>
 							<li class="header-dropdown__item header-dropdown__item--profile">
 								<%= link_to 'Cambiar Contraseña', edit_password_path(id:current_user) %>
