@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123234142) do
+ActiveRecord::Schema.define(version: 20161129184053) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -33,43 +33,47 @@ ActiveRecord::Schema.define(version: 20161123234142) do
 
   create_table "companies", force: :cascade do |t|
     t.string   "company_name"
-    t.string   "role",              default: "company"
+    t.string   "role",                    default: "company"
     t.string   "address"
     t.string   "phone"
     t.string   "email"
     t.string   "name_agent"
-    t.string   "state",             default: "Nuevo"
-    t.string   "stage",             default: "Prealta"
+    t.string   "state",                   default: "Nuevo"
+    t.string   "stage",                   default: "Prealta"
     t.integer  "sector_id"
     t.string   "name"
     t.string   "email_user"
-    t.boolean  "active",            default: true
+    t.boolean  "active",                  default: true
     t.integer  "agent_id"
     t.integer  "emprered_id"
-    t.string   "company_type",      default: ""
-    t.string   "vat",               default: ""
-    t.string   "street",            default: ""
-    t.string   "street2",           default: ""
-    t.string   "city",              default: ""
-    t.string   "cel",               default: ""
+    t.string   "company_type",            default: ""
+    t.string   "vat",                     default: ""
+    t.string   "street",                  default: ""
+    t.string   "street2",                 default: ""
+    t.string   "city",                    default: ""
+    t.string   "cel",                     default: ""
     t.date     "date_start"
     t.date     "date_end"
-    t.string   "line_business",     default: ""
-    t.integer  "num_workers",       default: 0
-    t.string   "annual_sales",      default: ""
-    t.text     "company_history",   default: ""
-    t.string   "company_products",  default: ""
-    t.string   "company_market",    default: ""
-    t.string   "company_problems",  default: ""
-    t.string   "name_director",     default: ""
-    t.string   "staff_interviewed", default: ""
-    t.string   "survey_period",     default: ""
-    t.string   "name_created",      default: ""
-    t.boolean  "completed",         default: false
+    t.string   "line_business",           default: ""
+    t.integer  "num_workers",             default: 0
+    t.string   "annual_sales",            default: ""
+    t.text     "company_history",         default: ""
+    t.string   "company_products",        default: ""
+    t.string   "company_market",          default: ""
+    t.string   "company_problems",        default: ""
+    t.string   "name_director",           default: ""
+    t.string   "staff_interviewed",       default: ""
+    t.string   "survey_period",           default: ""
+    t.string   "name_created",            default: ""
+    t.boolean  "completed",               default: false
     t.integer  "user_login_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.boolean  "done",              default: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.boolean  "done",                    default: false
+    t.string   "image_logo_file_name"
+    t.string   "image_logo_content_type"
+    t.integer  "image_logo_file_size"
+    t.datetime "image_logo_updated_at"
   end
 
   add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
