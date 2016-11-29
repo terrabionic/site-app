@@ -14,6 +14,11 @@
 </p>
 
 <p>
+  <strong>Logo de la empresa:</strong>
+  <%= image_tag @company.image_logo.url(:medium) %>
+</p>
+
+<p>
   <strong>Estatus:</strong>
   <%= @company.state %>
 </p>

@@ -13,9 +13,15 @@
     <% if can? :update, @company %>
       <%= link_to 'Editar', edit_company_path(@company) %>
     <% end %>
+
     <p>
       <strong>Nombre de la empresa:</strong>
       <%= @company.company_name %>
+    </p>
+
+    <p>
+      <strong>Logo de la empresa:</strong>
+      <%= image_tag @company.image_logo.url(:medium) %>
     </p>
 
     <p>

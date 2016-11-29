@@ -14,6 +14,8 @@ class Company < ActiveRecord::Base
   validates :sector, presence: true
   validates :email_user, presence: true
   validates :name, presence: true
+  has_attached_file :image_logo, styles: { medium: '200x200>', thumb: '48x48>' }
+  validates_attachment_content_type :image_logo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
   def self.search(search)
     where("company_name LIKE ?", "%#{search}%")

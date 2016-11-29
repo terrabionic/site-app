@@ -59,6 +59,9 @@
 							<li class="header-dropdown__item header-dropdown__item--profile">
 								<%= link_to 'Cambiar Contraseña', edit_password_path(id:current_user) %>
 							</li>
+							<li class="header-dropdown__item header-dropdown__item--profile">
+								<%= link_to 'Cambiar Contraseña', edit_password_path(id:current_user) %>
+							</li>
 							<li class="header-dropdown__item header-dropdown__item--logout">
 								<%= link_to 'Salir', destroy_user_session_path, method: :delete %>
 							</li>
