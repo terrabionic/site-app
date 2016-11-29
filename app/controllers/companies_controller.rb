@@ -165,8 +165,18 @@ class CompaniesController < ApplicationController
     @company.save
   end
 
+  def crate_password
+    pass = ''
+    for i in 0..5
+      num = rand(9).to_s
+      pass = pass +''+num
+    end
+    return pass
+  end
+
   def action_send_invitation
     @company = Company.find(params[:id])
+
     if @company.stage == 'Prealta'
       if @company.state == 'Nuevo'
         action_progress
@@ -176,9 +186,13 @@ class CompaniesController < ApplicationController
       t_end = t_start + 345600
       @company.date_start = t_start
       @company.date_end = t_end
+      pass = crate_password
+      @company.user_login.password = pass
+      @company.user_login.password_confirmation = pass
+      @company.user_login.save
       @company.save
+      NotificationSite.notify_invitation(@company.user_login, pass).deliver_now
     end
-    NotificationSite.notify_invitation(@company.user_login).deliver_now
     redirect_to company_path(id: params[:id])
   end
 
