@@ -10,4 +10,8 @@ class Answer < ActiveRecord::Base
     self.question.possible_answers.find(self.possible_answer_id).grade if self.possible_answer_id
   end
 
+  def solution
+    self.question.possible_answers.find(self.possible_answer_id).solution if self.possible_answer_id
+  end
+
 end
