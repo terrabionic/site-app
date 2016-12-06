@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :survey_analyses
   resources :contacts
   resources :companies
   resources :sectors
@@ -79,5 +80,9 @@ Rails.application.routes.draw do
   get '/companyroles/index_agenteae', to: 'companyroles#index_agenteae', as: 'index_agenteae'
   # Cambiar estados de la compañia
   post "/action_send_invitation", to: "companies#action_send_invitation"
+  # Mostrar el analisis de diagnostico
+  get 'companies/get_survey_analysis/:id', to: 'companies#get_survey_analysis', as: 'show_survey_analysis'
+  # Accion para finalizar diagnostico
+  post "survey_analyses/analysis_done", to: "survey_analyses#analysis_done"
 
 end

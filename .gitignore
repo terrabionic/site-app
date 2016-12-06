@@ -14,6 +14,7 @@
 # Ignore the image to sectors.
 /public/system/sectors/
 /public/system/companies/
+/public/system/categories/
 
 # Ignore all logfiles and tempfiles.
 /log/*

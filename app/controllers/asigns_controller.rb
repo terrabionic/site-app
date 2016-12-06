@@ -13,13 +13,13 @@ class AsignsController < ApplicationController
 		@user = User.find(params[:user_id])
 		if @company.agent
 			user_old = @company.agent
-			@companies_agent_old = Company.where("agent_id = ?",user_old.id)
+			@companies_agent_old = Company.where("agent_id = ? and state <> ?",user_old.id,'Terminado')
 			if @companies_agent_old.length - 1 < user_old.num_max_companies
 				user_old.available = true
 				user_old.save
 			end
 		end
-		@companies_agent = Company.where("agent_id = ?",@user.id)
+		@companies_agent = Company.where("agent_id = ? and state <> ?",@user.id,'Terminado')
 		if @companies_agent.length + 1 >= @user.num_max_companies
 			@user.available = false
 			@user.save
@@ -42,13 +42,13 @@ class AsignsController < ApplicationController
 		@user = User.find(params[:user_id])
 		if @company.emprered
 			user_old = @company.emprered
-			@companies_emprered_old = Company.where("emprered_id = ?",user_old.id)
+			@companies_emprered_old = Company.where("emprered_id = ? and state <> ?",user_old.id, 'Terminado')
 			if @companies_emprered_old.length - 1 < user_old.num_max_companies
 				user_old.available = true
 				user_old.save
 			end
 		end
-		@companies_emprered = Company.where("emprered_id = ?",@user.id)
+		@companies_emprered = Company.where("emprered_id = ? and state <> ?",@user.id, 'Terminado')
 		if @companies_emprered.length + 1 >= @user.num_max_companies
 			@user.available = false
 			@user.save

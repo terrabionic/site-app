@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Análisis de Diagnóstico</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Agente</th>
+      <th>Usuario de compañia</th>
+      <th>Encuesta</th>
+      <th>Organizacional</th>
+      <th>Gestión de Innovación</th>
+      <th>Innovación</th>
+      <th>Capacidades Gremiales</th>
+      <th>Capacidades Copentenciales</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @survey_analyses.each do |survey_analysis| %>
+      <tr>
+        <td><%= survey_analysis.agente %></td>
+        <td><%= survey_analysis.user_company %></td>
+        <td><%= survey_analysis.reply %></td>
+        <td><%= survey_analysis.organizational %></td>
+        <td><%= survey_analysis.innovation_management %></td>
+        <td><%= survey_analysis.innovation %></td>
+        <td><%= survey_analysis.guilds %></td>
+        <td><%= survey_analysis.copetential %></td>
+        <td><%= link_to 'Mostrar', survey_analysis %></td>
+        <td><%= link_to 'Editar', edit_survey_analysis_path(survey_analysis) %></td>
+        <td><%= link_to 'Eliminar', survey_analysis, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo análisis de Diagnóstico', new_survey_analysis_path %>

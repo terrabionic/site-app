@@ -7,6 +7,7 @@ class Company < ActiveRecord::Base
   belongs_to :agent, class_name: 'User'
   belongs_to :emprered, class_name: 'User'
   belongs_to :user_login, class_name: 'User'
+  belongs_to :survey_analysis, class_name: 'SurveyAnalysis'
 
   validates :company_name, presence: true
   validates :address, presence: true
