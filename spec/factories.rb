@@ -1,4 +1,14 @@
 FactoryGirl.define do
+  factory :survey_analysis do
+    agente ""
+    user_company ""
+    reply ""
+    organizational "MyText"
+    innovation_management "MyText"
+    innovation "MyText"
+    guilds "MyText"
+    copetential "MyText"
+  end
   factory :role do
     name "MyString"
     description "MyText"

@@ -9,6 +9,7 @@
       <th>Respuesta</th>
       <th>Descripción</th>
       <th>Valor</th>
+      <th>Solucion</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -19,6 +20,7 @@
         <td><%= link_to possible_answer.title, edit_question_possible_answer_path(@question, possible_answer) %></td>
         <td><%= possible_answer.description %></td>
         <td><%= possible_answer.grade %></td>
+        <td><%= possible_answer.solution %></td>
         <td><%= link_to 'Eliminar', question_possible_answer_path(@question, possible_answer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

@@ -12,6 +12,12 @@
   </div>
 <% end %>
 
+
+<p>
+  <strong>Icono del Factor:</strong>
+  <%= image_tag @category.icon.url(:medium) %>
+</p>
+
 <p>
   <strong>Factor:</strong>
   <%= @category.title %>

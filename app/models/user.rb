@@ -27,6 +27,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def company_name
+    @company_ids = Company.where("user_login_id = ?", self.id)
+    if @company_ids.length > 0
+      return @company_ids[0].company_name
+    else
+      return ''
+    end
+  end
+
   def account_active?
     return self.active
   end

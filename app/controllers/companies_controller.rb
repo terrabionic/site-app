@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :edit_site, :update, :destroy, :create_user, :asign_agent_company, :update_user_company]
+  before_action :set_company, only: [:show, :edit, :edit_site, :update, :destroy, :create_user, :asign_agent_company, :update_user_company, :get_survey_analysis]
   after_action :update_user_company, only:[:update]
 
   # GET /companies
@@ -165,6 +165,24 @@ class CompaniesController < ApplicationController
     @company.save
   end
 
+  def get_survey_analysis
+    if @company.survey_analysis
+      redirect_to survey_analysis_path(@company.survey_analysis)
+    else
+      @replies = Reply.where("user_id = ?", @company.user_login.id)
+      if @replies.length > 0
+        @reply = @replies[0]
+      else
+        redirect_to root_path
+      end
+      @analysis = SurveyAnalysis.create(agente:current_user,user_company:@company.user_login,reply_id:@reply.id)
+      @company.survey_analysis = @analysis
+      @company.stage = 'Analisis'
+      @company.save
+      redirect_to survey_analysis_path(@analysis)
+    end
+  end
+
   def crate_password
     pass = ''
     for i in 0..5
@@ -191,8 +209,8 @@ class CompaniesController < ApplicationController
       @company.user_login.password_confirmation = pass
       @company.user_login.save
       @company.save
-      NotificationSite.notify_invitation(@company.user_login, pass).deliver_now
     end
+    NotificationSite.notify_invitation(@company.user_login, pass, current_user).deliver_now
     redirect_to company_path(id: params[:id])
   end
 
@@ -226,6 +244,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:company_name, :role, :address, :phone, :email, :name_agent, :state, :sector_id, :name, :email_user, :active, :agent_id, :company_type, :vat, :street, :street2, :city, :cel, :date_start, :date_end, :line_business, :num_workers, :annual_sales, :company_history, :company_products, :company_market, :company_problems, :name_director, :staff_interviewed, :survey_period, :name_created, :completed, :stage, :emprered, :image_logo)
+      params.require(:company).permit(:company_name, :role, :address, :phone, :email, :name_agent, :state, :sector_id, :name, :email_user, :active, :agent_id, :company_type, :vat, :street, :street2, :city, :cel, :date_start, :date_end, :line_business, :num_workers, :annual_sales, :company_history, :company_products, :company_market, :company_problems, :name_director, :staff_interviewed, :survey_period, :name_created, :completed, :stage, :emprered, :image_logo, :survey_analysis)
     end
 end

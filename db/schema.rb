@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161129184053) do
+ActiveRecord::Schema.define(version: 20161206182027) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -27,8 +27,12 @@ ActiveRecord::Schema.define(version: 20161129184053) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -74,11 +78,13 @@ ActiveRecord::Schema.define(version: 20161129184053) do
     t.string   "image_logo_content_type"
     t.integer  "image_logo_file_size"
     t.datetime "image_logo_updated_at"
+    t.integer  "survey_analysis_id"
   end
 
   add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
   add_index "companies", ["emprered_id"], name: "index_companies_on_emprered_id"
   add_index "companies", ["sector_id"], name: "index_companies_on_sector_id"
+  add_index "companies", ["survey_analysis_id"], name: "index_companies_on_survey_analysis_id"
   add_index "companies", ["user_login_id"], name: "index_companies_on_user_login_id"
 
   create_table "contacts", force: :cascade do |t|
@@ -97,6 +103,7 @@ ActiveRecord::Schema.define(version: 20161129184053) do
     t.integer  "grade"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.text     "solution"
   end
 
   add_index "possible_answers", ["question_id"], name: "index_possible_answers_on_question_id"
@@ -142,6 +149,24 @@ ActiveRecord::Schema.define(version: 20161129184053) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "survey_analyses", force: :cascade do |t|
+    t.integer  "agente_id"
+    t.integer  "user_company_id"
+    t.integer  "reply_id"
+    t.text     "organizational"
+    t.text     "innovation_management"
+    t.text     "innovation"
+    t.text     "guilds"
+    t.text     "copetential"
+    t.integer  "num_company"
+    t.integer  "num_jobs"
+    t.integer  "create_jobs"
+    t.integer  "num_emprered"
+    t.integer  "num_electronic_kiosk"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "surveys", force: :cascade do |t|

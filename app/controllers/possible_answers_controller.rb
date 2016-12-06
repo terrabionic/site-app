@@ -40,7 +40,7 @@ class PossibleAnswersController < ApplicationController
     end
 
     def possible_answer_params
-      params.require(:possible_answer).permit(:title, :grade, :description)
+      params.require(:possible_answer).permit(:title, :grade, :description, :solution)
     end
 
     def set_possible_answer
