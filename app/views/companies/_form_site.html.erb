@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <h1>Registro en SITE</h1>
+  <h4 class="title-line">Registro en SITE</h4>
 
   <div class="field">
     <strong>Tipo de empresa:</strong><br>
@@ -86,11 +86,9 @@
     <%= f.text_field :name_created %>
   </div>
 
+
   <div class="actions">
-    <%= link_to 'Cancelar', :back %> 
-  </div>
-  <br>
-  <div class="actions">
+    <%= link_to 'Cancelar', :back, class: "btn--red" %> 
     <%= f.submit 'Guardar' %>
   </div>
 <% end %>

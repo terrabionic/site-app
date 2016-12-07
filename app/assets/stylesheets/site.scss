@@ -10,6 +10,21 @@
 	}
 }
 
+%btn {
+	display: inline-block;
+	padding: .5rem 2rem;
+	border-radius: 4px;
+	color: white;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight: 500;
+	line-height: normal;
+	&:hover {
+		text-decoration: underline;
+		color: white;
+	}
+}
+
 body, html {
 	background: #F4F5F7;
 }
@@ -488,7 +503,12 @@ select {
 	color: #0D3453;
 }
 
-.submit-btn {
+.form-container--large {
+	max-width: 1024px;
+}
+
+.submit-btn,
+[type="submit"] {
 	background: #70B23A;
 	border: none;
 	color: white;
@@ -756,6 +776,7 @@ select {
 	overflow: hidden;
 	position: relative;
 	z-index: 100;
+	line-height: 3;
 
 	a {
 		color: white;
@@ -813,4 +834,70 @@ select {
 
 .bold {
 	font-weight: 500;
+}
+
+.site-tabs {
+	border: none;
+	margin-top: .618rem;
+	li {
+		text-align: center;
+	}
+	a {
+		color: #8B959A;
+		font-size: 18px;
+		background: #EAECEB;
+		text-transform: uppercase;
+		font-weight: 500;
+		&:hover {
+			background: #EAECEB;
+		}
+		&[aria-selected=true] {
+			background: #043050;
+			color: white;
+		}
+	}
+}
+
+.site-tabs-half {
+	width: 50%;
+}
+
+.site-tabs-content {
+	border: none !important;
+	padding-left: 5%;
+	padding-right: 5%;
+	color: #8C959B;
+	strong {
+		color: #032D4B;
+	}
+}
+
+.title-line {
+	color: #8A9498;
+	border-bottom: 1px solid lightgray;
+	margin-bottom: .618em;
+	padding-bottom: .618em;
+	font-weight: 500;
+}
+
+.btn {
+	@extend %btn;
+	background: #70B23A;
+}
+
+.btn--red {
+	@extend %btn;
+	background: #E13D4F;
+}
+
+.text-bigger {
+	font-size: 1.3em;
+	font-weight: 500;
+}
+
+.empresa-logo {
+	img {
+		width: 50px;
+		height: auto;
+	}
 }
