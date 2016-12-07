@@ -916,3 +916,25 @@ select {
 		height: auto;
 	}
 }
+
+.vex-dialog-message {
+	color: #053051;
+	text-align: center;
+	margin-bottom: 1.618rem;
+	margin-top: 1.618rem;
+}
+
+.vex.vex-theme-default .vex-dialog-button.vex-dialog-button-primary {
+	background: #70B23A;
+}
+
+.vex.vex-theme-default .vex-dialog-form .vex-dialog-buttons {
+	max-width: 230px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+.vex.vex-theme-default .vex-close:before {
+	color: #053051;
+}
