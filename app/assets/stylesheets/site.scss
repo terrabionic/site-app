@@ -839,6 +839,7 @@ select {
 .site-tabs {
 	border: none;
 	margin-top: .618rem;
+	margin-bottom: 1.618rem;
 	li {
 		text-align: center;
 	}
@@ -848,12 +849,26 @@ select {
 		background: #EAECEB;
 		text-transform: uppercase;
 		font-weight: 500;
+		position: relative;
+		&:before {
+
+		}
 		&:hover {
 			background: #EAECEB;
 		}
 		&[aria-selected=true] {
 			background: #043050;
 			color: white;
+			&:before {
+				content: "";
+				border-top: 8px solid #043050;
+				border-right: 8px solid transparent;
+				border-left: 8px solid transparent;
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				margin-left: -4px;
+			}
 		}
 	}
 }
@@ -897,7 +912,7 @@ select {
 
 .empresa-logo {
 	img {
-		width: 50px;
+		width: 100px;
 		height: auto;
 	}
 }

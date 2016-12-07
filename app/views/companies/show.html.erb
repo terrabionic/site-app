@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p class="hide" id="notice"><%= notice %></p>
 
 <div class="layout">
 
@@ -41,6 +41,7 @@
 
           <p class="empresa-logo">
             <strong>Logo de la empresa:</strong>
+            <br>
             <%= image_tag @company.image_logo.url(:medium) %>
           </p>
 
@@ -101,7 +102,7 @@
             <% else %>
               <h4 class="title-line">Desactivado</h4>
               <p>Esta acción activara a este usuario de su cuenta.</p>
-              <%=link_to "Activar", action_activate_path(company_id: @company), method: :post, data: { confirm: "¿Estas seguro de activar la compania?" }, class: "btn--red" %>
+              <%=link_to "Activar", action_activate_path(company_id: @company), method: :post, data: { confirm: "¿Estas seguro de activar la compania?" }, class: "btn" %>
             <% end %>
             
           </p>
