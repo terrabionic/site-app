@@ -1,5 +1,18 @@
-<%= link_to 'Atrás', @survey %>
-<h1>Editar Diagnóstico: <h2><%= @survey.title %></h2></h1>
 
-<%= render 'form' %>
+<div class="layout">
+	<%= render 'shared/nav' %>
 
+	<div class="main">
+		<div class="form-container">
+
+			<%= link_to 'Atrás', @survey, class: "back-button" %>
+			<h1 class="main-headline inline-block">
+				Editar Diagnóstico: <strong><%= @survey.title %></strong>
+			</h1>
+
+			<%= render 'form' %>		
+	</div>
+
+</div>
+
+<%= render "shared/footer" %>

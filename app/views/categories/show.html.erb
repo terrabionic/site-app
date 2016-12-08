@@ -1,27 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<% if @category.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+<div class="layout">
 
-    <ul>
-    <% @category.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+  <%= render 'shared/nav' %>
+  
+  <div class="main">
+
+    <% if @category.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+        <ul>
+        <% @category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
-    </ul>
+
+
+    <p>
+      <strong>Icono del Factor:</strong><br>
+      <%= image_tag @category.icon.url(:medium) %>
+    </p>
+
+    <p>
+      <strong>Factor:</strong>
+      <%= @category.title %>
+    </p>
+
+    <%= link_to 'Editar', edit_category_path(@category), class: "btn" %> |
+    <%= link_to 'Atrás', categories_path, class: "btn" %>
+   
+    
   </div>
-<% end %>
+</div>
+
+<%= render "shared/footer" %>
 
 
-<p>
-  <strong>Icono del Factor:</strong>
-  <%= image_tag @category.icon.url(:medium) %>
-</p>
 
-<p>
-  <strong>Factor:</strong>
-  <%= @category.title %>
-</p>
-
-<%= link_to 'Editar', edit_category_path(@category) %> |
-<%= link_to 'Atrás', categories_path %>

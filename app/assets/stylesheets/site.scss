@@ -14,14 +14,14 @@
 	display: inline-block;
 	padding: .5rem 2rem;
 	border-radius: 4px;
-	color: white;
+	color: white !important;
 	font-size: 14px;
 	text-transform: uppercase;
 	font-weight: 500;
 	line-height: normal;
+	text-decoration: none !important;
 	&:hover {
-		text-decoration: underline;
-		color: white;
+		text-decoration: underline !important;
 	}
 }
 
@@ -906,8 +906,12 @@ select {
 }
 
 .text-bigger {
-	font-size: 1.3em;
+	font-size: 1.4rem;
 	font-weight: 500;
+}
+
+.mb-phi {
+	margin-bottom: 1.618em;
 }
 
 .empresa-logo {

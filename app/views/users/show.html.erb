@@ -1,161 +1,187 @@
 <p id="notice"><%= notice %></p>
 
-<ul class="tabs" data-tab>
-  <li class="tab-title active"><a href="#consultor">Información General</a></li>
-  <li class="tab-title"><a href="#companies">Empresas Asignadas</a></li>
-</ul>
-<div class="tabs-content">
-  <div class="content active" id="consultor">
-  	<% if @user.is? 'admin' %>
-    	<%= link_to 'Atrás', users_path %>
-    <% else %>
-    	<%= link_to 'Atrás', root_path %>
-    <% end %>
-	<h1>Consultor Emprered</h1>
-	<br>
-	<h2>GENERAL</h2><%= link_to 'Editar', edit_user_path(@user) %>
-	<div>
-		<h2>Acerca del consultor </h2>
-		<p>
-		  <strong>Nombre:</strong>
-		  <%= @user.name %>
-		</p>
 
-		<p>
-		  <strong>Email:</strong>
-		  <%= @user.email %>
-		</p>
+<div class="layout">
 
-		<p>
-		  <strong>Lugar:</strong>
-		  <%= @user.location %>
-		</p>
+	<%= render 'shared/nav' %>
 
-		<p>
-		  <strong>Número máximo de empresas:</strong>
-		  <%= @user.num_max_companies %>
-		</p>
+	<div class="main">
 
-		<p>
-		  <strong>Último inicio de sesión:</strong>
-		  <%= @user.last_sign_in_at %>
-		</p>
+		<div class="form-container form-container--large">
 
-		<h2>Rol</h2>
-		<% if @user.is? 'admin' %>
-			<%= link_to 'Editar', edit_role_u_path(@user) %>
-		<% end %>
-		<p>
-		  <strong>Rol:</strong>
-		  <% if @user.role %>
-		  	<%= @user.role.name %>
-		  <% end %>
-		</p>
-		<% if @user.is? 'admin' %>
-			<p>
-				<strong>
-			    	<% if @user.active %>
-			      		<h2>Desactivar</h2>
-			      		<p>Esta acción desactivara a este usuario de su cuenta.</p>
-			      		<%=link_to "Desactivar", users_deactivate_path(user_id: @user), method: :post, data: { confirm: "¿Estas seguro de desactivar el usuario?" } %>
-			    	<% else %>
-			      		<h2>Activar</h2>
-			      		<p>Esta acción activara a este usuario de su cuenta.</p>
-			      		<%=link_to "Activar", users_action_activate_path(user_id: @user), method: :post, data: { confirm: "¿Estas seguro de activar el usuario?" } %>
-			    	<% end %>
-			  	</strong>
-			</p>
-		<% end %>
-	</div>
-  </div>
-  	<% if @user.is? 'admin' %>
-	  <div class="content" id="companies">
-	    	<h2>Empresas asignadas</h2>
-			<table>
-				<thead>
-					<tr>
-						<th>Nombre de Empresa</th>
-						<th>Estado</th>
-						<th>Etapa</th>
-						<th>Fecha</th>
-						<th>Sector</th>
-						<th>Consultor Emprered</th>
-						<th>Consultor AE</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					<% Company.where('emprered_id = ? or agent_id = ?',@user.id,@user.id).each do |company| %>
-				    	<% if can? :read, company %>
-					        <tr>
-								<td><%= link_to company.company_name, show_general_path(id:company) %></td>
-								<td><%= company.state %></td>
-								<td><%= company.stage %></td>
-								<td>
-								  <%= company.date_start %>
-								  <%= company.date_end %>
-								</td>
-								<td>
-								  <% if company.sector %>
-									<%= company.sector.name %>
-								  <% end %>
-								</td>
-								<td>
-					              <% if company.emprered %>
-					                <% if current_user.is? 'admin' %>
-					                  <% if company.state == 'Nuevo' %>
-					                    <% if company.emprered %>
-					                      <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %>
-					                      <br> 
-					                      <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(company) %>
-					                    <% else %>
-					                      <%= link_to 'Asignar', edit_asign_emprered_path(company) %>
-					                    <% end %>
-					                  <% elsif company.state == 'Terminado' %>
-					                    <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %> 
-					                  <% end %>
-					                <% else %>
-										<% if company.emprered %>
-										  <%= company.emprered.name %>
-										<% end %>
-					                <% end %>
-					              <% end %>
-					            </td>
-					            <td>
-									<% if current_user.is? 'admin' %>
-										<% if company.state == 'Nuevo' %>
-										  <% if company.agent %>
-											<%= link_to company.agent.name, show_user_admin_path(company.agent) %>
-										  <% end %>
-										  Aún no se llega a etapa de análisis de diagnóstico
-										<% elsif company.state == 'Retrasado' %>
-										  <% if company.agent %>
-											<%= link_to company.agent.name, show_user_admin_path(company.agent) %>
-											<%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
-										  <% else %>
-											Aún no se llega a etapa de análisis de diagnóstico
-										  <% end %>
-										<% elsif company.state == 'Terminado' %>
-										  <%= link_to company.agent.name, show_user_admin_path(company.agent) %>
-										<% else %>
-										  <% if company.agent %>
-											<%= link_to company.agent.name, show_user_admin_path(company.agent) %>
-											<%= link_to 'Cambiar Consultor', edit_asign_agent_path(company) %>
-										  <% else %>
-											<%= link_to 'Asignar', edit_asign_agent_path(company) %> 
-										  <% end %>
-										<% end %>
-									<% else %>
-										<% if company.agent %>
-										  <%= company.agent.name %>
-										<% end %>
-									<% end %>
-					            </td>
-							  </tr>
-				      	<% end %>
-				    <% end %>
-				</tbody>
-			</table>
-	  </div>
-	<% end %>
-</div>
+		  	<% if @user.is? 'admin' %>
+		    	<%= link_to 'Atrás', users_path, class: "back-button" %>
+		    <% else %>
+		    	<%= link_to 'Atrás', root_path, class: "back-button" %>
+		    <% end %>
+			<h1 class="main-headline inline-block">Consultor Emprered</h1>
+
+			<ul class="tabs site-tabs" data-tabs id="example-tabs">
+			  <li class="tabs-title site-tabs-half is-active"><a href="#consultor" aria-selected>Información General</a></li>
+			  <li class="tabs-title site-tabs-half"><a href="#companies">Empresas Asignadas</a></li>
+			</ul><!-- .tabs -->
+
+			<div class="tabs-content site-tabs-content" data-tabs-content="example-tabs">
+
+			  <div class="tabs-panel is-active" id="consultor">
+
+				<h4 class="title-line">General</h4>
+				<p>
+					<%= link_to 'Editar', edit_user_path(@user), class: "btn" %>
+				</p>
+
+				
+				<h2 class="color-green text-bigger">Acerca del consultor </h2>
+				<p>
+				  <strong>Nombre:</strong>
+				  <%= @user.name %>
+				</p>
+
+				<p>
+				  <strong>Email:</strong>
+				  <%= @user.email %>
+				</p>
+
+				<p>
+				  <strong>Lugar:</strong>
+				  <%= @user.location %>
+				</p>
+
+				<p>
+				  <strong>Número máximo de empresas:</strong>
+				  <%= @user.num_max_companies %>
+				</p>
+
+				<p>
+				  <strong>Último inicio de sesión:</strong>
+				  <%= @user.last_sign_in_at %>
+				</p>
+
+				<h4 class="title-line">Rol</h4>
+				<% if @user.is? 'admin' %>
+					<%= link_to 'Editar', edit_role_u_path(@user), class: "btn" %>
+				<% end %>
+				<p>
+				  <strong>Rol:</strong>
+				  <% if @user.role %>
+				  	<%= @user.role.name %>
+				  <% end %>
+				</p>
+				<% if @user.is? 'admin' %>
+					
+						
+					    	<% if @user.active %>
+					      		
+					      		<h4 class="title-line">Desactivar</h4>
+					      		<p>Esta acción desactivara a este usuario de su cuenta.</p>
+					      		<%=link_to "Desactivar", users_deactivate_path(user_id: @user), method: :post, data: { confirm: "¿Estas seguro de desactivar el usuario?" }, class: "btn--red" %>
+					    	<% else %>
+					      		<h2>Activar</h2>
+					      		<p>Esta acción activara a este usuario de su cuenta.</p>
+					      		<%=link_to "Activar", users_action_activate_path(user_id: @user), method: :post, data: { confirm: "¿Estas seguro de activar el usuario?" }, class: "btn" %>
+					    	<% end %>
+					  	
+					
+				<% end %>
+				
+			  </div><!-- .content -->
+			  	<% if @user.is? 'admin' %>
+				  <div class="tabs-panel" id="companies">
+				    	<h4 class="title-line">Empresas asignadas</h4>
+						<table class="site-table">
+							<thead>
+								<tr>
+									<th>Nombre de Empresa</th>
+									<th>Estado</th>
+									<th>Etapa</th>
+									<th>Fecha</th>
+									<th>Sector</th>
+									<th>Consultor Emprered</th>
+									<th>Consultor AE</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<% Company.where('emprered_id = ? or agent_id = ?',@user.id,@user.id).each do |company| %>
+							    	<% if can? :read, company %>
+								        <tr>
+											<td><%= link_to company.company_name, show_general_path(id:company) %></td>
+											<td><%= company.state %></td>
+											<td><%= company.stage %></td>
+											<td>
+											  <%= company.date_start %>
+											  <%= company.date_end %>
+											</td>
+											<td>
+											  <% if company.sector %>
+												<%= company.sector.name %>
+											  <% end %>
+											</td>
+											<td>
+								              <% if company.emprered %>
+								                <% if current_user.is? 'admin' %>
+								                  <% if company.state == 'Nuevo' %>
+								                    <% if company.emprered %>
+								                      <%= link_to company.emprered.name, show_user_admin_path(company.emprered) %>
+								                      <br> 
+								                      <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(company), class: "btn" %>
+								                    <% else %>
+								                      <%= link_to 'Asignar', edit_asign_emprered_path(company), class: "btn" %>
+								                    <% end %>
+								                  <% elsif company.state == 'Terminado' %>
+								                    <%= link_to company.emprered.name, show_user_admin_path(company.emprered), class: "btn" %> 
+								                  <% end %>
+								                <% else %>
+													<% if company.emprered %>
+													  <%= company.emprered.name %>
+													<% end %>
+								                <% end %>
+								              <% end %>
+								            </td>
+								            <td>
+												<% if current_user.is? 'admin' %>
+													<% if company.state == 'Nuevo' %>
+													  <% if company.agent %>
+														<%= link_to company.agent.name, show_user_admin_path(company.agent), class: "btn" %>
+													  <% end %>
+													  Aún no se llega a etapa de análisis de diagnóstico
+													<% elsif company.state == 'Retrasado' %>
+													  <% if company.agent %>
+														<%= link_to company.agent.name, show_user_admin_path(company.agent), class: "btn" %>
+														<%= link_to 'Cambiar Consultor', edit_asign_agent_path(company), class: "btn" %>
+													  <% else %>
+														Aún no se llega a etapa de análisis de diagnóstico
+													  <% end %>
+													<% elsif company.state == 'Terminado' %>
+													  <%= link_to company.agent.name, show_user_admin_path(company.agent), class: "btn" %>
+													<% else %>
+													  <% if company.agent %>
+														<%= link_to company.agent.name, show_user_admin_path(company.agent), class: "btn" %>
+														<%= link_to 'Cambiar Consultor', edit_asign_agent_path(company), class: "btn" %>
+													  <% else %>
+														<%= link_to 'Asignar', edit_asign_agent_path(company), class: "btn" %> 
+													  <% end %>
+													<% end %>
+												<% else %>
+													<% if company.agent %>
+													  <%= company.agent.name %>
+													<% end %>
+												<% end %>
+								            </td>
+										  </tr>
+							      	<% end %>
+							    <% end %>
+							</tbody>
+						</table><!-- .site-table -->
+				  </div><!-- .content -->
+				<% end %>
+			</div><!-- .tabs-content -->	
+		</div><!-- .form-container -->	
+	</div><!-- .main -->
+	
+</div><!-- .layout -->
+
+
+
+
+<%= render "shared/footer" %>

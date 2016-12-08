@@ -1,32 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Atrás', survey_questions_path(@question.survey) %>
-<h1>Posibles Respuestas - <small><%= @question.title %></small></h1>
-<%= link_to 'Nueva posible respuesta', new_question_possible_answer_path(@question) %>
-<table>
-  <thead>
-    <tr>
-      <th>Respuesta</th>
-      <th>Descripción</th>
-      <th>Valor</th>
-      <th>Solucion</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
+<div class="layout">
+  <%= render 'shared/nav' %>
 
-  <tbody>
-    <% @question.possible_answers.each do |possible_answer| %>
-      <tr id="<%= dom_id(possible_answer) %>">
-        <td><%= link_to possible_answer.title, edit_question_possible_answer_path(@question, possible_answer) %></td>
-        <td><%= possible_answer.description %></td>
-        <td><%= possible_answer.grade %></td>
-        <td><%= possible_answer.solution %></td>
-        <td><%= link_to 'Eliminar', question_possible_answer_path(@question, possible_answer), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <div class="main">
+    <%= link_to 'Atrás', survey_questions_path(@question.survey), class: "back-button" %>
+    <h1 class="main-headline inline-block">Posibles Respuestas - <small><%= @question.title %></small></h1>
+    <p>
+    <%= link_to 'Nueva posible respuesta', new_question_possible_answer_path(@question), class: "btn" %>
+    </p>
+    <table class="site-table">
+      <thead>
+        <tr>
+          <th>Respuesta</th>
+          <th>Descripción</th>
+          <th>Valor</th>
+          <th>Solucion</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
 
-<br>
+      <tbody>
+        <% @question.possible_answers.each do |possible_answer| %>
+          <tr id="<%= dom_id(possible_answer) %>">
+            <td><%= link_to possible_answer.title, edit_question_possible_answer_path(@question, possible_answer) %></td>
+            <td><%= possible_answer.description %></td>
+            <td><%= possible_answer.grade %></td>
+            <td><%= possible_answer.solution %></td>
+            <td><%= link_to 'Eliminar', question_possible_answer_path(@question, possible_answer), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn--red" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
 
+</div>
+
+<%= render "shared/footer" %>
 

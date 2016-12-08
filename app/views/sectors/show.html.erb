@@ -1,24 +1,32 @@
 <p id="notice"><%= notice %></p>
-<%= link_to 'Atrás', sectors_path %>
 
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @sector.name %>
-  <%= link_to 'Editar', edit_sector_path(@sector) %>
-</p>
+<div class="layout">
+	<%= render 'shared/nav' %>
+	<div class="main">
+		<%= link_to 'Atrás', sectors_path, class: "back-button" %>
 
-<p>
-  <strong>Descripción:</strong>
-  <%= @sector.description %>
-</p>
-<p>
-  <strong>Activo:</strong>
-  <%= @sector.active %>
-</p>
+		<h1 class="main-headline inline-block"><%= @sector.name %></h1>
 
-<p>
-  <strong>Imagen:</strong>
-  <%= image_tag @sector.image.url(:medium) %>
-</p>
+		<p>
+		  <%= link_to 'Editar', edit_sector_path(@sector), class: "btn" %>
+		</p>
 
+		<p>
+		  <strong>Descripción:</strong>
+		  <%= @sector.description %>
+		</p>
+		<p>
+		  <strong>Activo:</strong>
+		  <%= @sector.active %>
+		</p>
+
+		<p>
+		  <strong>Imagen:</strong><br>
+		  <%= image_tag @sector.image.url(:medium) %>
+		</p>
+
+		
+	</div>
+</div>
+<%= render "shared/footer" %>

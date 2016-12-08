@@ -1,39 +1,47 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Atrás', surveys_path %>
-<h1>Lista de respuestas - <small><%= @survey.title %></small></h1>
-<%= link_to 'Responder Nuevo Diagnóstico', new_survey_reply_path(@survey) %>
-<table>
-  <thead>
-    <tr>
-      <th>D. Respondido</th>
-      <th>Diagnóstico</th>
-      <th>Usuario</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="layout">
 
-  <tbody>
-    <% @survey.replies.each do |reply| %>
-      <tr id="<%= dom_id(reply) %>">
-        <td><%= link_to reply.id, survey_reply_path(@survey, reply) %></td>
-        <td>
-			<% if reply.survey %>
-				<%= reply.survey.title %>
-			<% end %>
-		</td>
-        <td>
-			<% if reply.user %>
-				<%= reply.user.name %>
-			<% end %>
-		</td>
-        <td><%# link_to 'Eliminar', survey_question_path(@survey, question), method: :delete, data: { confirm: '¿Estas seuro de eliminar la encuesta ?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <%= render 'shared/nav' %>
+  
+  <div class="main">
+    <%= link_to 'Atrás', surveys_path, class: "back-button" %>
+    <h1 class="main-headline inline-block">Lista de respuestas - <small><%= @survey.title %></small></h1>
+    <p>
+    <%= link_to 'Responder Nuevo Diagnóstico', new_survey_reply_path(@survey), class: "btn" %>
 
-<br>
+    </p>
+    <table class="site-table">
+      <thead>
+        <tr>
+          <th>D. Respondido</th>
+          <th>Diagnóstico</th>
+          <th>Usuario</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
+      <tbody>
+        <% @survey.replies.each do |reply| %>
+          <tr id="<%= dom_id(reply) %>">
+            <td><%= link_to reply.id, survey_reply_path(@survey, reply) %></td>
+            <td>
+          <% if reply.survey %>
+            <%= reply.survey.title %>
+          <% end %>
+        </td>
+            <td>
+          <% if reply.user %>
+            <%= reply.user.name %>
+          <% end %>
+        </td>
+            <td><%# link_to 'Eliminar', survey_question_path(@survey, question), method: :delete, data: { confirm: '¿Estas seuro de eliminar la encuesta ?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- .main -->
+</div>
 
+<%= render "shared/footer" %>
 

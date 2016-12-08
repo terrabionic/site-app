@@ -1,44 +1,59 @@
-<%= link_to 'Atrás', companies_path %>
-<h1>Usuarios</h1>
-<%= link_to 'Crear nuevo consultor', new_user_registration_path %>
-<table>
-    <thead>
-        <tr>
-            <th>
-                Nombre
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Rol
-            </th>
-            <th>
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <% @users.each do |user| %>
-            <% if user.role %>
-                <% unless user.role.role == 'company' %>
-                    <tr>
-                        <td>
-                            <%= link_to user.name, show_user_admin_path(user) %>
-                        </td>
-                        <td>
-                            <%= user.email %>
-                        </td>
-                        <td>
-                            <% if user.role %>
-                                <%= user.role.name %>
-                            <% end %>
-                        </td>
-                        <td>
-                             
-                        </td>
-                    </tr>
+<div class="layout">
+    
+
+    <%= render 'shared/nav' %>
+
+
+    <div class="main">
+        <%= link_to 'Atrás', companies_path, class: "back-button" %>
+        <h1 class="main-headline inline-block">Usuarios</h1>
+        <p>
+            <%= link_to 'Crear nuevo consultor', new_user_registration_path, class: "btn" %>
+        </p>
+        
+        <table class="site-table">
+            <thead>
+                <tr>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Rol
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @users.each do |user| %>
+                    <% if user.role %>
+                        <% unless user.role.role == 'company' %>
+                            <tr>
+                                <td>
+                                    <%= link_to user.name, show_user_admin_path(user) %>
+                                </td>
+                                <td>
+                                    <%= user.email %>
+                                </td>
+                                <td>
+                                    <% if user.role %>
+                                        <%= user.role.name %>
+                                    <% end %>
+                                </td>
+                                <td>
+                                     
+                                </td>
+                            </tr>
+                        <% end %>
+                    <% end %>
                 <% end %>
-            <% end %>
-        <% end %>
-    </tbody>
-</table>
+            </tbody>
+        </table>
+        
+    </div>
+</div>
+
+<%= render "shared/footer" %>

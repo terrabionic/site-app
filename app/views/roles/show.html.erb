@@ -1,40 +1,50 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Atrás', roles_path %>
-<p>
-<h1>Rol: <%= @role.name %></h1>
 
-<h2>General</h2>
+<div class="layout">
+	<%= render 'shared/nav' %>
+	<div class="main">
 
-<h2>Acerca del role</h2>
-<%= link_to 'Editar', edit_role_path(@role) %>
-<p>
-  <strong>Nombre del rol:</strong>
-  <%= @role.name %>
-</p>
+		<%= link_to 'Atrás', roles_path, class: "back-button" %>
+		
+		<h1 class="main-headline inline-block">Rol: <%= @role.name %></h1>
 
-<p>
-  <strong>Descripción:</strong>
-  <%= @role.description %>
-</p>
+		<h4 class="title-line">General</h4>
 
-<p>
-  <strong>Usuarios:</strong>
-  <%= @role.get_user_by_role(@role) %>
-</p>
+		<h4 class="color-green text-bigger">Acerca del role</h4>
+		<%= link_to 'Editar', edit_role_path(@role), class: "btn" %>
+		<p>
+		  <strong>Nombre del rol:</strong>
+		  <%= @role.name %>
+		</p>
 
-<h2>Permisos</h2>
+		<p>
+		  <strong>Descripción:</strong>
+		  <%= @role.description %>
+		</p>
 
-<h3>Permisos del rol</h3>
-<%= link_to 'Editar', edit_permissions_path(@role) %>
-<p>
-  <strong>Rol:</strong>
-  <%= @role.get_role_name(@role.role)%>
-</p>
+		<p>
+		  <strong>Usuarios:</strong>
+		  <%= @role.get_user_by_role(@role) %>
+		</p>
 
-<h2>Eliminar Rol</h2>
+		<h4 class="color-green text-bigger">Permisos</h4>
 
-<p>Esta acción eliminará permanentemente este rol de su cuenta. Cualquier usuario que estuviera asignado con este role asumirá automáticamente la función de sólo vista.</p>
+		<%= link_to 'Editar', edit_permissions_path(@role), class: "btn" %>
+		<p>
+		  <strong>Rol:</strong>
+		  <%= @role.get_role_name(@role.role)%>
+		</p>
 
-<%= link_to 'Eliminar', @role, method: :delete, data: { confirm: '¿Deseas eliminar este role?
-' } %>
+		<h4 class="color-green text-bigger">Eliminar Rol</h4>
+
+		<p>Esta acción eliminará permanentemente este rol de su cuenta. Cualquier usuario que estuviera asignado con este role asumirá automáticamente la función de sólo vista.</p>
+
+		<%= link_to 'Eliminar', @role, method: :delete, data: { confirm: '¿Deseas eliminar este role?
+		' }, class: "btn--red" %>
+		
+	</div>
+</div>
+
+<%= render "shared/footer" %>
+

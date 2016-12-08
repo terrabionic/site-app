@@ -1,81 +1,95 @@
 <p id="notice"><%= notice %></p>
-<div>
-<% @states = ['Terminado']%>
-<%= link_to 'Atrás', companies_path %>
-<h1><%= @company.company_name %></h1>
-</div>
-<br>
-<h2>General</h2>
 
-<h3>Acerca de la empresa</h3>
-<p>
-  <strong>Empresa:</strong>
-  <%= @company.company_name %>
-</p>
+<div class="layout">
 
-<p>
-  <strong>Logo de la empresa:</strong>
-  <%= image_tag @company.image_logo.url(:medium) %>
-</p>
+  <%= render 'shared/nav' %>
 
-<p>
-  <strong>Estatus:</strong>
-  <%= @company.state %>
-</p>
+  <div class="main">
 
-<p>
-  <strong>Etapa:</strong>
-  <%= @company.stage %>
-</p>
-
-<p>
-  <strong>Industria (Sector):</strong>
-  <% if @company.sector %>
-    <%= @company.sector.name %>
-  <% end %>
-</p>
-
-<p>
-  <strong>Consultor Emprered:</strong>
-  <% unless @states.include?(@company.state) %>
-    <% if @company.emprered %>
-      <%= @company.emprered.name %>
-      <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(@company) %>
-    <% else %>
-      <%= link_to 'Asignar', edit_asign_emprered_path(@company) %>
-    <% end %>
-  <% else %>
-    <%= @company.emprered.name %>
-  <% end %>
+    
+    <% @states = ['Terminado']%>
+    <%= link_to 'Atrás', companies_path, class: "back-button" %>
+    <h1 class="main-headline inline-block"><%= @company.company_name %></h1>
   
-</p>
 
-<p>
-  <strong>Consultor AIE:</strong>
-  <% if @company.state == 'Nuevo' %>
-    Aún no se llega a etapa de análisis de diagnóstico
-  <% elsif @company.state == 'Retrasado' %>
-    <% if @company.agent %>
-      <%= @company.agent.name %>
-      <%= link_to 'Cambiar Consultor', edit_asign_agent_path(@company) %>
-    <% else %>
-      Aún no se llega a etapa de análisis de diagnóstico
-    <% end %>
-  <% elsif @company.state == 'Terminado' %>
-    <%= @company.agent.name %>
-  <% else %>
-    <% if @company.agent %>
-      <%= @company.agent.name %>
-      <%= link_to 'Cambiar Consultor', edit_asign_agent_path(@company) %>
-    <% else %>
-      <%= link_to 'Asignar', edit_asign_agent_path(@company) %> 
-    <% end %>
-  <% end %>
-</p>
+    <h4 class="title-line">General</h4>
 
-<h2>Rol</h2>
-<p>
-    <strong>Rol:</strong>
-    <%= @company.role %>
-</p>
+    <h3 class="color-green text-bigger">Acerca de la empresa</h3>
+    <p>
+      <strong>Empresa:</strong>
+      <%= @company.company_name %>
+    </p>
 
+    <p class="empresa-logo">
+      <strong>Logo de la empresa:</strong>
+      <br>
+      <%= image_tag @company.image_logo.url(:medium) %>
+    </p>
+
+    <p>
+      <strong>Estatus:</strong>
+      <%= @company.state %>
+    </p>
+
+    <p>
+      <strong>Etapa:</strong>
+      <%= @company.stage %>
+    </p>
+
+    <p>
+      <strong>Industria (Sector):</strong>
+      <% if @company.sector %>
+        <%= @company.sector.name %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Consultor Emprered:</strong>
+      <% unless @states.include?(@company.state) %>
+        <% if @company.emprered %>
+          <%= @company.emprered.name %>
+          <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(@company), class: "btn" %>
+        <% else %>
+          <%= link_to 'Asignar', edit_asign_emprered_path(@company), class: "btn" %>
+        <% end %>
+      <% else %>
+        <%= @company.emprered.name %>
+      <% end %>
+      
+    </p>
+
+    <p>
+      <strong>Consultor AIE:</strong>
+      <% if @company.state == 'Nuevo' %>
+        Aún no se llega a etapa de análisis de diagnóstico
+      <% elsif @company.state == 'Retrasado' %>
+        <% if @company.agent %>
+          <%= @company.agent.name %>
+          <%= link_to 'Cambiar Consultor', edit_asign_agent_path(@company) %>
+        <% else %>
+          Aún no se llega a etapa de análisis de diagnóstico
+        <% end %>
+      <% elsif @company.state == 'Terminado' %>
+        <%= @company.agent.name %>
+      <% else %>
+        <% if @company.agent %>
+          <%= @company.agent.name %>
+          <%= link_to 'Cambiar Consultor', edit_asign_agent_path(@company) %>
+        <% else %>
+          <%= link_to 'Asignar', edit_asign_agent_path(@company), class: "btn" %> 
+        <% end %>
+      <% end %>
+    </p>
+
+    <h4 class="title-line">Rol</h4>
+    <p>
+        <strong>Rol:</strong>
+        <%= @company.role %>
+    </p>
+
+    
+  </div><!-- .main -->
+
+</div><!-- .layout -->
+
+<%= render 'shared/footer' %>

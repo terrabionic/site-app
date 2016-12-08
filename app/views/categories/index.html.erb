@@ -1,29 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Atrás', companies_path %>
-<h1>Factores</h1>
-<%= link_to 'Nuevo Factor', new_category_path %>
+<div class="layout">
 
-<table>
-  <thead>
-    <tr>
-      <th>Icono</th>
-      <th>Factor</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <%= render 'shared/nav' %>
+  
+  <div class="main">
 
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr id="<%= dom_id(category) %>">
-        <td><%= image_tag category.icon.url(:thumb) %></td>
-        <td><%= link_to category.title , category %></td>
-        <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: '¿Estas seguro de eliminar?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <%= link_to 'Atrás', companies_path, class: "back-button" %>
+    <h1 class="main-headline inline-block">Factores</h1>
 
-<br>
+    <p>
+    <%= link_to 'Nuevo Factor', new_category_path, class: "btn" %>
+    </p>
 
+    <table class="site-table">
+      <thead>
+        <tr>
+          <th>Icono</th>
+          <th>Factor</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @categories.each do |category| %>
+          <tr id="<%= dom_id(category) %>">
+            <td><%= image_tag category.icon.url(:thumb) %></td>
+            <td><%= link_to category.title , category %></td>
+            <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: '¿Estas seguro de eliminar?' }, class: "btn--red" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+
+<%= render "shared/footer" %>
 

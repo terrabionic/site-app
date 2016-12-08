@@ -1,29 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Atrás', companies_path %>
-<h1>Diagnósticos</h1>
-<%= link_to 'Crear Nuevo Diagnóstico', new_survey_path %>
-<br>
-<table>
-  <thead>
-    <tr>
-      <th>Diagnóstico</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="layout">
 
-  <tbody>
-    <% @surveys.each do |survey| %>
-      <tr id="<%= dom_id(survey) %>">
-        <td><%= link_to survey.title , survey %></td>
-        <td><%= link_to 'Preguntas', survey_questions_path(survey) %></td>
-        <td><%= link_to 'Encuestas respondidas', survey_replies_path(survey) %></td>
-        <td><%= link_to 'Eliminar', survey, method: :delete, data: { confirm: '¿Estas seguro de eliminarlo?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <%= render 'shared/nav' %>
+  
+  <div class="main">
+    <div class="form-container">
+      <%= link_to 'Atrás', companies_path, class: "back-button" %>
+      <h1 class="main-headline inline-block">Diagnósticos</h1>
+      <p>
+      <%= link_to 'Crear Nuevo Diagnóstico', new_survey_path, class: "btn" %>
+      </p>
+      
+      <table class="site-table">
+        <thead>
+          <tr>
+            <th>Diagnóstico</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-<br>
+        <tbody>
+          <% @surveys.each do |survey| %>
+            <tr id="<%= dom_id(survey) %>">
+              <td><%= link_to survey.title , survey %></td>
+              <td><%= link_to 'Preguntas', survey_questions_path(survey) %></td>
+              <td><%= link_to 'Encuestas respondidas', survey_replies_path(survey) %></td>
+              <td><%= link_to 'Eliminar', survey, method: :delete, data: { confirm: '¿Estas seguro de eliminarlo?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div><!-- .form-container -->
+  </div><!-- .main -->
+</div><!-- .layout -->
 
+<%= render "shared/footer" %>
 

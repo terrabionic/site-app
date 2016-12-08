@@ -1,5 +1,17 @@
-<%= link_to 'Atrás', question_possible_answers_path(@question) %>
-<h1>Editar Posible Respuesta</h1>
 
-<%= render 'form' %>
+<div class="layout">
+	<%= render 'shared/nav' %>
 
+	<div class="main">
+		<div class="form-container">
+			<%= link_to 'Atrás', question_possible_answers_path(@question), class: "back-button" %>
+			<h1 class="main-headline inline-block">Editar Posible Respuesta</h1>
+
+			<%= render 'form' %>
+		</div>
+		
+	</div>
+
+</div>
+
+<%= render "shared/footer" %>

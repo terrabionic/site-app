@@ -1,29 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Atrás', surveys_path %>
-<h1>Preguntas - <small><%= @survey.title %></small></h1>
-<%= link_to 'Nueva Pregunta', new_survey_question_path(@survey) %>
-<table>
-  <thead>
-    <tr>
-      <th>Pregunta</th>
-      <th>Valor</th>
-      <th>Factor</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="layout">
 
-  <tbody>
-    <% @survey.questions.each do |question| %>
-      <tr id="<%= dom_id(question) %>">
-        <td><%= link_to question.title, edit_survey_question_path(@survey, question) %></td>
-        <td><%= question.grade %></td>
-        <td><%= question.category.title %></td>
-        <td><%= link_to 'Posibles Respuestas', question_possible_answers_path(question) %></td>
-        <td><%= link_to 'Eliminar', survey_question_path(@survey, question), method: :delete, data: { confirm: '¿Estas seguro de eliminarlo?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <%= render 'shared/nav' %>
+  
+  <div class="main">
+    <%= link_to 'Atrás', surveys_path, class: "back-button" %>
+    <h1 class="main-headline inline-block">Preguntas - <em><%= @survey.title %></em></h1>
+    <p>
+    <%= link_to 'Nueva Pregunta', new_survey_question_path(@survey), class: "btn" %>
+    </p>
 
-<br>
+    <table class="site-table">
+      <thead>
+        <tr>
+          <th>Pregunta</th>
+          <th>Valor</th>
+          <th>Factor</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @survey.questions.each do |question| %>
+          <tr id="<%= dom_id(question) %>">
+            <td><%= link_to question.title, edit_survey_question_path(@survey, question) %></td>
+            <td><%= question.grade %></td>
+            <td><%= question.category.title %></td>
+            <td><%= link_to 'Posibles Respuestas', question_possible_answers_path(question) %></td>
+            <td><%= link_to 'Eliminar', survey_question_path(@survey, question), method: :delete, data: { confirm: '¿Estas seguro de eliminarlo?' }, class: " btn--red" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>    
+  </div>
+</div>
+
+<%= render "shared/footer" %>

@@ -1,6 +1,16 @@
-<%= link_to 'Atrás', survey_questions_path(@survey) %>
-<h1>Nueva Pregunta</h1>
+<div class="layout">
+	<%= render 'shared/nav' %>
 
-<%= render 'form' %>
+	<div class="main">
+		<div class="form-container">
+			<%= link_to 'Atrás', survey_questions_path(@survey), class: "back-button" %>
+			<h1 class="main-headline inline-block">Nueva Pregunta</h1>
 
+			<%= render 'form' %>
+		</div>
+		
+	</div>
 
+</div>
+
+<%= render "shared/footer" %>
