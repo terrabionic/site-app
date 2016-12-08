@@ -28,7 +28,18 @@ class ApplicationController < ActionController::Base
       elsif @user.is? 'agente'
         index_agenteae_path
       elsif @user.is? 'company'
-        index_company_path
+        if @user.company.done
+          if @user.company.stage == 'Reporte'
+            results_company_path
+          else
+            index_company_path
+          end
+        else
+          index_company_path
+        end
+        #index_company_path
+        
+        
       else
         companies_path
       end

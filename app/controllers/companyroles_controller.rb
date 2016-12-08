@@ -9,7 +9,7 @@ class CompanyrolesController < ApplicationController
 	end
 
 	def show_reply_company
-		 @company = Company.find(params[:id])
+		@company = Company.find(params[:id])
 		if @company.user_login
 			@replies = Reply.where("user_id = ?", @company.user_login.id)
 			if @replies.length > 0
@@ -18,6 +18,10 @@ class CompanyrolesController < ApplicationController
 				redirect_to root_path
 			end
 		end
+	end
+
+	def results_company
+	
 	end
 
 	def show_reply

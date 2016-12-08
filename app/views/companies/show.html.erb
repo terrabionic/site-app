@@ -54,7 +54,12 @@
     <p>
       <strong>Último inicio de sesión:</strong>
       <% if @company.user_login %>
-        <%= @company.user_login.last_sign_in_at %>
+        <% if @company.user_login.last_sign_in_at %>
+          <%= @company.user_login.last_sign_in_at %>
+        <% else %>
+          Nunca
+          <%=link_to "Enviar invitacion", action_send_invitation_path(id: @company), method: :post %>
+        <% end %>
       <% end %>
     </p>
 
