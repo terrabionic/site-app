@@ -15,6 +15,37 @@
 
   <div class="main">
 	<h1><%= current_user.company_name %></h1>
+  <hr color='black'/>
+  <h2>MI PYME IDEAL</h2>
+
+  <table>
+    <tr>
+      <td>
+        Grafica
+        <%= current_user.company.survey_analysis.reply.score_category(categories:current_user.company.survey_analysis.reply.survey.categories) %>
+      </td>
+      <td>
+        <h2>DETALLE</h2>
+        <hr color='black'/>
+        PUNTAJE OBTENIDO<br>
+        <% if current_user.company %>
+          <% if current_user.company.survey_analysis %>
+            <strong><%= current_user.company.survey_analysis.reply.score %> pts.</strong>
+          <% end %>
+        <% end %>
+        <br><br>
+        PUNTAJE IDEAL<br>
+        <% if current_user.company %>
+          <% if current_user.company.survey_analysis %>
+            <strong><%= current_user.company.survey_analysis.reply.survey.total_score %> pts. 100%</strong>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>    
+
+  </table>
+
+  <h3>Este solo es un reporte general, el consultor te hara entrega del reporte de resultados de tu empresa</h3>
 
   </div><!-- .main -->
 </div><!-- .layout -->

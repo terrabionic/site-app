@@ -1,6 +1,6 @@
 class RepliesController < ApplicationController
   before_action :set_survey
-  before_action :set_reply, only:[:edit, :update, :destroy, :show]
+  before_action :set_reply, only:[:edit, :update, :destroy, :show, :score_category]
 
   def index
   end
