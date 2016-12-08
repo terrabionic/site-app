@@ -78,15 +78,15 @@ class SurveyAnalysesController < ApplicationController
 	@company.state = 'Terminado'
 	@company.stage = 'Reporte'
 	@company.save
-	@companies_emprered = Company.where("emprered_id = ? and state <> ?",company.emprered.id, 'Terminado')
-	if @companies_emprered.length - 1 < company.emprered.num_max_companies
-		company.emprered.available = true
-		company.emprered.save
+	@companies_emprered = Company.where("emprered_id = ? and state <> ?",@company.emprered.id, 'Terminado')
+	if @companies_emprered.length - 1 < @company.emprered.num_max_companies
+		@company.emprered.available = true
+		@company.emprered.save
 	end
 	@companies_agent = Company.where("agent_id = ? and state <> ?",@company.agent.id, 'Terminado')
-	if @companies_agent.length - 1 < company.agent.num_max_companies
-		company.agent.available = true
-		company.agent.save
+	if @companies_agent.length - 1 < @company.agent.num_max_companies
+		@company.agent.available = true
+		@company.agent.save
 	end
 	redirect_to survey_analysis_path(@survey_analysis)
   end

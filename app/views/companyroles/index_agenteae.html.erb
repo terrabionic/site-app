@@ -49,6 +49,9 @@
               <td>
                 <% if company.done? %>
                   <%= link_to 'Análisis IC', show_survey_analysis_path(id:company.id) %>
+                  <% if company.state == 'Terminado' %>
+                    <%= link_to 'Imprimir reporte IC', get_report_IC_pdf_path(company), target: "_blank" %>
+                  <% end %>
                 <% end %>
               </td>
             </tr>

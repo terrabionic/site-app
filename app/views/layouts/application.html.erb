@@ -43,7 +43,15 @@
 					<% elsif current_user.is? 'agente' %>
 						<%= link_to 'DASHBOARD', index_agenteae_path %>
 					<% elsif current_user.is? 'company' %>
-						<%= link_to 'DASHBOARD', index_company_path %>
+						<% if current_user.company.done %>
+				          <% if current_user.company.stage == 'Reporte' %>
+				            <%= link_to 'DASHBOARD', results_company_path %>
+				          <% else %>
+				            <%= link_to 'DASHBOARD', index_company_path %>
+				          <% end %>
+				        <% else %>
+				          <%= link_to 'DASHBOARD', index_company_path %>
+				        <% end %>
 					<% end %>
 				</span><!-- .header-actions__item -->
 

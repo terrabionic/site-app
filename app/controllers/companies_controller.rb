@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :edit_site, :update, :destroy, :create_user, :asign_agent_company, :update_user_company, :get_survey_analysis]
+  before_action :set_company, only: [:show, :edit, :edit_site, :update, :destroy, :create_user, :asign_agent_company, :update_user_company, :get_survey_analysis, :get_report_IC_pdf]
   after_action :update_user_company, only:[:update]
 
   # GET /companies
@@ -25,7 +25,36 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    if @company.survey_analysis
+      @survey_analysis = @company.survey_analysis
+      @categories = get_categories(@survey_analysis.reply.survey)
+    end
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf{render template: 'companies/report_ic', pdf: 'Reporte_IC'}
+    end
+  end
 
+  def get_report_IC_pdf
+    @company = Company.find(params[:id])
+    @survey_analysis = @company.survey_analysis
+    @categories = get_categories(@survey_analysis.reply.survey)
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf{render template: 'companies/report_ic', pdf: 'Reporte_IC'}
+    end
+  end
+
+  def get_categories(survey)
+    #~ @company_ids = Company.where("user_login_id = ?", self.id)
+    @categories = Question.where("survey_id = ?",survey).map{|s| s.category}
+    if @categories
+      @categories = @categories.uniq
+      return @categories
+    end
+    return false
   end
 
   def show_general
@@ -194,23 +223,25 @@ class CompaniesController < ApplicationController
 
   def action_send_invitation
     @company = Company.find(params[:id])
-
-    if @company.stage == 'Prealta'
-      if @company.state == 'Nuevo'
-        action_progress
+    if @company.completed 
+      if @company.stage == 'Prealta'
+        if @company.state == 'Nuevo'
+          action_progress
+        end
+        @company.stage = 'Alta'
+        t_start =Time.now
+        t_end = t_start + 345600
+        @company.date_start = t_start
+        @company.date_end = t_end
       end
-      @company.stage = 'Alta'
-      t_start =Time.now
-      t_end = t_start + 345600
-      @company.date_start = t_start
-      @company.date_end = t_end
       pass = crate_password
       @company.user_login.password = pass
       @company.user_login.password_confirmation = pass
       @company.user_login.save
       @company.save
+      
+      NotificationSite.notify_invitation(@company.user_login, pass, current_user).deliver_now
     end
-    NotificationSite.notify_invitation(@company.user_login, pass, current_user).deliver_now
     redirect_to company_path(id: params[:id])
   end
 
