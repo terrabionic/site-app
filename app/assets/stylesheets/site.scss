@@ -938,3 +938,13 @@ select {
 .vex.vex-theme-default .vex-close:before {
 	color: #053051;
 }
+
+.actions-admin {
+	@extend %clearfix;
+	margin-bottom: 1.618rem;
+	
+	a {
+		@extend %btn;
+		background: #22A89E;
+	}
+}
