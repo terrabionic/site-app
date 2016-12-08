@@ -7,12 +7,26 @@
 
   <div class="main">
 
-	<div class="welcome-empresario">
-		<h1 class="welcome-empresario__title">Bienvenido a SITE</h1>
-		<h3 class="welcome-empresario__subtitle">Sistema de Inteligencia y Tecnología Empresarial</h3>
-		<p class="welcome-empresario__text">Para dar inicio a la consultoria de tu empresa, por favor llena la siguiente información</p>
-		<%= link_to 'Iniciar diagnóstico de mi empresa', show_reply_path(user_id:current_user.id) %>
-	</div><!-- .welcome-empresario -->
+  <% if current_user.company.done %>
+    <% if current_user.company.stage == 'Reporte' %>
+      Imprimir Grafica final
+    <% else %>
+      <div class="text-center">
+        <h4 class="welcome-empresario__title">Importante</h4>
+        <br>
+        <p class="welcome-empresario__text">Aquí aparecerá información sobre el <span class="color-green">diagnóstico de tu empresa</span>, nosotros nos pondremos en contacto contigo.</p>  
+      </div>
+    <% end %>
+  <% else %>
+    <div class="welcome-empresario">
+      <h1 class="welcome-empresario__title">Bienvenido a SITE</h1>
+      <h3 class="welcome-empresario__subtitle">Sistema de Inteligencia y Tecnología Empresarial</h3>
+      <p class="welcome-empresario__text">Para dar inicio a la consultoria de tu empresa, por favor llena la siguiente información</p>
+      <%= link_to 'Iniciar diagnóstico de mi empresa', show_reply_path(user_id:current_user.id) %>
+    </div><!-- .welcome-empresario -->
+  <% end %>
+
+	
 
   </div><!-- .main -->
 </div><!-- .layout -->

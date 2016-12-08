@@ -72,6 +72,8 @@ Rails.application.routes.draw do
   get '/companies/:id/edit_site', to: 'companies#edit_site', as: 'edit_site'
   # Dashboard de Empresa
   get '/companyroles/index_company', to: 'companyroles#index_company', as: 'index_company'
+  # Dashboard de Emprered
+  get '/companyroles/results_company', to: 'companyroles#results_company', as: 'results_company'
   # Mostrar encuesta a empresa
   get 'companyroles/show_reply/:user_id', to: 'companyroles#show_reply', as: 'show_reply'
   # Mostrar encuesta a empresa al agenteae
@@ -84,5 +86,7 @@ Rails.application.routes.draw do
   get 'companies/get_survey_analysis/:id', to: 'companies#get_survey_analysis', as: 'show_survey_analysis'
   # Accion para finalizar diagnostico
   post "survey_analyses/analysis_done", to: "survey_analyses#analysis_done"
+  # Imprimir el reporte IC en PDF
+  get '/companies/:id.pdf', to: 'companies#get_report_IC_pdf', as: 'get_report_IC_pdf'
 
 end

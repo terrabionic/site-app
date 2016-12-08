@@ -18,18 +18,14 @@
         <li class="tabs-title site-tabs-half"><a href="#inf-site">Registro en SITE</a></li>
       </ul><!-- .tabs -->
 
-
-
       <div class="tabs-content site-tabs-content" data-tabs-content="example-tabs">
 
         <div class="tabs-panel is-active" id="general">
 
-          <h4 class="title-line">General</h4>
+          <h4 class="title-line">Información General</h4>
           
           <% if can? :update, @company %>
             <p class="color-green">
-              <span class="text-bigger">Acerca de la empresa</span>
-              &nbsp;
               <%= link_to 'Editar', edit_company_path(@company), class: "btn" %>
             </p>
           <% end %>
@@ -75,7 +71,12 @@
           <p>
             <strong>Último inicio de sesión:</strong>
             <% if @company.user_login %>
-              <%= @company.user_login.last_sign_in_at %>
+              <% if @company.user_login.last_sign_in_at %>
+                <%= @company.user_login.last_sign_in_at %>
+              <% else %>
+                Nunca
+                <%=link_to "Enviar invitacion", action_send_invitation_path(id: @company), method: :post %>
+              <% end %>
             <% end %>
           </p>
 
@@ -110,6 +111,13 @@
           
         <div class="tabs-panel" id="inf-site">
           
+          <h4 class="title-line">Registro en SITE</h4>
+
+          <% if can? :update, @company %>
+            <p>
+              <%= link_to 'Editar', edit_site_path(@company), class: "btn" %>
+            </p>
+          <% end %>
 
           <p>
             <strong>Tipo de Compañia:</strong>
@@ -195,10 +203,6 @@
             <strong>Nombre de quien elaboró el reporte inicial:</strong>
             <%= @company.name_created %>
           </p>
-
-          <% if can? :update, @company %>
-            <%= link_to 'Editar', edit_site_path(@company), class: "btn" %>
-          <% end %>
 
           <p>
             <strong>
