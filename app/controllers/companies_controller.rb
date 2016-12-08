@@ -25,8 +25,10 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
-    @survey_analysis = @company.survey_analysis
-    @categories = get_categories(@survey_analysis.reply.survey)
+    if @company.survey_analysis
+      @survey_analysis = @company.survey_analysis
+      @categories = get_categories(@survey_analysis.reply.survey)
+    end
     respond_to do |format|
       format.html
       format.json
