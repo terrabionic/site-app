@@ -127,19 +127,36 @@
   <li style="list-style:none;">
     <p>
       <p style="text-align: center;"><strong>Diagnóstico:</strong></p>
-        <% @categories.each do |category| %>
-        	<h3><%= wicked_pdf_image_tag category.icon.url(:thumb) %><%= category.title %></h3>
-        	<hr color="black">
-        	<br>
-            <% @survey_analysis.reply.answers.each do |answer| %>
-              <% if answer.question.category.id == category.id %>
-                  <strong><%= answer.question.title %></strong>
-                  <br>
-                  <u><%= answer.title %></u><br>
-              <% end %>
-            <% end %>
-            <br>
-        <% end %>      
+        <table>
+			<% @categories.each do |category| %>
+				<tr>
+				  <td colspan="2"><h3><%= wicked_pdf_image_tag category.icon.url(:thumb) %><%= category.title %></h3></td>
+				</tr>
+				<tr>
+				  <td>
+					DETALLE<br>
+					<hr color="black">
+					Puntaje Obtenido<br>
+					<%= category.grade_obtained(reply: @survey_analysis.reply.id) %> pts<br><br>
+					Puntaje Ideal<br>
+					<%= category.grade_total %> pts 100%
+				  </td>
+				  <td>
+					<% @count_question = 0 %>
+					<% @survey_analysis.reply.answers.each do |answer| %>
+					  <% if answer.question.category.id == category.id %>
+						<% @count_question = @count_question + 1 %>
+						  <strong><%= @count_question %>.- <%= answer.question.title %></strong>
+						  <br>
+						  <em><u><%= answer.title %></u></em><br>
+						
+						<br>
+					  <% end %>
+					<% end %>
+				  </td>
+				</tr>
+			<% end %>
+		</table>
     </p>
     <div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>
   </li>
