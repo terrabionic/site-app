@@ -63,6 +63,14 @@ var siteApp = (function($) {
 			});
 		}
 
+		if ($('#edit_survey_analysis_1').length) {
+			$("#edit_survey_analysis_1").formToWizard({
+  				submitButton: 'guardar'
+			});
+		}
+
+
+
 	};
 
 	var thxReqply = function() {
