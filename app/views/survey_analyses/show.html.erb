@@ -11,6 +11,27 @@
 <ul>
 
   <li>
+	<h2>MY PYME IDEAL</h2>
+	<table>
+		<tr>
+		  <td>
+			Grafica
+			<%= @survey_analysis.reply.score_category(categories:@survey_analysis.reply.survey.categories) %>
+		  </td>
+		  <td>
+			<h2>DETALLE</h2>
+			<hr color='black'/>
+			PUNTAJE OBTENIDO<br>
+				<strong><%= @survey_analysis.reply.score %> pts.</strong>
+			<br><br>
+			PUNTAJE IDEAL<br>
+
+				<strong><%= @survey_analysis.reply.survey.total_score %> pts. 100%</strong>
+		  </td>
+		</tr>    
+
+	  </table>
+  
     <strong>Introducción</strong><br>
     <p><strong>SE CREA LA&nbsp; AGENCIA </strong></p>
 
