@@ -49,10 +49,16 @@ var siteApp = (function($) {
 		$('#sector-cool').children().removeClass('is-active');
 	};
 
-	var wizardReply = function() {
+	var wizardForms = function() {
 
 		if ($('#new_reply').length) {
 			$("#new_reply").formToWizard({
+  				submitButton: 'guardar'
+			});
+		}
+
+		if ($('#edit_survey_analysis_2').length) {
+			$("#edit_survey_analysis_2").formToWizard({
   				submitButton: 'guardar'
 			});
 		}
@@ -68,7 +74,7 @@ var siteApp = (function($) {
 	var ready = function() {
 		menuProfile();
 		sectorCool();
-		wizardReply();
+		wizardForms();
 		thxReqply();
 	};
 

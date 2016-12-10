@@ -9,11 +9,10 @@
       </ul>
     </div>
   <% end %>
-<ul>
 
-  <li>
-    <strong>Introducción</strong><br>
+  <fieldset>
 
+    <legend class="main-headline">Introducción</legend>
 
     <p><strong>SE CREA LA&nbsp; AGENCIA </strong></p>
 
@@ -42,19 +41,17 @@
     </ul>
 
     <ol>
-      <li value="2"><strong>Gesti&oacute;n para la innovaci&oacute;n</strong></li>
+      <li value="2"><strong>Gestión para la innovación</strong></li>
     </ol>
 
-    <ul>
-      <li>
-      <ul style="list-style-type:circle;">
-        <li>Ideas</li>
-        <li>Proyectos</li>
-        <li>Foros</li>
-        <li>Agenda</li>
-        <li>B&uacute;squedas</li>
-      </ul>
-      </li>
+    <ul style="list-style-type:circle;">
+ 
+      <li>Ideas</li>
+      <li>Proyectos</li>
+      <li>Foros</li>
+      <li>Agenda</li>
+      <li>B&uacute;squedas</li>
+   
     </ul>
 
     <ol>
@@ -113,77 +110,95 @@
       
 
 
-  </li>
-  <li>
-    <p>
-      <strong>Diagnóstico:</strong>
-      <table>
-        <ol>
-          <% @categories.each do |category| %>
-            <tr>
-              <td colspan="2"><h3><%= image_tag category.icon.url(:thumb) %><%= category.title %></h3></td>
-            </tr>
-            <tr>
-              <td>
-                DETALLE<br>
-                <hr color="black">
-                Puntaje Obtenido<br>
-                <%= category.grade_obtained(reply: @survey_analysis.reply.id) %><br><br>
-                Puntaje Ideal<br>
-                <%= category.grade_total %><br>
-              </td>
-              <td>
-                <% @count_question = 0 %>
-                <% @survey_analysis.reply.answers.each do |answer| %>
-                  <% if answer.question.category.id == category.id %>
-                    <% @count_question = @count_question + 1 %>
-                    <li>
-                      <strong><%= @count_question %>.- <%= answer.question.title %></strong>
-                      <br>
-                      <em><%= answer.title %></em><br>
-                      <strong>Solución:</strong><br>
-                      <%= answer.solution %>
-                      <br>
-                      <% if current_user.is? 'admin' or current_user.is? 'agente' %>
-                        <strong>Puntaje: </strong><mark><%= answer.grade %> / <%= answer.question.grade %></mark>
-                      <% end %>
-                    </li>
-                    <hr color="black">
-                    <br>
-                  <% end %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </ol>
-      </table>
-    </p>
-  </li>
+  </fieldset>
 
-  <li>
-    <strong>Hallazgos y Recomendaciones</strong><br>
+  
+    
+    
+    
+    <% @categories.each do |category| %>
+
+      <fieldset>
+      
+        <h3 class="title-line category-title">
+          <%= image_tag category.icon.url(:thumb) %><%= category.title %>
+        </h3>
+      
+        <div class="category-detalle">
+          <h4 class="bolder">DETALLE</h4>
+          <ul>
+            <li>
+              <small>Puntaje Obtenido</small>
+          <%= category.grade_obtained(reply: @survey_analysis.reply.id) %>
+            </li>
+            <li class="category-detaller-separator"></li>
+            <li>
+              <small>Puntaje Ideal</small>
+              <%= category.grade_total %>
+            </li>
+          </ul>
+        </div><!-- .category-detalle -->
+
+        
+        <% @count_question = 0 %>
+        <% @survey_analysis.reply.answers.each do |answer| %>
+          <% if answer.question.category.id == category.id %>
+            <% @count_question = @count_question + 1 %>
+            <div class="question-item">
+              <p>
+              <strong><%= @count_question %>.- <%= answer.question.title %></strong>
+              <% if current_user.is? 'admin' or current_user.is? 'agente' %>
+              <small>
+                Puntaje: <mark><%= answer.grade %> / <%= answer.question.grade %></mark></small>
+              <% end %>
+                
+              </p>
+              <label class="radio-custom">
+                <input type="radio" checked>
+                <span></span>
+                <%= answer.title %>
+              </label>
+              
+              <p class="color-green bolder">Solución:</p>
+              <p><%= answer.solution %></p>
+              
+            </div>
+  
+          <% end %>
+        <% end %>
+        
+      </fieldset>
+      
+    <% end %>
+    
+  
+
+  <fieldset>
+    <legend class="main-headline">Hallazgos y Recomendaciones</legend>
+    
     <div class="field">
-      <h2>Capacidades Organizacionales</h2><br>
+      <p class="bolder">Capacidades Organizacionales</p>
       <%= f.text_area :organizational %>
     </div>
     <div class="field">
-      <h2>Gestión de la innovación</h2><br>
+      <p class="bolder">Gestión de la innovación</p>
       <%= f.text_area :innovation_management %>
     </div>
     <div class="field">
-      <h2>Innovación</h2><br>
+      <p class="bolder">Innovación</p>
       <%= f.text_area :innovation %>
     </div>
     <div class="field">
-      <h2>Capacidades Gremiales</h2><br>
+      <p class="bolder">Capacidades Gremiales</p>
       <%= f.text_area :guilds %>
     </div>
     <div class="field">
-      <h2>Capacidades Copentenciales</h2><br>
+      <p class="bolder">Capacidades Copentenciales</p>
       <%= f.text_area :copetential %>
     </div>
     <div class="actions">
-      <%= f.submit 'Guardar' %>
+      <%= f.submit 'guardar' %>
     </div>
-  </li>
+  </fieldset>
+
 <% end %>

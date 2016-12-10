@@ -1,3 +1,47 @@
+%form-wizard-actions {
+	.next,
+	.prev {
+		display: inline-block;
+		background: #F4F5F7;
+		color: gray;
+		padding: .618em 1.618em;
+		border-radius: 4px;
+		font-size: 14px;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	p[id*="commands"] {
+		overflow: hidden;
+		margin-top: 1.618rem;
+	}
+
+	.next {
+		float: right;
+		&:after {
+			content: "\e916";
+			font-family: icomoon;
+			display: inline-block;
+			vertical-align: middle;
+			margin-left: 1em;
+			font-size: .8em;
+		}
+	}
+
+	.prev {
+		float: left;
+		&:before {
+			content: "\e915";
+			font-family: icomoon;
+			display: inline-block;
+			vertical-align: middle;
+			margin-right: 1em;
+			font-size: .8em;
+		}
+	}
+}
+
 %clearfix {
 	&:before,
 	&:after {
@@ -686,45 +730,19 @@ select {
 
 }
 
+
+
 #new_reply {
 	p {
 		font-weight: 500;
 	}
 
-	.next,
-	.prev {
-		display: inline-block;
-		background: #F4F5F7;
-		color: gray;
-		padding: .618em 1.618em;
-		border-radius: 4px;
-		font-size: 14px;
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+	@extend %form-wizard-actions;
+}
 
-	.next {
-		&:after {
-			content: "\e916";
-			font-family: icomoon;
-			display: inline-block;
-			vertical-align: middle;
-			margin-left: 1em;
-			font-size: .8em;
-		}
-	}
-
-	.prev {
-		&:before {
-			content: "\e915";
-			font-family: icomoon;
-			display: inline-block;
-			vertical-align: middle;
-			margin-right: 1em;
-			font-size: .8em;
-		}
-	}
+.edit_survey_analysis {
+	@extend %form-wizard-actions;
+	
 }
 
 
@@ -950,5 +968,75 @@ select {
 	a {
 		@extend %btn;
 		background: #22A89E;
+	}
+}
+
+.edit_survey_analysis {
+	input[type="text"],
+	input[type="number"] {
+		display: inline;
+		width: 50px;
+		color: #70B23A;
+		border-color: #70B23A;
+		box-shadow: none;
+		margin-bottom: 0;
+	}
+
+	a {
+		color: #70B23A;
+	}
+}
+
+.bolder {
+	font-weight: 500;
+}
+
+.category-detalle {
+	border-bottom: 1px solid lightgray;
+	margin-bottom: 1.618em;
+	ul {
+		list-style: none;
+		margin-left: 0;
+		li {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		small {
+			display: block;
+			color: gray;
+		}
+	}
+	h4 {
+		font-size: 16px;
+
+	}
+}
+
+.category-detaller-separator {
+	vertical-align: middle;
+	display: inline-block;
+	width: 30px;
+	
+	
+	&:before {
+		content: "";
+		height: 50px;
+		transform: rotate(25deg);
+		display: block;
+		width: 1px;
+		background: gray;
+		margin-left: auto;
+		margin-right: auto;
+		
+	}
+
+}
+
+.category-title {
+	img {
+		margin-right: 20px;
+		width: 70px;
+		height: auto;
 	}
 }
