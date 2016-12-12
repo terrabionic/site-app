@@ -549,6 +549,7 @@ select {
 
 .form-container--large {
 	max-width: 1024px;
+	max-width: 980px;
 }
 
 .submit-btn,
@@ -999,7 +1000,7 @@ select {
 		margin-left: 0;
 		li {
 			display: inline-block;
-			vertical-align: middle;
+			vertical-align: top;
 		}
 
 		small {
@@ -1038,5 +1039,44 @@ select {
 		margin-right: 20px;
 		width: 70px;
 		height: auto;
+	}
+}
+
+.max-1000 {
+	max-width: 1000px;
+	@extend %clearfix;
+}
+
+.general-details {
+	h5 {
+		border-bottom: 1px solid lightgray;
+		padding-bottom: .5rem;
+	}
+
+	h6 {
+		margin-bottom: .3rem;
+		&+strong {
+			display: block;
+			font-weight: 500;
+			font-size: 18px;
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+.pleca {
+	padding: 1rem;
+	font-size: 24px;
+	background: #879298;
+	margin-top: 1.618rem;
+	margin-bottom: 1.618rem;
+	clear: both;
+	color: white;
+	text-transform: uppercase;
+}
+
+.the-content {
+	a {
+		color: #5E9631;
 	}
 }

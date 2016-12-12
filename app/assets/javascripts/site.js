@@ -79,11 +79,73 @@ var siteApp = (function($) {
 		}
 	};
 
+	var charts = function() {
+		google.charts.load('current', {'packages':['corechart']});
+
+		google.charts.setOnLoadCallback(drawCharts);
+	};
+
+	var drawCharts = function() {
+
+		var $chartCategories = $('#chart-categories');
+
+		var $chartIndividual = $('.js-chart-category');
+
+		if ($chartCategories.length) {
+
+			var data = new google.visualization.DataTable();
+
+			data.addColumn('string', 'Category');
+
+			data.addColumn('number', 'Points');
+
+			data.addRows($chartCategories.data('rows'));
+			
+		    var options = {
+				colors:['#22A89E','#5F9731', '#1E5E3E', '#043050']
+		    };
+
+		    var chart = new google.visualization.PieChart(document.getElementById('chart-categories'));
+
+		    chart.draw(data, options);	
+
+		}
+
+		if ($chartIndividual.length) {
+
+			$chartIndividual.each(function() {
+
+				var data = new google.visualization.DataTable();
+
+				data.addColumn('string', 'Category');
+
+				data.addColumn('number', 'Points');
+
+				// console.log($(this).data('rows'));
+
+				data.addRows($(this).data('rows'));
+
+				var options = {
+					colors:['#22A89E','#E6E7E9']
+			    };
+
+			    var chart = new google.visualization.PieChart(this);
+
+			    chart.draw(data, options);	
+
+			});
+
+		}
+	};
+
+
+
 	var ready = function() {
 		menuProfile();
 		sectorCool();
 		wizardForms();
 		thxReqply();
+		charts();
 	};
 
 	return {

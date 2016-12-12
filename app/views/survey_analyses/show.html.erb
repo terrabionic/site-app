@@ -1,217 +1,245 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Análisis de Diagnóstico</h1>
 
+<div class="layout">
 
-<%= link_to 'Atrás', root_path %><br>
-<h2><%= @survey_analysis.user_company.company_name %></h2><br>
-<% unless @survey_analysis.completed %>
-	<%= link_to 'Editar', edit_survey_analysis_path(@survey_analysis) %>
-<% end %>
-<ul>
-
-  <li>
-	<h2>MY PYME IDEAL</h2>
-	<table>
-		<tr>
-		  <td>
-			Grafica
-			<%= @survey_analysis.reply.score_category(categories:@survey_analysis.reply.survey.categories) %>
-		  </td>
-		  <td>
-			<h2>DETALLE</h2>
-			<hr color='black'/>
-			PUNTAJE OBTENIDO<br>
-				<strong><%= @survey_analysis.reply.score %> pts.</strong>
-			<br><br>
-			PUNTAJE IDEAL<br>
-
-				<strong><%= @survey_analysis.reply.survey.total_score %> pts. 100%</strong>
-		  </td>
-		</tr>    
-
-	  </table>
+  <%= render 'shared/nav' %>
   
-    <strong>Introducción</strong><br>
-    <p><strong>SE CREA LA&nbsp; AGENCIA </strong></p>
+  <div class="main">
 
-    <p>Como un puente de comunicaci&oacute;n entre los actores del &aacute;mbito acad&eacute;mico, empresarial, gubernamental, sociedad civil organizada y las empresas locales para facilitar el flujo de conocimiento, agregando valor a sus asociados para la generaci&oacute;n y aplicaci&oacute;n de acciones en beneficio directo de las empresas hidalguenses.</p>
+    <div class="form-container form-container--large">
 
-    <p><strong>EMPRESAS ATENDIDAS</strong></p>
-
-    <p>Actualmente se desarrollan las capacidades de gesti&oacute;n de proyectos de innovaci&oacute;n de <%= @survey_analysis.num_company %> empresas de los sectores metalmec&aacute;nico y textil-confecci&oacute;n para conservar, <%= @survey_analysis.num_jobs %> empleos y generar cuando menos <%= @survey_analysis.create_jobs %>.</p>
-
-    <p><strong>BENEFICIOS EMPRESARIALES</strong></p>
-
-    <p>Las empresas atendidas por la Agencia son beneficiadas con una serie de servicios electr&oacute;nicos que le permitir&aacute;n al empresario desarrollar sus capacidades de innovaci&oacute;n para impulsar estrategias diferenciadoras de sus competidores en procesos y productos basados en Inteligencia competitiva.</p>
-
-    <p><strong>SERVICIOS ELECTR&Oacute;NICOS PARA PYMES/ &nbsp;PLATAFORMA TECNOLOGICA</strong></p>
-
-    <p>A trav&eacute;s de la Plataforma tecnol&oacute;gica dispuestas en Internet, la Agencia ofrece 4 productos y servicios de:</p>
-
-    <ol>
-      <li><strong>Inteligencia Competitiva</strong></li>
-    </ol>
-
-    <ul style="list-style-type:circle;">
-      <li>Para identificar Distribuidores, proveedores, clientes&nbsp; y&nbsp; competidores.</li>
-      <li>Distribuci&oacute;n de Unidades Econ&oacute;micas por Municipio</li>
-      <li>Total de empresas de los sectores Textil y Metalmec&aacute;nica</li>
-    </ul>
-
-    <ol>
-      <li value="2"><strong>Gesti&oacute;n para la innovaci&oacute;n</strong></li>
-    </ol>
-
-    <ul>
-      <li>
-      <ul style="list-style-type:circle;">
-        <li>Ideas</li>
-        <li>Proyectos</li>
-        <li>Foros</li>
-        <li>Agenda</li>
-        <li>B&uacute;squedas</li>
-      </ul>
-      </li>
-    </ul>
-
-    <ol>
-      <li value="3"><strong>Observatorio Empresarial</strong></li>
-    </ol>
-
-    <ul style="list-style-type:circle;">
-      <li>Repositorio de estudios, investigaciones, art&iacute;culos, etc.</li>
-    </ul>
-
-    <ol>
-      <li value="4"><strong>AIE Alertas</strong></li>
-    </ol>
-
-    <ul style="list-style-type:circle;">
-      <li>Sistema de noticias para el monitoreo de la actividad empresarial global.</li>
-    </ul>
-
-    <p><strong>COBERTURA DE ATENCI&Oacute;N</strong></p>
-
-    <p>Los servicios de la Agencia se ofrecen en las <%= @survey_analysis.num_emprered %> oficinas de EmpreReds y los &ldquo;Puntos&nbsp; Mover a M&eacute;xico&rdquo; localizadas en las regiones estrat&eacute;gicas del estado.</p>
-
-    <p><strong>INFRAESTRUCTURA TECNOL&Oacute;GICA</strong></p>
-
-    <ul>
-      <li>Plataforma en l&iacute;nea: <a href="http://www.aie.org.mx/">www.aie.org.mx</a></li>
-    </ul>
-
-    <ul>
-      <li>Se han puesto en marcha <%= @survey_analysis.num_electronic_kiosk %> kioscos electr&oacute;nicos&nbsp; que ofrecen estos servicios.
-      <ul style="list-style-type:circle;">
-        <li>Uno se encuentra en el Parque Cient&iacute;fico y Tecnol&oacute;gico y forma parte del ecosistema de operado por el CITNOVA.</li>
-      </ul>
-      </li>
-    </ul>
-
-    <ul style="list-style-type:circle;">
-      <li>Otro kiosco se encuentra en el Instituto Hidalguense de Competitividad Empresarial.</li>
-    </ul>
-    <br>
-    <%= image_tag @survey_analysis.user_company.company.image_logo.url(:medium) %><br>
-    <h3><%= @survey_analysis.user_company.company_name %><br></h3>
-    <strong><%= @survey_analysis.user_company.company.name_director %><br></strong>
-    
-    Director de la empresa<br><br>
-
-    <p>El diagn&oacute;stico de inteligencia competitiva tiene como principal objetivo conocer el la situaci&oacute;n general de la organizaci&oacute;n &oacute; empresa que sirva como precedente en la toma de decisiones.</p>
-
-    <p><strong><%= @survey_analysis.user_company.company.name_director %></strong> en su calidad de <strong>Director de la empresa de <%= @survey_analysis.user_company.company_name %></strong> comparti&oacute; su experiencia y conocimientos sobre los procesos transversales de la organizaci&oacute;n y expuso su visi&oacute;n y alcances que tendr&aacute;n los planes de mejora a implementarse en el corto y mediano plazo.</p>
-
-    <p>Desde la Agencia de Innovaci&oacute;n Empresarial reafirmamos nuestro compromiso con <strong><%= @survey_analysis.user_company.company_name %></strong> en el desarrollo de acciones y proyectos que beneficien a la empresa.</p>
-
-    <p>El presente reporte permitir&aacute;&nbsp; a esta empresa tener informaci&oacute;n clave que contribuya a generar acciones con prop&oacute;sitos anticipatorios.</p>
-
-    <p>A continuaci&oacute;n se muestran los resultados derivados de la aplicaci&oacute;n del diagn&oacute;stico&nbsp;</p>
+      <%= link_to 'Atrás', root_path, class: "back-button" %>
+      <h1 class="main-headline inline-block"><%= @survey_analysis.user_company.company_name %></h1>
       
-  </li>
+      <h2 class="color-green text-bigger mb-phi">
+        Análisis de Diagnóstico
+      </h2>
 
-  <li>
-    <p>
-      <strong>Diagnóstico:</strong>
-      <table>
+      <% unless @survey_analysis.completed %>
+      <p>
+        <%= link_to 'Editar', edit_survey_analysis_path(@survey_analysis), class: "btn" %>
+      </p>
+      <% end %>
+      
+      <div class="general-chart">
+
+        <div class="max-1000">
+          <div class="medium-8 columns">
+            <div id="chart-categories" data-rows="<%= @survey_analysis.reply.score_category(categories:@survey_analysis.reply.survey.categories) %>"></div>
+          </div>
+          <div class="medium-4 columns general-details">
+            <h5>DETALLE</h5>
+        
+            <h6><small>PUNTAJE OBTENIDO</small></h6>
+            <strong><%= @survey_analysis.reply.score %> pts.</strong>
+            
+            <h6><small>PUNTAJE IDEAL</small></h6>
+
+            <strong><%= @survey_analysis.reply.survey.total_score %> pts. 100%</strong>
+          </div>
+        </div>
+
+      </div><!-- .general-chart -->
+
+      <div class="the-content">
+
+          
+        <h2 class="pleca">Introducción</h2>
+
+        <p><strong>SE CREA LA&nbsp; AGENCIA </strong></p>
+
+        <p>Como un puente de comunicaci&oacute;n entre los actores del &aacute;mbito acad&eacute;mico, empresarial, gubernamental, sociedad civil organizada y las empresas locales para facilitar el flujo de conocimiento, agregando valor a sus asociados para la generaci&oacute;n y aplicaci&oacute;n de acciones en beneficio directo de las empresas hidalguenses.</p>
+
+        <p><strong>EMPRESAS ATENDIDAS</strong></p>
+
+        <p>Actualmente se desarrollan las capacidades de gesti&oacute;n de proyectos de innovaci&oacute;n de <%= @survey_analysis.num_company %> empresas de los sectores metalmec&aacute;nico y textil-confecci&oacute;n para conservar, <%= @survey_analysis.num_jobs %> empleos y generar cuando menos <%= @survey_analysis.create_jobs %>.</p>
+
+        <p><strong>BENEFICIOS EMPRESARIALES</strong></p>
+
+        <p>Las empresas atendidas por la Agencia son beneficiadas con una serie de servicios electr&oacute;nicos que le permitir&aacute;n al empresario desarrollar sus capacidades de innovaci&oacute;n para impulsar estrategias diferenciadoras de sus competidores en procesos y productos basados en Inteligencia competitiva.</p>
+
+        <p><strong>SERVICIOS ELECTR&Oacute;NICOS PARA PYMES/ &nbsp;PLATAFORMA TECNOLOGICA</strong></p>
+
+        <p>A trav&eacute;s de la Plataforma tecnol&oacute;gica dispuestas en Internet, la Agencia ofrece 4 productos y servicios de:</p>
+
         <ol>
-          <% @categories.each do |category| %>
-            <tr>
-              <td colspan="2"><h3><%= image_tag category.icon.url(:thumb) %><%= category.title %></h3></td>
-            </tr>
-            <tr>
-              <td>
-                DETALLE<br>
-                <hr color="black">
-                Puntaje Obtenido<br>
-                <%= category.grade_obtained(reply: @survey_analysis.reply.id) %><br><br>
-                Puntaje Ideal<br>
-                <%= category.grade_total %><br>
-
-              </td>
-              <td>
-                <% @count_question = 0 %>
-                <% @survey_analysis.reply.answers.each do |answer| %>
-                  <% if answer.question.category.id == category.id %>
-                    <% @count_question = @count_question + 1 %>
-                    <li>
-                      <strong><%= @count_question %>.- <%= answer.question.title %></strong>
-                      <br>
-                      <em><%= answer.title %></em><br>
-                      <strong>Solución:</strong><br>
-                      <%= answer.solution %>
-                      <br>
-                      <% if current_user.is? 'admin' or current_user.is? 'agente' %>
-                        <strong>Puntaje: </strong><mark><%= answer.grade %> / <%= answer.question.grade %></mark>
-                      <% end %>
-                    </li>
-                    <hr color="black">
-                    <br>
-                  <% end %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
+          <li><strong>Inteligencia Competitiva</strong></li>
         </ol>
-      </table>
-      
-    </p>
-  </li>
 
-  <li>
-    <strong>Hallazgos y Recomendaciones</strong><br>
-    <p>
-      <h3>Organizacional:</h3>
-      <%= @survey_analysis.organizational %>
-    </p>
+        <ul style="list-style-type:circle;">
+          <li>Para identificar Distribuidores, proveedores, clientes&nbsp; y&nbsp; competidores.</li>
+          <li>Distribuci&oacute;n de Unidades Econ&oacute;micas por Municipio</li>
+          <li>Total de empresas de los sectores Textil y Metalmec&aacute;nica</li>
+        </ul>
 
-    <p>
-      <h3>Gestión de Innovación:</h3>
-      <%= @survey_analysis.innovation_management %>
-    </p>
+        <ol>
+          <li value="2"><strong>Gesti&oacute;n para la innovaci&oacute;n</strong></li>
+        </ol>
 
-    <p>
-      <h3>Innovación:</h3>
-      <%= @survey_analysis.innovation %>
-    </p>
+        <ul style="list-style-type:circle;">
+          <li>Ideas</li>
+          <li>Proyectos</li>
+          <li>Foros</li>
+          <li>Agenda</li>
+          <li>B&uacute;squedas</li>
+        </ul>
 
-    <p>
-      <h3>Capacidades Gremiales:</h3>
-      <%= @survey_analysis.guilds %>
-    </p>
+        <ol>
+          <li value="3"><strong>Observatorio Empresarial</strong></li>
+        </ol>
 
-    <p>
-      <h3>Capacidades Copentenciales:</h3>
-      <%= @survey_analysis.copetential %>
-    </p>
-  </li>
-</ul>
+        <ul style="list-style-type:circle;">
+          <li>Repositorio de estudios, investigaciones, art&iacute;culos, etc.</li>
+        </ul>
 
-<% if @survey_analysis.completed %>
-	<% unless @survey_analysis.user_company.company.state == 'Terminado' %>
-		<%= link_to 'Finalizar Analisis', survey_analyses_analysis_done_path(id:@survey_analysis), method: :post %>
-	<% end %>
-<% end %>
+        <ol>
+          <li value="4"><strong>AIE Alertas</strong></li>
+        </ol>
 
+        <ul style="list-style-type:circle;">
+          <li>Sistema de noticias para el monitoreo de la actividad empresarial global.</li>
+        </ul>
+
+        <p><strong>COBERTURA DE ATENCI&Oacute;N</strong></p>
+
+        <p>Los servicios de la Agencia se ofrecen en las <%= @survey_analysis.num_emprered %> oficinas de EmpreReds y los &ldquo;Puntos&nbsp; Mover a M&eacute;xico&rdquo; localizadas en las regiones estrat&eacute;gicas del estado.</p>
+
+        <p><strong>INFRAESTRUCTURA TECNOL&Oacute;GICA</strong></p>
+
+        <ul>
+          <li>Plataforma en l&iacute;nea: <a href="http://www.aie.org.mx/">www.aie.org.mx</a></li>
+        </ul>
+
+        <ul>
+          <li>Se han puesto en marcha <%= @survey_analysis.num_electronic_kiosk %> kioscos electr&oacute;nicos&nbsp; que ofrecen estos servicios.
+          <ul style="list-style-type:circle;">
+            <li>Uno se encuentra en el Parque Cient&iacute;fico y Tecnol&oacute;gico y forma parte del ecosistema de operado por el CITNOVA.</li>
+          </ul>
+          </li>
+        </ul>
+
+        <ul>
+          <li>Otro kiosco se encuentra en el Instituto Hidalguense de Competitividad Empresarial.</li>
+        </ul>
+        <br>
+        <%= image_tag @survey_analysis.user_company.company.image_logo.url(:medium) %><br>
+        <h3><%= @survey_analysis.user_company.company_name %><br></h3>
+        <strong><%= @survey_analysis.user_company.company.name_director %><br></strong>
+        
+        Director de la empresa<br><br>
+
+        <p>El diagn&oacute;stico de inteligencia competitiva tiene como principal objetivo conocer el la situaci&oacute;n general de la organizaci&oacute;n &oacute; empresa que sirva como precedente en la toma de decisiones.</p>
+
+        <p><strong><%= @survey_analysis.user_company.company.name_director %></strong> en su calidad de <strong>Director de la empresa de <%= @survey_analysis.user_company.company_name %></strong> comparti&oacute; su experiencia y conocimientos sobre los procesos transversales de la organizaci&oacute;n y expuso su visi&oacute;n y alcances que tendr&aacute;n los planes de mejora a implementarse en el corto y mediano plazo.</p>
+
+        <p>Desde la Agencia de Innovaci&oacute;n Empresarial reafirmamos nuestro compromiso con <strong><%= @survey_analysis.user_company.company_name %></strong> en el desarrollo de acciones y proyectos que beneficien a la empresa.</p>
+
+        <p>El presente reporte permitir&aacute;&nbsp; a esta empresa tener informaci&oacute;n clave que contribuya a generar acciones con prop&oacute;sitos anticipatorios.</p>
+
+        <p>A continuaci&oacute;n se muestran los resultados derivados de la aplicaci&oacute;n del diagn&oacute;stico&nbsp;</p>
+               
+        <h2 class="pleca">Diagnóstico</h2>
+          
+        <% @categories.each do |category| %>
+
+          <h3 class="title-line category-title">
+            <%= image_tag category.icon.url(:thumb) %><%= category.title %>
+          </h3>  
+
+          <div class="max-1000">
+
+            <div class="medium-5 columns"> 
+
+              <div id="category-#<%= category.id %>" class="js-chart-category" data-rows='[["Obtenido", <%= category.grade_obtained(reply: @survey_analysis.reply.id) %>], ["No obtenido", <%= category.grade_total - category.grade_obtained(reply: @survey_analysis.reply.id) %>]]'></div>
+
+              <div class="general-details">
+                <h5>DETALLE</h5>
+            
+                <h6><small>PUNTAJE OBTENIDO</small></h6>
+                <strong><%= category.grade_obtained(reply: @survey_analysis.reply.id) %> pts.</strong>
+                
+                <h6><small>PUNTAJE IDEAL</small></h6>
+
+                <strong><%= category.grade_total %> pts. 100%</strong>
+              </div>
+
+            </div>
+
+            <div class="medium-7 columns">
+              <% @count_question = 0 %>
+              <% @survey_analysis.reply.answers.each do |answer| %>
+                <% if answer.question.category.id == category.id %>
+                  <% @count_question = @count_question + 1 %>
+                    
+                  <div class="question-item">
+                    <p>
+                      <strong><%= @count_question %>.- <%= answer.question.title %></strong>
+                      <% if current_user.is? 'admin' or current_user.is? 'agente' %>
+                      <small>
+                        Puntaje: <mark><%= answer.grade %> / <%= answer.question.grade %></mark></small>
+                      <% end %>
+
+                    </p>
+                    <label class="radio-custom">
+                      <input type="radio" checked>
+                      <span></span>
+                      <%= answer.title %>
+                    </label>
+
+                    <p class="color-green bolder">Solución:</p>
+                    <p><%= answer.solution %></p>
+
+                  </div><!-- .question-item -->
+                  
+                <% end %>
+              <% end %>            
+            </div>
+            
+          </div>
+          
+        <% end %>
+        
+        <h2 class="pleca">Hallazgos y Recomendaciones</h2>
+        
+        <p>
+          <h4>Organizacional:</h4>
+          <%= @survey_analysis.organizational %>
+        </p>
+
+        <p>
+          <h4>Gestión de Innovación:</h4>
+          <%= @survey_analysis.innovation_management %>
+        </p>
+
+        <p>
+          <h4>Innovación:</h4>
+          <%= @survey_analysis.innovation %>
+        </p>
+
+        <p>
+          <h4>Capacidades Gremiales:</h4>
+          <%= @survey_analysis.guilds %>
+        </p>
+
+        <p>
+          <h4>Capacidades Copentenciales:</h4>
+          <%= @survey_analysis.copetential %>
+        </p>
+          
+        <% if @survey_analysis.completed %>
+          <% unless @survey_analysis.user_company.company.state == 'Terminado' %>
+            <%= link_to 'Finalizar Analisis', survey_analyses_analysis_done_path(id:@survey_analysis), method: :post %>
+          <% end %>
+        <% end %>
+
+      </div><!-- .the-content -->
+
+    </div><!-- .form-container -->
+
+  </div><!-- .main -->
+
+</div><!-- .layout -->
+
+<%= render 'shared/footer' %>
 
