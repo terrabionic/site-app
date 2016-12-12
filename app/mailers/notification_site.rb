@@ -12,7 +12,7 @@ class NotificationSite < ApplicationMailer
     @current_user = current_user
     @greeting = "Hi"
     #@url  = 'http://Site.com'
-    @url  = 'http://localhost:3000'
+    @url  = 'http://162.243.75.86:3000'
     mail to: @user.email, subject: "Bienvenido a Site"
   end
 end
