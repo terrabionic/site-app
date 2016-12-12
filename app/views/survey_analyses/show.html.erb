@@ -202,30 +202,27 @@
         
         <h2 class="pleca">Hallazgos y Recomendaciones</h2>
         
-        <p>
-          <h4>Organizacional:</h4>
-          <%= @survey_analysis.organizational %>
-        </p>
+        <h4>Organizacional:</h4>
+        <p class="hallazgo"><%= @survey_analysis.organizational %></p>
+        
+      
+        <h4>Gestión de Innovación:</h4>
+        <p class="hallazgo"><%= @survey_analysis.innovation_management %></p>
+      
 
-        <p>
-          <h4>Gestión de Innovación:</h4>
-          <%= @survey_analysis.innovation_management %>
-        </p>
+      
+        <h4>Innovación:</h4>
+        <p class="hallazgo"><%= @survey_analysis.innovation %></p>
+      
 
-        <p>
-          <h4>Innovación:</h4>
-          <%= @survey_analysis.innovation %>
-        </p>
-
-        <p>
-          <h4>Capacidades Gremiales:</h4>
-          <%= @survey_analysis.guilds %>
-        </p>
-
-        <p>
-          <h4>Capacidades Copentenciales:</h4>
-          <%= @survey_analysis.copetential %>
-        </p>
+      
+        <h4>Capacidades Gremiales:</h4>
+        <p class="hallazgo"><%= @survey_analysis.guilds %></p>
+      
+      
+        <h4>Capacidades Copentenciales:</h4>
+        <p class="hallazgo"><%= @survey_analysis.copetential %></p>
+        
           
         <% if @survey_analysis.completed %>
           <% unless @survey_analysis.user_company.company.state == 'Terminado' %>

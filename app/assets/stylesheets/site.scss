@@ -549,7 +549,6 @@ select {
 
 .form-container--large {
 	max-width: 1024px;
-	max-width: 980px;
 }
 
 .submit-btn,
@@ -1079,4 +1078,9 @@ select {
 	a {
 		color: #5E9631;
 	}
+}
+
+.hallazgo {
+	border: 1px solid lightgray;
+	padding: 1.618rem;
 }
