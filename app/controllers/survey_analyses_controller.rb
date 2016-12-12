@@ -1,3 +1,59 @@
+class SurveyAnalysisPdf < Prawn::Document
+	def initialize(survey_analysis, categories)
+		super()
+		@survey_analysis = survey_analysis
+		@categories = categories
+		company_name
+		reply_company
+		#start_new_page
+
+	end
+	
+	def company_name
+		text "EMPRESA #{@survey_analysis.user_company.company_name}", size: 30, style: :bold
+	end
+	
+	def reply_company
+		move_down 20
+		@categories.map do |category|
+			text category.title
+			#get_detail(category)
+			
+			table reply_company_rows(category)
+			#get_questions(category)
+			
+			move_down 20
+		end
+		
+	end
+	
+	def reply_company_rows(category)
+		move_down 5
+		#[get_detail(category), [[1,2],[3,4]] ]
+		[[get_detail(category), get_questions(category) ]]
+		
+	end
+	
+	def get_detail(category)
+		"Detalle\n" + "Puntaje Obtenido\n" + "#{category.grade_obtained(reply: @survey_analysis.reply.id)} \n\n" + "Puntaje Ideal\n" + "#{category.grade_total} pts 100%"
+	end
+	
+	def get_questions(category)
+		questions = Array.new([])
+		@survey_analysis.reply.answers.map do |answer|
+			if answer.question.category.id == category.id
+				questions.insert(-1, ["#{answer.question.title} \n" + "#{answer.title}"])
+			end
+		end
+		#print questions,"###################"
+		return questions
+	end
+	
+	
+	
+	
+end
+
 class SurveyAnalysesController < ApplicationController
   before_action :set_survey_analysis, only: [:show, :edit, :update, :destroy, :analysis_done]
 
@@ -11,6 +67,15 @@ class SurveyAnalysesController < ApplicationController
   # GET /survey_analyses/1.json
   def show
     @categories = get_categories(@survey_analysis.reply.survey)
+    respond_to do |format|
+      format.html
+      format.pdf do
+		pdf = SurveyAnalysisPdf.new(@survey_analysis, @categories)
+		send_data pdf.render, filename: "Analisis_#{@survey_analysis.user_company.company_name}.pdf",
+								type: "application/pdf",
+								disposition: "inline"
+      end
+    end
   end
 
   # GET /survey_analyses/new

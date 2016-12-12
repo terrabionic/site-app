@@ -11,6 +11,7 @@
 
       <%= link_to 'Atrás', root_path, class: "back-button" %>
       <h1 class="main-headline inline-block"><%= @survey_analysis.user_company.company_name %></h1>
+      <p><%= link_to "PDF Impreso", survey_analysis_path(@survey_analysis, format: "pdf"), target: "_blank" %></p>
       
       <h2 class="color-green text-bigger mb-phi">
         Análisis de Diagnóstico

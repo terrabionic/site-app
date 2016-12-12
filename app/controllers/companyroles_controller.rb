@@ -3,6 +3,10 @@ class CompanyrolesController < ApplicationController
 	def index_emprered
 		@companies = Company.all
 	end
+	
+	def index_company
+		@companies = Company.all
+	end
 
 	def index_agenteae
 		@companies = Company.all

@@ -29,10 +29,18 @@ class CompaniesController < ApplicationController
       @survey_analysis = @company.survey_analysis
       @categories = get_categories(@survey_analysis.reply.survey)
     end
+    #~ respond_to do |format|
+      #~ format.html
+      #~ format.json
+      #~ format.pdf{render template: 'companies/report_ic', pdf: 'Reporte_IC'}
+    #~ end
     respond_to do |format|
       format.html
-      format.json
-      format.pdf{render template: 'companies/report_ic', pdf: 'Reporte_IC'}
+      format.pdf do
+		pdf = Prawn::Document.new
+		pdf.text = "Hellow World"
+		send_data pdf.render
+      end
     end
   end
 
@@ -40,10 +48,18 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
     @survey_analysis = @company.survey_analysis
     @categories = get_categories(@survey_analysis.reply.survey)
+    #~ respond_to do |format|
+      #~ format.html
+      #~ format.json
+      #~ format.pdf{render template: 'companies/report_ic', pdf: 'Reporte_IC'}
+    #~ end
     respond_to do |format|
       format.html
-      format.json
-      format.pdf{render template: 'companies/report_ic', pdf: 'Reporte_IC'}
+      format.pdf do
+		pdf = Prawn::Document.new
+		pdf.text = "Hellow World"
+		send_data pdf.render
+      end
     end
   end
 
