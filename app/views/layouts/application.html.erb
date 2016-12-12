@@ -22,13 +22,25 @@
 					<%= link_to index_emprered_path do %>
 						<%= image_tag "site-logotipo-color.png" %>	
 					<% end %>
-				<% elsif current_user.is? 'agenteae' %>
+				<% elsif current_user.is? 'agente' %>
 					<%= link_to index_agenteae_path do %>
 						<%= image_tag "site-logotipo-color.png" %>	
 					<% end %>			
 				<% elsif current_user.is? 'company' %>
-					<%= link_to index_company_path do %>
-						<%= image_tag "site-logotipo-color.png" %>	
+					<% if current_user.company.done %>
+			          <% if current_user.company.stage == 'Reporte' %>
+			            <%= link_to 'DASHBOARD', results_company_path do %>
+			            	<%= image_tag "site-logotipo-color.png" %>	
+			            <% end %>
+			          <% else %>
+			            <%= link_to 'DASHBOARD', index_company_path do %>
+			            	<%= image_tag "site-logotipo-color.png" %>	
+			            <% end %>
+			          <% end %>
+			        <% else %>
+						<%= link_to 'DASHBOARD', index_company_path do %>
+			            	<%= image_tag "site-logotipo-color.png" %>	
+			            <% end %>
 					<% end %>
 				<% end %>
 
