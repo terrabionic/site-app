@@ -29,16 +29,16 @@
 				<% elsif current_user.is? 'company' %>
 					<% if current_user.company.done %>
 			          <% if current_user.company.stage == 'Reporte' %>
-			            <%= link_to 'DASHBOARD', results_company_path do %>
+			            <%= link_to results_company_path do %>
 			            	<%= image_tag "site-logotipo-color.png" %>	
 			            <% end %>
 			          <% else %>
-			            <%= link_to 'DASHBOARD', index_company_path do %>
+			            <%= link_to index_company_path do %>
 			            	<%= image_tag "site-logotipo-color.png" %>	
 			            <% end %>
 			          <% end %>
 			        <% else %>
-						<%= link_to 'DASHBOARD', index_company_path do %>
+						<%= link_to index_company_path do %>
 			            	<%= image_tag "site-logotipo-color.png" %>	
 			            <% end %>
 					<% end %>
