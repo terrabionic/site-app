@@ -29,7 +29,7 @@
 
     <ul>
       <% @categories.each do |category| %>
-        <h4><%= image_tag category.icon.url(:thumb) %><br><%= category.title %></h4>
+        <h4><%= image_tag category.icon.url(:medium) %><br><%= category.title %></h4>
         <% @reply.answers.each do |answer| %>
           <% if answer.question.category.id == category.id %>
             <li>

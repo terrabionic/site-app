@@ -130,7 +130,7 @@
         <table>
 			<% @categories.each do |category| %>
 				<tr>
-				  <td colspan="2"><h3><%= wicked_pdf_image_tag category.icon.url(:thumb) %><%= category.title %></h3></td>
+				  <td colspan="2"><h3><%= wicked_pdf_image_tag category.icon.url(:medium) %><%= category.title %></h3></td>
 				</tr>
 				<tr>
 				  <td>
