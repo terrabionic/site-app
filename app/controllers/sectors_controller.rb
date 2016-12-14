@@ -7,6 +7,7 @@ class SectorsController < ApplicationController
   # GET /sectors.json
   def index
     @sectors = Sector.all
+    authorize! :read, @sectors
   end
 
   # GET /sectors/1
