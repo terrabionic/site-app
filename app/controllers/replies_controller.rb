@@ -1,8 +1,12 @@
 class RepliesController < ApplicationController
   before_action :set_survey
   before_action :set_reply, only:[:edit, :update, :destroy, :show, :score_category]
+  
+  add_breadcrumb "Home", :root_path
 
   def index
+	add_breadcrumb "Diagnósticos", surveys_path
+	add_breadcrumb "Respuestas", survey_questions_path(survey_id: @survey)
   end
 
   def new
@@ -37,7 +41,7 @@ class RepliesController < ApplicationController
   end
 
   def edit
-	 @categories = get_categories(@survey)
+	@categories = get_categories(@survey)
   end
 
   def update

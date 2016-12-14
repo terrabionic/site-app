@@ -1,24 +1,33 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  
+  add_breadcrumb "Home", :root_path
 
   # GET /categories
   # GET /categories.json
   def index
     @categories = Category.all
+    add_breadcrumb "Factores", categories_path
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+	add_breadcrumb "Factores", categories_path
+	add_breadcrumb @category.title, category_path(@category)
   end
 
   # GET /categories/new
   def new
     @category = Category.new
+    add_breadcrumb "Factores", categories_path
   end
 
   # GET /categories/1/edit
   def edit
+	add_breadcrumb "Factores", categories_path
+	add_breadcrumb @category.title, category_path(@category)
+	add_breadcrumb 'Editar ' + @category.title, edit_category_path(@category)
   end
 
   # POST /categories
