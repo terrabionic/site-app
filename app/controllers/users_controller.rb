@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+	add_breadcrumb "Home", :root_path
+
   def devise_mapping
     Devise.mappings[:user]
   end
@@ -14,6 +16,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    add_breadcrumb 'Usuarios', users_path
     authorize! :update, @user
   end
 
@@ -39,10 +42,13 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+  	add_breadcrumb @user.name, user_path(@user)
   end
 
   def edit_user
     @user = User.find(params[:id])
+    add_breadcrumb @user.name, user_path(@user)
+    add_breadcrumb 'Editar_' + @user.name, edit_user_path(@user)
   end
 
   def edit_password
@@ -51,6 +57,8 @@ class UsersController < ApplicationController
 
   def edit_role_u
     @user = User.find(params[:id])
+    add_breadcrumb @user.name, user_path(@user)
+    add_breadcrumb 'Role ' + @user.name, edit_role_u_path(@user)
   end
 
   def update

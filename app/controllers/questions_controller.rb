@@ -1,12 +1,18 @@
 class QuestionsController < ApplicationController
   before_action :set_survey
   before_action :set_question, only:[:edit, :update, :destroy]
+  
+  add_breadcrumb "Home", :root_path
 
   def index
+	add_breadcrumb "Diagnósticos", surveys_path
+	add_breadcrumb "Preguntas", survey_questions_path(survey_id: @survey)
   end
 
   def new
     @question = @survey.questions.new
+    add_breadcrumb "Diagnósticos", surveys_path
+	add_breadcrumb "Preguntas", survey_questions_path(survey_id: @survey)
   end
 
   def create
@@ -19,6 +25,9 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+	add_breadcrumb "Diagnósticos", surveys_path
+	add_breadcrumb "Preguntas", survey_questions_path(survey_id: @survey)
+	add_breadcrumb "Editar " + @question.title, edit_survey_question_path(survey_id: @survey)
   end
 
   def update

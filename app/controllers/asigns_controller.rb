@@ -1,4 +1,7 @@
 class AsignsController < ApplicationController
+	
+	add_breadcrumb "Home", :root_path
+	
 	def asign_agent
 		@role_agente = Role.where("role = ?", 'agente')
 		@agents = false
@@ -30,11 +33,13 @@ class AsignsController < ApplicationController
 	end
 
 	def asign_emprered
+		
 		@role_emprered = Role.where("role = ?", 'emprered')
 		if @role_emprered.length > 0
 			@emprereds = User.where("role_id = ?",@role_emprered[0].id)
 		end
 		@company = Company.find(params[:id])
+		add_breadcrumb 'Cambiar ' + @company.company_name, asignar_emprered_path(@company)
 	end
 
 	def action_asign_emprered

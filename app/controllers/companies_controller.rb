@@ -1,6 +1,8 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :edit_site, :update, :destroy, :create_user, :asign_agent_company, :update_user_company, :get_survey_analysis, :get_report_IC_pdf]
   after_action :update_user_company, only:[:update]
+  
+  add_breadcrumb "Home", :root_path
 
   # GET /companies
   # GET /companies.json
@@ -29,6 +31,7 @@ class CompaniesController < ApplicationController
       @survey_analysis = @company.survey_analysis
       @categories = get_categories(@survey_analysis.reply.survey)
     end
+    add_breadcrumb @company.company_name, company_path(@company)
     respond_to do |format|
       format.html
       format.json
@@ -59,6 +62,7 @@ class CompaniesController < ApplicationController
 
   def show_general
     @company = Company.find(params[:id])
+    add_breadcrumb @company.company_name, show_general_path(@company)
   end
 
   # GET /companies/new
@@ -69,10 +73,14 @@ class CompaniesController < ApplicationController
   # GET /companies/1/edit
   def edit
     authorize! :update, @company
+    add_breadcrumb @company.company_name, company_path(@company)
+    add_breadcrumb "Editar " + @company.company_name, edit_company_path(@company)
   end
 
   def edit_site
     authorize! :update, @company
+    add_breadcrumb @company.company_name, company_path(@company)
+    add_breadcrumb "Editar Site " + @company.company_name, edit_company_path(@company)
   end
 
   def show_reply
