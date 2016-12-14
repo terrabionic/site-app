@@ -1,7 +1,4 @@
-
-
 <p id="reply-message" class="hide"><%= flash[:notice] %></p>
-<a id="thx-link" class="hide" data-open="exampleModal1">Thx</a>
 
 <div class="layout">
 
@@ -14,40 +11,46 @@
   </div><!-- .nav -->
 
   <div class="main">
-	<h1><%= current_user.company_name %></h1>
-  <hr color='black'/>
-  <h2>MI PYME IDEAL</h2>
 
-  <table>
-    <tr>
-      <td>
-        Grafica
-        <%= current_user.company.survey_analysis.reply.score_category(categories:current_user.company.survey_analysis.reply.survey.categories) %>
-      </td>
-      <td>
-        <h2>DETALLE</h2>
-        <hr color='black'/>
-        PUNTAJE OBTENIDO<br>
-        <% if current_user.company %>
-          <% if current_user.company.survey_analysis %>
-            <strong><%= current_user.company.survey_analysis.reply.score %> pts.</strong>
-          <% end %>
-        <% end %>
-        <br><br>
-        PUNTAJE IDEAL<br>
-        <% if current_user.company %>
-          <% if current_user.company.survey_analysis %>
-            <strong><%= current_user.company.survey_analysis.reply.survey.total_score %> pts. 100%</strong>
-          <% end %>
-        <% end %>
-      </td>
-    </tr>    
+    <div class="form-container form-container--large">
 
-  </table>
+  	 <h1 class="main-headline inline-block"><%= current_user.company_name %></h1>
+    
+      <h2 class="color-green text-bigger mb-phi">MI PYME IDEAL</h2>
 
-  <h3>Este solo es un reporte general, el consultor te hara entrega del reporte de resultados de tu empresa</h3>
+      <div class="general-chart">
 
-  </div><!-- .main -->
+        <div class="max-1000">
+          <div class="medium-9 columns">
+            <div id="chart-categories" data-rows="<%= current_user.company.survey_analysis.reply.score_category(categories:current_user.company.survey_analysis.reply.survey.categories) %>" style="width: 600px; height: 400px;"></div>
+          </div>
+          <div class="medium-3 columns general-details">
+            <h5>DETALLE</h5>
+        
+            <h6><small>PUNTAJE OBTENIDO</small></h6>
+            <% if current_user.company %>
+              <% if current_user.company.survey_analysis %>
+                <strong><%= current_user.company.survey_analysis.reply.score %> pts.</strong>
+              <% end %>
+            <% end %>
+            
+            <h6><small>PUNTAJE IDEAL</small></h6>
+
+            <% if current_user.company %>
+              <% if current_user.company.survey_analysis %>
+                <strong><%= current_user.company.survey_analysis.reply.survey.total_score %> pts. 100%</strong>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+      </div><!-- .general-chart -->      
+
+      <h3 class="hide">Este solo es un reporte general, el consultor te hara entrega del reporte de resultados de tu empresa</h3>
+
+    </div><!-- .form-contaienr -->
+
+    </div><!-- .main -->
 </div><!-- .layout -->
 
 <%= render "shared/footer" %>
