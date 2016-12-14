@@ -25,10 +25,10 @@
       <div class="general-chart">
 
         <div class="max-1000">
-          <div class="medium-8 columns">
-            <div id="chart-categories" data-rows="<%= @survey_analysis.reply.score_category(categories:@survey_analysis.reply.survey.categories) %>"></div>
+          <div class="medium-9 columns">
+            <div id="chart-categories" data-rows="<%= @survey_analysis.reply.score_category(categories:@survey_analysis.reply.survey.categories) %>" style="width: 600px; height: 400px;"></div>
           </div>
-          <div class="medium-4 columns general-details">
+          <div class="medium-3 columns general-details">
             <h5>DETALLE</h5>
         
             <h6><small>PUNTAJE OBTENIDO</small></h6>
@@ -151,7 +151,7 @@
 
             <div class="medium-5 columns"> 
 
-              <div id="category-#<%= category.id %>" class="js-chart-category" data-rows='[["Obtenido", <%= category.grade_obtained(reply: @survey_analysis.reply.id) %>], ["No obtenido", <%= category.grade_total - category.grade_obtained(reply: @survey_analysis.reply.id) %>]]'></div>
+              <div id="category-#<%= category.id %>" class="js-chart-category" data-rows='[["Obtenido", <%= category.grade_obtained(reply: @survey_analysis.reply.id) %>], ["No obtenido", <%= category.grade_total - category.grade_obtained(reply: @survey_analysis.reply.id) %>]]' style="width: 400px; height: 350px;"></div>
 
               <div class="general-details">
                 <h5>DETALLE</h5>

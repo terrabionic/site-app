@@ -1084,3 +1084,18 @@ select {
 	border: 1px solid lightgray;
 	padding: 1.618rem;
 }
+
+.breadcrumbs-wrapper {
+	clear: both;
+	padding-left: 137px;
+	padding-right: 137px;
+	font-size: 14px;
+	font-weight: 500;
+	color: gray;;
+	background: white;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	a {
+		color: #71B23A;
+	}
+}

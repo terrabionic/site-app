@@ -102,7 +102,16 @@ var siteApp = (function($) {
 			data.addRows($chartCategories.data('rows'));
 			
 		    var options = {
-				colors:['#22A89E','#5F9731', '#1E5E3E', '#043050']
+				colors:['#22A89E','#5F9731', '#1E5E3E', '#043050'],
+				legend: {
+					position: 'left'
+				},
+				chartArea: {
+					left: 0,
+					top: 0,
+					width:'100%',
+					height: '100%'
+				}
 		    };
 
 		    var chart = new google.visualization.PieChart(document.getElementById('chart-categories'));
