@@ -1,0 +1,17 @@
+<div class="layout">
+
+	<%= render 'shared/nav' %>
+	
+	<div class="main">
+		<div class="form-container form-container--large">
+			<%= link_to 'Atrás', :back, class: "back-button" %>
+			<h1 class="main-headline inline-block">Análisis de Diagnóstico</h1>
+			
+			<h2 class="main-headline hide"><%= @survey_analysis.user_company.company_name %></h2>
+
+			<%= render 'form' %>			
+		</div><!-- .main -->
+	</div><!-- .main -->
+</div><!-- .layout -->
+
+<%= render 'shared/footer' %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108223513) do
+ActiveRecord::Schema.define(version: 20161206182027) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -27,53 +27,64 @@ ActiveRecord::Schema.define(version: 20161108223513) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   create_table "companies", force: :cascade do |t|
     t.string   "company_name"
-    t.string   "role",              default: "company"
+    t.string   "role",                    default: "company"
     t.string   "address"
     t.string   "phone"
     t.string   "email"
     t.string   "name_agent"
-    t.string   "state",             default: "Nuevo"
-    t.string   "stage",             default: "Prealta"
+    t.string   "state",                   default: "Nuevo"
+    t.string   "stage",                   default: "Prealta"
     t.integer  "sector_id"
     t.string   "name"
     t.string   "email_user"
-    t.boolean  "active",            default: true
+    t.boolean  "active",                  default: true
     t.integer  "agent_id"
     t.integer  "emprered_id"
-    t.string   "company_type",      default: ""
-    t.string   "vat",               default: ""
-    t.string   "street",            default: ""
-    t.string   "street2",           default: ""
-    t.string   "city",              default: ""
-    t.string   "cel",               default: ""
+    t.string   "company_type",            default: ""
+    t.string   "vat",                     default: ""
+    t.string   "street",                  default: ""
+    t.string   "street2",                 default: ""
+    t.string   "city",                    default: ""
+    t.string   "cel",                     default: ""
     t.date     "date_start"
     t.date     "date_end"
-    t.string   "line_business",     default: ""
-    t.integer  "num_workers",       default: 0
-    t.string   "annual_sales",      default: ""
-    t.text     "company_history",   default: ""
-    t.string   "company_products",  default: ""
-    t.string   "company_market",    default: ""
-    t.string   "company_problems",  default: ""
-    t.string   "name_director",     default: ""
-    t.string   "staff_interviewed", default: ""
-    t.string   "survey_period",     default: ""
-    t.string   "name_created",      default: ""
-    t.boolean  "completed",         default: false
+    t.string   "line_business",           default: ""
+    t.integer  "num_workers",             default: 0
+    t.string   "annual_sales",            default: ""
+    t.text     "company_history",         default: ""
+    t.string   "company_products",        default: ""
+    t.string   "company_market",          default: ""
+    t.string   "company_problems",        default: ""
+    t.string   "name_director",           default: ""
+    t.string   "staff_interviewed",       default: ""
+    t.string   "survey_period",           default: ""
+    t.string   "name_created",            default: ""
+    t.boolean  "completed",               default: false
     t.integer  "user_login_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.boolean  "done",                    default: false
+    t.string   "image_logo_file_name"
+    t.string   "image_logo_content_type"
+    t.integer  "image_logo_file_size"
+    t.datetime "image_logo_updated_at"
+    t.integer  "survey_analysis_id"
   end
 
   add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
   add_index "companies", ["emprered_id"], name: "index_companies_on_emprered_id"
   add_index "companies", ["sector_id"], name: "index_companies_on_sector_id"
+  add_index "companies", ["survey_analysis_id"], name: "index_companies_on_survey_analysis_id"
   add_index "companies", ["user_login_id"], name: "index_companies_on_user_login_id"
 
   create_table "contacts", force: :cascade do |t|
@@ -92,6 +103,7 @@ ActiveRecord::Schema.define(version: 20161108223513) do
     t.integer  "grade"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.text     "solution"
   end
 
   add_index "possible_answers", ["question_id"], name: "index_possible_answers_on_question_id"
@@ -110,8 +122,9 @@ ActiveRecord::Schema.define(version: 20161108223513) do
   create_table "replies", force: :cascade do |t|
     t.integer  "survey_id"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "done",       default: false
   end
 
   add_index "replies", ["survey_id"], name: "index_replies_on_survey_id"
@@ -136,6 +149,24 @@ ActiveRecord::Schema.define(version: 20161108223513) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "survey_analyses", force: :cascade do |t|
+    t.integer  "agente_id"
+    t.integer  "user_company_id"
+    t.integer  "reply_id"
+    t.text     "organizational"
+    t.text     "innovation_management"
+    t.text     "innovation"
+    t.text     "guilds"
+    t.text     "copetential"
+    t.integer  "num_company"
+    t.integer  "num_jobs"
+    t.integer  "create_jobs"
+    t.integer  "num_emprered"
+    t.integer  "num_electronic_kiosk"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "surveys", force: :cascade do |t|

@@ -12,49 +12,57 @@
   <% end %>
 
   <div class="field">
-    <strong>Empresa:</strong><br>
+    Empresa:
     <%= f.text_field :company_name %>
   </div>
 
   <div class="field">
-    <strong>Direccion:</strong><br>
+    Logo:
+    <%= f.file_field :image_logo %>
+  </div>
+
+  <div class="field">
+    Dirección:
     <%= f.text_field :address %>
   </div>
   <div class="field">
-    <strong>Telefono convencional:</strong><br>
+    Teléfono convencional:
     <%= f.text_field :phone %>
   </div>
   <div class="field">
-    <strong>Email:</strong><br>
+    Email:
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <strong>Representante:</strong><br>
+    Representante:
     <%= f.text_field :name_agent %>
   </div>
   
   <div class="field">
-    <strong>Sector:</strong><br>
+    Sector:
     <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
-    <br>
-    <% Sector.where('active = ?',true).each do |sector| %>
-      <label>
+
+    <div id="sector-cool" class="sector-cool">
+      <% Sector.all.each do |sector| %>
+        <div class="sector-cool__item" data-val="<%= sector.id %>">
           <%= image_tag (sector.image.url(:thumb)) %>
-          <%= f.radio_button(:sector_id, sector.id) %>
-      </label>
-      
-    <% end %>
+          <%= sector.name %>
+        </div>
+      <% end %>
+    </div><!-- .sector-cool -->
   </div>
+  <hr/>
+  <h2>Crear cuenta de usuario</h2>
   <div class="field">
-    <strong>Nombre de usuario:</strong><br>
+    Nombre de usuario:
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <strong>Email usuario:</strong><br>
+    Email usuario:
     <%= f.text_field :email_user %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Guardar', class: 'submit-btn' %>
   </div>
 <% end %>

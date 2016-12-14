@@ -1,178 +1,226 @@
-<p id="notice"><%= notice %></p>
+<p class="hide" id="notice"><%= notice %></p>
 
-<ul class="tabs" data-tab>
-  <li class="tab-title active"><a href="#general">Informcion General</a></li>
-  <li class="tab-title"><a href="#inf_site">Registro en SITE</a></li>
-</ul>
-<%= link_to 'Atras', index_emprered_path %>
-<h1>Empresa: <%= @company.company_name %></h1>
-<br>
-<div class="tabs-content">
-  <div class="content active" id="general">
-    <h1>Informacion General</h1>
-    <% if can? :update, @company %>
-      <%= link_to 'Editar', edit_company_path(@company) %>
-    <% end %>
-    <p>
-      <strong>Nombre de la empresa:</strong>
-      <%= @company.company_name %>
-    </p>
+<div class="layout">
 
-    <p>
-      <strong>Direccion:</strong>
-      <%= @company.address %>
-    </p>
+  <%= render 'shared/nav' %>
 
-    <p>
-      <strong>Telefono:</strong>
-      <%= @company.phone %>
-    </p>
+  <div class="main">
 
-    <p>
-      <strong>Correo de usuario:</strong>
-      <%= @company.email_user %>
-    </p>
+    <div class="form-container form-container--large">
 
-    <p>
-      <strong>Nombre de usuario:</strong>
-      <%= @company.name %>
-    </p>
+      <%= link_to 'Atrás', index_emprered_path, class: "back-button" %>
+      <h1 class="main-headline inline-block">
+        Empresa: <%= @company.company_name %>
+      </h1>
 
-    <p>
-      <strong>Sector:</strong>
-      <% if @company.sector %>
-        <%= @company.sector.name %>
-      <% end %>
-    </p>
-    <h2>Role</h2>
-    <p>
-        <strong>Role:</strong>
-        <% if @company.user_login %>
-          <%= @company.user_login.role.name %>
-        <% end %>
-        <br>
-        <strong>Descripción:</strong>
-        <% if @company.user_login %>
-          <%= @company.user_login.role.description %>
-        <% end %>
-    </p>
+      <ul class="tabs site-tabs" data-tabs id="example-tabs">
+        <li class="tabs-title site-tabs-half is-active"><a href="#general" aria-selected="true">Información General</a></li>
+        <li class="tabs-title site-tabs-half"><a href="#inf-site">Registro en SITE</a></li>
+      </ul><!-- .tabs -->
 
-    <p>
-      <strong>
-        <% if @company.active %>
-          <h2>ACTIVO</h2>
-          <%=link_to "Desactivar", deactivate_path(company_id: @company), method: :post, data: { confirm: "¿Estas seguro de desactivar la compania?" } %>
-        <% else %>
-          <h2>DESACTIVADO</h2>
-          <%=link_to "Activar", action_activate_path(company_id: @company), method: :post, data: { confirm: "¿Estas seguro de activar la compania?" } %>
-        <% end %>
-      </strong>
-    </p>
-  </div>
-    
-  <div class="content active" id="inf_site">
-    <h1>Registro en SITE</h1>
-    <% if can? :update, @company %>
-      <%= link_to 'Editar', edit_site_path(@company) %>
-    <% end %>
-    <p>
-      <strong>Tipo de Compania:</strong>
-      <%= @company.company_type %>
-    </p>
-    <p>
-      <strong>Nombre o Razon social:</strong>
-      <%= @company.company_name %>
-    </p>
-    <p>
-      <strong>RFC:</strong>
-      <%= @company.vat %>
-    </p>
-    <p>
-      <strong>Calle:</strong>
-      <%= @company.street %>
-    </p>
-    <p>
-      <strong>Colonia:</strong>
-      <%= @company.street2 %>
-    </p>
-    <p>
-      <strong>Municipio:</strong>
-      <%= @company.city %>
-    </p>
-    <p>
-      <strong>Email Empresa:</strong>
-      <%= @company.email %>
-    </p>
-    <p>
-      <strong>Telefono convencional:</strong>
-      <%= @company.phone %>
-    </p>
-    <p>
-      <strong>Telefono celular:</strong>
-      <%= @company.cel %>
-    </p>
-    <p>
-      <strong>Fecha de inicio de operaciones:</strong>
-      <%= @company.date_start %>
-    </p>
-    <p>
-      <strong>Giro de la empresa:</strong>
-      <%= @company.line_business %>
-    </p>
-    <p>
-      <strong>Num de trabajadores:</strong>
-      <%= @company.num_workers %>
-    </p>
-    <p>
-      <strong>Ventas anuales:</strong>
-      <%= @company.annual_sales %>
-    </p>
-    <p>
-      <strong>Historia de la empresa:</strong>
-      <%= @company.company_history %>
-    </p>
-    <p>
-      <strong>Producto que genera:</strong>
-      <%= @company.company_products %>
-    </p>
-    <p>
-      <strong>Mercados atendidos:</strong>
-      <%= @company.company_market %>
-    </p>
-    <p>
-      <strong>Problemas de la empresa:</strong>
-      <%= @company.company_problems %>
-    </p>
-    <p>
-      <strong>Nombre del Director:</strong>
-      <%= @company.name_director %>
-    </p>
-    <p>
-      <strong>Personal Entrevistado:</strong>
-      <%= @company.staff_interviewed %>
-    </p>
-    <p>
-      <strong>Periodo de diagnostico:</strong>
-      <%= @company.survey_period %>
-    </p>
-    <p>
-      <strong>Nombre de quien elaboro el reporte inicial:</strong>
-      <%= @company.name_created %>
-    </p>
+      <div class="tabs-content site-tabs-content" data-tabs-content="example-tabs">
 
-    <p>
-      <strong>
-        <% if @company.completed %>
-          <h2>ENVIAR DIAGNOSTICO</h2>
-        <% else %>
-          <h2>NO ENVIAR DIAGNOSTICO</h2>
-        <% end %>
-      </strong>
-    </p>
-  </div>
-</div>
+        <div class="tabs-panel is-active" id="general">
 
+          <h4 class="title-line">Información General</h4>
+          
+          <% if can? :update, @company %>
+            <p class="color-green">
+              <%= link_to 'Editar', edit_company_path(@company), class: "btn" %>
+            </p>
+          <% end %>
 
-</div>
+          <p>
+            <strong>Nombre de la empresa:</strong>
+            <%= @company.company_name %>
+          </p>
 
+          <p class="empresa-logo">
+            <strong>Logo de la empresa:</strong>
+            <br>
+            <%= image_tag @company.image_logo.url(:medium) %>
+          </p>
 
+          <p>
+            <strong>Dirección:</strong>
+            <%= @company.address %>
+          </p>
+
+          <p>
+            <strong>Teléfono:</strong>
+            <%= @company.phone %>
+          </p>
+
+          <p>
+            <strong>Correo de usuario:</strong>
+            <%= @company.email_user %>
+          </p>
+
+          <p>
+            <strong>Nombre de usuario:</strong>
+            <%= @company.name %>
+          </p>
+
+          <p>
+            <strong>Sector:</strong>
+            <% if @company.sector %>
+              <%= @company.sector.name %>
+            <% end %>
+          </p>
+
+          <p>
+            <strong>Último inicio de sesión:</strong>
+            <% if @company.user_login %>
+              <% if @company.user_login.last_sign_in_at %>
+                <%= @company.user_login.last_sign_in_at %>
+              <% else %>
+                Nunca
+                <%=link_to "Enviar invitacion", action_send_invitation_path(id: @company), method: :post %>
+              <% end %>
+            <% end %>
+          </p>
+
+          
+          <h4 class="title-line">Role</h4>
+          <p>
+              <strong>Rol:</strong>
+              <% if @company.user_login %>
+                <%= @company.user_login.role.name %>
+              <% end %>
+              <br>
+              <strong>Descripción:</strong>
+              <% if @company.user_login %>
+                <%= @company.user_login.role.description %>
+              <% end %>
+          </p>
+
+          <p>
+            
+            <% if @company.active %>
+              <h4 class="title-line">Activo</h4>
+              <p>Esta acción desactivara a este usuario de su cuenta.</p>
+              <%=link_to "Desactivar", deactivate_path(company_id: @company), method: :post, data: { confirm: "¿Estas seguro de desactivar la compania?" }, class: "btn--red" %>
+            <% else %>
+              <h4 class="title-line">Desactivado</h4>
+              <p>Esta acción activara a este usuario de su cuenta.</p>
+              <%=link_to "Activar", action_activate_path(company_id: @company), method: :post, data: { confirm: "¿Estas seguro de activar la compania?" }, class: "btn" %>
+            <% end %>
+            
+          </p>
+        </div><!-- .content -->
+          
+        <div class="tabs-panel" id="inf-site">
+          
+          <h4 class="title-line">Registro en SITE</h4>
+
+          <% if can? :update, @company %>
+            <p>
+              <%= link_to 'Editar', edit_site_path(@company), class: "btn" %>
+            </p>
+          <% end %>
+
+          <p>
+            <strong>Tipo de Compañia:</strong>
+            <%= @company.company_type %>
+          </p>
+          <p>
+            <strong>Nombre o Razón social:</strong>
+            <%= @company.company_name %>
+          </p>
+          <p>
+            <strong>RFC:</strong>
+            <%= @company.vat %>
+          </p>
+          <p>
+            <strong>Calle:</strong>
+            <%= @company.street %>
+          </p>
+          <p>
+            <strong>Colonia:</strong>
+            <%= @company.street2 %>
+          </p>
+          <p>
+            <strong>Municipio:</strong>
+            <%= @company.city %>
+          </p>
+          <p>
+            <strong>Email Empresa:</strong>
+            <%= @company.email %>
+          </p>
+          <p>
+            <strong>Teléfono convencional:</strong>
+            <%= @company.phone %>
+          </p>
+          <p>
+            <strong>Teléfono celular:</strong>
+            <%= @company.cel %>
+          </p>
+          <p>
+            <strong>Fecha de inicio de operaciones:</strong>
+            <%= @company.date_start %>
+          </p>
+          <p>
+            <strong>Giro de la empresa:</strong>
+            <%= @company.line_business %>
+          </p>
+          <p>
+            <strong>Número de trabajadores:</strong>
+            <%= @company.num_workers %>
+          </p>
+          <p>
+            <strong>Ventas anuales:</strong>
+            <%= @company.annual_sales %>
+          </p>
+          <p>
+            <strong>Historia de la empresa:</strong>
+            <%= @company.company_history %>
+          </p>
+          <p>
+            <strong>Producto que genera:</strong>
+            <%= @company.company_products %>
+          </p>
+          <p>
+            <strong>Mercados atendidos:</strong>
+            <%= @company.company_market %>
+          </p>
+          <p>
+            <strong>Problemas de la empresa:</strong>
+            <%= @company.company_problems %>
+          </p>
+          <p>
+            <strong>Nombre del Director:</strong>
+            <%= @company.name_director %>
+          </p>
+          <p>
+            <strong>Personal Entrevistado:</strong>
+            <%= @company.staff_interviewed %>
+          </p>
+          <p>
+            <strong>Periodo de Diagnóstico:</strong>
+            <%= @company.survey_period %>
+          </p>
+          <p>
+            <strong>Nombre de quien elaboró el reporte inicial:</strong>
+            <%= @company.name_created %>
+          </p>
+
+          <p>
+            <strong>
+              <% if @company.completed %>
+                <%=link_to "Enviar invitacion a Diagnóstico", action_send_invitation_path(id: @company), method: :post %>
+              <% else %>
+                <h2></h2>
+              <% end %>
+            </strong>
+          </p>
+        </div><!-- .content -->
+
+      </div><!-- .tabs-content -->
+
+      </div><!-- .form-container -->
+
+  </div><!-- .main -->
+
+</div><!-- .layout -->
+
+<%= render "shared/footer" %>

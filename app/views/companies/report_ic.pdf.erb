@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+	</head>
+	<body>
+	<div>
+		<br><br><br><br><br>
+		<p style="text-align: center;"><strong>Agencia de Innovación Empresarial de Hidalgo</strong></p>
+		<br><br><br><br><br>
+		<p style="text-align: right;">
+			<strong><%= @company.company_name %></strong>
+			<br>
+			<strong>Reporte preliminar de Inteligencia Competitiva</strong>
+		</p>
+	</div>
+	<div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>
+
+<ul>
+  <li style="list-style:none;">
+    <p><strong>SE CREA LA&nbsp; AGENCIA </strong></p>
+
+    <p>Como un puente de comunicaci&oacute;n entre los actores del &aacute;mbito acad&eacute;mico, empresarial, gubernamental, sociedad civil organizada y las empresas locales para facilitar el flujo de conocimiento, agregando valor a sus asociados para la generaci&oacute;n y aplicaci&oacute;n de acciones en beneficio directo de las empresas hidalguenses.</p>
+    <br>
+
+    <p><strong>EMPRESAS ATENDIDAS</strong></p>
+
+    <p>Actualmente se desarrollan las capacidades de gesti&oacute;n de proyectos de innovaci&oacute;n de <%= @survey_analysis.num_company %> empresas de los sectores metalmec&aacute;nico y textil-confecci&oacute;n para conservar, <%= @survey_analysis.num_jobs %> empleos y generar cuando menos <%= @survey_analysis.create_jobs %>.</p>
+    <br>
+
+    <p><strong>BENEFICIOS EMPRESARIALES</strong></p>
+
+    <p>Las empresas atendidas por la Agencia son beneficiadas con una serie de servicios electr&oacute;nicos que le permitir&aacute;n al empresario desarrollar sus capacidades de innovaci&oacute;n para impulsar estrategias diferenciadoras de sus competidores en procesos y productos basados en Inteligencia competitiva.</p>
+    <br>
+
+    <p><strong>SERVICIOS ELECTR&Oacute;NICOS PARA PYMES/ &nbsp;PLATAFORMA TECNOLOGICA</strong></p>
+
+    <p>A trav&eacute;s de la Plataforma tecnol&oacute;gica dispuestas en Internet, la Agencia ofrece 4 productos y servicios de:</p>
+
+    <ol>
+      <li><strong>Inteligencia Competitiva</strong></li>
+    </ol>
+
+    <ul style="list-style-type:circle;">
+      <li>Para identificar Distribuidores, proveedores, clientes&nbsp; y&nbsp; competidores.</li>
+      <li>Distribuci&oacute;n de Unidades Econ&oacute;micas por Municipio</li>
+      <li>Total de empresas de los sectores Textil y Metalmec&aacute;nica</li>
+    </ul>
+
+    <ol>
+      <li value="2"><strong>Gesti&oacute;n para la innovaci&oacute;n</strong></li>
+    </ol>
+
+    <ul>
+      <li>
+      <ul style="list-style-type:circle;">
+        <li>Ideas</li>
+        <li>Proyectos</li>
+        <li>Foros</li>
+        <li>Agenda</li>
+        <li>B&uacute;squedas</li>
+      </ul>
+      </li>
+    </ul>
+
+    <ol>
+      <li value="3"><strong>Observatorio Empresarial</strong></li>
+    </ol>
+
+    <ul style="list-style-type:circle;">
+      <li>Repositorio de estudios, investigaciones, art&iacute;culos, etc.</li>
+    </ul>
+
+    <ol>
+      <li value="4"><strong>AIE Alertas</strong></li>
+    </ol>
+
+    <ul style="list-style-type:circle;">
+      <li>Sistema de noticias para el monitoreo de la actividad empresarial global.</li>
+    </ul>
+    <br>
+
+    <p><strong>COBERTURA DE ATENCI&Oacute;N</strong></p>
+
+    <p>Los servicios de la Agencia se ofrecen en las <%= @survey_analysis.num_emprered %> oficinas de EmpreReds y los &ldquo;Puntos&nbsp; Mover a M&eacute;xico&rdquo; localizadas en las regiones estrat&eacute;gicas del estado.</p>
+    <br>
+
+    <p><strong>INFRAESTRUCTURA TECNOL&Oacute;GICA</strong></p>
+
+    <ul>
+      <li>Plataforma en l&iacute;nea: <a href="http://www.aie.org.mx/">www.aie.org.mx</a></li>
+    </ul>
+
+    <ul>
+      <li>Se han puesto en marcha <%= @survey_analysis.num_electronic_kiosk %> kioscos electr&oacute;nicos&nbsp; que ofrecen estos servicios.
+      <ul style="list-style-type:circle;">
+        <li>Uno se encuentra en el Parque Cient&iacute;fico y Tecnol&oacute;gico y forma parte del ecosistema de operado por el CITNOVA.</li>
+      </ul>
+      </li>
+    </ul>
+
+    <ul style="list-style-type:circle;">
+      <li>Otro kiosco se encuentra en el Instituto Hidalguense de Competitividad Empresarial.</li>
+    </ul>
+    <br>
+
+    <div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>
+
+    <p style="text-align: center;"><%= wicked_pdf_image_tag @survey_analysis.user_company.company.image_logo.url(:medium) %></p>
+    <h3><%= @survey_analysis.user_company.company_name %><br></h3>
+    <strong><%= @survey_analysis.user_company.company.name_director %><br></strong>
+    
+    Director de la empresa<br><br>
+
+    <p>El diagn&oacute;stico de inteligencia competitiva tiene como principal objetivo conocer el la situaci&oacute;n general de la organizaci&oacute;n &oacute; empresa que sirva como precedente en la toma de decisiones.</p>
+
+    <p><strong><%= @survey_analysis.user_company.company.name_director %></strong> en su calidad de <strong>Director de la empresa de <%= @survey_analysis.user_company.company_name %></strong> comparti&oacute; su experiencia y conocimientos sobre los procesos transversales de la organizaci&oacute;n y expuso su visi&oacute;n y alcances que tendr&aacute;n los planes de mejora a implementarse en el corto y mediano plazo.</p>
+
+    <p>Desde la Agencia de Innovaci&oacute;n Empresarial reafirmamos nuestro compromiso con <strong><%= @survey_analysis.user_company.company_name %></strong> en el desarrollo de acciones y proyectos que beneficien a la empresa.</p>
+
+    <p>El presente reporte permitir&aacute;&nbsp; a esta empresa tener informaci&oacute;n clave que contribuya a generar acciones con prop&oacute;sitos anticipatorios.</p>
+
+    <p>A continuaci&oacute;n se muestran los resultados derivados de la aplicaci&oacute;n del diagn&oacute;stico&nbsp;</p>
+  </li>
+
+  <li style="list-style:none;">
+    <p>
+      <p style="text-align: center;"><strong>Diagnóstico:</strong></p>
+        <table>
+			<% @categories.each do |category| %>
+				<tr>
+				  <td colspan="2"><h3><%= wicked_pdf_image_tag category.icon.url(:thumb) %><%= category.title %></h3></td>
+				</tr>
+				<tr>
+				  <td>
+					DETALLE<br>
+					<hr color="black">
+					Puntaje Obtenido<br>
+					<%= category.grade_obtained(reply: @survey_analysis.reply.id) %> pts<br><br>
+					Puntaje Ideal<br>
+					<%= category.grade_total %> pts 100%
+				  </td>
+				  <td>
+					<% @count_question = 0 %>
+					<% @survey_analysis.reply.answers.each do |answer| %>
+					  <% if answer.question.category.id == category.id %>
+						<% @count_question = @count_question + 1 %>
+						  <strong><%= @count_question %>.- <%= answer.question.title %></strong>
+						  <br>
+						  <em><u><%= answer.title %></u></em><br>
+						
+						<br>
+					  <% end %>
+					<% end %>
+				  </td>
+				</tr>
+			<% end %>
+		</table>
+    </p>
+    <div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>
+  </li>
+
+  <li style="list-style:none;">
+    <p style="text-align: center;"><strong>Hallazgos y Recomendaciones</strong></p>
+    <p>
+      <h3>Organizacional:</h3>
+      <%= @survey_analysis.organizational %>
+    </p>
+    <br>
+    <p>
+      <h3>Gestión de Innovación:</h3>
+      <%= @survey_analysis.innovation_management %>
+    </p>
+	<br>
+    <p>
+      <h3>Innovación:</h3>
+      <%= @survey_analysis.innovation %>
+    </p>
+    <br>
+    <p>
+      <h3>Capacidades Gremiales:</h3>
+      <%= @survey_analysis.guilds %>
+    </p>
+    <br>
+    <p>
+      <h3>Capacidades Copentenciales:</h3>
+      <%= @survey_analysis.copetential %>
+    </p>
+  </li>
+</ul>
+
+</ul>
+
+
+	</body>
+</html>

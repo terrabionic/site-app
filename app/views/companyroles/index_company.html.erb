@@ -1,10 +1,46 @@
-<div align="center">
-	<h1>Bienvenido a SITE</h1>
-	<h2>Sistema de Inteligencia y TecnologíaEmpresarial</h2>
-	<br>
-	<h2>Para dar inicio a la consultoria de tu empresa, porfavor llena la siguiente información</h2>
-</div>
-<br>
-<div align="center">
-	<h2><%= link_to 'Iniciar diagnóstico de mi empresa', show_reply_path(company_id:current_user.company) %></h2>
+<p id="reply-message" class="hide"><%= flash[:notice] %></p>
+<a id="thx-link" class="hide" data-open="exampleModal1">Thx</a>
+
+<div class="layout">
+
+  <%= render 'shared/nav' %>
+
+  <div class="main">
+
+  <% if current_user.company.done %>
+    <% if current_user.company.stage == 'Reporte' %>
+      &nbsp;
+    <% else %>
+      <div class="text-center">
+        <h4 class="welcome-empresario__title">Importante</h4>
+        <br>
+        <p class="welcome-empresario__text">Aquí aparecerá información sobre el <span class="color-green">diagnóstico de tu empresa</span>, nosotros nos pondremos en contacto contigo.</p>  
+      </div>
+    <% end %>
+  <% else %>
+    <div class="welcome-empresario">
+      <h1 class="welcome-empresario__title">Bienvenido a SITE</h1>
+      <h3 class="welcome-empresario__subtitle">Sistema de Inteligencia y Tecnología Empresarial</h3>
+      <p class="welcome-empresario__text">Para dar inicio a la consultoria de tu empresa, por favor llena la siguiente información</p>
+      <%= link_to 'Iniciar diagnóstico de mi empresa', show_reply_path(user_id:current_user.id) %>
+    </div><!-- .welcome-empresario -->
+  <% end %>
+
+	
+
+  </div><!-- .main -->
+</div><!-- .layout -->
+
+<%= render "shared/footer" %>
+
+<div class="reveal tiny" id="exampleModal1" data-reveal>
+  <div class="text-center">
+    <h4 class="color-blue bold">Importante</h4>
+    <br>
+    <p class="color-gray bold">Aquí aparecerá información sobre el <span class="color-green">diagnóstico de tu empresa</span>, nosotros nos pondremos en contacto contigo.</p>  
+  </div>
+
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>

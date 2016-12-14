@@ -1,4 +1,16 @@
-<h1>Editar Usuario</h1>
+<div class="layout">
 
-<%= render 'form_edit' %>
+	<%= render 'shared/nav' %>
 
+	<div class="main">
+		<div class="form-container">
+			<%= link_to 'Atrás', :back, class: "back-button" %>  
+			<h1 class="main-headline inline-block">Editar Usuario</h1>
+
+			<%= render 'form_edit' %>
+	
+		</div><!-- .form-container -->
+	</div><!-- .main -->
+</div><!-- .layout -->
+
+<%= render "shared/footer" %>			

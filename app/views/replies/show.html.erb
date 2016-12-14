@@ -1,37 +1,52 @@
 <p id="notice"><%= notice %></p>
-<% if @reply.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
 
-    <ul>
-    <% @reply.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
+<div class="layout">
+  <%= render 'shared/nav' %>
+
+  <div class="main">
+    <% if @reply.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
+
+        <ul>
+        <% @reply.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
-    </ul>
-  </div>
-<% end %>
 
-<%= link_to 'Atras', root_path %>
-<p>
-  <strong>Nombre de Encuesta:</strong>
-  <%= @survey.title %>
-</p>
-<%= link_to 'Editar', edit_survey_reply_path(@survey, @reply)  %>
-
-<ul>
-  <% @categories.each do |category| %>
-    <h1><%= category.title %></h1>
-    <% @reply.answers.each do |answer| %>
-      <% if answer.question.category.id == category.id %>
-        <li>
-          <strong><%= answer.question.title %></strong>
-          <% if current_user.is? 'admin' or current_user.is? 'agente' %>
-            <mark><%= answer.grade %> / <%= answer.question.grade %></mark>
-          <% end %>
-          <br>
-          <em><%= answer.title %></em>
-        </li>
+    <%= link_to 'Atrás', root_path, class: "back-button" %>
+    <h1 class="main-headline inline-block">
+      <strong>Nombre de Encuesta:</strong>
+      <%= @survey.title %>
+    </h1>
+    <% unless @reply.done %>
+      <% if current_user.is? 'company'%>
+        <%= link_to 'Editar', edit_survey_reply_path(@survey, @reply)  %>
       <% end %>
     <% end %>
-  <% end %>
+
+    <ul>
+      <% @categories.each do |category| %>
+        <h4><%= image_tag category.icon.url(:thumb) %><br><%= category.title %></h4>
+        <% @reply.answers.each do |answer| %>
+          <% if answer.question.category.id == category.id %>
+            <li>
+              <strong><%= answer.question.title %></strong>
+              <% if current_user.is? 'admin' or current_user.is? 'agente' %>
+                <mark><%= answer.grade %> / <%= answer.question.grade %></mark>
+              <% end %>
+              <br>
+              <em><%= answer.title %></em>
+            </li>
+          <% end %>
+        <% end %>
+      <% end %>
 </ul>
+    
+  </div>
+</div>
+
+<%= render "shared/footer" %>
+

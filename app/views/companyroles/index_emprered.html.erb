@@ -1,60 +1,56 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Status de empresas</h1>
+<div class="layout">
 
-<br>
-<table align="center">
-  <tr>
-    <td align="right">
-      <% if can? :create, Company %>
-        <%= link_to 'Dar de alta nueva empresa', new_company_path %>
-      <% end %>
-    </td>
-  </tr>
-  <tr>
-    <td>
-    </td>
-    <td>
-      <div align="right">
-        <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-          <%= submit_tag "Buscar" %>
+  <%= render 'shared/nav' %>
+
+  <div class="main">
+
+    <div class="actions-emprered">
+      <h1 class="main-headline">Estatus de empresas</h1>
+          <% if can? :create, Company %>
+            <%= link_to 'Dar de alta una empresa', new_company_path %>
+          <% end %>
+    </div>
+
+    <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
+      <%= submit_tag "Buscar" %>
+    <% end %>
+
+    
+    <table class="site-table">
+      <thead>
+        <tr>
+          <th>Nombre de Empresa</th>
+          <th>Email</th>
+          <th>Nombre</th>
+          <th>Industria</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @companies.each do |company| %>
+          <% if can? :read, company %>
+            <tr>
+              <td><%= link_to company.company_name, company_path(id:company) %></td>
+              <td><%= company.email %></td>
+              <td><%= company.name %></td>
+              <td>
+                <% if company.sector %>
+                  <%= company.sector.name %>
+                <% end %>
+              </td>
+              <td><%= company.state %></td>
+            </tr>
+          <% end %>
         <% end %>
-      </div>
-    </td>
-  </tr>
-</table>
+      </tbody>
+    </table>
 
-<br>
+  </div><!-- .main -->
+</div><!-- .layout -->
 
-<div div align="center">
-  <table>
-    <thead>
-      <tr>
-        <th>Nombre de Empresa</th>
-        <th>Email</th>
-        <th>Nombre</th>
-        <th>Industria</th>
-        <th>Status</th>
-      </tr>
-    </thead>
+<%= render "shared/footer" %>
 
-    <tbody>
-      <% @companies.each do |company| %>
-        <% if can? :read, company %>
-          <tr>
-            <td><%= link_to company.company_name, company_path(id:company) %></td>
-            <td><%= company.email %></td>
-            <td><%= company.name %></td>
-            <td>
-              <% if company.sector %>
-                <%= company.sector.name %>
-              <% end %>
-            </td>
-            <td><%= company.state %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>

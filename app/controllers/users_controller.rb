@@ -45,12 +45,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def edit_password
+    @user = User.find(params[:id])
+  end
+
   def edit_role_u
     @user = User.find(params[:id])
   end
 
   def update
+
     @user = User.find(params[:id])
+    authorize! :update,  @user
     #params_update2 = params[:user]
     #@user.update(name: params[:user][:name], email:params[:user][:email], location:params[:user][:location])
     #@user.name = params[:user][:name]
@@ -66,8 +72,21 @@ class UsersController < ApplicationController
     if params[:user][:role_id]
       @user.update(role_id:params[:user][:role_id])
     end
+    if params[:user][:password]
+      @user.update(password:params[:user][:password])
+    end
+    if params[:user][:current_password]
+      @user.update(password:params[:user][:current_password])
+    end
+    if params[:user][:password_confirmation]
+      @user.update(password:params[:user][:password_confirmation])
+    end
     @user.save
-    redirect_to show_user_admin_path(@user)
+    if params[:user][:password]
+      redirect_to root_path
+    else
+      redirect_to show_user_admin_path(@user)
+    end
   end
 
   def deactivate

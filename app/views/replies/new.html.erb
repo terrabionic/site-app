@@ -1,5 +1,16 @@
-<h1>New Reply</h1>
 
-<%= render 'form' %>
+<div class="layout">
 
-<%= link_to 'Back', survey_replies_path(@survey) %>
+  <%= render 'shared/nav' %>
+
+  <div class="main">
+  		
+		<h1 class="main-headline hide">Responder Diagnóstico</h1>
+
+		<%= render 'form' %>
+
+  </div><!-- .main -->
+
+</div><!-- .layout -->
+
+<%= render "shared/footer" %>

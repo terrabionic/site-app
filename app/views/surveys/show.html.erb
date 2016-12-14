@@ -1,20 +1,36 @@
 <p id="notice"><%= notice %></p>
-<% if @survey.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
 
-    <ul>
-    <% @survey.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
+<div class="layout">
+
+  <%= render 'shared/nav' %>
+
+  <div class="main">
+
+    <div class="form-container">
+      <% if @survey.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+
+          <ul>
+          <% @survey.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <p>
+        <strong>Título:</strong>
+        <%= @survey.title %>
+      </p>
+
+      <%= link_to 'Editar', edit_survey_path(@survey), class: "btn" %> |
+      <%= link_to 'Atrás', surveys_path, class: "btn" %>
+      
+    </div>
+    
   </div>
-<% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @survey.title %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+<%= render "shared/footer" %>

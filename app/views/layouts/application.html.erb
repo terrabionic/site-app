@@ -1,47 +1,106 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-	<title>Siteapp</title>
-	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  	<%= csrf_meta_tags %>
-  	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  	<link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4-rc2/foundation.min.css">
+    <title>SITE / Instituto Hidalguense de Competitividad Empresarial</title>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'https://www.gstatic.com/charts/loader.js' %>
+  	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  	<%= favicon_link_tag 'favicon.png' %>
+  	<%= csrf_meta_tags %>
 	<% if current_user %>
-		<table>
-			<tr>
-				<td>LOGO</td>
-				<td>
-					<% if current_user.is? 'admin' %>
-						<%= link_to 'DASHBOARD admin', companies_path %>
-					<% elsif current_user.is? 'emprered' %>
-						<%= link_to 'DASHBOARD emprered', index_emprered_path %>
-					<% elsif current_user.is? 'company' %>
-						<%= link_to 'DASHBOARD company', index_company_path %>
+		<div class="site-header">
+			<div class="site-header__logo">
+
+				<% if current_user.is? 'admin' %>
+					<%= link_to companies_path do %>
+						<%= image_tag "site-logotipo-color.png" %>	
 					<% end %>
-				</td>
-				<td>
-					<select name="perfil">
-						<option>Hola <strong><%= current_user.name %> (<%=current_user.email%>)</strong>.</option>
-						<option>Editar Perfil</option>
-						<option><%= link_to 'Logout', destroy_user_session_path, method: :delete %></option>
-					</select>
-					<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
-					
-				</td>
-			</tr>
-		</table>
+				<% elsif current_user.is? 'emprered' %>
+					<%= link_to index_emprered_path do %>
+						<%= image_tag "site-logotipo-color.png" %>	
+					<% end %>
+				<% elsif current_user.is? 'agente' %>
+					<%= link_to index_agenteae_path do %>
+						<%= image_tag "site-logotipo-color.png" %>	
+					<% end %>			
+				<% elsif current_user.is? 'company' %>
+					<% if current_user.company.done %>
+			          <% if current_user.company.stage == 'Reporte' %>
+			            <%= link_to results_company_path do %>
+			            	<%= image_tag "site-logotipo-color.png" %>	
+			            <% end %>
+			          <% else %>
+			            <%= link_to index_company_path do %>
+			            	<%= image_tag "site-logotipo-color.png" %>	
+			            <% end %>
+			          <% end %>
+			        <% else %>
+						<%= link_to index_company_path do %>
+			            	<%= image_tag "site-logotipo-color.png" %>	
+			            <% end %>
+					<% end %>
+				<% end %>
+
+			</div><!-- .site-header__logo -->
+			
+			<div class="header-actions">
+
+				<span class="header-actions__item header-actions__item--dashboard">
+					<% if current_user.is? 'admin' %>
+						<%= link_to 'DASHBOARD', companies_path %>
+					<% elsif current_user.is? 'emprered' %>
+						<%= link_to 'DASHBOARD', index_emprered_path %>
+					<% elsif current_user.is? 'agente' %>
+						<%= link_to 'DASHBOARD', index_agenteae_path %>
+					<% elsif current_user.is? 'company' %>
+						<% if current_user.company.done %>
+				          <% if current_user.company.stage == 'Reporte' %>
+				            <%= link_to 'DASHBOARD', results_company_path %>
+				          <% else %>
+				            <%= link_to 'DASHBOARD', index_company_path %>
+				          <% end %>
+				        <% else %>
+				          <%= link_to 'DASHBOARD', index_company_path %>
+				        <% end %>
+					<% end %>
+				</span><!-- .header-actions__item -->
+
+				<span id="profile-menu" class="header-actions__item header-actions__item--dropdown">
+					<div>
+						<span>Hola <em><%= current_user.name %><br>(<%=current_user.email%>)</em></span>
+						<ul id="drop-down-menu" class="header-dropdown">
+							<% unless current_user.is? 'company' %>
+								<li class="header-dropdown__item header-dropdown__item--profile">
+									<%= link_to 'Editar Perfil', edit_user_path(current_user) %>
+								</li>
+							<% end %>
+							<li class="header-dropdown__item header-dropdown__item--profile">
+								<%= link_to 'Cambiar Contraseña', edit_password_path(id:current_user) %>
+							</li>
+							<li class="header-dropdown__item header-dropdown__item--profile">
+								<a href="http://www.aie.org.mx">Campus Virtual</a>
+							</li>
+							<li class="header-dropdown__item header-dropdown__item--logout">
+								<%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+							</li>
+						</ul>	
+					</div>
+				</span><!-- .header-adctions__item -->
+
+			</div><!-- .site-header__actions -->
+
+		</div><!-- .top-bar -->
 	<% end %>
 </head>
 <body>
 
 
-
 <%= yield %>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/foundation/6.2.4-rc2/foundation.min.js"></script>
+
 <script>
 	$(document).foundation();
 </script>

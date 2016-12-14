@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :survey_analyses
   resources :contacts
   resources :companies
   resources :sectors
@@ -43,6 +44,8 @@ Rails.application.routes.draw do
   post "/asignar_emprered", to: "asigns#action_asign_emprered"
   # Editar usuario
   get '/users/:id/edit_user', to: 'users#edit_user', as: 'edit_user'
+  # Editar Contraseña
+  get '/users/:id/edit_password', to: 'users#edit_password', as: 'edit_password'
   # Editar usuario
   get '/users/:id/edit_role_u', to: 'users#edit_role_u', as: 'edit_role_u'
   # Mostrar datos de Generales de la Empresa
@@ -52,15 +55,10 @@ Rails.application.routes.draw do
   # Accion para activar Usuario
   post "users/action_activate", to: "users#action_activate"
   # Pagina de inicio
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
   root :to => redirect("/users/sign_in")
   # Pagina de inicio
   get '/about_us', to: 'home#about_us', as: 'about_us'
   get '/we_do', to: 'home#we_do', as: 'we_do'
- 
   get '/privacy', to: 'home#privacy', as: 'privacy'
 
   # Editar permisos del role
@@ -74,55 +72,21 @@ Rails.application.routes.draw do
   get '/companies/:id/edit_site', to: 'companies#edit_site', as: 'edit_site'
   # Dashboard de Empresa
   get '/companyroles/index_company', to: 'companyroles#index_company', as: 'index_company'
+  # Dashboard de Emprered
+  get '/companyroles/results_company', to: 'companyroles#results_company', as: 'results_company'
   # Mostrar encuesta a empresa
-  get 'companyroles/show_reply/:company_id', to: 'companyroles#show_reply', as: 'show_reply'
+  get 'companyroles/show_reply/:user_id', to: 'companyroles#show_reply', as: 'show_reply'
+  # Mostrar encuesta a empresa al agenteae
+  get 'companyroles/show_reply_company/:id', to: 'companyroles#show_reply_company', as: 'show_reply_company'
+  # Dashboard Agente AE
+  get '/companyroles/index_agenteae', to: 'companyroles#index_agenteae', as: 'index_agenteae'
+  # Cambiar estados de la compañia
+  post "/action_send_invitation", to: "companies#action_send_invitation"
+  # Mostrar el analisis de diagnostico
+  get 'companies/get_survey_analysis/:id', to: 'companies#get_survey_analysis', as: 'show_survey_analysis'
+  # Accion para finalizar diagnostico
+  post "survey_analyses/analysis_done", to: "survey_analyses#analysis_done"
+  # Imprimir el reporte IC en PDF
+  get '/companies/:id.pdf', to: 'companies#get_report_IC_pdf', as: 'get_report_IC_pdf'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
 end

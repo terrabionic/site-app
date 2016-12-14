@@ -12,9 +12,19 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Registro de usuarios
 gem 'devise'
+# Permisos para usuarios
 gem 'cancan'
+# Agregar Imagenes
 gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
+# Generar PDF
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
+# Generar PDF Prawn
+gem 'prawn'
+gem 'prawn-table'
 
 
 group :development, :test do

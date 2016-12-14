@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
+  validates :role_id, presence: true
 
   ROLES = %w[admin agent emprered].freeze
                                                                                                                                                                             
@@ -23,6 +24,15 @@ class User < ActiveRecord::Base
       return @company_ids[0]
     else
       return false
+    end
+  end
+
+  def company_name
+    @company_ids = Company.where("user_login_id = ?", self.id)
+    if @company_ids.length > 0
+      return @company_ids[0].company_name
+    else
+      return ''
     end
   end
 

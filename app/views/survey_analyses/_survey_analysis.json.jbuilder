@@ -1,0 +1,2 @@
+json.extract! survey_analysis, :id, :agente, :user_company, :reply, :organizational, :innovation_management, :innovation, :guilds, :copetential, :created_at, :updated_at
+json.url survey_analysis_url(survey_analysis, format: :json)

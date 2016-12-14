@@ -2,6 +2,7 @@ class Role < ActiveRecord::Base
 	ROLES = %w[admin agente emprered company].freeze
 
 	validates :name, presence: true
+	has_many :users, :dependent => :restrict_with_error
 
 	def get_role_name( role )
 		if role == 'admin'

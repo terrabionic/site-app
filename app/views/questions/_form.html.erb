@@ -12,14 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <strong>Título:</strong><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :category_id %><br>
+    <strong>Factor:</strong><br>
     <%= f.collection_select(:category_id, Category.all, :id, :title) %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Guardar'%>
   </div>
 <% end %>

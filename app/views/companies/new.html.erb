@@ -1,5 +1,25 @@
-<h1>Nueva Empresa</h1>
+<p id="notice"><%= notice %></p>
 
-<%= render 'form_new' %>
+<div class="layout">
 
-<%= link_to 'Back', companies_path %>
+  <%= render 'shared/nav' %>
+
+  <div class="main">
+
+  	<div class="form-container">
+  		
+  		<%= link_to 'Back', index_emprered_path, class: "back-button" %>
+	 	<h1 class="main-headline inline-block">
+	 		Alta de la empresa
+	 	</h1>
+
+		<%= render 'form_new' %>
+
+	</div>
+
+  </div><!-- .main -->
+
+</div><!-- .layout -->
+
+
+<%= render "shared/footer" %>

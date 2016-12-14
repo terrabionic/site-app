@@ -1,0 +1,65 @@
+
+
+<p id="reply-message" class="hide"><%= flash[:notice] %></p>
+<a id="thx-link" class="hide" data-open="exampleModal1">Thx</a>
+
+<div class="layout">
+
+  <div class="nav">
+    <a href="#" class="nav__item">
+      <%= image_tag "calificacion-empresa-tab.png" %>      
+      <span>Calificación de la empresa</span>
+    </a>
+    
+  </div><!-- .nav -->
+
+  <div class="main">
+	<h1><%= current_user.company_name %></h1>
+  <hr color='black'/>
+  <h2>MI PYME IDEAL</h2>
+
+  <table>
+    <tr>
+      <td>
+        Grafica
+        <%= current_user.company.survey_analysis.reply.score_category(categories:current_user.company.survey_analysis.reply.survey.categories) %>
+      </td>
+      <td>
+        <h2>DETALLE</h2>
+        <hr color='black'/>
+        PUNTAJE OBTENIDO<br>
+        <% if current_user.company %>
+          <% if current_user.company.survey_analysis %>
+            <strong><%= current_user.company.survey_analysis.reply.score %> pts.</strong>
+          <% end %>
+        <% end %>
+        <br><br>
+        PUNTAJE IDEAL<br>
+        <% if current_user.company %>
+          <% if current_user.company.survey_analysis %>
+            <strong><%= current_user.company.survey_analysis.reply.survey.total_score %> pts. 100%</strong>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>    
+
+  </table>
+
+  <h3>Este solo es un reporte general, el consultor te hara entrega del reporte de resultados de tu empresa</h3>
+
+  </div><!-- .main -->
+</div><!-- .layout -->
+
+<%= render "shared/footer" %>
+
+<div class="reveal tiny" id="exampleModal1" data-reveal>
+  <div class="text-center">
+    <h4 class="color-blue bold">Importante</h4>
+    <br>
+    <p class="color-gray bold">Aquí aparecerá información sobre el <span class="color-green">diagnóstico de tu empresa</span>, nosotros nos pondremos en contacto contigo.</p>  
+  </div>
+
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

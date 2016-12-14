@@ -13,6 +13,7 @@ class RolesController < ApplicationController
 	end
 
 	def edit
+		authorize! :update, @role
 	end
 
 	def edit_permissions

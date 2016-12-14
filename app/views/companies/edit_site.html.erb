@@ -1,4 +1,14 @@
-<%= link_to 'Atras', @company %>
-<h1>Empresa: <%= @company.company_name %></h1>
+<div class="layout">
+	<%= render 'shared/nav' %>
+	<div class="main">
+		<div class="form-container">
+			<%= link_to 'Atrás', @company, class: "back-button"  %>
+			<h1 class="main-headline inline-block">Empresa: <%= @company.company_name %></h1>
 
-<%= render 'form_site' %>
+			<%= render 'form_site' %>
+
+		</div>
+	</div>
+</div>
+
+

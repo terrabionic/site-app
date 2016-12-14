@@ -1,39 +1,50 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Agentes disponibres</h2>
+<div class="layout">
+	
+	<div class="main">
 
-<%= link_to 'Atras', companies_path %>
-<br>
+		<%= render 'shared/nav' %>
 
-<h2>Agentes</h2>
-<table>
-	<thead>
-		<tr>
-		  <th>Nombre</th>
-		  <th>Status</th>
-		  <th></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% if @agents %>
-			<% @agents.each do |agent| %>
+		<%= link_to 'Atrás', companies_path, class: "back-button" %>
+
+		<h1 class="main-headline inline-block">Agentes disponibles</h1>
+
+
+		<h2 class="color-green text-bigger mb-phi">Agentes</h2>
+
+		<table class="site-table">
+			<thead>
 				<tr>
-				  <td><%= agent.name %></td>
-				  <td>
-					<% if agent.available %>
-						<strong>Disponible</strong>
-					<% else %>
-						<strong>Ocupado</strong>
-					<% end %>
-				  </td>
-				  <td>
-					<% if agent.available %>
-						<%=link_to "Asignar", asignar_path(user_id: agent, company_id: @company ), method: :post %>	
-					<% end %>
-				  </td>
+				  <th>Nombre</th>
+				  <th>Estatus</th>
+				  <th></th>
 				</tr>
-			<% end %>
-		<% end %>
-	</tbody>
-</table>
-<br>
+			</thead>
+			<tbody>
+				<% if @agents %>
+					<% @agents.each do |agent| %>
+						<tr>
+						  <td><%= agent.name %></td>
+						  <td>
+							<% if agent.available %>
+								<strong>Disponible</strong>
+							<% else %>
+								<strong>Ocupado</strong>
+							<% end %>
+						  </td>
+						  <td>
+							<% if agent.available %>
+								<%=link_to "Asignar", asignar_path(user_id: agent, company_id: @company ), method: :post %>	
+							<% end %>
+						  </td>
+						</tr>
+					<% end %>
+				<% end %>
+			</tbody>
+		</table>	
+	
+	</div><!-- .main -->
+</div><!-- .layout -->
+
+<%= render 'shared/footer' %>

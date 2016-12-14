@@ -16,33 +16,40 @@
     <%= f.text_field :company_name %>
   </div>
   
+   <div class="field">
+    Logo:
+    <%= f.file_field :image_logo %>
+  </div>
+  
   <div class="field">
-    <strong>Direccion:</strong><br>
+    <strong>Dirección:</strong><br>
     <%= f.text_field :address %>
   </div>
   <div class="field">
-    <strong>Telefono convencional:</strong><br>
+    <strong>Teléfono convencional:</strong><br>
     <%= f.text_field :phone %>
   </div>
   <div class="field">
     <strong>Email:</strong><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email_user %>
   </div>
   
-  <div class="field">
-    <strong>Tipo de industria (Sector):</strong><br>
+<div class="field">
+    Sector:
     <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
-    <br>
-    <% Sector.where('active = ?',true).each do |sector| %>
-      <label>
+
+    <div id="sector-cool" class="sector-cool">
+      <% Sector.all.each do |sector| %>
+        <div class="sector-cool__item" data-val="<%= sector.id %>">
           <%= image_tag (sector.image.url(:thumb)) %>
-          <%= f.radio_button(:sector_id, sector.id) %>
-      </label>
-      
-    <% end %>
+          <%= sector.name %>
+        </div>
+      <% end %>
+    </div><!-- .sector-cool -->
+    
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Guardar' %>
   </div>
 <% end %>

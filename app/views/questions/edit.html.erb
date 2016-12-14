@@ -1,5 +1,22 @@
-<h1>Editing Survey</h1>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', survey_questions_path(@survey) %>
+
+
+<div class="layout">
+	<%= render 'shared/nav' %>
+
+	<div class="main">
+		<div class="form-container">
+			<%= link_to 'Atrás', survey_questions_path(@survey), class: "back-button" %>
+			<h1 class="main-headline inline-block">Editar Pregunta</h1>
+
+			<%= render 'form' %>
+		</div>
+		
+	</div>
+
+</div>
+
+<%= render "shared/footer" %>
+
+
