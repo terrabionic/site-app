@@ -1,19 +1,15 @@
 class SectorsController < ApplicationController
   before_action :set_sector, only: [:show, :edit, :update, :destroy]
-  
-  add_breadcrumb "Home", :root_path
 
   # GET /sectors
   # GET /sectors.json
   def index
     @sectors = Sector.all
-    authorize! :read, @sectors
   end
 
   # GET /sectors/1
   # GET /sectors/1.json
   def show
-  add_breadcrumb @sector.name, sector_path(@sector)
   end
 
   # GET /sectors/new
@@ -24,8 +20,6 @@ class SectorsController < ApplicationController
   # GET /sectors/1/edit
   def edit
     authorize! :update, @sector
-    add_breadcrumb @sector.name, sector_path(@sector)
-    add_breadcrumb 'Editar ' + @sector.name, edit_sector_path(@sector)
   end
 
   # POST /sectors

@@ -1,34 +1,22 @@
 class RolesController < ApplicationController
 	before_action :set_role, only: [:show, :edit, :edit_permissions, :update, :destroy]
-	
-	add_breadcrumb "Home", :root_path
 
 	def show
-		add_breadcrumb 'Roles', roles_path
-		add_breadcrumb @role.name, role_path(@role)
   	end
 
   	def index
   		@roles = Role.all
-  		add_breadcrumb 'Roles', roles_path
   	end
 
   	def new
 	    @role = Role.new
-	    add_breadcrumb 'Roles', roles_path
 	end
 
 	def edit
 		authorize! :update, @role
-		add_breadcrumb 'Roles', roles_path
-		add_breadcrumb @role.name, role_path(@role)
-		add_breadcrumb 'Editar ' + @role.name, edit_role_path(@role)
 	end
 
 	def edit_permissions
-		add_breadcrumb 'Roles', roles_path
-		add_breadcrumb @role.name, role_path(@role)
-		add_breadcrumb 'Editar Permisos' + @role.name, edit_role_path(@role)
 	end
 
 	def create

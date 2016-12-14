@@ -47,7 +47,7 @@
 			</div><!-- .site-header__logo -->
 			
 			<div class="header-actions">
-				
+
 				<span class="header-actions__item header-actions__item--dashboard">
 					<% if current_user.is? 'admin' %>
 						<%= link_to 'DASHBOARD', companies_path %>
@@ -96,9 +96,10 @@
 	<% end %>
 </head>
 <body>
-	
-<%= link_to render_breadcrumbs, separator: "/" %>
+
+
 <%= yield %>
+
 
 <script>
 	$(document).foundation();

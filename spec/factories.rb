@@ -1,17 +1,4 @@
 FactoryGirl.define do
-  factory :event do
-    title "MyString"
-    start_at "2016-12-14 13:52:04"
-    end_at "2016-12-14 13:52:04"
-    allDay "MyString"
-    name_exhibitor "MyString"
-    level nil
-    hours "MyString"
-    price "MyString"
-  end
-  factory :level do
-    title "MyString"
-  end
   factory :survey_analysis do
     agente ""
     user_company ""

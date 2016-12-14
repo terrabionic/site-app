@@ -15,7 +15,6 @@
 /public/system/sectors/
 /public/system/companies/
 /public/system/categories/
-/public/system/levels/
 
 # Ignore all logfiles and tempfiles.
 /log/*

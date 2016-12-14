@@ -1,32 +1,24 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
-  
-  add_breadcrumb "Home", :root_path
 
   # GET /surveys
   # GET /surveys.json
   def index
     @surveys = Survey.all
-    add_breadcrumb "Diagnósticos", surveys_path
   end
 
   # GET /surveys/1
   # GET /surveys/1.json
   def show
-	add_breadcrumb "Diagnósticos", surveys_path
-	add_breadcrumb @survey.title, survey_path(@survey)
   end
 
   # GET /surveys/new
   def new
     @survey = Survey.new
-    add_breadcrumb "Diagnósticos", surveys_path
   end
 
   # GET /surveys/1/edit
   def edit
-	add_breadcrumb "Diagnósticos", surveys_path
-	add_breadcrumb 'Editar ' + @survey.title, edit_survey_path(@survey)
   end
 
   # POST /surveys
@@ -50,7 +42,7 @@ class SurveysController < ApplicationController
   def update
     respond_to do |format|
       if @survey.update(survey_params)
-        format.html { redirect_to surveys_path, notice: 'El Diagnóstico fue actualizado correctamente.' }
+        format.html { redirect_to @survey, notice: 'El Diagnóstico fue actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @survey }
       else
         format.html { render :edit }

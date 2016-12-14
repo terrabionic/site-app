@@ -1,6 +1,5 @@
 class SurveyAnalysesController < ApplicationController
   before_action :set_survey_analysis, only: [:show, :edit, :update, :destroy, :analysis_done]
-  
 
   # GET /survey_analyses
   # GET /survey_analyses.json

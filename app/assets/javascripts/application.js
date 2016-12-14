@@ -16,8 +16,6 @@
 //= require foundation.js
 //= require vex.combined.js
 //= require_tree .
-//= require moment
-//= require fullcalendar
 
 //Override the default confirm dialog by rails
 $.rails.allowAction = function(link){

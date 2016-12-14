@@ -1,13 +1,8 @@
 class PossibleAnswersController < ApplicationController
   before_action :set_question
   before_action :set_possible_answer, only:[:edit, :update, :destroy]
-  
-  add_breadcrumb "Home", :root_path
 
   def index
-	add_breadcrumb "Diagnósticos", surveys_path
-	add_breadcrumb "Preguntas", survey_questions_path(survey_id: @question.survey)
-	add_breadcrumb "Posibles Respuestas", question_possible_answers_path(question_id: @question)
   end
 
   def new
@@ -24,10 +19,6 @@ class PossibleAnswersController < ApplicationController
   end
 
   def edit
-	add_breadcrumb "Diagnósticos", surveys_path
-	add_breadcrumb "Preguntas", survey_questions_path(survey_id: @question.survey)
-	add_breadcrumb "Posibles Respuestas", question_possible_answers_path(question_id: @question)
-	add_breadcrumb "Editar " + @possible_answer.title, edit_question_possible_answer_path(question_id: @question, id:@possible_answer)
   end
 
   def update

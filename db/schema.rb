@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214195204) do
+ActiveRecord::Schema.define(version: 20161206182027) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -94,31 +94,6 @@ ActiveRecord::Schema.define(version: 20161214195204) do
     t.text     "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.string   "allDay"
-    t.string   "name_exhibitor"
-    t.integer  "level_id"
-    t.string   "hours"
-    t.string   "price"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "events", ["level_id"], name: "index_events_on_level_id"
-
-  create_table "levels", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
   end
 
   create_table "possible_answers", force: :cascade do |t|
