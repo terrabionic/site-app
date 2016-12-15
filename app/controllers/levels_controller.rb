@@ -1,16 +1,21 @@
 class LevelsController < ApplicationController
   before_action :set_level, only: [:show, :edit, :update, :destroy]
+  
+  add_breadcrumb "Inicio", :root_path
 
   # GET /levels
   # GET /levels.json
   def index
     @levels = Level.all
     authorize! :read, @levels
+    add_breadcrumb 'Niveles de Cursos', levels_path
   end
 
   # GET /levels/1
   # GET /levels/1.json
   def show
+  add_breadcrumb 'Niveles de Cursos', levels_path
+  add_breadcrumb @level.title, level_path(@level)
   end
 
   # GET /levels/new
@@ -22,6 +27,8 @@ class LevelsController < ApplicationController
   # GET /levels/1/edit
   def edit
 	authorize! :update, @level
+	add_breadcrumb 'Niveles de Cursos', levels_path
+	add_breadcrumb 'Editar ' + @level.title, edit_level_path(@level)
   end
 
   # POST /levels
@@ -45,7 +52,7 @@ class LevelsController < ApplicationController
   def update
     respond_to do |format|
       if @level.update(level_params)
-        format.html { redirect_to @level, notice: '' }
+        format.html { redirect_to levels_path, notice: '' }
         format.json { render :show, status: :ok, location: @level }
       else
         format.html { render :edit }

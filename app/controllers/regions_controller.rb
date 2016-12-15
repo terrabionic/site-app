@@ -1,28 +1,36 @@
 class RegionsController < ApplicationController
   before_action :set_region, only: [:show, :edit, :update, :destroy]
+  
+  add_breadcrumb "Inicio", :root_path
 
   # GET /regions
   # GET /regions.json
   def index
     @regions = Region.all
     authorize! :read, @regions
+    add_breadcrumb 'Regiones', regions_path
   end
 
   # GET /regions/1
   # GET /regions/1.json
   def show
   authorize! :read, @region
+  add_breadcrumb 'Regiones', regions_path
+  add_breadcrumb @region.name, region_path(@region)
   end
 
   # GET /regions/new
   def new
     @region = Region.new
     authorize! :create, @region
+    add_breadcrumb 'Regiones', regions_path
   end
 
   # GET /regions/1/edit
   def edit
   authorize! :update, @region
+  add_breadcrumb 'Regiones', regions_path
+  add_breadcrumb 'Editar '+ @region.name, edit_region_path(@region)
   end
 
   # POST /regions

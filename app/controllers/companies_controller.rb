@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :edit_site, :update, :destroy, :create_user, :asign_agent_company, :update_user_company, :get_survey_analysis, :get_report_IC_pdf]
   after_action :update_user_company, only:[:update]
   
-  add_breadcrumb "Home", :root_path
+  add_breadcrumb "Inicio", :root_path
 
   # GET /companies
   # GET /companies.json

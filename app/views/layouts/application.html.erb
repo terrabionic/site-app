@@ -98,7 +98,7 @@
 <body>
 <% if current_user %>
 	<div class="breadcrumbs-wrapper">
-		<%= link_to render_breadcrumbs, separator: "/" %>
+		Usted está en: <%= link_to render_breadcrumbs, separator: "/" %>
 	</div>	
 <% end %>
 <%= yield %>

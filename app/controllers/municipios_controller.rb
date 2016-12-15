@@ -1,11 +1,14 @@
 class MunicipiosController < ApplicationController
   before_action :set_municipio, only: [:show, :edit, :update, :destroy]
+  
+  add_breadcrumb "Inicio", :root_path
 
   # GET /municipios
   # GET /municipios.json
   def index
     @municipios = Municipio.all
     authorize! :read, @municipios
+    add_breadcrumb 'Municipios', municipios_path
   end
 
   # GET /municipios/1
@@ -18,11 +21,14 @@ class MunicipiosController < ApplicationController
   def new
     @municipio = Municipio.new
     authorize! :create, @municipio
+    add_breadcrumb 'Municipios', municipios_path
   end
 
   # GET /municipios/1/edit
   def edit
 	authorize! :update, @municipio
+	add_breadcrumb 'Municipios', municipios_path
+	add_breadcrumb 'Editar ' + @municipio.name, edit_municipio_path(@municipio)
   end
 
   # POST /municipios

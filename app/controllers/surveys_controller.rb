@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
   
-  add_breadcrumb "Home", :root_path
+  add_breadcrumb "Inicio", :root_path
 
   # GET /surveys
   # GET /surveys.json

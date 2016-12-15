@@ -1,16 +1,21 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  
+  add_breadcrumb "Inicio", :root_path
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
     authorize! :read, @events
+    add_breadcrumb 'Cursos', events_path
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+  add_breadcrumb 'Cursos', events_path
+  add_breadcrumb @event.title, event_path(@event)
   end
 
   # GET /events/new
@@ -22,6 +27,8 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
   authorize! :update, @event
+  add_breadcrumb 'Cursos', events_path
+  add_breadcrumb 'Editar ' + @event.title, edit_event_path(@event)
   end
 
   # POST /events

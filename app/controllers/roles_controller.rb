@@ -1,7 +1,7 @@
 class RolesController < ApplicationController
 	before_action :set_role, only: [:show, :edit, :edit_permissions, :update, :destroy]
 	
-	add_breadcrumb "Home", :root_path
+	add_breadcrumb "Inicio", :root_path
 
 	def show
 		add_breadcrumb 'Roles', roles_path

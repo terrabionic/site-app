@@ -2,7 +2,7 @@ class RepliesController < ApplicationController
   before_action :set_survey
   before_action :set_reply, only:[:edit, :update, :destroy, :show, :score_category]
   
-  add_breadcrumb "Home", :root_path
+  add_breadcrumb "Inicio", :root_path
 
   def index
 	add_breadcrumb "Diagnósticos", surveys_path

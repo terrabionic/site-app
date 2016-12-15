@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   
-  add_breadcrumb "Home", :root_path
+  add_breadcrumb "Inicio", :root_path
 
   # GET /categories
   # GET /categories.json

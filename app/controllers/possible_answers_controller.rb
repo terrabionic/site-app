@@ -2,7 +2,7 @@ class PossibleAnswersController < ApplicationController
   before_action :set_question
   before_action :set_possible_answer, only:[:edit, :update, :destroy]
   
-  add_breadcrumb "Home", :root_path
+  add_breadcrumb "Inicio", :root_path
 
   def index
 	add_breadcrumb "Diagnósticos", surveys_path

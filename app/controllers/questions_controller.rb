@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_survey
   before_action :set_question, only:[:edit, :update, :destroy]
   
-  add_breadcrumb "Home", :root_path
+  add_breadcrumb "Inicio", :root_path
 
   def index
 	add_breadcrumb "Diagnósticos", surveys_path
