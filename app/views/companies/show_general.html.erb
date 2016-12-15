@@ -35,6 +35,21 @@
       <strong>Etapa:</strong>
       <%= @company.stage %>
     </p>
+    
+    <p>
+		<strong>Municipio:</strong>
+		<% if @company.municipio%>
+			<%= @company.municipio.name %>
+		<% end %>
+	</p>
+	<% if @company.municipio%>
+		<p>
+			<strong>Región:</strong>
+			<% if @company.municipio.region%>
+				<%= @company.municipio.region.name %>
+			<% end %>
+		</p>
+	<% end %>
 
     <p>
       <strong>Industria (Sector):</strong>

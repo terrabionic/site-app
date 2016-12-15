@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    authorize! :read, @events
   end
 
   # GET /events/1
@@ -15,10 +16,12 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    authorize! :create, @event
   end
 
   # GET /events/1/edit
   def edit
+  authorize! :update, @event
   end
 
   # POST /events

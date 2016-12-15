@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161214195204) do
+ActiveRecord::Schema.define(version: 20161215192629) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -79,10 +79,14 @@ ActiveRecord::Schema.define(version: 20161214195204) do
     t.integer  "image_logo_file_size"
     t.datetime "image_logo_updated_at"
     t.integer  "survey_analysis_id"
+    t.integer  "municipio_id"
+    t.string   "latitude",                default: ""
+    t.string   "longitude",               default: ""
   end
 
   add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
   add_index "companies", ["emprered_id"], name: "index_companies_on_emprered_id"
+  add_index "companies", ["municipio_id"], name: "index_companies_on_municipio_id"
   add_index "companies", ["sector_id"], name: "index_companies_on_sector_id"
   add_index "companies", ["survey_analysis_id"], name: "index_companies_on_survey_analysis_id"
   add_index "companies", ["user_login_id"], name: "index_companies_on_user_login_id"
@@ -121,6 +125,15 @@ ActiveRecord::Schema.define(version: 20161214195204) do
     t.datetime "image_updated_at"
   end
 
+  create_table "municipios", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "municipios", ["region_id"], name: "index_municipios_on_region_id"
+
   create_table "possible_answers", force: :cascade do |t|
     t.integer  "question_id"
     t.string   "title"
@@ -143,6 +156,12 @@ ActiveRecord::Schema.define(version: 20161214195204) do
 
   add_index "questions", ["category_id"], name: "index_questions_on_category_id"
   add_index "questions", ["survey_id"], name: "index_questions_on_survey_id"
+
+  create_table "regions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "replies", force: :cascade do |t|
     t.integer  "survey_id"

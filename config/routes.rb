@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :municipios
+  resources :regions
   resources :events
   resources :levels
   resources :survey_analyses
