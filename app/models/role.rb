@@ -8,7 +8,7 @@ class Role < ActiveRecord::Base
 		if role == 'admin'
 			return 'Administrador'
 		elsif role == 'agente'
-			return 'Agente AE'
+			return 'Agente AIE'
 		elsif role == 'emprered'
 			return 'Emprered'
 		elsif role == 'company'
