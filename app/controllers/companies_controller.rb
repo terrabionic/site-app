@@ -22,6 +22,11 @@ class CompaniesController < ApplicationController
     @roles = Role.all
     @surveys = Survey.all
     @categories = Category.all
+    respond_to do |format|
+		format.html
+		format.csv { send_data @companies.to_csv }
+		format.xls # { send_data @products.to_csv(col_sep: "\t") }
+	  end
   end
 
   # GET /companies/1

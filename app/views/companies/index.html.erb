@@ -37,6 +37,8 @@
         <%= link_to 'Municipios', municipios_path %>
       <% end %>
       
+	
+      
       
     
     </div><!-- .actions-admin -->
@@ -45,7 +47,9 @@
       <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
       <%= submit_tag "Buscar" %>
     <% end %>
-
+    <div class="actions-admin">
+    Descarcar Reporte: <%= link_to "Excel", companies_path(format: "xls") %>
+	</div>
     <table class="site-table">
     
       <thead>
