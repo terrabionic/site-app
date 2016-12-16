@@ -60,6 +60,13 @@
             <strong>Nombre de usuario:</strong>
             <%= @company.name %>
           </p>
+          
+          <p>
+            <strong>Actividad Económica:</strong>
+            <% if @company.activity %>
+              <%= @company.activity.name %>
+            <% end %>
+          </p>
 
           <p>
             <strong>Sector:</strong>

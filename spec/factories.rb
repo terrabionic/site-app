@@ -1,4 +1,7 @@
 FactoryGirl.define do
+  factory :economic_activity do
+    name "MyString"
+  end
   factory :municipio do
     name "MyString"
     region nil

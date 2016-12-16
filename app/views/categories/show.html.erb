@@ -28,6 +28,11 @@
       <strong>Factor:</strong>
       <%= @category.title %>
     </p>
+    
+    <p>
+      <strong>Color:</strong>
+      <%= @category.color %>
+    </p>
 
     <%= link_to 'Editar', edit_category_path(@category), class: "btn" %> |
     <%= link_to 'Atrás', categories_path, class: "btn" %>

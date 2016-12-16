@@ -34,6 +34,11 @@
     <%= f.text_field :email_user %>
   </div>
   
+  <div class="field">
+    Actividad Económica:
+    <%= f.select :activity_id, options_for_select(EconomicActivity.all.map{|s|[s.name, s.id]}) %>
+  </div>
+  
 <div class="field">
     Sector:
     <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>

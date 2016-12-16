@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161215192629) do
+ActiveRecord::Schema.define(version: 20161216000544) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20161215192629) do
     t.string   "icon_content_type"
     t.integer  "icon_file_size"
     t.datetime "icon_updated_at"
+    t.string   "color"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -82,8 +83,10 @@ ActiveRecord::Schema.define(version: 20161215192629) do
     t.integer  "municipio_id"
     t.string   "latitude",                default: ""
     t.string   "longitude",               default: ""
+    t.integer  "activity_id"
   end
 
+  add_index "companies", ["activity_id"], name: "index_companies_on_activity_id"
   add_index "companies", ["agent_id"], name: "index_companies_on_agent_id"
   add_index "companies", ["emprered_id"], name: "index_companies_on_emprered_id"
   add_index "companies", ["municipio_id"], name: "index_companies_on_municipio_id"
@@ -96,6 +99,12 @@ ActiveRecord::Schema.define(version: 20161215192629) do
     t.string   "email"
     t.string   "subject"
     t.text     "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "economic_activities", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -9,6 +9,7 @@ class Company < ActiveRecord::Base
   belongs_to :user_login, class_name: 'User'
   belongs_to :survey_analysis, class_name: 'SurveyAnalysis'
   belongs_to :municipio, class_name: 'Municipio'
+  belongs_to :activity, class_name: 'EconomicActivity'
 
   validates :company_name, presence: true
   validates :address, presence: true

@@ -50,6 +50,13 @@
 			<% end %>
 		</p>
 	<% end %>
+	
+	<p>
+		<strong>Actividad Económica:</strong>
+		<% if @company.activity %>
+		  <%= @company.activity.name %>
+		<% end %>
+	</p>
 
     <p>
       <strong>Industria (Sector):</strong>

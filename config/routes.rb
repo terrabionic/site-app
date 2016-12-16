@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :economic_activities
   resources :municipios
   resources :regions
   resources :events
