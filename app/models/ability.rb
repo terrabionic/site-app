@@ -47,6 +47,10 @@ class Ability
                 user_edit == user
             end
 
+        elsif user.is? 'consultant'
+
+            can :read, Company
+
         elsif user.is? 'emprered'
 
             can :create, Company

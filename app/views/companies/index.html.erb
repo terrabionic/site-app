@@ -49,7 +49,9 @@
       <%= submit_tag "Buscar" %>
     <% end %>
     <div class="actions-admin">
-    Descarcar Reporte: <%= link_to "Excel", companies_path(format: "xls") %>
+    <% if current_user.is? 'admin' %>
+      Descargar Reporte: <%= link_to "Excel", companies_path(format: "xls") %>
+    <% end %>
 	</div>
     <table class="site-table">
     

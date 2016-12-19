@@ -1,5 +1,5 @@
 class Role < ActiveRecord::Base
-	ROLES = %w[admin agente emprered company].freeze
+	ROLES = %w[admin agente emprered consultant company].freeze
 
 	validates :name, presence: true
 	has_many :users, :dependent => :restrict_with_error
@@ -13,6 +13,8 @@ class Role < ActiveRecord::Base
 			return 'Emprered'
 		elsif role == 'company'
 			return 'Compañia'
+		elsif role == 'consultant'
+			return 'Consultor'
 		else
 			return 'Otro'
 		end

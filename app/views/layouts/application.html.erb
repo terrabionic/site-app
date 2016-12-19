@@ -18,6 +18,10 @@
 					<%= link_to companies_path do %>
 						<%= image_tag "site-logotipo-color.png" %>	
 					<% end %>
+				<% elsif current_user.is? 'consultant' %>
+					<%= link_to companies_path do %>
+						<%= image_tag "site-logotipo-color.png" %>	
+					<% end %>
 				<% elsif current_user.is? 'emprered' %>
 					<%= link_to index_emprered_path do %>
 						<%= image_tag "site-logotipo-color.png" %>	
@@ -50,6 +54,8 @@
 				
 				<span class="header-actions__item header-actions__item--dashboard">
 					<% if current_user.is? 'admin' %>
+						<%= link_to 'DASHBOARD', companies_path %>
+					<% elsif current_user.is? 'consultant' %>
 						<%= link_to 'DASHBOARD', companies_path %>
 					<% elsif current_user.is? 'emprered' %>
 						<%= link_to 'DASHBOARD', index_emprered_path %>
