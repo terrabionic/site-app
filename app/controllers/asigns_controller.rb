@@ -1,6 +1,6 @@
 class AsignsController < ApplicationController
 	
-	add_breadcrumb "Home", :root_path
+	add_breadcrumb "Inicio", :root_path
 	
 	def asign_agent
 		@role_agente = Role.where("role = ?", 'agente')

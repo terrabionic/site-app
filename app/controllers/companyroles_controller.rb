@@ -1,6 +1,6 @@
 class CompanyrolesController < ApplicationController
 	
-	add_breadcrumb "Home", :root_path
+	add_breadcrumb "Inicio", :root_path
 
 	def index_emprered
 		@companies = Company.all

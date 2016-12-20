@@ -18,6 +18,10 @@
 					<%= link_to companies_path do %>
 						<%= image_tag "site-logotipo-color.png" %>	
 					<% end %>
+				<% elsif current_user.is? 'consultant' %>
+					<%= link_to companies_path do %>
+						<%= image_tag "site-logotipo-color.png" %>	
+					<% end %>
 				<% elsif current_user.is? 'emprered' %>
 					<%= link_to index_emprered_path do %>
 						<%= image_tag "site-logotipo-color.png" %>	
@@ -50,6 +54,8 @@
 				
 				<span class="header-actions__item header-actions__item--dashboard">
 					<% if current_user.is? 'admin' %>
+						<%= link_to 'DASHBOARD', companies_path %>
+					<% elsif current_user.is? 'consultant' %>
 						<%= link_to 'DASHBOARD', companies_path %>
 					<% elsif current_user.is? 'emprered' %>
 						<%= link_to 'DASHBOARD', index_emprered_path %>
@@ -98,7 +104,7 @@
 <body>
 <% if current_user %>
 	<div class="breadcrumbs-wrapper">
-		<%= link_to render_breadcrumbs, separator: "/" %>
+		Usted está en: <%= link_to render_breadcrumbs, separator: "/" %>
 	</div>	
 <% end %>
 <%= yield %>

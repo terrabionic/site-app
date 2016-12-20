@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :edit_site, :update, :destroy, :create_user, :asign_agent_company, :update_user_company, :get_survey_analysis, :get_report_IC_pdf]
   after_action :update_user_company, only:[:update]
   
-  add_breadcrumb "Home", :root_path
+  add_breadcrumb "Inicio", :root_path
 
   # GET /companies
   # GET /companies.json
@@ -22,6 +22,11 @@ class CompaniesController < ApplicationController
     @roles = Role.all
     @surveys = Survey.all
     @categories = Category.all
+    respond_to do |format|
+		format.html
+		format.csv { send_data @companies.to_csv }
+		format.xls # { send_data @products.to_csv(col_sep: "\t") }
+	  end
   end
 
   # GET /companies/1
@@ -152,7 +157,7 @@ class CompaniesController < ApplicationController
 
   def registration_completed
     if not @company.completed
-      if @company.company_type.length > 0 && @company.vat.length > 0 && @company.street.length > 0 && @company.street2.length > 0 && @company.city.length > 0 && @company.cel.length > 0 && @company.date_start && @company.line_business.length > 0 && @company.num_workers > 0 && @company.annual_sales.length > 0 && @company.company_history.length > 0 && @company.company_products.length > 0 && @company.company_market.length > 0 && @company.company_problems.length > 0 && @company.name_director.length > 0 && @company.staff_interviewed.length > 0 && @company.survey_period.length > 0 && @company.name_created.length > 0
+      if @company.company_type.length > 0 && @company.vat.length > 0 && @company.street.length > 0 && @company.street2.length > 0 && @company.latitude.length > 0 && @company.longitude.length > 0  && @company.cel.length > 0 && @company.date_start && @company.line_business.length > 0 && @company.num_workers > 0 && @company.annual_sales.length > 0 && @company.company_history.length > 0 && @company.company_products.length > 0 && @company.company_market.length > 0 && @company.company_problems.length > 0 && @company.name_director.length > 0 && @company.staff_interviewed.length > 0 && @company.survey_period.length > 0 && @company.name_created.length > 0
         #if @company.company_type.length > 0
         @company.completed = true
         @company.save
@@ -283,6 +288,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:company_name, :role, :address, :phone, :email, :name_agent, :state, :sector_id, :name, :email_user, :active, :agent_id, :company_type, :vat, :street, :street2, :city, :cel, :date_start, :date_end, :line_business, :num_workers, :annual_sales, :company_history, :company_products, :company_market, :company_problems, :name_director, :staff_interviewed, :survey_period, :name_created, :completed, :stage, :emprered, :image_logo, :survey_analysis)
+      params.require(:company).permit(:company_name, :municipio_id , :activity_id, :role, :address, :phone, :email, :name_agent, :state, :sector_id, :name, :email_user, :active, :agent_id, :company_type, :vat, :street, :street2, :city, :cel, :date_start, :date_end, :line_business, :num_workers, :annual_sales, :company_history, :company_products, :company_market, :company_problems, :name_director, :staff_interviewed, :survey_period, :name_created, :completed, :stage, :emprered, :image_logo, :survey_analysis, :longitude, :latitude)
     end
 end

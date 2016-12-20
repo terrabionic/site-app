@@ -60,6 +60,13 @@
             <strong>Nombre de usuario:</strong>
             <%= @company.name %>
           </p>
+          
+          <p>
+            <strong>Actividad Económica:</strong>
+            <% if @company.activity %>
+              <%= @company.activity.name %>
+            <% end %>
+          </p>
 
           <p>
             <strong>Sector:</strong>
@@ -141,8 +148,18 @@
           </p>
           <p>
             <strong>Municipio:</strong>
-            <%= @company.city %>
+            <% if @company.municipio%>
+				<%= @company.municipio.name %>
+            <% end %>
           </p>
+          <% if @company.municipio%>
+			  <p>
+				<strong>Región:</strong>
+				<% if @company.municipio.region%>
+					<%= @company.municipio.region.name %>
+				<% end %>
+			  </p>
+          <% end %>
           <p>
             <strong>Email Empresa:</strong>
             <%= @company.email %>

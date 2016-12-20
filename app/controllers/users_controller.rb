@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-	add_breadcrumb "Home", :root_path
+	add_breadcrumb "Inicio", :root_path
 
   def devise_mapping
     Devise.mappings[:user]

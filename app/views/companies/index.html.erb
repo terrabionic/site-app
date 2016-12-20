@@ -27,13 +27,18 @@
 
       <% if can? :create, @sectors %>
         <%= link_to 'Sectores', sectors_path %>
+        <%= link_to 'Actividades Económicas', economic_activities_path %>
         <%= link_to 'Nivel de Curso', levels_path %>
         <%= link_to 'Cursos', events_path %>
       <% end %>
 
       <% if can? :create, @users %>
         <%= link_to 'Dar de alta nuevo consultor', users_path %>
+        <%= link_to 'Regiones', regions_path %>
+        <%= link_to 'Municipios', municipios_path %>
       <% end %>
+      
+	
       
       
     
@@ -43,7 +48,11 @@
       <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
       <%= submit_tag "Buscar" %>
     <% end %>
-
+    <div class="actions-admin">
+    <% if current_user.is? 'admin' %>
+      Descargar Reporte: <%= link_to "Excel", companies_path(format: "xls") %>
+    <% end %>
+	</div>
     <table class="site-table">
     
       <thead>
@@ -54,7 +63,7 @@
           <th>Fecha</th>
           <th>Sector</th>
           <th>Consultor Emprered</th>
-          <th>Consultor AE</th>
+          <th>Consultor AIE</th>
         </tr>
       </thead>
 

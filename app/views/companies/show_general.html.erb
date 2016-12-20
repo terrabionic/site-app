@@ -35,6 +35,28 @@
       <strong>Etapa:</strong>
       <%= @company.stage %>
     </p>
+    
+    <p>
+		<strong>Municipio:</strong>
+		<% if @company.municipio%>
+			<%= @company.municipio.name %>
+		<% end %>
+	</p>
+	<% if @company.municipio%>
+		<p>
+			<strong>Región:</strong>
+			<% if @company.municipio.region%>
+				<%= @company.municipio.region.name %>
+			<% end %>
+		</p>
+	<% end %>
+	
+	<p>
+		<strong>Actividad Económica:</strong>
+		<% if @company.activity %>
+		  <%= @company.activity.name %>
+		<% end %>
+	</p>
 
     <p>
       <strong>Industria (Sector):</strong>
@@ -46,11 +68,15 @@
     <p>
       <strong>Consultor Emprered:</strong>
       <% unless @states.include?(@company.state) %>
-        <% if @company.emprered %>
-          <%= @company.emprered.name %>
-          <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(@company), class: "btn" %>
+        <% if current_user.is? 'admin' %>
+          <% if @company.emprered %>
+            <%= @company.emprered.name %>
+            <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(@company), class: "btn" %>
+          <% else %>
+            <%= link_to 'Asignar', edit_asign_emprered_path(@company), class: "btn" %>
+          <% end %>
         <% else %>
-          <%= link_to 'Asignar', edit_asign_emprered_path(@company), class: "btn" %>
+          <%= @company.emprered.name %>
         <% end %>
       <% else %>
         <%= @company.emprered.name %>
@@ -64,8 +90,12 @@
         Aún no se llega a etapa de análisis de diagnóstico
       <% elsif @company.state == 'Retrasado' %>
         <% if @company.agent %>
-          <%= @company.agent.name %>
-          <%= link_to 'Cambiar Consultor', edit_asign_agent_path(@company) %>
+          <% if current_user.is? 'admin' %>
+            <%= @company.agent.name %>
+            <%= link_to 'Cambiar Consultor', edit_asign_agent_path(@company) %>
+          <% else %>
+            <%= @company.agent.name %>
+          <% end %>
         <% else %>
           Aún no se llega a etapa de análisis de diagnóstico
         <% end %>
@@ -73,8 +103,12 @@
         <%= @company.agent.name %>
       <% else %>
         <% if @company.agent %>
-          <%= @company.agent.name %>
-          <%= link_to 'Cambiar Consultor', edit_asign_agent_path(@company) %>
+          <% if current_user.is? 'admin' %>
+            <%= @company.agent.name %>
+            <%= link_to 'Cambiar Consultor', edit_asign_agent_path(@company) %>
+          <% else %>
+            <%= @company.agent.name %>
+          <% end %>
         <% else %>
           <%= link_to 'Asignar', edit_asign_agent_path(@company), class: "btn" %> 
         <% end %>

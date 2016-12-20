@@ -31,7 +31,15 @@
   </div>
   <div class="field">
     <strong>Municipio:</strong><br>
-    <%= f.text_field :city %>
+    <%= f.select :municipio_id, options_for_select(Municipio.all.map{|s|[s.name, s.id]}) %>
+  </div>
+  <div class="field">
+    <strong>Latitud:</strong><br>
+    <%= f.text_field :latitude %>
+  </div>
+  <div class="field">
+    <strong>Longitud:</strong><br>
+    <%= f.text_field :longitude %>
   </div>
   <div class="field">
     <strong>Celular:</strong><br>

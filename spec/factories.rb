@@ -1,4 +1,14 @@
 FactoryGirl.define do
+  factory :economic_activity do
+    name "MyString"
+  end
+  factory :municipio do
+    name "MyString"
+    region nil
+  end
+  factory :region do
+    name "MyString"
+  end
   factory :event do
     title "MyString"
     start_at "2016-12-14 13:52:04"

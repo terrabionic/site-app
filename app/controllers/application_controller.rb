@@ -23,6 +23,8 @@ class ApplicationController < ActionController::Base
     if @user
       if @user.is? 'admin'
         companies_path
+      elsif @user.is? 'consultant'
+        companies_path
       elsif @user.is? 'emprered'
         index_emprered_path
       elsif @user.is? 'agente'
