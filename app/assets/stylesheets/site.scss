@@ -778,6 +778,10 @@ select {
 
 .question-item {
 	margin-bottom: 1.618em;
+	small {
+		font-size: 16px;
+
+	}
 }
 
 #notice {
@@ -1050,13 +1054,16 @@ select {
 	h5 {
 		border-bottom: 1px solid lightgray;
 		padding-bottom: .5rem;
+		font-weight: bold;
+
 	}
 
 	h6 {
 		margin-bottom: .3rem;
+
 		&+strong {
 			display: block;
-			font-weight: 500;
+			font-weight: bold;
 			font-size: 18px;
 			margin-bottom: 1rem;
 		}
@@ -1065,7 +1072,7 @@ select {
 
 .pleca {
 	padding: 1rem;
-	font-size: 24px;
+	font-size: 20px;
 	background: #879298;
 	margin-top: 1.618rem;
 	margin-bottom: 1.618rem;
@@ -1098,4 +1105,8 @@ select {
 	a {
 		color: #71B23A;
 	}
+}
+
+.text-uppercase {
+	text-transform: uppercase;
 }

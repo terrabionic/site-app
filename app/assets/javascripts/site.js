@@ -135,7 +135,10 @@ var siteApp = (function($) {
 				data.addRows($(this).data('rows'));
 
 				var options = {
-					colors:['#22A89E','#E6E7E9']
+					colors:['#22A89E','#E6E7E9'],
+					legend: {
+						position: 'none'
+					}
 			    };
 
 			    var chart = new google.visualization.PieChart(this);

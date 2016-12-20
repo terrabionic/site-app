@@ -124,7 +124,7 @@
         </ul>
         <br>
         <%= image_tag @survey_analysis.user_company.company.image_logo.url(:medium) %><br>
-        <h3><%= @survey_analysis.user_company.company_name %><br></h3>
+        <p><%= @survey_analysis.user_company.company_name %></p>
         <strong><%= @survey_analysis.user_company.company.name_director %><br></strong>
         
         Director de la empresa<br><br>
@@ -202,25 +202,25 @@
         
         <h2 class="pleca">Hallazgos y Recomendaciones</h2>
         
-        <h4>Organizacional:</h4>
+        <h6 class="bold text-uppercase">Organizacional:</h6>
         <p class="hallazgo"><%= @survey_analysis.organizational %></p>
         
       
-        <h4>Gestión de Innovación:</h4>
+        <h6 class="bold text-uppercase">Gestión de Innovación:</h6>
         <p class="hallazgo"><%= @survey_analysis.innovation_management %></p>
       
 
       
-        <h4>Innovación:</h4>
+        <h6 class="bold text-uppercase">Innovación:</h6>
         <p class="hallazgo"><%= @survey_analysis.innovation %></p>
       
 
       
-        <h4>Capacidades Gremiales:</h4>
+        <h6 class="bold text-uppercase">Capacidades Gremiales:</h6>
         <p class="hallazgo"><%= @survey_analysis.guilds %></p>
       
       
-        <h4>Capacidades Copentenciales:</h4>
+        <h6 class="bold text-uppercase">Capacidades Copentenciales:</h6>
         <p class="hallazgo"><%= @survey_analysis.copetential %></p>
         
           
