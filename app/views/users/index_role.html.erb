@@ -8,12 +8,11 @@
         <%= link_to 'Atrás', roles_path, class: "back-button" %>
         <h1 class="main-headline inline-block">Usuarios</h1>
 
-        
-            <%= form_tag(index_role_path(role_id:@role),:role_id => @role, :method => "get", id: "search-form") do %>
-              <%= text_field_tag :search, params[:search],placeholder: "Search Posts" %>
-              <%= text_field_tag :role_id, @role,placeholder: "Search Posts" %>
-              <%= submit_tag "Buscar" %>
-            <% end %>
+        <%= form_tag(index_role_path(role_id:@role),:role_id => @role, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :search, params[:search],placeholder: "Buscar Usuario" %>
+          <%= text_field_tag :role_id, @role,placeholder: "Search Posts" %>
+          <%= submit_tag "Buscar" %>
+        <% end %>
         
         <table class="site-table">
             <thead>

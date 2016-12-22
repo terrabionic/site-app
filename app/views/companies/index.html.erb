@@ -45,6 +45,7 @@
     </div><!-- .actions-admin -->
 
     <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
+      <%= select_tag(:order, options_for_select([['', 'created_at'],['Empresa', 'company_name'], ['Estado', 'state'], ['Sector', 'sector_id']], 3)) %>
       <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
       <%= submit_tag "Buscar" %>
     <% end %>
