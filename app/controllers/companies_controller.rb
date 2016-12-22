@@ -7,15 +7,28 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    #@companies = Company.all
     if params[:search]
-      if params[:sort]
-        @companies = Company.search(params[:search]).order("? DESC",params[:sort])
+      if params[:order]
+        if params[:order] == 'sector_id'
+          @companies = Company.joins(:sector).search(params[:search]).order(" name DESC")
+        else
+          @companies = Company.search(params[:search]).order("? DESC",params[:order])
+        end
       else
         @companies = Company.search(params[:search]).order("created_at DESC")
       end
     else
-      @companies = Company.all.order('created_at DESC')
+      if params[:order]
+        if params[:order] == 'sector_id'
+          
+          @companies = Company.joins(:sector).order(" name DESC")
+        else
+          @companies = Company.all.order("? DESC",params[:order])
+        end
+      else
+        @companies = Company.all
+      end
     end
     @sectors = Sector.all
     @users = User.all
@@ -35,6 +48,10 @@ class CompaniesController < ApplicationController
     if @company.survey_analysis
       @survey_analysis = @company.survey_analysis
       @categories = get_categories(@survey_analysis.reply.survey)
+      unless @survey_analysis.date_print
+        @survey_analysis.date_print = Time.now
+        @survey_analysis.save
+      end
     end
     add_breadcrumb @company.company_name, company_path(@company)
     respond_to do |format|
@@ -47,6 +64,10 @@ class CompaniesController < ApplicationController
   def get_report_IC_pdf
     @company = Company.find(params[:id])
     @survey_analysis = @company.survey_analysis
+    unless @survey_analysis.date_print
+      @survey_analysis.date_print = Time.now
+      @survey_analysis.save
+    end
     @categories = get_categories(@survey_analysis.reply.survey)
     respond_to do |format|
       format.html

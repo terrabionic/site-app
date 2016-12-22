@@ -13,7 +13,8 @@
           <% end %>
     </div>
 
-    <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
+    <%= form_tag(index_emprered_path, :method => "get", id: "search-form") do %>
+      <%= select_tag(:order, options_for_select([['', 'created_at'],['Empresa', 'company_name'], ['Nombre', 'name'], ['Estado', 'state'], ['Sector', 'sector_id']], 3)) %>
       <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
       <%= submit_tag "Buscar" %>
     <% end %>
@@ -26,7 +27,7 @@
           <th>Email</th>
           <th>Nombre</th>
           <th>Industria</th>
-          <th>Status</th>
+          <th>Estado</th>
         </tr>
       </thead>
 
