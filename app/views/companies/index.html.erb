@@ -49,7 +49,7 @@
     <% end %>
     <div class="actions-admin">
     <% if current_user.is? 'admin' %>
-      Descargar Reporte: <%= link_to "Excel", companies_path(format: "xls") %>
+      Descargar Reporte: <%= link_to "Excel", companies_path(format: "xlsx") %>
     <% end %>
 	</div>
     <table class="site-table">
