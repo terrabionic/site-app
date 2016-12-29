@@ -25,16 +25,9 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
-
-    respond_to do |format|
-      if @contact.save
-        format.html { redirect_to root_path, notice: 'Contact was successfully send.' }
-        format.json { render :show, status: :created, location: @contact }
-      else
-        format.html { render :new }
-        format.json { render json: @contact.errors, status: :unprocessable_entity }
-      end
-    end
+    NotificationSite.notify_contact(@contact).deliver_now
+    @contact.destroy()
+	redirect_to root_path
   end
 
   # PATCH/PUT /contacts/1
@@ -59,6 +52,11 @@ class ContactsController < ApplicationController
       format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def action_send_invitation  
+    NotificationSite.notify_invitation(@company.user_login, pass, current_user).deliver_now
+    redirect_to company_path(id: params[:id])
   end
 
   private

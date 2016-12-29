@@ -1,0 +1,1 @@
+json.array! @login_managers, partial: 'login_managers/login_manager', as: :login_manager

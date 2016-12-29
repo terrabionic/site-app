@@ -30,6 +30,10 @@ class CompaniesController < ApplicationController
         @companies = Company.all
       end
     end
+    @login_manager = LoginManager.first
+    unless @login_manager
+		@login_manager = LoginManager.create()
+    end
     @sectors = Sector.all
     @users = User.all
     @roles = Role.all
@@ -38,7 +42,10 @@ class CompaniesController < ApplicationController
     respond_to do |format|
 		format.html
 		format.csv { send_data @companies.to_csv }
-		format.xls # { send_data @products.to_csv(col_sep: "\t") }
+    format.xlsx {
+      response.headers['Content-Disposition'] = 'attachment; filename="Compañias.xlsx"'
+    }
+		#format.xls # { send_data @products.to_csv(col_sep: "\t") }
 	  end
   end
 
@@ -238,7 +245,8 @@ class CompaniesController < ApplicationController
       else
         redirect_to root_path
       end
-      @analysis = SurveyAnalysis.create(agente:current_user,user_company:@company.user_login,reply_id:@reply.id)
+      @companies_count = Company.where("active = ?",true )
+      @analysis = SurveyAnalysis.create(agente:current_user,user_company:@company.user_login,reply_id:@reply.id, num_company: @companies_count.length)
       @company.survey_analysis = @analysis
       @company.stage = 'Analisis'
       @company.save

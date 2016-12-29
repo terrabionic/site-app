@@ -30,6 +30,9 @@ gem "breadcrumbs_on_rails"
 gem 'fullcalendar-rails', '~> 2.3.1.0'
 gem 'momentjs-rails'
 
+# Gemas para generar excel
+gem 'axlsx_rails'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

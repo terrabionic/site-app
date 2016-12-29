@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1><h1>Administrador de Contenido</h1></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email de Contacto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @login_managers.each do |login_manager| %>
+      <tr>
+        <td><%= login_manager.email_contact %></td>
+        <td><%= link_to 'Editar', edit_login_manager_path(login_manager) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Login manager', new_login_manager_path %>

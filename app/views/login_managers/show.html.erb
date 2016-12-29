@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Atrás', companies_path, class: "back-button" %>
+<h1>Administrador de Contenido</h1>
+<%= link_to 'Editar', edit_login_manager_path(@login_manager) %> 
+<br>
+<br>
+<p>
+  <strong>Email de contacto:</strong>
+  <%= @login_manager.email_contact %>
+</p>
+
+<p>
+  <strong>Quienes Somos:</strong>
+  <%= @login_manager.about_us %>
+</p>
+
+<p>
+  <strong>Aviso de Privasidad:</strong>
+  <%= @login_manager.privacy %>
+</p>
+
+<p>
+  <strong>Que hacemos:</strong>
+  <%= @login_manager.we_do %>
+</p>
+
+
