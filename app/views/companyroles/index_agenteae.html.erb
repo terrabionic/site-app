@@ -6,7 +6,8 @@
 
   <div class="main">
 
-    <%= form_tag(companies_path, :method => "get", id: "search-form") do %>
+    <%= form_tag(index_agenteae_path, :method => "get", id: "search-form") do %>
+      <%= select_tag(:order, options_for_select([['', 'created_at'],['Empresa', 'company_name'], ['Estado', 'state'], ['Sector', 'sector_id']], 3)) %>
       <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
       <%= submit_tag "Buscar" %>
     <% end %>
@@ -50,7 +51,7 @@
                 <% if company.done? %>
                   <%= link_to 'Análisis IC', show_survey_analysis_path(id:company.id) %>
                   <% if company.state == 'Terminado' %>
-                    <%= link_to 'Imprimir reporte IC', get_report_IC_pdf_path(company), target: "_blank" %>
+                    <%= link_to 'Imprimir reporte ICA', get_report_IC_pdf_path(company), target: "_blank" %>
                   <% end %>
                 <% end %>
               </td>

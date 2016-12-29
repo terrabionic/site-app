@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216000544) do
+ActiveRecord::Schema.define(version: 20161222232509) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -134,6 +134,15 @@ ActiveRecord::Schema.define(version: 20161216000544) do
     t.datetime "image_updated_at"
   end
 
+  create_table "login_managers", force: :cascade do |t|
+    t.string   "email_contact"
+    t.text     "about_us"
+    t.text     "privacy"
+    t.text     "we_do"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "municipios", force: :cascade do |t|
     t.string   "name"
     t.integer  "region_id"
@@ -220,6 +229,7 @@ ActiveRecord::Schema.define(version: 20161216000544) do
     t.integer  "num_electronic_kiosk"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.date     "date_print"
   end
 
   create_table "surveys", force: :cascade do |t|

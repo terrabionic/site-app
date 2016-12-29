@@ -1,0 +1,1 @@
+json.partial! "login_managers/login_manager", login_manager: @login_manager

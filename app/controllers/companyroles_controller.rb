@@ -3,11 +3,53 @@ class CompanyrolesController < ApplicationController
 	add_breadcrumb "Inicio", :root_path
 
 	def index_emprered
-		@companies = Company.all
+		if params[:search]
+	      if params[:order]
+	        if params[:order] == 'sector_id'
+	          @companies = Company.joins(:sector).search(params[:search]).order(" name DESC")
+	        else
+	          @companies = Company.search(params[:search]).order("? DESC",params[:order])
+	        end
+	      else
+	        @companies = Company.search(params[:search]).order("created_at DESC")
+	      end
+	    else
+	      if params[:order]
+	        if params[:order] == 'sector_id'
+	          
+	          @companies = Company.joins(:sector).order(" name DESC")
+	        else
+	          @companies = Company.all.order("? DESC",params[:order])
+	        end
+	      else
+	        @companies = Company.all
+	      end
+	    end
 	end
 
 	def index_agenteae
-		@companies = Company.all
+		if params[:search]
+	      if params[:order]
+	        if params[:order] == 'sector_id'
+	          @companies = Company.joins(:sector).search(params[:search]).order(" name DESC")
+	        else
+	          @companies = Company.search(params[:search]).order("? DESC",params[:order])
+	        end
+	      else
+	        @companies = Company.search(params[:search]).order("created_at DESC")
+	      end
+	    else
+	      if params[:order]
+	        if params[:order] == 'sector_id'
+	          
+	          @companies = Company.joins(:sector).order(" name DESC")
+	        else
+	          @companies = Company.all.order("? DESC",params[:order])
+	        end
+	      else
+	        @companies = Company.all
+	      end
+	    end
 	end
 
 	def show_reply_company

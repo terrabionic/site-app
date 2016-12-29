@@ -58,8 +58,10 @@
 				</p>
 
 				<h4 class="title-line">Rol</h4>
-				<% if @user.is? 'admin' %>
-					<%= link_to 'Editar', edit_role_u_path(@user), class: "btn" %>
+				<% if current_user.is? 'admin' %>
+					<p>
+						<%= link_to 'Editar', edit_role_u_path(@user), class: "btn" %>
+					</p>
 				<% end %>
 				<p>
 				  <strong>Rol:</strong>
@@ -92,7 +94,7 @@
 									<th>Fecha</th>
 									<th>Sector</th>
 									<th>Consultor Emprered</th>
-									<th>Consultor AE</th>
+									<th>Consultor AIE</th>
 									<th></th>
 								</tr>
 							</thead>

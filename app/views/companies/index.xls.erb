@@ -6,12 +6,13 @@
   xmlns:html="http://www.w3.org/TR/REC-html40">
   <Worksheet ss:Name="Sheet1">
     <Table>
-      <Row>
-        <Cell><Data ss:Type="String">Nombre</Data></Cell>
-        <Cell><Data ss:Type="String">Sector</Data></Cell>
-        <Cell><Data ss:Type="String">Municipio</Data></Cell>
-        <Cell><Data ss:Type="String">Región</Data></Cell>
-      </Row>
+		<Column ss:AutoFitWidth="0" ss:Width="60"/> 
+		<Row>
+			<Cell><Data ss:Type="String"><Span ss:Style="text-effect:outline">Nombre</Span></Data></Cell>
+			<Cell><Data ss:Type="String">Sector</Data></Cell>
+			<Cell><Data ss:Type="String">Municipio</Data></Cell>
+			<Cell><Data ss:Type="String">Región</Data></Cell>
+		</Row>
     <% @companies.each do |comapny| %>
       <Row>
         <Cell><Data ss:Type="String"><%= comapny.company_name %></Data></Cell>
