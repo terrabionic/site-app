@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :login_managers
   resources :economic_activities
   resources :municipios
   resources :regions

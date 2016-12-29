@@ -36,8 +36,10 @@
         <%= link_to 'Dar de alta nuevo consultor', users_path %>
         <%= link_to 'Regiones', regions_path %>
         <%= link_to 'Municipios', municipios_path %>
-        <%= link_to 'Gestor de Contenido', edit_login_manager_path(id: @login_manager) %>
       <% end %>
+      
+	
+      
       
     
     </div><!-- .actions-admin -->
@@ -49,7 +51,7 @@
     <% end %>
     <div class="actions-admin">
     <% if current_user.is? 'admin' %>
-      Descargar Reporte: <%= link_to "Excel", companies_path(format: "xlsx") %>
+      Descargar Reporte: <%= link_to "Excel", companies_path(format: "xls") %>
     <% end %>
 	</div>
     <table class="site-table">

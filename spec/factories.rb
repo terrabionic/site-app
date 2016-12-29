@@ -1,10 +1,4 @@
 FactoryGirl.define do
-  factory :login_manager do
-    email_contact "MyString"
-    about_us "MyText"
-    privacy "MyText"
-    we_do "MyText"
-  end
   factory :economic_activity do
     name "MyString"
   end
