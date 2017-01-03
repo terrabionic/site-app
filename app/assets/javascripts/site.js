@@ -57,6 +57,12 @@ var siteApp = (function($) {
 			});
 		}
 
+		if ($('#edit_reply_4').length) {
+			$("#edit_reply_4").formToWizard({
+  				submitButton: 'guardar'
+			});
+		}
+
 		if ($('#edit_survey_analysis_2').length) {
 			$("#edit_survey_analysis_2").formToWizard({
   				submitButton: 'guardar'

@@ -23,27 +23,49 @@
     </h1>
     <% unless @reply.done %>
       <% if current_user.is? 'company'%>
-        <%= link_to 'Editar', edit_survey_reply_path(@survey, @reply)  %>
+        <p class="color-green">
+          <%= link_to 'Editar', edit_survey_reply_path(@survey, @reply), class: "btn" %>  
+        </p>
       <% end %>
     <% end %>
 
-    <ul>
-      <% @categories.each do |category| %>
-        <h4><%= image_tag category.icon.url(:medium) %><br><%= category.title %></h4>
-        <% @reply.answers.each do |answer| %>
-          <% if answer.question.category.id == category.id %>
-            <li>
-              <strong><%= answer.question.title %></strong>
-              <% if current_user.is? 'admin' or current_user.is? 'agente' %>
-                <mark><%= answer.grade %> / <%= answer.question.grade %></mark>
-              <% end %>
-              <br>
-              <em><%= answer.title %></em>
-            </li>
-          <% end %>
-        <% end %>
+    <ul class="tabs tabs-categories" data-tabs id="example-tabs">
+      <% @categories.each_with_index do |category, index| %>
+        <li class="tabs-title<% if index == 0 %> is-active<% end %>">
+          <a href="#panel<%= index %>" aria-selected="true">
+            <%= image_tag category.icon.url(:medium) %>
+          </a>
+        </li>
       <% end %>
-</ul>
+    </ul><!-- .tabs -->
+
+    <div class="tabs-content tabs-content-categories" data-tabs-content="example-tabs">
+      <% @categories.each_with_index do |category, index| %>
+        <div class="tabs-panel<% if index == 0 %> is-active<% end %>" id="panel<%= index %>">
+          <h4 class="main-headline"><%= category.title %></h4>
+          <% @reply.answers.each do |answer| %>
+            <% if answer.question.category.id == category.id %>
+              <div class="question-item">
+                <p>
+                  <strong><%= answer.question.title %></strong>
+                  <% if current_user.is? 'admin' or current_user.is? 'agente' %>
+                  <small>
+                  Puntate: <mark><%= answer.grade %> / <%= answer.question.grade %></mark></small>
+                <% end %>
+                </p>
+                <% if answer.title %>
+                  <label class="radio-custom">
+                    <input type="radio" checked>
+                    <span></span>
+                    <%= answer.title %>
+                  </label>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div><!-- .tab-content -->
     
   </div>
 </div>

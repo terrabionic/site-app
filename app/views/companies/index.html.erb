@@ -71,7 +71,7 @@
           <% if can? :read, company %>
             <tr>
               <td><%= link_to company.company_name, show_general_path(id:company) %></td>
-              <td><%= company.state %></td>
+              <td class="estado--<%= company.state.downcase %>"><%= company.state %></td>
               <td><%= company.stage %></td>
               <td>
                 <% if company.date_start %>

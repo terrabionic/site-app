@@ -1,6 +1,17 @@
-<%= link_to 'Atrás', survey_reply_path(@survey, @reply) %>
-<h1>Editar respuesta </h1>
+<div class="layout">
+	<%= render 'shared/nav' %>
 
-<%= render 'form' %>
+	<div class="main">
 
+		<%= link_to 'Atrás', survey_reply_path(@survey, @reply), class: "back-button" %>
 
+		<h1 class="main-headline inline-block">
+			Editar respuesta
+		</h1>
+
+		<%= render 'form' %>
+		
+	</div>
+</div>
+
+<%= render "shared/footer" %>

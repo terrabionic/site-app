@@ -43,7 +43,7 @@
                   <%= company.sector.name %>
                 <% end %>
               </td>
-              <td><%= company.state %></td>
+              <td class="estado--<%= company.state.downcase %>"><%= company.state %></td>
             </tr>
           <% end %>
         <% end %>
