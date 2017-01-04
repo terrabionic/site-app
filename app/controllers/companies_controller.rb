@@ -64,7 +64,11 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf{render template: 'companies/report_ic', pdf: 'Reporte_IC'}
+      format.pdf do
+        render  template: 'companies/report_ic',
+                pdf: 'file_name',
+                viewport_size: '1280x1024'
+      end
     end
   end
 
@@ -79,7 +83,11 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf{render template: 'companies/report_ic', pdf: 'Reporte_IC'}
+      format.pdf do
+        render  template: 'companies/report_ic',
+                pdf: 'file_name',
+                viewport_size: '1280x1024'
+      end
     end
   end
 

@@ -1,24 +1,90 @@
 <!doctype html>
 <html>
+
 	<head>
 		<title></title>
-		<meta charset="utf-8">
-	</head>
-	<body>
-	<div>
-		<br><br><br><br><br>
-		<p style="text-align: center;"><strong>Agencia de Innovación Empresarial de Hidalgo</strong></p>
-		<br><br><br><br><br>
-		<p style="text-align: right;">
-			<strong><%= @company.company_name %></strong>
-			<br>
-			<strong>Reporte preliminar de Inteligencia Competitiva</strong>
-		</p>
-	</div>
-	<div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>
 
-<ul>
-  <li style="list-style:none;">
+		<meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.0/css/foundation.min.css">
+
+    <%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+
+    <style>
+      body {
+        padding-left: .618rem;
+        padding-right: .618rem;
+      }
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+    <script type="text/javascript">
+
+      google.load("visualization", "1", {packages:["corechart"]});
+
+      google.setOnLoadCallback(drawCharts);
+
+      function drawCharts() {
+
+        var $chartIndividual = $('.js-chart-category');
+
+        if ($chartIndividual.length) {
+
+          $chartIndividual.each(function() {
+
+            var data = new google.visualization.DataTable();
+
+            data.addColumn('string', 'Category');
+
+            data.addColumn('number', 'Points');
+
+            // console.log($(this).data('rows'));
+
+            data.addRows($(this).data('rows'));
+
+            var options = {
+              colors:['#22A89E','#E6E7E9'],
+              legend: {
+                position: 'none'
+              }
+            };
+
+            var chart = new google.visualization.PieChart(this);
+
+            chart.draw(data, options);  
+
+          });
+
+        }
+
+      }
+
+    </script>
+
+	</head>
+	
+  <body class="wicked-pdf">
+  
+  	<div class="cover">
+
+      <div class="cover-content">
+        <figure class="text-center">
+          <%= wicked_pdf_image_tag "logotipo-header.png" %>  
+        </figure>
+        <br><br><br><br>
+        <h3 class="main-headline text-left">Sistema de Inteligencia y Tecnología Empresarial</h3>
+        <br><br>
+        <h4><%= @company.company_name %></h4>  
+        <p class="color-green lead">Reporte preliminar de Inteligencia Competitiva</p>
+      </div><!-- .cover-content -->
+  		
+  	</div><!-- .cover -->
+
+  	<div class="alwaysbreak"></div>
+
     <p><strong>SE CREA LA&nbsp; AGENCIA </strong></p>
 
     <p>Como un puente de comunicaci&oacute;n entre los actores del &aacute;mbito acad&eacute;mico, empresarial, gubernamental, sociedad civil organizada y las empresas locales para facilitar el flujo de conocimiento, agregando valor a sus asociados para la generaci&oacute;n y aplicaci&oacute;n de acciones en beneficio directo de las empresas hidalguenses.</p>
@@ -103,12 +169,9 @@
     <ul style="list-style-type:circle;">
       <li>Otro kiosco se encuentra en el Instituto Hidalguense de Competitividad Empresarial.</li>
     </ul>
-    <br>
 
-    <div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>
-
-    <p style="text-align: center;"><%= wicked_pdf_image_tag @survey_analysis.user_company.company.image_logo.url(:medium) %></p>
-    <h3><%= @survey_analysis.user_company.company_name %><br></h3>
+    <p><%= wicked_pdf_image_tag @survey_analysis.user_company.company.image_logo.url(:medium) %></p>
+    <h5><%= @survey_analysis.user_company.company_name %><br></h5>
     <strong><%= @survey_analysis.user_company.company.name_director %><br></strong>
     
     Director de la empresa<br><br>
@@ -122,76 +185,96 @@
     <p>El presente reporte permitir&aacute;&nbsp; a esta empresa tener informaci&oacute;n clave que contribuya a generar acciones con prop&oacute;sitos anticipatorios.</p>
 
     <p>A continuaci&oacute;n se muestran los resultados derivados de la aplicaci&oacute;n del diagn&oacute;stico&nbsp;</p>
-  </li>
 
-  <li style="list-style:none;">
-    <p>
-      <p style="text-align: center;"><strong>Diagnóstico:</strong></p>
-        <table>
-			<% @categories.each do |category| %>
-				<tr>
-				  <td colspan="2"><h3><%= wicked_pdf_image_tag category.icon.url(:medium) %><%= category.title %></h3></td>
-				</tr>
-				<tr>
-				  <td>
-					DETALLE<br>
-					<hr color="black">
-					Puntaje Obtenido<br>
-					<%= category.grade_obtained(reply: @survey_analysis.reply.id) %> pts<br><br>
-					Puntaje Ideal<br>
-					<%= category.grade_total %> pts 100%
-				  </td>
-				  <td>
-					<% @count_question = 0 %>
-					<% @survey_analysis.reply.answers.each do |answer| %>
-					  <% if answer.question.category.id == category.id %>
-						<% @count_question = @count_question + 1 %>
-						  <strong><%= @count_question %>.- <%= answer.question.title %></strong>
-						  <br>
-						  <em><u><%= answer.title %></u></em><br>
-						
-						<br>
-					  <% end %>
-					<% end %>
-				  </td>
-				</tr>
-			<% end %>
-		</table>
-    </p>
-    <div style="page-break-after: always"><span style="display: none;">&nbsp;</span></div>
-  </li>
+    <div class="alwaysbreak"></div>
+    
+    <h2 class="main-headline">DIAGNÓSTICO</h2><br>
 
-  <li style="list-style:none;">
-    <p style="text-align: center;"><strong>Hallazgos y Recomendaciones</strong></p>
+    <% @categories.each do |category| %>
+
+      <h3 class="title-line category-title">
+        <%= wicked_pdf_image_tag category.icon.url(:medium) %><%= category.title %>
+      </h3>  
+
+      <div class="row">
+
+        <div class="medium-5 columns"> 
+
+          <div id="category-#<%= category.id %>" class="js-chart-category" data-rows='[["Obtenido", <%= category.grade_obtained(reply: @survey_analysis.reply.id) %>], ["No obtenido", <%= category.grade_total - category.grade_obtained(reply: @survey_analysis.reply.id) %>]]' style="width: 200px; height: 250px;"></div>
+
+          <div class="general-details">
+            <h5>DETALLE</h5>
+        
+            <h6><small>PUNTAJE OBTENIDO</small></h6>
+            <strong><%= category.grade_obtained(reply: @survey_analysis.reply.id) %> pts.</strong>
+            
+            <h6><small>PUNTAJE IDEAL</small></h6>
+
+            <strong><%= category.grade_total %> pts. 100%</strong>
+          </div>
+
+        </div><!-- .medium-5 -->
+
+        <div class="medium-7 columns">
+
+          <% @count_question = 0 %>
+          <% @survey_analysis.reply.answers.each do |answer| %>
+            <% if answer.question.category.id == category.id %>
+              <% @count_question = @count_question + 1 %>
+                
+              <div class="question-item">
+                <p>
+                  <strong><%= @count_question %>.- <%= answer.question.title %></strong>
+                  <% if current_user.is? 'admin' or current_user.is? 'agente' %>
+                  <small class="hide">
+                    Puntaje: <mark><%= answer.grade %> / <%= answer.question.grade %></mark></small>
+                  <% end %>
+
+                </p>
+   
+                <%= answer.title %>
+
+                <p class="color-green bolder hide">Solución:</p>
+                <p class="hide"><%= answer.solution %></p>
+
+              </div><!-- .question-item -->
+              
+            <% end %>
+          <% end %>            
+        </div><!-- .medium-7 -->
+        
+      </div><!-- .row -->
+
+      <div class="alwaysbreak"></div>
+      
+    <% end %>
+
+    <h2 class="main-headline">HALLAZGOS Y RECOMENDACIONES</h2><br>
+
     <p>
-      <h3>Organizacional:</h3>
+      <h5>Organizacional:</h5>
       <%= @survey_analysis.organizational %>
     </p>
     <br>
     <p>
-      <h3>Gestión de Innovación:</h3>
+      <h5>Gestión de Innovación:</h5>
       <%= @survey_analysis.innovation_management %>
     </p>
-	<br>
+    <br>  
     <p>
-      <h3>Innovación:</h3>
+      <h5>Innovación:</h5>
       <%= @survey_analysis.innovation %>
     </p>
     <br>
     <p>
-      <h3>Capacidades Gremiales:</h3>
+      <h5>Capacidades Gremiales:</h5>
       <%= @survey_analysis.guilds %>
     </p>
     <br>
     <p>
-      <h3>Capacidades Copentenciales:</h3>
+      <h5>Capacidades Copentenciales:</h5>
       <%= @survey_analysis.copetential %>
     </p>
-  </li>
-</ul>
-
-</ul>
-
 
 	</body>
 </html>
