@@ -1227,3 +1227,26 @@ select {
 		background: #b91926;
 	}	
 }
+
+@media (max-width: 768px) {
+
+	.login-page__footer {
+		a {
+			padding-left: .5rem;
+			padding-right: .5rem;
+			span {
+				font-size: 12px;
+			}
+		}
+		svg {
+			width: 30px;
+		}
+	}
+
+	.login-page__header {
+		img {
+			width: 200px;
+		}
+	}
+
+}
