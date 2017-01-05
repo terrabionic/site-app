@@ -29,10 +29,10 @@
         <% @companies.each do |company| %>
           <% if can? :read, company %>
             <tr>
-              <td><%= company.company_name %></td>
-              <td><%= company.state %></td>
-              <td><%= company.stage %></td>
-              <td>
+              <td data-title="Empresa"><%= company.company_name %></td>
+              <td data-title="Estatus"><%= company.state %></td>
+              <td data-title="Etapa"><%= company.stage %></td>
+              <td data-title="Fecha">
                 <% if company.date_start %>
                   <strong>Inicio: </strong><%= company.date_start %>
                   <br/>
@@ -41,13 +41,13 @@
                   <strong>Fin: </strong><%= company.date_end %>
                 <% end %>
               </td>
-              <td><%= company.city %></td>
-              <td>
+              <td data-title="Municipio"><%= company.city %></td>
+              <td data-title="Sector">
                 <% if company.sector %>
                   <%= company.sector.name %>
                 <% end %>
               </td>
-              <td>
+              <td data-title="Reporte">
                 <% if company.done? %>
                   <%= link_to 'Análisis IC', show_survey_analysis_path(id:company.id) %>
                   <% if company.state == 'Terminado' %>

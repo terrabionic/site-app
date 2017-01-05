@@ -803,6 +803,8 @@ select {
 
 .question-item {
 	margin-bottom: 1.618em;
+	position: relative; 
+	z-index: 4;
 	small {
 		font-size: 16px;
 
@@ -1230,6 +1232,23 @@ select {
 
 @media (max-width: 1024px) {
 
+
+
+	.general-chart {
+		.max-1000 {
+			.columns {
+				width: 100%;
+			}
+			.medium-9 {
+				text-align: center;
+			}
+		}
+
+		#chart-categories {
+			float: left;
+		}
+	}
+
 	.nav {
 		display: none;
 	}
@@ -1258,7 +1277,26 @@ select {
 
 }
 
+@media (max-width: 960px) {
+
+	.individual-chart {
+		.columns {
+			width: 100%;
+		}
+	}
+}
+
 @media (max-width: 768px) {
+
+
+	.general-chart {
+		#chart-categories {
+		    -ms-transform: scale(.7); /* IE 9 */
+			-webkit-transform: scale(.7); /* Safari */
+			transform: scale(.7);
+			margin-left: -15%;
+		}
+	}
 
 	.login-page__footer {
 		a {
@@ -1316,6 +1354,21 @@ select {
 
 @media (max-width: 640px) {
 
+	.js-chart-category {
+		width: 300px !important;
+		overflow: hidden;
+		margin-left: -20%;
+	}
+
+	.general-chart {
+		#chart-categories {
+		    -ms-transform: scale(.5); /* IE 9 */
+			-webkit-transform: scale(.5); /* Safari */
+			transform: scale(.5);
+			margin-left: -43%;
+		}
+	}
+
 	.site-header__logo {
 		width: 180px;
 		position: relative;
@@ -1344,6 +1397,15 @@ select {
 }
 
 @media (max-width: 320px) {
+
+	.general-chart {
+		#chart-categories {
+		    -ms-transform: scale(.4); /* IE 9 */
+			-webkit-transform: scale(.4); /* Safari */
+			transform: scale(.4);
+			margin-left: -70%;
+		}
+	}
 
 	.site-tabs a {
 		font-size: 16px;
