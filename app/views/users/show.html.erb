@@ -102,10 +102,10 @@
 								<% Company.where('emprered_id = ? or agent_id = ?',@user.id,@user.id).each do |company| %>
 									<% if can? :read, company %>
 										<tr>
-											<td><%= link_to company.company_name, show_general_path(id:company) %></td>
-											<td><%= company.state %></td>
-											<td><%= company.stage %></td>
-											<td>
+											<td data-title="Empresa"><%= link_to company.company_name, show_general_path(id:company) %></td>
+											<td data-title="Estado"><%= company.state %></td>
+											<td data-title="Etapa"><%= company.stage %></td>
+											<td data-title="Fecha">
 												<% if company.date_start %>
 													<strong>Inicio: </strong><%= company.date_start %>
 													<br/>
@@ -114,12 +114,12 @@
 													<strong>Fin: </strong><%= company.date_end %>
 												<% end %>
 											</td>
-											<td>
+											<td data-title="Sector">
 											<% if company.sector %>
 											  <%= company.sector.name %>
 											<% end %>
 											</td>
-											<td>
+											<td data-title="Emprered">
 											<% if current_user.is? 'admin' %>
 											  <% unless @states.include?(company.state) %>
 												<% if company.emprered %>
@@ -140,7 +140,7 @@
 											  <% end %>
 											<% end %>
 											</td>
-											<td>
+											<td data-title="Emprered">
 											<% if current_user.is? 'admin' %>
 											  <% if company.state == 'Nuevo' %>
 												<% if company.agent %>

@@ -23,7 +23,7 @@
     <table class="site-table">
       <thead>
         <tr>
-          <th>Nombre de Empresa</th>
+          <th>Empresa</th>
           <th>Email</th>
           <th>Nombre</th>
           <th>Industria</th>
@@ -35,15 +35,15 @@
         <% @companies.each do |company| %>
           <% if can? :read, company %>
             <tr>
-              <td><%= link_to company.company_name, company_path(id:company) %></td>
-              <td><%= company.email %></td>
-              <td><%= company.name %></td>
-              <td>
+              <td data-title="Empresa"><%= link_to company.company_name, company_path(id:company) %></td>
+              <td data-title="Email"><%= company.email %></td>
+              <td data-title="Nombre"><%= company.name %></td>
+              <td data-title="Industria">
                 <% if company.sector %>
                   <%= company.sector.name %>
                 <% end %>
               </td>
-              <td class="estado--<%= company.state.downcase %>"><%= company.state %></td>
+              <td data-title="Estado" class="estado--<%= company.state.downcase %>"><%= company.state %></td>
             </tr>
           <% end %>
         <% end %>
