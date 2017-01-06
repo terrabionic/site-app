@@ -26,7 +26,7 @@
         <% @categories.each do |category| %>
           <tr id="<%= dom_id(category) %>">
             <td class="icono-container"><%= image_tag category.icon.url(:medium) %></td>
-            <td><%= link_to category.title , category %></td>
+            <td data-title="Factor"><%= link_to category.title , category %></td>
             <td><%= link_to 'Eliminar', category, method: :delete, data: { confirm: '¿Estas seguro de eliminar?' }, class: "btn--red" %></td>
           </tr>
         <% end %>

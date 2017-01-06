@@ -1331,7 +1331,7 @@ select {
 			display: block;
 			text-align: right;
 			&:after {
-				content: attr(data-title) ": ";
+				content: attr(data-title) " ";
 				font-weight: 500;
 				float:left;
 			}

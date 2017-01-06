@@ -25,8 +25,8 @@
 				<% if @agents %>
 					<% @agents.each do |agent| %>
 						<tr>
-						  <td><%= agent.name %></td>
-						  <td>
+						  <td data-title="Nombre"><%= agent.name %></td>
+						  <td data-title="Estatus">
 							<% if agent.available %>
 								<strong>Disponible</strong>
 							<% else %>

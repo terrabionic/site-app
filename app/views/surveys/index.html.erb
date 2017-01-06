@@ -23,7 +23,7 @@
         <tbody>
           <% @surveys.each do |survey| %>
             <tr id="<%= dom_id(survey) %>">
-              <td><%= link_to survey.title , edit_survey_path(survey) %></td>
+              <td data-title="Diagnóstico"><%= link_to survey.title , edit_survey_path(survey) %></td>
               <td><%= link_to 'Preguntas', survey_questions_path(survey) %></td>
               <!-- <td><%= link_to 'Encuestas respondidas', survey_replies_path(survey) %></td> -->
               <td><%= link_to 'Eliminar', survey, method: :delete, data: { confirm: '¿Estas seguro de eliminarlo?' } %></td>

@@ -26,9 +26,9 @@
       <tbody>
         <% @roles.each do |role| %>
           <tr>
-            <td><%= link_to role.name, role_path(role) %></td>
-            <td><%= role.description %></td>
-            <td>
+            <td data-title="Nombre"><%= link_to role.name, role_path(role) %></td>
+            <td data-title="Descripción"><%= role.description %></td>
+            <td data-title="Usuarios">
               <%= link_to role.get_user_by_role(role), index_role_path(role_id:role) %>
             </td>
           </tr>

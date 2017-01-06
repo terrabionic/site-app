@@ -32,13 +32,13 @@
                     <% if user.role %>
                         <% unless user.role.role == 'company' %>
                             <tr>
-                                <td>
+                                <td data-title="Nombre">
                                     <%= link_to user.name, show_user_admin_path(user) %>
                                 </td>
-                                <td>
+                                <td data-title="Email">
                                     <%= user.email %>
                                 </td>
-                                <td>
+                                <td data-title="Role">
                                     <% if user.role %>
                                         <%= user.role.name %>
                                     <% end %>

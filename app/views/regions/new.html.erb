@@ -1,6 +1,13 @@
-<%= link_to 'Atrás', regions_path %>
-<h1>Nueva Región</h1>
+<div class="layout">
+	<%= render 'shared/nav' %>
+	<div class="main">
+		
+		<div class="form-container">
+			<%= link_to 'Atrás', regions_path, class: "back-button" %>
+			<h1 class="main-headline inline-block">Nueva Región</h1>
 
-<%= render 'form' %>
-
-
+			<%= render 'form' %>
+		</div>
+	</div>
+</div>
+<%= render "shared/footer" %>

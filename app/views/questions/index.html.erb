@@ -24,9 +24,9 @@
       <tbody>
         <% @survey.questions.each do |question| %>
           <tr id="<%= dom_id(question) %>">
-            <td><%= link_to question.title, edit_survey_question_path(@survey, question) %></td>
-            <td><%= question.grade %></td>
-            <td><%= question.category.title %></td>
+            <td data-title="Pregunta"><%= link_to question.title, edit_survey_question_path(@survey, question) %></td>
+            <td data-title="Valor"><%= question.grade %></td>
+            <td data-title="Factor"><%= question.category.title %></td>
             <td><%= link_to 'Posibles Respuestas', question_possible_answers_path(question) %></td>
             <td><%= link_to 'Eliminar', survey_question_path(@survey, question), method: :delete, data: { confirm: '¿Estas seguro de eliminarlo?' }, class: " btn--red" %></td>
           </tr>

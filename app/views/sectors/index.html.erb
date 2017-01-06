@@ -24,8 +24,8 @@
         <% @sectors.each do |sector| %>
           <tr>
             <td><%= link_to (image_tag (sector.image.url(:thumb)), class: 'work'), action_activate_deactivate_path(sector_id:sector), method: :post %></td>
-            <td><%= link_to sector.name, sector %></td>
-            <td><%= sector.description %></td>
+            <td data-title="Nombre"><%= link_to sector.name, sector %></td>
+            <td data-title="Descripción"><%= sector.description %></td>
           </tr>
         <% end %>
       </tbody>

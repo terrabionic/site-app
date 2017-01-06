@@ -23,9 +23,9 @@
       <tbody>
         <% @question.possible_answers.each do |possible_answer| %>
           <tr id="<%= dom_id(possible_answer) %>">
-            <td><%= link_to possible_answer.title, edit_question_possible_answer_path(@question, possible_answer) %></td>
-            <td><%= possible_answer.description %></td>
-            <td><%= possible_answer.grade %></td>
+            <td data-title="Respuesta"><%= link_to possible_answer.title, edit_question_possible_answer_path(@question, possible_answer) %></td>
+            <td data-title="Descripción"><%= possible_answer.description %></td>
+            <td data-title="Valor"><%= possible_answer.grade %></td>
             <td><%= possible_answer.solution %></td>
             <td><%= link_to 'Eliminar', question_possible_answer_path(@question, possible_answer), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn--red" %></td>
           </tr>

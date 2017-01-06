@@ -7,9 +7,10 @@
   <div class="main">
 	<%= link_to 'Atrás', companies_path, class: "back-button" %>
 	<h1 class="main-headline inline-block">Niveles de Curso</h1>
-	<br>
-	<%= link_to 'Nuevo nivel', new_level_path %>
-	<br>
+	<p>
+		<%= link_to 'Nuevo nivel', new_level_path, class: "btn" %>	
+	</p>
+	
 	<table class="site-table">
 	  <thead>
 		<tr>
@@ -23,7 +24,7 @@
 		<% @levels.each do |level| %>
 		  <tr>
 			<td><%= image_tag (level.image.url(:thumb)) %></td>
-			<td><%= link_to level.title, edit_level_path(level) %></td>
+			<td data-title="Nombre"><%= link_to level.title, edit_level_path(level) %></td>
 			<td><%= link_to 'Eliminar', level, method: :delete, data: { confirm: 'Seguro que desea eliminarlo?' } %></td>
 		  </tr>
 		<% end %>

@@ -10,7 +10,9 @@
 
         <%= form_tag(index_role_path(role_id:@role),:role_id => @role, :method => "get", id: "search-form") do %>
           <%= text_field_tag :search, params[:search],placeholder: "Buscar Usuario" %>
-          <%= text_field_tag :role_id, @role,placeholder: "Search Posts" %>
+          <div class="hide">
+            <%= text_field_tag :role_id, @role,placeholder: "Search Posts" %>    
+          </div>
           <%= submit_tag "Buscar" %>
         <% end %>
         
@@ -31,15 +33,15 @@
             <tbody>
                 <% @users.each do |user| %>
                     <tr>
-                        <td>
+                        <td data-title="Nombre">
                             <%= link_to user.name, show_user_admin_path(user) %>  
                         </td>
-                        <td>
+                        <td data-title="Rol">
                             <% if user.role %>
                                 <%= user.role.name %>
                             <% end %>
                         </td>
-                        <td>
+                        <td data-title="Lugar">
                             <%= user.location %>
                         </td>
                     </tr>

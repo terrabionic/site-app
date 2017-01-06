@@ -26,8 +26,8 @@
 				<% if @emprereds %>
 					<% @emprereds.each do |emprered| %>
 						<tr>
-						  <td><%= emprered.name %></td>
-						  <td>
+						  <td data-title="Nombre"><%= emprered.name %></td>
+						  <td data-title="Estatus">
 							<% if emprered.available %>
 								<strong>Disponible</strong>
 							<% else %>
