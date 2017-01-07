@@ -92,6 +92,40 @@ select {
 	border-radius: 4px !important;
 }
 
+
+.ordenar-field {
+	strong {
+		font-weight: 500;
+		color: #32365D;
+		margin-right: .5rem;
+	}
+	select {
+		width: 200px;
+	}
+}
+
+.search-field {
+	text-align: right;
+	span {
+		margin-right: -27px;
+		color: gray;
+		&:before {
+			position: relative;
+			z-index: 100;
+			top: 3px;
+		}
+	}
+	input {
+		padding-left: 30px;
+		width: auto;
+		display: inline-block;
+		vertical-align: middle;
+		margin: 0;
+
+	}
+}
+
+
 .login-page {
 	background-image: image-url("bg-login.png");
 	min-height: 100%;
@@ -1288,6 +1322,16 @@ select {
 
 @media (max-width: 768px) {
 
+	.buscador {
+		margin-bottom: 1.618rem;
+	}
+
+	
+	.ordenar-field,
+	.search-field {
+		width: 100%;
+		text-align: left;
+	}
 
 	.general-chart {
 		#chart-categories {
@@ -1354,6 +1398,18 @@ select {
 
 @media (max-width: 640px) {
 
+	.search-field {
+		span {
+			margin-left: 8px;
+			&:before {
+				top: -5px;
+			}
+		}
+		input {
+			margin-bottom: 1rem;
+		}
+	}
+
 	.js-chart-category {
 		width: 300px !important;
 		overflow: hidden;
@@ -1397,7 +1453,7 @@ select {
 }
 
 @media (max-width: 320px) {
-
+	
 	.general-chart {
 		#chart-categories {
 		    -ms-transform: scale(.4); /* IE 9 */
@@ -1412,6 +1468,5 @@ select {
 		padding-left: 4px;
 		padding-right: 4px;
 	}
-
 
 }

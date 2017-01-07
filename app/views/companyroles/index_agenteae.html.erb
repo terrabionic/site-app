@@ -6,10 +6,18 @@
 
   <div class="main">
 
-    <%= form_tag(index_agenteae_path, :method => "get", id: "search-form") do %>
-      <%= select_tag(:order, options_for_select([['', 'created_at'],['Empresa', 'company_name'], ['Estado', 'state'], ['Sector', 'sector_id']], 3)) %>
-      <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
-      <%= submit_tag "Buscar" %>
+    <%= form_tag(index_agenteae_path, :method => "get", id: "search") do %>
+      <div class="row buscador">
+        <div class="medium-6 columns ordenar-field">
+        <strong>Ordenar</strong>
+      <%= select_tag(:order, options_for_select([['', 'created_at'],['Empresa', 'company_name'], ['Estado', 'state'], ['Sector', 'sector_id']], 3)) %>    
+        </div>
+        <div class="medium-6 columns search-field">
+          <span class="icon-buscador"></span>
+          <%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
+          <%= submit_tag "Buscar" %>    
+        </div>
+      </div>
     <% end %>
 
     <table class="site-table">
@@ -30,7 +38,7 @@
           <% if can? :read, company %>
             <tr>
               <td data-title="Empresa"><%= company.company_name %></td>
-              <td data-title="Estatus"><%= company.state %></td>
+              <td data-title="Estado" class="estado--<%= company.state.downcase %>"><%= company.state %></td>
               <td data-title="Etapa"><%= company.stage %></td>
               <td data-title="Fecha">
                 <% if company.date_start %>
