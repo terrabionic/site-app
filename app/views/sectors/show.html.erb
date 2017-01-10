@@ -6,11 +6,11 @@
 	<div class="main">
 		<%= link_to 'Atrás', sectors_path, class: "back-button" %>
 
-		<h1 class="main-headline inline-block"><%= @sector.name %></h1>
+		<h1 class="main-headline inline-block mr-1"><%= @sector.name %></h1>
 
-		<p>
-		  <%= link_to 'Editar', edit_sector_path(@sector), class: "btn" %>
-		</p>
+		
+		  <%= link_to 'Editar', edit_sector_path(@sector), class: "btn--gris btn--small" %>
+		
 
 		<p>
 		  <strong>Descripción:</strong>
@@ -23,7 +23,9 @@
 
 		<p>
 		  <strong>Imagen:</strong><br>
-		  <%= image_tag @sector.image.url(:medium) %>
+		  <div class="category-title">
+			  <%= image_tag @sector.image.url(:medium) %>	
+		  </div>
 		</p>
 
 		

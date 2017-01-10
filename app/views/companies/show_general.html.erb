@@ -71,9 +71,9 @@
         <% if current_user.is? 'admin' %>
           <% if @company.emprered %>
             <%= @company.emprered.name %>
-            <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(@company), class: "btn" %>
+            <%= link_to 'Cambiar Consultor', edit_asign_emprered_path(@company), class: "btn--gris btn--small" %>
           <% else %>
-            <%= link_to 'Asignar', edit_asign_emprered_path(@company), class: "btn" %>
+            <%= link_to 'Asignar', edit_asign_emprered_path(@company), class: "btn--gris btn--small" %>
           <% end %>
         <% else %>
           <%= @company.emprered.name %>
@@ -110,7 +110,7 @@
             <%= @company.agent.name %>
           <% end %>
         <% else %>
-          <%= link_to 'Asignar', edit_asign_agent_path(@company), class: "btn" %> 
+          <%= link_to 'Asignar', edit_asign_agent_path(@company), class: "btn--gris btn--small" %> 
         <% end %>
       <% end %>
     </p>

@@ -43,7 +43,7 @@
     </div><!-- .actions-admin -->
 
     <%= form_tag(index_agenteae_path, :method => "get", id: "search") do %>
-      <div class="row buscador">
+      <div class="row buscador" style="max-width: none; margin-left: -15px;">
         <div class="medium-6 columns ordenar-field">
         <strong>Ordenar</strong>
       <%= select_tag(:order, options_for_select([['', 'created_at'],['Empresa', 'company_name'], ['Estado', 'state'], ['Sector', 'sector_id']], 3)) %>    

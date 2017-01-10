@@ -984,14 +984,33 @@ select {
 	font-weight: 500;
 }
 
+.white-space {
+	height: 20px;
+}
+
 .btn {
 	@extend %btn;
 	background: #70B23A;
 }
 
+.mr-1 {
+	margin-right: 16px !important;
+}
+
+.btn--gris {
+	@extend %btn;
+	color: #869198 !important;
+	background: #f4f5f6;
+}
+
 .btn--red {
 	@extend %btn;
 	background: #E13D4F;
+}
+
+.btn--small {
+	padding-left: 1rem;
+	padding-right: 1rem;
 }
 
 .text-bigger {

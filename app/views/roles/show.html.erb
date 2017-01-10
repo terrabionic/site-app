@@ -11,8 +11,9 @@
 
 		<h4 class="title-line">General</h4>
 
-		<h4 class="color-green text-bigger">Acerca del role</h4>
-		<%= link_to 'Editar', edit_role_path(@role), class: "btn" %>
+		<h4 class="color-green text-bigger inline-block mr-1">Acerca del role</h4>
+		<%= link_to 'Editar', edit_role_path(@role), class: "btn--gris btn--small" %>
+		<div class="white-space"></div>
 		<p>
 		  <strong>Nombre del rol:</strong>
 		  <%= @role.name %>
@@ -28,9 +29,9 @@
 		  <%= @role.get_user_by_role(@role) %>
 		</p>
 
-		<h4 class="color-green text-bigger">Permisos</h4>
+		<h4 class="color-green text-bigger inline-block mr-1">Permisos</h4>
 
-		<%= link_to 'Editar', edit_permissions_path(@role), class: "btn" %>
+		<%= link_to 'Editar', edit_permissions_path(@role), class: "btn--gris btn--small" %>
 		<p>
 		  <strong>Rol:</strong>
 		  <%= @role.get_role_name(@role.role)%>

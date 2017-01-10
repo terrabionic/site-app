@@ -27,11 +27,12 @@
 			  <div class="tabs-panel is-active" id="consultor">
 
 				<h4 class="title-line">General</h4>
-				<p>
-					<%= link_to 'Editar', edit_user_path(@user), class: "btn" %>
-				</p>
 				
-				<h2 class="color-green text-bigger">Acerca del consultor </h2>
+			
+				
+				
+				<h2 class="color-green text-bigger inline-block mr-1">Acerca del consultor </h2>
+				<%= link_to 'Editar', edit_user_path(@user), class: "btn--gris btn--small" %>
 				<p>
 				  <strong>Nombre:</strong>
 				  <%= @user.name %>
@@ -57,12 +58,12 @@
 				  <%= @user.last_sign_in_at %>
 				</p>
 
-				<h4 class="title-line">Rol</h4>
-				<% if current_user.is? 'admin' %>
-					<p>
-						<%= link_to 'Editar', edit_role_u_path(@user), class: "btn" %>
-					</p>
-				<% end %>
+				<h4 class="title-line">Rol&nbsp;&nbsp;
+					<% if current_user.is? 'admin' %>
+						<%= link_to 'Editar', edit_role_u_path(@user), class: "btn--gris btn--small" %>
+					<% end %>
+				</h4>
+				
 				<p>
 				  <strong>Rol:</strong>
 				  <% if @user.role %>
