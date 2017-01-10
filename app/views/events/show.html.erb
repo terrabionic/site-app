@@ -1,44 +1,57 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+<div class="layout">
 
-<p>
-  <strong>Start at:</strong>
-  <%= @event.start_at %>
-</p>
+  <%= render 'shared/nav' %>
+  
+  <div class="main">
+    <p>
+      <strong>Title:</strong>
+      <%= @event.title %>
+    </p>
 
-<p>
-  <strong>End at:</strong>
-  <%= @event.end_at %>
-</p>
+    <p>
+      <strong>Start at:</strong>
+      <%= @event.start_at %>
+    </p>
 
-<p>
-  <strong>Allday:</strong>
-  <%= @event.allDay %>
-</p>
+    <p>
+      <strong>End at:</strong>
+      <%= @event.end_at %>
+    </p>
 
-<p>
-  <strong>Name exhibitor:</strong>
-  <%= @event.name_exhibitor %>
-</p>
+    <p>
+      <strong>Allday:</strong>
+      <%= @event.allDay %>
+    </p>
 
-<p>
-  <strong>Level:</strong>
-  <%= @event.level %>
-</p>
+    <p>
+      <strong>Name exhibitor:</strong>
+      <%= @event.name_exhibitor %>
+    </p>
 
-<p>
-  <strong>Hours:</strong>
-  <%= @event.hours %>
-</p>
+    <p>
+      <strong>Level:</strong>
+      <%= @event.level.title %>
+    </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @event.price %>
-</p>
+    <p>
+      <strong>Hours:</strong>
+      <%= @event.hours %>
+    </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+    <p>
+      <strong>Price:</strong>
+      <%= @event.price %>
+    </p>
+
+    <p>
+      
+    </p>
+    <%= link_to 'Edit', edit_event_path(@event), class: "btn" %>
+    <%= link_to 'Back', events_path, class: "btn" %>
+
+  </div>
+</div>
+<%= render "shared/footer" %>
+

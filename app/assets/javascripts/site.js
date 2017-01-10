@@ -156,7 +156,35 @@ var siteApp = (function($) {
 		}
 	};
 
+	var calendar = function() {
 
+		if ($('#calendar').length) {
+
+			$('#calendar').fullCalendar({
+				events: siteApp.events,
+				eventClick: onClickEvent,
+			    eventRender: onEventRender,
+			    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+			    buttonText: {
+					today: 'Hoy',
+					month: 'month',
+					week: 'week',
+					day: 'day'
+		        },
+		        dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+			});
+
+		}
+
+	};
+
+	var onClickEvent = function(calEvent, jsEvent, view) {
+		jsEvent.currentTarget.href = jsEvent.currentTarget.href.replace('.', '/');
+	};
+
+	var onEventRender = function(event, element) {
+		$(element).addClass(event.level);
+	};
 
 	var ready = function() {
 		menuProfile();
@@ -164,6 +192,7 @@ var siteApp = (function($) {
 		wizardForms();
 		thxReqply();
 		charts();
+		calendar();
 	};
 
 	return {

@@ -15,7 +15,7 @@
  *= require vex-theme-default.css
  *= require_tree .
  *= require_self
+ *= require fullcalendar
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "fullcalendar";

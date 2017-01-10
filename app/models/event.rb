@@ -29,7 +29,8 @@ class Event < ActiveRecord::Base
 		  :allDay => allDay,
 		  :user_name => self.name_exhibitor,
 		  :url => Rails.application.routes.url_helpers.events_path(id),
-		  :color => "green"
+		  :color => "green",
+      :level => self.level.title.parameterize
 		}
 	end
 end

@@ -1264,6 +1264,53 @@ select {
 	}	
 }
 
+.fc-day-grid-event {
+	color: white !important;
+
+	&.consultoria {
+		background: #e63c4d !important; 
+		border-color: #e63c4d !important;
+	}
+
+	&.intermedio {
+		background: #1d6843 !important;
+		border-color: #1d6843 !important;
+	}
+
+	&.basico {
+		background: #002f52 !important;
+		border-color: #002f52 !important;
+	}
+
+	&.avanzado {
+		background: #12a99f !important;
+		border-color: #12a99f !important;
+	}
+
+}
+
+.fc-head {
+	thead {
+		background: #012F51;
+		color: white;
+		th {
+			font-weight: 500;	
+		}
+		
+	}
+	
+}
+
+.fc-widget-header table {
+	margin: 0;
+}
+
+[id*="event_start_at"],
+[id*="event_end_at"] {
+	display: inline-block;
+	width: auto;
+}
+
 @media (max-width: 1024px) {
 
 
