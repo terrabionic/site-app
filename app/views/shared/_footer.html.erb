@@ -1,11 +1,33 @@
 <div class="site-footer">
-	<%= link_to companies_path do %>
-		<%= image_tag "site-logotipo-footer.png" %>	
-	<% end %>
 
-	<br>
-	
-	<p>© 2016, Copyright sistema de Inteligencia y Tecnología Empresarial.</p>
+	<div class="site-footer-logo">
+		<%= link_to companies_path do %>
+			<%= image_tag "site-logotipo-footer.png" %>	
+		<% end %>
+
+		<br>
+		
+		<p>© 2016, Copyright sistema de Inteligencia y Tecnología Empresarial.</p>
+		
+	</div><!-- .site-footer-logo -->
+
+	<div class="site-footer-info">
+		<div>
+			<%= image_tag("telefono.svg") %>
+			<p class="telefonos">
+				<a href="tel:017717159959">01(771) 715 99 59</a> | <a href="tel:7717159960">(771) 715 99 60</a>
+				<br>
+				<a href="tel:7717159961">(771)715 99 61</a>
+			</p>
+		</div>
+		<div>
+			<%= image_tag("ubicacion.svg") %>
+			<p class="direccion">
+				Blvd. Felipe Ángeles No. 605, colonia Presa Jales Norte<br>
+				Pachuca de Soto, Hidalgo, México, C.P. 42080
+			</p>
+		</div>
+	</div>
   
   <a class="btop" href="#"></a>
 </div>

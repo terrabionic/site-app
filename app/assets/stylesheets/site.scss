@@ -1,13 +1,13 @@
 %estado {
 	min-width: 140px;
-	&:before {
+	&:after {
 		content: "";
 		width: 6px;
 		height: 6px;
 		display: inline-block;
 		border-radius: 50%;
 		vertical-align: middle;
-		margin-right: 8px;
+		margin-left: 4px;
 	}
 }
 
@@ -904,6 +904,40 @@ select {
 	}
 }
 
+.site-footer-logo {
+	float: left;
+}
+
+.site-footer-info {
+	float: left;
+	margin-left: 5%;
+
+	> div {
+		display: table;
+		margin-bottom: 1.518em;
+	}
+
+	a {
+		text-decoration: none;
+	}
+
+	p {
+		margin-top: 0;
+		display: table-cell;
+		vertical-align: top;
+		padding-left: 1rem;
+	}
+
+	img {
+		display: table-cell;
+		width: 20px;
+		vertical-align: top;
+		margin-top: 6px;
+		height: auto;
+	}
+
+}
+
 .layout {
 	min-height: calc(100% - 252px);
 }
@@ -1257,28 +1291,28 @@ select {
 
 .estado--terminado {
 	@extend %estado;
-	&:before {
+	&:after {
 		background: #019875;
 	}
 }
 
 .estado--nuevo {
 	@extend %estado;
-	&:before {
+	&:after {
 		background: #12a99f;
 	}
 }
 
 .estado--progreso {
 	@extend %estado;
-	&:before {
+	&:after {
 		background: #f5ab35;
 	}	
 }
 
 .estado--retrasado {
 	@extend %estado;
-	&:before {
+	&:after {
 		background: #b91926;
 	}	
 }
@@ -1379,6 +1413,20 @@ select {
 
 @media (max-width: 960px) {
 
+
+	.site-footer-logo {
+		float: none;
+		text-align: center;
+	}
+
+	.site-footer-info {	
+		float: none;
+		margin-top: 1.618rem;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 400px;
+	}
+
 	.individual-chart {
 		.columns {
 			width: 100%;
@@ -1440,7 +1488,7 @@ select {
 		td {
 			display: block;
 			text-align: right;
-			&:after {
+			&:before {
 				content: attr(data-title) " ";
 				font-weight: 500;
 				float:left;
