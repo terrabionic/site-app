@@ -65,10 +65,10 @@ class SurveyAnalysesController < ApplicationController
       @events = @events.uniq
       @events.each do |event|
 	key_month = month_name[event.start_at.month] + ' ' + event.start_at.year.to_s
-	if events_dic[key_month]
-	  events_dic[key_month].push(event)
+	if events_dic[month_name[event.start_at.month]]
+	  events_dic[month_name[event.start_at.month]].push(event)
 	else
-	  events_dic[key_month]= [event]
+	  events_dic[month_name[event.start_at.month]]= [event]
 	end
       end
       return events_dic
