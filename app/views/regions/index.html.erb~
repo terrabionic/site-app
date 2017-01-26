@@ -5,7 +5,7 @@
   <%= render 'shared/nav' %>
 
   <div class="main">
-    <%= link_to 'Atrás', :back, class: "back-button" %>
+    <%= link_to 'Atrás', companies_path, class: "back-button" %>
     <h1 class="main-headline inline-block">Lista de Regiones</h1>
     <p>
       <%= link_to 'Nueva Región', new_region_path, class: "btn" %>  

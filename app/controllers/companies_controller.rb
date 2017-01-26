@@ -30,15 +30,8 @@ class CompaniesController < ApplicationController
         @companies = Company.all
       end
     end
-    @login_manager = LoginManager.first
-    unless @login_manager
-		@login_manager = LoginManager.create()
-    end
-    @sectors = Sector.all
     @users = User.all
     @roles = Role.all
-    @surveys = Survey.all
-    @categories = Category.all
     respond_to do |format|
 		format.html
 		format.csv { send_data @companies.to_csv }

@@ -34,11 +34,9 @@ class CompaniesController < ApplicationController
     unless @login_manager
 		@login_manager = LoginManager.create()
     end
-    @sectors = Sector.all
+    
     @users = User.all
     @roles = Role.all
-    @surveys = Survey.all
-    @categories = Category.all
     respond_to do |format|
 		format.html
 		format.csv { send_data @companies.to_csv }
@@ -81,6 +79,7 @@ class CompaniesController < ApplicationController
       @survey_analysis.save
     end
     @categories = get_categories(@survey_analysis.reply.survey)
+    @events = get_events(@survey_analysis)
     respond_to do |format|
       format.html
       format.json

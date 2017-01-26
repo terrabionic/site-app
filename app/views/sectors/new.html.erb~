@@ -1,10 +1,13 @@
+
+
+
 <div class="layout">
 	<%= render 'shared/nav' %>
 
 	<div class="main">
 		<div class="form-container">
-			<%= link_to 'Atrás', :back, class: "back-button" %>
-			<h1 class="main-headline inline-block">Nuevo Diagnóstico</h1>
+			<%= link_to 'Atrás', sectors_path, class: "back-button" %>
+			<h1 class="main-headline inline-block">Nuevo Sector</h1>
 
 			<%= render 'form' %>
 		</div>
