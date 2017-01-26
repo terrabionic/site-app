@@ -276,7 +276,7 @@
       <h5>Capacidades Copentenciales:</h5>
       <%= @survey_analysis.copetential %>
     </p>
-    <div class="alwaysbreak"></div>
+    <h2 class="main-headline">
     <h2 class="main-headline">Cursos</h2>
     <% @events.keys.each do |keys| %>
       <h3><%= keys %></h3>

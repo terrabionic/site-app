@@ -77,10 +77,13 @@ class Ability
                 user_edit = user
             end
 
-	    can :create, SurveyAnalysis	    
-	    can :read, SurveyAnalysis 
-            can :update, SurveyAnalysis
-	    
+	    can :read, SurveyAnalysis do |survey_analysis|
+                company.agent == user
+            end
+
+            can :update, SurveyAnalysis do |survey_analysis|
+                user_edit = user
+            end
 
         end
     end

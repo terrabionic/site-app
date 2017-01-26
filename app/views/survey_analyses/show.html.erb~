@@ -230,7 +230,7 @@
           <% end %>
         <% end %>
 
-        <h2 class="pleca">Cursos</h2>
+        <h2 class="pleca">Eventos</h2>
 	<% @events.keys.each do |keys| %>
 	  <h2><%= keys %></h2>
 	  <hr>
