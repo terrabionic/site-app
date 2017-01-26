@@ -10,7 +10,7 @@
     <h1 class="main-headline inline-block">Lista de Cursos</h1>
     <p>
       <%= link_to 'Nuevo Curso', new_event_path, class: "btn" %>  
-      <%= link_to 'Nivel de Curso', levels_path, class: "btn" %>
+      <%= link_to 'Nivel de Curso', levels_path class: "btn" %>
     </p>
 	
     

@@ -3,7 +3,7 @@
 
 	<div class="main">
 		<div class="form-container">
-			<%= link_to 'Atrás', :back, class: "back-button" %>
+			<%= link_to 'Atrás', surveys_path, class: "back-button" %>
 			<h1 class="main-headline inline-block">Nuevo Diagnóstico</h1>
 
 			<%= render 'form' %>

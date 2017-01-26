@@ -95,6 +95,6 @@ Rails.application.routes.draw do
   # Imprimir el reporte IC en PDF
   get '/companies/:id.pdf', to: 'companies#get_report_IC_pdf', as: 'get_report_IC_pdf'
   # Mostrar Pagina Administracion de Secciones
-  get '/sections/index', to: 'sections#index', as: 'sections_index'
+  get '/sections/index', to: 'sections#index', as: 'index'
 
 end

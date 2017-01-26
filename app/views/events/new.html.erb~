@@ -5,7 +5,7 @@
 	<div class="main">
 		
 		<div class="form-container">
-			<%= link_to 'Atrás', :back, class: "back-button" %>
+			<%= link_to 'Atrás', events_path, class: "back-button" %>
 			<h1 class="main-headline inline-block">Nuevo Curso</h1>
 
 			<%= render 'form' %>			

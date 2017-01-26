@@ -1,0 +1,116 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <%= link_to 'Atrás', companies_path, class: "back-button" %>
+    <h1 class="main-headline inline-block">Administracion de Secciones</h1>
+    
+    <table>
+      <thead>
+       <tr>
+         <th colspan="3">
+           Secciones
+         </th>
+       </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            DIAGNÓSTICOS
+          </td>
+          <td>
+            <%= link_to 'Editar', surveys_path %>
+          </td>
+          <td>
+            <%= link_to 'Crear Nuevo', new_survey_path %><br>
+            Diagnóstico
+          </td>
+        </tr>
+        <tr>
+          <td>
+            FACTORES
+          </td>
+          <td>
+            <%= link_to 'Editar', categories_path %>
+          </td>
+          <td>
+            <%= link_to 'Crear Nuevo', new_category_path %><br>
+            Factor
+          </td>
+        </tr>
+        <tr>
+          <td>
+            SECTORES
+          </td>
+          <td>
+            <%= link_to 'Editar', sectors_path %>
+          </td>
+          <td>
+            <%= link_to 'Crear Nuevo', new_sector_path %><br>
+            Sector
+          </td>
+        </tr>
+        <tr>
+          <td>
+            ACTIVIDADES ECONÓMICAS
+          </td>
+          <td>
+            <%= link_to 'Editar', economic_activities_path %>
+          </td>
+          <td>
+            <%= link_to 'Crear Nueva', new_economic_activity_path %><br>
+            Actividad Económica
+          </td>
+        </tr>
+        <tr>
+          <td>
+            CALENDARIO
+          </td>
+          <td>
+            <%= link_to 'Editar', events_path %>
+          </td>
+          <td>
+            <%= link_to 'Crear Nuevo', new_event_path %><br>
+            Curso
+          </td>
+        </tr>
+        <tr>
+          <td>
+            REGIONES
+          </td>
+          <td>
+            <%= link_to 'Editar', regions_path %>
+          </td>
+          <td>
+            <%= link_to 'Crear Nueva', new_region_path %><br>
+            Region
+          </td>
+        </tr>
+        <tr>
+          <td>
+            MUNICIPIOS
+          </td>
+          <td>
+            <%= link_to 'Editar', municipios_path %>
+          </td>
+          <td>
+            <%= link_to 'Crear Nuevo', new_municipio_path %><br>
+            Municipio
+          </td>
+        </tr>
+        <tr>
+          <td>
+            ACERCA DE SITE
+          </td>
+          <td colspan="2">
+            <%= link_to 'Editar', surveys_path %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+<%= render "shared/footer" %>
