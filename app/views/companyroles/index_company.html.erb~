@@ -1,10 +1,7 @@
 <p id="reply-message" class="hide"><%= flash[:notice] %></p>
 <a id="thx-link" class="hide" data-open="exampleModal1">Thx</a>
 
-<% if current_user.change_password %>
-      Cambiar Contraseña
-      <a id="thx-link" class="hide" data-open="exampleModal2">Thx</a>
-<%end%>
+
 
 <div class="layout">
 

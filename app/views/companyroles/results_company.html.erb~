@@ -11,11 +11,10 @@
   </div><!-- .nav -->
 
   <div class="main">
-
-    <% if current_user.change_password %>
+<% if current_user.change_password %>
+      Cambiar Contraseña
       <a id="thx-link" class="hide" data-open="exampleModal2">Thx</a>
-    <%end%>
-
+<%end%>
     <div class="form-container form-container--large">
 
   	 <h1 class="main-headline inline-block"><%= current_user.company_name %></h1>
