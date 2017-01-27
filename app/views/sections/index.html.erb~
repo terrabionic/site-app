@@ -105,7 +105,7 @@
             ACERCA DE SITE
           </td>
           <td colspan="2">
-            <%= link_to 'Editar', surveys_path %>
+            <%= link_to 'Editar', edit_login_manager_path(id: @login_manager) %>
           </td>
         </tr>
       </tbody>

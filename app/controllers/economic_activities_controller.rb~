@@ -2,7 +2,6 @@ class EconomicActivitiesController < ApplicationController
   before_action :set_economic_activity, only: [:show, :edit, :update, :destroy]
   
   add_breadcrumb "Inicio", :root_path
-  add_breadcrumb "Administrador de Secciones", :sections_index_path
 
   # GET /economic_activities
   # GET /economic_activities.json

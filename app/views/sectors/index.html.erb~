@@ -4,7 +4,7 @@
 <div class="layout">
   <%= render 'shared/nav' %>
   <div class="main">
-    <%= link_to 'Atrás', companies_path, class: "back-button" %>
+    <%= link_to 'Atrás', :back, class: "back-button" %>
     <h1 class="main-headline inline-block">Sectores</h1>
     <p>
       <%= link_to 'Nuevo Sector', new_sector_path, class: "btn" %>

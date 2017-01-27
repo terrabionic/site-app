@@ -2,7 +2,6 @@ class SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
   
   add_breadcrumb "Inicio", :root_path
-  add_breadcrumb "Administrador de Secciones", :sections_index_path
 
   # GET /surveys
   # GET /surveys.json
