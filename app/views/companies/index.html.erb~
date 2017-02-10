@@ -19,7 +19,7 @@
       <% if can? :create, @users %>
         <%= link_to 'Dar de alta nuevo consultor', users_path %>
 	<%= link_to 'Administracion de Secciones', sections_index_path %>
-	<%= link_to 'Editar', events_path %>
+	<%= link_to 'Calendario', events_path %>
       <% end %>
       
     

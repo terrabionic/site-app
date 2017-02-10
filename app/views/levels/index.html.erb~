@@ -5,7 +5,7 @@
   <%= render 'shared/nav' %>
 
   <div class="main">
-	<%= link_to 'Atrás', events_path, class: "back-button" %>
+	<%= link_to 'Atrás', companies_path, class: "back-button" %>
 	<h1 class="main-headline inline-block">Niveles de Curso</h1>
 	<p>
 		<%= link_to 'Nuevo nivel', new_level_path, class: "btn" %>	

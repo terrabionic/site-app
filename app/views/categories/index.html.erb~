@@ -6,7 +6,7 @@
   
   <div class="main">
 
-    <%= link_to 'Atrás', companies_path, class: "back-button" %>
+    <%= link_to 'Atrás', :back, class: "back-button" %>
     <h1 class="main-headline inline-block">Factores</h1>
 
     <p>

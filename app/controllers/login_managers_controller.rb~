@@ -1,7 +1,6 @@
 class LoginManagersController < ApplicationController
   before_action :set_login_manager, only: [:show, :edit, :update, :destroy]
 
-  add_breadcrumb "Inicio", :root_path
   add_breadcrumb "Administrador de Secciones", :sections_index_path
 
   # GET /login_managers
