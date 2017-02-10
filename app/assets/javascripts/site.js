@@ -85,6 +85,12 @@ var siteApp = (function($) {
 		}
 	};
 
+	var passwordMessage = function() {
+		if($('#message-link').length) {
+			$('#message-link').click();
+		}
+	};
+
 	var charts = function() {
 		google.charts.load('current', {'packages':['corechart']});
 
@@ -179,7 +185,8 @@ var siteApp = (function($) {
 	};
 
 	var onClickEvent = function(calEvent, jsEvent, view) {
-		jsEvent.currentTarget.href = jsEvent.currentTarget.href.replace('.', '/');
+		calEvent.url = calEvent.url.replace('.', '/');
+		jsEvent.currentTarget.href = calEvent.url;
 	};
 
 	var onEventRender = function(event, element) {
@@ -193,6 +200,7 @@ var siteApp = (function($) {
 		thxReqply();
 		charts();
 		calendar();
+		passwordMessage()
 	};
 
 	return {

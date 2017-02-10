@@ -58,6 +58,7 @@
               <td data-title="Reporte">
                 <% if company.done? %>
                   <%= link_to 'Análisis IC', show_survey_analysis_path(id:company.id) %>
+                  <br>
                   <% if company.state == 'Terminado' %>
                     <%= link_to 'Imprimir reporte ICA', get_report_IC_pdf_path(company), target: "_blank" %>
                   <% end %>

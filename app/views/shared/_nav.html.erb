@@ -1,7 +1,12 @@
   <div class="nav">
-    <a href="#" class="nav__item hide">
-      <%= image_tag "calificacion-empresa-tab.png" %>      
-      <span>Calificación de la empresa</span>
-    </a>
+    <%= link_to sections_index_path, class: "nav__item" do %>
+      <%= image_tag "icon-administrar-secciones.png" %>      
+      <span>Administrar secciones</span>
+    <% end %>
+
+    <%= link_to events_path, class: "nav__item" do %>
+    	<%= image_tag "icon-calendario.png" %>
+    	<span>Calendario</span>
+    <% end %>
     
-  </div><!-- .nav -->
+  </div>

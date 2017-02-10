@@ -470,6 +470,11 @@ select {
 	color: #193E60;
 	font-weight: 500;
 
+	img {
+		width: 50px;
+		height: 50px;
+	}
+
 	&:hover {
 		color: #193E60;
 		text-decoration: underline;
@@ -1047,6 +1052,20 @@ select {
 	padding-right: 1rem;
 }
 
+.btn--link {
+	color: #04ABA1 !important;	
+	font-weight: 500;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.small-label {
+	color: gray;
+	font-size: .9em;
+	display: block;
+}
+
 .text-bigger {
 	font-size: 1.4rem;
 	font-weight: 500;
@@ -1362,6 +1381,19 @@ select {
 [id*="event_end_at"] {
 	display: inline-block;
 	width: auto;
+}
+
+.edit_login_manager {
+	textarea {
+		min-height: 480px;
+	}
+}
+
+.curso-info {
+	img {
+		margin: 1rem 1rem 1rem 0;
+		width: 30px;
+	}
 }
 
 @media (max-width: 1024px) {
