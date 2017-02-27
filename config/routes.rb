@@ -97,4 +97,11 @@ Rails.application.routes.draw do
   # Mostrar Pagina Administracion de Secciones
   get '/sections/index', to: 'sections#index', as: 'sections_index'
 
+  # Monitor Empresarial
+
+  # Monitor Vista usuario
+  # Dashboard Agente AE
+  get '/business_manager/index_manager_user', to: 'business_manager#index_manager_user', as: 'index_manager_user'
+  get '/business_manager/index_manager_admin', to: 'business_manager#index_manager_admin', as: 'index_manager_admin'
+
 end
