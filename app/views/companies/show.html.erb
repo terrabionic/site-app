@@ -125,11 +125,6 @@
               <%= link_to 'Editar', edit_site_path(@company), class: "btn--gris btn--small" %>
             </p>
           <% end %>
-
-          <p>
-            <strong>Tipo de Compañia:</strong>
-            <%= @company.company_type %>
-          </p>
           <p>
             <strong>Nombre o Razón social:</strong>
             <%= @company.company_name %>
@@ -207,10 +202,6 @@
           <p>
             <strong>Nombre del Director:</strong>
             <%= @company.name_director %>
-          </p>
-          <p>
-            <strong>Personal Entrevistado:</strong>
-            <%= @company.staff_interviewed %>
           </p>
           <p>
             <strong>Periodo de Diagnóstico:</strong>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126230532) do
+ActiveRecord::Schema.define(version: 20170224233710) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 20170126230532) do
     t.datetime "image_logo_updated_at"
     t.integer  "survey_analysis_id"
     t.integer  "municipio_id"
-    t.string   "latitude",                default: ""
-    t.string   "longitude",               default: ""
+    t.float    "latitude"
+    t.float    "longitude"
     t.integer  "activity_id"
   end
 
@@ -244,20 +244,20 @@ ActiveRecord::Schema.define(version: 20170126230532) do
     t.integer  "role_id"
     t.boolean  "active",                 default: true
     t.boolean  "available",              default: true
-    t.integer  "num_max_companies",      default: 5,     null: false
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.integer  "num_max_companies",      default: 5,    null: false
+    t.string   "email",                  default: "",   null: false
+    t.string   "encrypted_password",     default: "",   null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,    null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
-    t.boolean  "change_password",        default: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.boolean  "change_password",        default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

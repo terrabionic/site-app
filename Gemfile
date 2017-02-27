@@ -22,6 +22,9 @@ gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
 # Generar PDF
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+# Mostrar clientes en Mapa
+gem 'gmaps4rails'
+
 
 # breadcrumbs
 gem "breadcrumbs_on_rails"
