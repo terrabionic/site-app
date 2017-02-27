@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126230532) do
+ActiveRecord::Schema.define(version: 20170224233710) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 20170126230532) do
     t.datetime "image_logo_updated_at"
     t.integer  "survey_analysis_id"
     t.integer  "municipio_id"
-    t.string   "latitude",                default: ""
-    t.string   "longitude",               default: ""
+    t.float    "latitude"
+    t.float    "longitude"
     t.integer  "activity_id"
   end
 

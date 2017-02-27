@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require foundation.js
 //= require vex.combined.js
+//= require underscore
+//= require gmaps/google
 //= require_tree .
 //= require moment
 //= require fullcalendar
