@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224233710) do
+ActiveRecord::Schema.define(version: 20170227234537) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -212,6 +212,15 @@ ActiveRecord::Schema.define(version: 20170224233710) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
+
+  create_table "subsectors", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "sector_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "subsectors", ["sector_id"], name: "index_subsectors_on_sector_id"
 
   create_table "survey_analyses", force: :cascade do |t|
     t.integer  "agente_id"

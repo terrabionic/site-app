@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :subsector do
+    name "MyString"
+    sector nil
+  end
   factory :login_manager do
     email_contact "MyString"
     about_us "MyText"
