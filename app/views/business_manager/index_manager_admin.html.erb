@@ -9,68 +9,55 @@
   <%= render 'shared/nav' %>
 
   <div class="main">
-    <h1>
-    	SECTOR 
-    	<% if @sector %>
-    		<%= @sector.name %>
-    	<% else %>
-    		TODOS
-    	<% end %>
-    </h1>
 
-    <table border="1" cellpadding="1" cellspacing="1" style="width:500px;">
-		<tbody>
-			<tr>
-				<td>
-					<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
-					  <div class="row buscador" style="max-width: none; margin-left: -15px;">
-					    <div class="medium-6 columns ordenar-field">
+  	<div class="form-container--large">
+  		
+	    <h1 class="main-headline">
+			Monitor empresarial
+		</h1>
 
-					    	<strong>PUEDES FILTRAR POR: </strong> <br>
+		<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
+		  <div class="buscador-empresarial">
+		    <div class="ordenar-field">
 
-					    	<strong>SECTOR: </strong>
-					    	<%= select_tag :sector, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector]) %>
+		    	<strong>PUEDES FILTRAR POR: </strong>
 
-					    	<strong>NIVEL: </strong>
-					  		<%= select_tag(:level, options_for_select([['Todo', ''],['Regional', 'regional'], ['Municipal', 'municipal']],params[:level]), :onchange => "this.form.submit();") %>
-					    	<strong>UBICACIÓN: </strong>
-					    	<%= select_tag :location, options_for_select(@municipios.map{|s|[s.name, s.id]},params[:location]) %>
+		    	<strong class="hide">SECTOR: </strong>
+				<%= select_tag :sector, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector]), {:include_blank => 'Sector'} %>
 
-					    	<%= submit_tag "Buscar" %>    
-					    </div>
-					  </div>
-					<% end %>
-				</td>
-			</tr>
-			<tr>
-				<td >
-					<div style='width: 800px;'>
-					  <div id="map" style='width: 800px; height: 400px;'></div>
-					</div>
-					<script type="text/javascript">
-						handler = Gmaps.build('Google');
-						handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-						  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-						  handler.bounds.extendWith(markers);
-						  handler.fitMapToBounds();
-						});
-					</script>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+		    	<strong class="hide">NIVEL: </strong>
+		  		<%= select_tag :level, options_for_select([['Regional', 'regional'], ['Municipal', 'municipal']], params[:level]), {:include_blank => 'Nivel'} %>
+		    	<strong class="hide">UBICACIÓN: </strong>
+		    	<%= select_tag :location, options_for_select(@municipios.map{|s|[s.name, s.id]},params[:location]), {:include_blank => 'Region'} %>
 
-	<div style='width: 800px;'>
-	  <div id="map" style='width: 800px; height: 400px;'></div>
+		    	<%= submit_tag "Buscar" %>    
+		    </div>
+		  </div>
+		<% end %>
+
+		<div id="map"></div>
+
 	</div>
+
 	<script type="text/javascript">
+
 		handler = Gmaps.build('Google');
-		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-		  markers = handler..addMarkers(<%=raw @hash.to_json %>);
+
+		handler.buildMap({
+			internal: {id: 'map'},
+			provider: {
+				mapTypeId: google.maps.MapTypeId.ROADMAP,
+				styles: [	{"featureType":"all",		"stylers":[			{"saturation":0},			{"hue":"#e7ecf0"}		]	},	{"featureType":"road",		"stylers":[			{"saturation":-70}		]	},	{"featureType":"transit",		"stylers":[			{"visibility":"off"}		]	},	{"featureType":"poi",		"stylers":[			{"visibility":"off"}		]	},	{"featureType":"water",		"stylers":[			{"visibility":"simplified"},			{"saturation":-60}		]	}]
+			} 
+			
+		}, function(){
+		  markers = handler.addMarkers(<%=raw @hash.to_json %>);
 		  handler.bounds.extendWith(markers);
 		  handler.fitMapToBounds();
+		  handler.getMap().setZoom(15);
 		});
 	</script>
+
   </div><!-- .main -->
 </div><!-- .layout -->
 

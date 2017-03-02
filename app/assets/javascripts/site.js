@@ -193,6 +193,18 @@ var siteApp = (function($) {
 		$(element).addClass(event.level);
 	};
 
+	var toggleFiltersEmpresarial = function(event, element) {
+		$('.buscador-empresarial strong').click(function() {
+			$(this).toggleClass('is-active');
+		});
+	};
+
+	var buscadorEmpresarial = function() {
+		$('.buscador-empresarial #level').change(function() {
+			this.form.submit();
+		});
+	};
+
 	var ready = function() {
 		menuProfile();
 		sectorCool();
@@ -200,7 +212,9 @@ var siteApp = (function($) {
 		thxReqply();
 		charts();
 		calendar();
-		passwordMessage()
+		passwordMessage();
+		toggleFiltersEmpresarial();
+		buscadorEmpresarial();
 	};
 
 	return {
