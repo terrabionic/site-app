@@ -68,8 +68,6 @@
             <% end %>
           </p>
 
-          
-
           <p>
             <strong>Último inicio de sesión:</strong>
             <% if @company.user_login %>
@@ -138,6 +136,14 @@
             <strong>Subsector:</strong>
             <% if @company.subsector %>
               <%= @company.subsector.name %>
+            <% end %>
+          </p>
+          <p>
+            <strong>Ramas:</strong>
+            <% if @company.branches %>
+              <% @company.branches.each do |branch| %>
+                <%= branch.name %>
+              <% end %>
             <% end %>
           </p>
           <p>

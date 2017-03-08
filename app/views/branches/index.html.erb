@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <%= link_to 'Atrás', sections_index_path, class: "back-button" %>
+    <h1 class="main-headline inline-block">Ramas</h1>
+    <p>
+      <%= link_to 'Nueva Rama', new_branch_path, class: "btn" %>
+    </p>
+    
+
+    <table class="site-table">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nombre</th>
+          <th>Subsector</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @branches.each do |branch| %>
+          <tr>
+            <td data-title="Codigo"><%= branch.code%></td>
+            <td data-title="Nombre"><%= link_to branch.name, branch %></td>
+            <td data-title="Subsector">
+              <% if branch.subsector %>
+                <%= branch.subsector.name %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    
+  </div>
+</div>
+<%= render "shared/footer" %>

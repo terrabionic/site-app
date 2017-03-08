@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :branches
   resources :subsectors
   resources :login_managers
   resources :economic_activities

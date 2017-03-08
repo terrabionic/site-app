@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308192157) do
+ActiveRecord::Schema.define(version: 20170308202328) do
+
+  create_table "Branches_Companies", id: false, force: :cascade do |t|
+    t.integer "branch_id",  null: false
+    t.integer "company_id", null: false
+  end
+
+  add_index "Branches_Companies", ["branch_id", "company_id"], name: "index_Branches_Companies_on_branch_id_and_company_id"
+  add_index "Branches_Companies", ["company_id", "branch_id"], name: "index_Branches_Companies_on_company_id_and_branch_id"
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -24,6 +32,16 @@ ActiveRecord::Schema.define(version: 20170308192157) do
   add_index "answers", ["possible_answer_id"], name: "index_answers_on_possible_answer_id"
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["reply_id"], name: "index_answers_on_reply_id"
+
+  create_table "branches", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "subsector_id"
+    t.integer  "code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "branches", ["subsector_id"], name: "index_branches_on_subsector_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"

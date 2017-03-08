@@ -123,6 +123,8 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
+    @branches = Branch.all
+    @company_branch = @company.branches.build
   end
 
   # GET /companies/1/edit
@@ -136,6 +138,8 @@ class CompaniesController < ApplicationController
     authorize! :update, @company
     add_breadcrumb @company.company_name, company_path(@company)
     add_breadcrumb "Editar Site " + @company.company_name, edit_company_path(@company)
+    @branches = Branch.all
+    @company_branch = @company.branches.build
   end
 
   def show_reply
@@ -156,7 +160,17 @@ class CompaniesController < ApplicationController
   def create
     #@company = Company.new(company_params)
     @user = current_user
+    branches_new = []
     @company = @user.companies.build(company_params)
+    
+    if params[:company][:branches]
+      params[:company][:branches].each do |branch|
+        if branch.to_i > 0
+          branches_new.push(Branch.find(branch.to_i))
+        end
+      end
+    end
+    @company.branches = branches_new
     t_start =Time.now
     t_end = t_start + 345600
     @company.date_start = t_start
@@ -164,6 +178,7 @@ class CompaniesController < ApplicationController
     if @company.save
       create_user
     end
+
     respond_to do |format|
       if @company.save
         format.html { redirect_to root_path, notice: 'La Empresa se ha creado correctamente.' }

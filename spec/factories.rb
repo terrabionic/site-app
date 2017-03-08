@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :branch do
+    name "MyString"
+    subsector nil
+    code 1
+  end
   factory :subsector do
     name "MyString"
     sector nil
