@@ -4,6 +4,7 @@ class Company < ActiveRecord::Base
   STAGE = %w[Prealta Alta Diagnóstico Analisis Reporte].freeze
   
   belongs_to :sector, class_name: 'Sector'
+  belongs_to :subsector, class_name: 'Subsector'
   belongs_to :agent, class_name: 'User'
   belongs_to :emprered, class_name: 'User'
   belongs_to :user_login, class_name: 'User'

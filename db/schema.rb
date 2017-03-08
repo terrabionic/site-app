@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227234537) do
+ActiveRecord::Schema.define(version: 20170308192157) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20170227234537) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "activity_id"
+    t.integer  "subsector_id"
   end
 
   add_index "companies", ["activity_id"], name: "index_companies_on_activity_id"
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(version: 20170227234537) do
   add_index "companies", ["emprered_id"], name: "index_companies_on_emprered_id"
   add_index "companies", ["municipio_id"], name: "index_companies_on_municipio_id"
   add_index "companies", ["sector_id"], name: "index_companies_on_sector_id"
+  add_index "companies", ["subsector_id"], name: "index_companies_on_subsector_id"
   add_index "companies", ["survey_analysis_id"], name: "index_companies_on_survey_analysis_id"
   add_index "companies", ["user_login_id"], name: "index_companies_on_user_login_id"
 
@@ -216,6 +218,7 @@ ActiveRecord::Schema.define(version: 20170227234537) do
   create_table "subsectors", force: :cascade do |t|
     t.string   "name"
     t.integer  "sector_id"
+    t.integer  "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,14 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @subsector.name %>
-</p>
 
-<p>
-  <strong>Sector:</strong>
-  <%= @subsector.sector %>
-</p>
+<div class="layout">
+	<%= render 'shared/nav' %>
+	<div class="main">
+		<%= link_to 'Atrás', subsectors_path, class: "back-button" %>
 
-<%= link_to 'Edit', edit_subsector_path(@subsector) %> |
-<%= link_to 'Back', subsectors_path %>
+		<h1 class="main-headline inline-block mr-1"><%= @subsector.name %></h1>
+
+		
+		  <%= link_to 'Editar', edit_subsector_path(@subsector), class: "btn--gris btn--small" %>
+		
+		<p>
+		  <strong>Codigo:</strong>
+		  <%= @subsector.code %>
+		</p>
+		<p>
+		  <strong>Sector:</strong>
+		  <% if @subsector.sector %>
+		  	<%= @subsector.sector.name %>
+		  <% end %>
+		</p>
+		
+	</div>
+</div>
+<%= render "shared/footer" %>

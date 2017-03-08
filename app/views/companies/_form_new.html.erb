@@ -56,6 +56,12 @@
       <% end %>
     </div><!-- .sector-cool -->
   </div>
+
+  <div class="field">
+    Subsector:
+    <%= f.grouped_collection_select :subsector_id, Sector.all, :subsectors, :name ,:id, :name %>
+  </div>
+  
   <hr/>
   <h2>Crear cuenta de usuario</h2>
   <div class="field">

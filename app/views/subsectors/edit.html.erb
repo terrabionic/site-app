@@ -1,6 +1,18 @@
-<h1>Editing Subsector</h1>
+<div class="layout">
+	<%= render 'shared/nav' %>
 
-<%= render 'form' %>
+	<div class="main">
+		<div class="form-container">
+			<%= link_to 'Atrás', @subsector, class: "back-button" %>
+			<h1 class="main-headline inline-block">Subsector</h1>
 
-<%= link_to 'Show', @subsector %> |
-<%= link_to 'Back', subsectors_path %>
+
+
+			<%= render 'form' %>
+		</div>
+		
+	</div>
+
+</div>
+
+<%= render "shared/footer" %>
