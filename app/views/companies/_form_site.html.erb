@@ -18,6 +18,24 @@
     <%= f.text_field :vat %>
   </div>
   <div class="field">
+    Sector:
+    <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
+
+    <div id="sector-cool" class="sector-cool">
+      <% Sector.all.each do |sector| %>
+        <div class="sector-cool__item" data-val="<%= sector.id %>">
+          <%= image_tag (sector.image.url(:thumb)) %>
+          <%= sector.name %>
+        </div>
+      <% end %>
+    </div><!-- .sector-cool -->
+  </div>
+
+  <div class="field">
+    Subsector:
+    <%= f.grouped_collection_select :subsector_id, Sector.all, :subsectors, :name ,:id, :name %>
+  </div>
+  <div class="field">
     <strong>Calle:</strong><br>
     <%= f.text_field :street %>
   </div>

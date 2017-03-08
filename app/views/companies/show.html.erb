@@ -68,12 +68,7 @@
             <% end %>
           </p>
 
-          <p>
-            <strong>Sector:</strong>
-            <% if @company.sector %>
-              <%= @company.sector.name %>
-            <% end %>
-          </p>
+          
 
           <p>
             <strong>Último inicio de sesión:</strong>
@@ -134,6 +129,18 @@
             <%= @company.vat %>
           </p>
           <p>
+            <strong>Sector:</strong>
+            <% if @company.sector %>
+              <%= @company.sector.name %>
+            <% end %>
+          </p>
+          <p>
+            <strong>Subsector:</strong>
+            <% if @company.subsector %>
+              <%= @company.subsector.name %>
+            <% end %>
+          </p>
+          <p>
             <strong>Calle:</strong>
             <%= @company.street %>
           </p>
@@ -144,17 +151,25 @@
           <p>
             <strong>Municipio:</strong>
             <% if @company.municipio%>
-				<%= @company.municipio.name %>
+				      <%= @company.municipio.name %>
             <% end %>
           </p>
           <% if @company.municipio%>
-			  <p>
-				<strong>Región:</strong>
-				<% if @company.municipio.region%>
-					<%= @company.municipio.region.name %>
-				<% end %>
-			  </p>
+    				<strong>Región:</strong>
+    				<% if @company.municipio.region%>
+              <p>
+      					<%= @company.municipio.region.name %>
+              </p>
+				    <% end %>
           <% end %>
+          <p>
+            <strong>Latitud:</strong>
+            <%= @company.latitude %>
+          </p>
+          <p>
+            <strong>Longitud:</strong>
+            <%= @company.longitude %>
+          </p>
           <p>
             <strong>Email Empresa:</strong>
             <%= @company.email %>

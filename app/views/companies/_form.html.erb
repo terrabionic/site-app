@@ -38,21 +38,6 @@
     Actividad Económica:
     <%= f.select :activity_id, options_for_select(EconomicActivity.all.map{|s|[s.name, s.id]}) %>
   </div>
-  
-<div class="field">
-    Sector:
-    <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
-
-    <div id="sector-cool" class="sector-cool">
-      <% Sector.all.each do |sector| %>
-        <div class="sector-cool__item" data-val="<%= sector.id %>">
-          <%= image_tag (sector.image.url(:thumb)) %>
-          <%= sector.name %>
-        </div>
-      <% end %>
-    </div><!-- .sector-cool -->
-    
-  </div>
 
   <div class="actions">
     <%= f.submit 'Guardar' %>
