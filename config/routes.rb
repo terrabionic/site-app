@@ -109,5 +109,7 @@ Rails.application.routes.draw do
   get '/business_manager/company_municipal_user', to: 'business_manager#company_municipal_user', as: 'company_municipal_user'
 
   get '/business_manager/index_manager_admin', to: 'business_manager#index_manager_admin', as: 'index_manager_admin'
+  get '/business_manager/company_regional_admin', to: 'business_manager#company_regional_admin', as: 'company_regional_admin'
+  get '/business_manager/company_municipal_admin', to: 'business_manager#company_municipal_admin', as: 'company_municipal_admin'
 
 end
