@@ -47,6 +47,8 @@ class Ability
                 user_edit == user
             end
 
+            can :read, EventMonitor
+
         elsif user.is? 'consultant'
 
             can :read, Company
@@ -77,8 +79,8 @@ class Ability
                 user_edit = user
             end
 
-	    can :create, SurveyAnalysis	    
-	    can :read, SurveyAnalysis 
+	       can :create, SurveyAnalysis	    
+	       can :read, SurveyAnalysis 
             can :update, SurveyAnalysis
 	    
 

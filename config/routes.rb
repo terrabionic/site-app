@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :event_monitors
   resources :states
   resources :branches
   resources :subsectors
