@@ -12,6 +12,7 @@
 
   		<div class="form-container--large">
   			<%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
+  			<h1>DIRECTORIO DE EMPRESAS</h1>
 	    	
   			<div>
   				<%= form_tag(business_directory_admin_path(), :method => "get", id: "search") do %>
@@ -20,6 +21,8 @@
 				    	<strong>PUEDES FILTRAR POR: </strong>
 				    	<strong class="hide">SECTOR: </strong>
 						<%= select_tag :sector, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector]), {:include_blank => 'Todos'} %>
+						<strong class="hide">EMPRESA: </strong>
+						<%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
 				    	<%= submit_tag "Buscar" %>    
 				    </div>
 				  </div>

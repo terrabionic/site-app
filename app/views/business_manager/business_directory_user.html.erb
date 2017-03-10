@@ -17,6 +17,18 @@
 					SECTOR <%= @sector.name %>
 				<% end %>
 			</h1>
+			<div>
+  				<%= form_tag(business_directory_user_path(), :method => "get", id: "search") do %>
+				  <div>
+				    <div>
+						<strong class="hide">EMPRESA: </strong>
+						<%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
+				    	<%= submit_tag "Buscar" %>    
+				    </div>
+				  </div>
+				<% end %>
+
+  			</div>
 			<table class="site-table">
 		      <thead>
 		        <tr>

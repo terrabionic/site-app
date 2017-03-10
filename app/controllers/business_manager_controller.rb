@@ -265,19 +265,51 @@ class BusinessManagerController < ApplicationController
 		@sector = false
 		if @user.company
 			@sector = @user.company.sector
-			@companies = Company.where("sector_id = ?", @sector.id)
+			if params[:search]
+				if params[:search].length > 0
+					@companies = Company.where("sector_id = ? AND company_name LIKE ?", @sector.id,params[:search])
+				else
+					@companies = Company.where("sector_id = ?", @sector.id)
+				end
+			else
+				@companies = Company.where("sector_id = ?", @sector.id)
+			end
 		end
 	end
 
 	def business_directory_admin
 		if params[:sector]
 			if params[:sector].length > 0
-				@companies = Company.where("sector_id = ?", params[:sector])
+				if params[:search]
+					if params[:search].length > 0
+						@companies = Company.where("sector_id = ? AND company_name LIKE ?", params[:sector],params[:search])
+					else
+						@companies = Company.where("sector_id = ?", params[:sector])
+					end
+				else
+					@companies = Company.where("sector_id = ?", params[:sector])
+				end
+			else
+				if params[:search]
+					if params[:search].length > 0
+						@companies = Company.where("company_name LIKE ?", params[:search])
+					else
+						@companies = Company.all
+					end
+				else
+					@companies = Company.all
+				end
+			end
+		else
+			if params[:search]
+				if params[:search].length > 0
+					@companies = Company.where("company_name LIKE ?", params[:search])
+				else
+					@companies = Company.all
+				end
 			else
 				@companies = Company.all
 			end
-		else
-			@companies = Company.all
 		end
 	end
 end
