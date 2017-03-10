@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :states
   resources :branches
   resources :subsectors
   resources :login_managers
@@ -104,6 +105,9 @@ Rails.application.routes.draw do
   # Monitor Vista usuario
   # Dashboard Agente AE
   get '/business_manager/index_manager_user', to: 'business_manager#index_manager_user', as: 'index_manager_user'
+  get '/business_manager/company_regional_user', to: 'business_manager#company_regional_user', as: 'company_regional_user'
+  get '/business_manager/company_municipal_user', to: 'business_manager#company_municipal_user', as: 'company_municipal_user'
+
   get '/business_manager/index_manager_admin', to: 'business_manager#index_manager_admin', as: 'index_manager_admin'
 
 end

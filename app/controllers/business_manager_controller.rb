@@ -5,10 +5,41 @@ class BusinessManagerController < ApplicationController
 		@user = current_user
 		@municipios = []
 		@companies = []
+		@companies_states = []
 		level = params[:level]
+		@percentage_sector_region = 0.0
+		@municipios_first_five = []
+		@company_activities = []
 		@hash = []
+		@company_am = []
+		@company_am_2 = []
 		if @user.company
 			@sector = @user.company.sector
+			@companies_all = Company.all
+			@municipios_first_five = Municipio.limit(5)
+			@companies_states = Company.where("state_company_id = ? AND sector_id = ?", @user.company.state_company.id,@sector.id)
+			@companies_sectors = Company.where("sector_id = ?", @sector.id)
+			Company.where("sector_id = ?", @sector.id).group_by(&:activity).each do |activity, company_sectors|
+				@company_activities.push(activity)
+			end
+			Municipio.all.each do |municipio|
+				@company_activities.each do |activity|
+					@companies_asm = Company.where("sector_id = ? AND municipio_id = ? AND activity_id = ?", @sector.id, municipio.id, activity.id)
+					if @companies_asm.length > 0
+						@company_am.push([activity, @companies_asm.length, @sector, municipio])
+					end
+				end
+			end
+			@company_am = @company_am.sort{ |a,b| b[1] <=> a[1]}
+			count_company = 0
+			@company_am.each do |companies_list|
+				if count_company > 4
+					break
+				end
+				@company_am_2.push(companies_list)
+				count_company = count_company + 1
+			end
+
 			if level == 'regional'
 				if params[:location]
 					@companies = Company.joins(:municipio).where("region_id = ? AND sector_id = ?", params[:location],@sector.id)
@@ -76,6 +107,42 @@ class BusinessManagerController < ApplicationController
 				marker.lng company.longitude
 				marker.infowindow company.company_name
 			end
+		end
+	end
+
+	def company_regional_user
+		@user = current_user
+		@municipios_all = []
+		if @user.company
+			@sector = @user.company.sector
+			@municipios_all = Municipio.all
+			@companies_sectors = Company.where("sector_id = ?", @sector.id)
+		end
+	end
+
+	def company_municipal_user
+		@user = current_user
+		@municipios_all = []
+		@company_am = []
+		@company_am_2 = []
+		@company_activities = []
+		if @user.company
+			@sector = @user.company.sector
+			@municipios_all = Municipio.all
+			@companies_sectors = Company.where("sector_id = ?", @sector.id)
+
+			Company.where("sector_id = ?", @sector.id).group_by(&:activity).each do |activity, company_sectors|
+				@company_activities.push(activity)
+			end
+			Municipio.all.each do |municipio|
+				@company_activities.each do |activity|
+					@companies_asm = Company.where("sector_id = ? AND municipio_id = ? AND activity_id = ?", @sector.id, municipio.id, activity.id)
+					if @companies_asm.length > 0
+						@company_am.push([activity, @companies_asm.length, @sector, municipio])
+					end
+				end
+			end
+			@company_am = @company_am.sort{ |a,b| b[1] <=> a[1]}
 		end
 	end
 end

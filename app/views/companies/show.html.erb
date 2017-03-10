@@ -160,6 +160,12 @@
 				      <%= @company.municipio.name %>
             <% end %>
           </p>
+          <p>
+            <strong>Estado:</strong>
+            <% if @company.state_company%>
+              <%= @company.state_company.name %>
+            <% end %>
+          </p>
           <% if @company.municipio%>
     				<strong>Región:</strong>
     				<% if @company.municipio.region%>

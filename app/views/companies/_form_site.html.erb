@@ -56,6 +56,10 @@
     <%= f.select :municipio_id, options_for_select(Municipio.all.map{|s|[s.name, s.id]}) %>
   </div>
   <div class="field">
+    <strong>Estado:</strong><br>
+    <%= f.select :state_company_id, options_for_select(State.all.map{|s|[s.name, s.id]}) %>
+  </div>
+  <div class="field">
     <strong>Latitud:</strong><br>
     <%= f.text_field :latitude %>
   </div>

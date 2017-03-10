@@ -37,26 +37,34 @@
     </p>
     
     <p>
-		<strong>Municipio:</strong>
-		<% if @company.municipio%>
-			<%= @company.municipio.name %>
-		<% end %>
-	</p>
-	<% if @company.municipio%>
-		<p>
-			<strong>Región:</strong>
-			<% if @company.municipio.region%>
-				<%= @company.municipio.region.name %>
-			<% end %>
-		</p>
-	<% end %>
+  		<strong>Municipio:</strong>
+  		<% if @company.municipio%>
+  			<%= @company.municipio.name %>
+  		<% end %>
+  	</p>
+    
+    <p>
+      <strong>Estado:</strong>
+      <% if @company.state_company%>
+        <%= @company.state_company.name %>
+      <% end %>
+    </p>
+
+  	<% if @company.municipio%>
+  		<p>
+  			<strong>Región:</strong>
+  			<% if @company.municipio.region%>
+  				<%= @company.municipio.region.name %>
+  			<% end %>
+  		</p>
+  	<% end %>
 	
-	<p>
-		<strong>Actividad Económica:</strong>
-		<% if @company.activity %>
-		  <%= @company.activity.name %>
-		<% end %>
-	</p>
+  	<p>
+  		<strong>Actividad Económica:</strong>
+  		<% if @company.activity %>
+  		  <%= @company.activity.name %>
+  		<% end %>
+  	</p>
 
     <p>
       <strong>Industria (Sector):</strong>

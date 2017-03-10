@@ -83,6 +83,109 @@
 		  handler.fitMapToBounds();
 		});
 	</script>
+	<hr>
+	<h2>TOTAL DE EMPRESAS</h2>
+	<ul>
+        <li><a href="#estatal" aria-selected="true">NIVEL ESTATAL</a></li>
+        <li><a href="#regional">NIVEL REGIONAL</a></li>
+        <li><a href="#municipal">NIVEL MUNICIPAL</a></li>
+    </ul><!-- .tabs -->
+
+    <div>
+
+        <div id="estatal">
+          <strong>Grafica</strong>
+          <%= @companies_all.length %> / <%= @companies_states.length %>
+
+          <h4><%= @sector.name %></h4>
+          <h4><%= @companies_states.length %> empresas</h4>
+
+        </div>
+          
+        <div id="regional">
+          
+          	<table class="site-table">
+		      <thead>
+		        <tr>
+		          <th>UBICACIÓN</th>
+		          <th>NÚMERO DE EMPRESAS</th>
+		          <th>PORCENTAJE DEL SECTOR</th>
+		        </tr>
+		      </thead>
+
+		      <% if @user.company %>
+			      <tbody>
+			      	<% @municipios_first_five.each do |municipio| %>
+				      	<tr>
+				      		<td>
+				        		<strong><%= municipio.name %></strong><br>
+				        		<%= municipio.region.name %>
+				        	</td>
+				        	<td>
+					        	<% @municipio_count = Company.where("municipio_id = ? AND sector_id = ?", municipio.id ,@sector.id).length %>
+					        	<%= @municipio_count %> empresas
+				        	</td>
+				        	<td>
+				        		<% if @municipio_count > 0 %>
+				        			- <%= @sector.name %> <%= (@municipio_count * 100)/@companies_sectors.length %> %
+				        		<% else %>
+				        			- <%= @sector.name %> 0 %
+				        		<% end %>
+				        	</td>
+				      	</tr>
+				    <% end %>
+			      </tbody>
+		      <% end %>
+			</table>
+			<%= link_to 'VER TODAS LAS REGONES', company_regional_user_path %>
+        </div>
+
+        <div id="municipal">
+          	<div>
+	          	<h4>Detalle</h4>
+	          	<hr>
+	          	<% @company_am_2.each do |company_list| %>
+	          		<strong>- <%= (company_list[1] * 100)/@companies_sectors.length %> % / <%= company_list[1] %> empresas</strong> <br>
+	          		<%= company_list[0].name %>
+	          		<br>
+	          	<% end %>
+          	</div>
+          	<table class="site-table">
+		      <thead>
+		        <tr>
+		          <th>ACTIVIDAD ECONÓMICA</th>
+		          <th>NÚMERO DE EMPRESAS</th>
+		          <th>SECTOR</th>
+		          <th>MUNICIPIO</th>
+		        </tr>
+		      </thead>
+
+		      <% if @user.company %>
+			      <tbody>
+			      	<% @company_am_2.each do |company_list| %>
+				      	<tr>
+				      		<td>
+				        		<strong><%= company_list[0].name %></strong>
+				        	</td>
+				        	<td>
+					        	<%= company_list[1] %> empresas
+				        	</td>
+				        	<td>
+				        		<%= company_list[2].name %>
+				        	</td>
+				        	<td>
+				        		<%= company_list[3].name %>
+				        	</td>
+				      	</tr>
+				    <% end %>
+			      </tbody>
+		      <% end %>
+			</table>
+			<%= link_to 'VER TODAS LAS ACTIVIDADES ECONÓMICAS', company_municipal_user_path %>
+        </div>
+
+    </div>
+
   </div><!-- .main -->
 </div><!-- .layout -->
 

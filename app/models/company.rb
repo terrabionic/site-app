@@ -5,6 +5,7 @@ class Company < ActiveRecord::Base
   
   belongs_to :sector, class_name: 'Sector'
   belongs_to :subsector, class_name: 'Subsector'
+  belongs_to :state_company, class_name: 'State'
   belongs_to :agent, class_name: 'User'
   belongs_to :emprered, class_name: 'User'
   belongs_to :user_login, class_name: 'User'
