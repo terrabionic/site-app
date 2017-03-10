@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309170814) do
+ActiveRecord::Schema.define(version: 20170310192038) do
 
   create_table "Branches_Companies", id: false, force: :cascade do |t|
     t.integer "branch_id",  null: false
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 20170309170814) do
     t.integer  "activity_id"
     t.integer  "subsector_id"
     t.integer  "state_company_id"
+    t.string   "web"
   end
 
   add_index "companies", ["activity_id"], name: "index_companies_on_activity_id"
