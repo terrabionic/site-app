@@ -6,50 +6,45 @@
   
   <div class="main">
     <p>
-      <strong>Title:</strong>
+      <strong>Nombre del evento:</strong>
       <%= @event.title %>
     </p>
 
     <p>
-      <strong>Start at:</strong>
+      <strong>Fecha inicio:</strong>
       <%= @event.start_at %>
     </p>
 
     <p>
-      <strong>End at:</strong>
+      <strong>Fecha fin:</strong>
       <%= @event.end_at %>
     </p>
 
     <p>
-      <strong>Allday:</strong>
-      <%= @event.allDay %>
-    </p>
-
-    <p>
-      <strong>Name exhibitor:</strong>
+      <strong>Expositor:</strong>
       <%= @event.name_exhibitor %>
     </p>
 
     <p>
-      <strong>Level:</strong>
+      <strong>Nivel:</strong>
       <%= @event.level.title %>
     </p>
 
     <p>
-      <strong>Hours:</strong>
+      <strong>Hora:</strong>
       <%= @event.hours %>
     </p>
 
     <p>
-      <strong>Price:</strong>
+      <strong>Precio:</strong>
       <%= @event.price %>
     </p>
 
     <p>
       
     </p>
-    <%= link_to 'Edit', edit_event_path(@event), class: "btn" %>
-    <%= link_to 'Back', events_path, class: "btn" %>
+    <%= link_to 'Editar', edit_event_path(@event), class: "btn" %>
+    <%= link_to 'Atras', events_path, class: "btn" %>
 
   </div>
 </div>

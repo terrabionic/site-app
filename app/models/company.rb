@@ -4,6 +4,8 @@ class Company < ActiveRecord::Base
   STAGE = %w[Prealta Alta Diagnóstico Analisis Reporte].freeze
   
   belongs_to :sector, class_name: 'Sector'
+  belongs_to :subsector, class_name: 'Subsector'
+  belongs_to :state_company, class_name: 'State'
   belongs_to :agent, class_name: 'User'
   belongs_to :emprered, class_name: 'User'
   belongs_to :user_login, class_name: 'User'
@@ -19,6 +21,7 @@ class Company < ActiveRecord::Base
   validates :name, presence: true
   has_attached_file :image_logo, styles: { medium: '200x200>', thumb: '48x48>' }
   validates_attachment_content_type :image_logo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  has_and_belongs_to_many :branches
   
 
   def self.search(search)

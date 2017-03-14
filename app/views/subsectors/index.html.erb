@@ -1,29 +1,45 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Subsectors</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Sector</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <%= link_to 'Atrás', sections_index_path, class: "back-button" %>
+    <h1 class="main-headline inline-block">Subsectores</h1>
+    <p>
+      <%= link_to 'Nuevo Subsector', new_subsector_path, class: "btn" %>
+    </p>
 
-  <tbody>
-    <% @subsectors.each do |subsector| %>
-      <tr>
-        <td><%= subsector.name %></td>
-        <td><%= subsector.sector %></td>
-        <td><%= link_to 'Show', subsector %></td>
-        <td><%= link_to 'Edit', edit_subsector_path(subsector) %></td>
-        <td><%= link_to 'Destroy', subsector, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <table>
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>Nombre</th>
+          <th>Sector</th>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
 
-<br>
-
-<%= link_to 'New Subsector', new_subsector_path %>
+      <tbody>
+        <% @subsectors.each do |subsector| %>
+          <tr>
+            <td>
+              <%= subsector.code %>
+            </td>
+            <td>
+              <%= link_to subsector.name, subsector %>
+            </td>
+            <td>
+              <% if subsector.sector %>
+                <%= subsector.sector.name %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Eliminar', subsector, method: :delete, data: { confirm: 'Seguro que deseas eliminar?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+<%= render "shared/footer" %>

@@ -1,0 +1,1 @@
+json.array! @event_monitors, partial: 'event_monitors/event_monitor', as: :event_monitor

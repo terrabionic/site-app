@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<div class="layout">
+  
+  <%= render 'shared/nav' %>
+
+  <div class="main">
+    <% if current_user.is? 'admin' %>
+      <%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
+    <% else %>
+      <%= link_to 'Atrás', index_manager_user_path, class: "back-button" %>
+    <% end %>
+
+    <h1 class="main-headline inline-block">Lista de Eventos</h1>
+    <p>
+      <% if can? :create, @event_monitors %>
+        <%= link_to 'Nuevo Evento', new_event_monitor_path, class: "btn" %>
+      <% end %>
+    </p>
+  
+    
+    <div id="calendar"> </div>
+
+    
+    <script>
+      var siteApp = siteApp || {};
+      siteApp.events = <%= @event_monitors.to_json.html_safe %>;
+    </script>
+
+  </div>
+</div>
+<%= render "shared/footer" %>

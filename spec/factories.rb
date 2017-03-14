@@ -1,4 +1,20 @@
 FactoryGirl.define do
+  factory :event_monitor do
+    title "MyString"
+    start_at "2017-03-10 14:43:44"
+    end_at "2017-03-10 14:43:44"
+    allDay "MyString"
+    address "MyString"
+    website "MyString"
+  end
+  factory :state do
+    name "MyString"
+  end
+  factory :branch do
+    name "MyString"
+    subsector nil
+    code 1
+  end
   factory :subsector do
     name "MyString"
     sector nil

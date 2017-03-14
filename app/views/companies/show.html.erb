@@ -69,13 +69,6 @@
           </p>
 
           <p>
-            <strong>Sector:</strong>
-            <% if @company.sector %>
-              <%= @company.sector.name %>
-            <% end %>
-          </p>
-
-          <p>
             <strong>Último inicio de sesión:</strong>
             <% if @company.user_login %>
               <% if @company.user_login.last_sign_in_at %>
@@ -134,6 +127,26 @@
             <%= @company.vat %>
           </p>
           <p>
+            <strong>Sector:</strong>
+            <% if @company.sector %>
+              <%= @company.sector.name %>
+            <% end %>
+          </p>
+          <p>
+            <strong>Subsector:</strong>
+            <% if @company.subsector %>
+              <%= @company.subsector.name %>
+            <% end %>
+          </p>
+          <p>
+            <strong>Ramas:</strong>
+            <% if @company.branches %>
+              <% @company.branches.each do |branch| %>
+                <%= branch.name %>
+              <% end %>
+            <% end %>
+          </p>
+          <p>
             <strong>Calle:</strong>
             <%= @company.street %>
           </p>
@@ -144,24 +157,38 @@
           <p>
             <strong>Municipio:</strong>
             <% if @company.municipio%>
-				<%= @company.municipio.name %>
+				      <%= @company.municipio.name %>
+            <% end %>
+          </p>
+          <p>
+            <strong>Estado:</strong>
+            <% if @company.state_company%>
+              <%= @company.state_company.name %>
             <% end %>
           </p>
           <% if @company.municipio%>
-			  <p>
-				<strong>Región:</strong>
-				<% if @company.municipio.region%>
-					<%= @company.municipio.region.name %>
-				<% end %>
-			  </p>
+    				<strong>Región:</strong>
+    				<% if @company.municipio.region%>
+              <p>
+      					<%= @company.municipio.region.name %>
+              </p>
+				    <% end %>
           <% end %>
+          <p>
+            <strong>Latitud:</strong>
+            <%= @company.latitude %>
+          </p>
+          <p>
+            <strong>Longitud:</strong>
+            <%= @company.longitude %>
+          </p>
           <p>
             <strong>Email Empresa:</strong>
             <%= @company.email %>
           </p>
-          <p>
-            <strong>Teléfono convencional:</strong>
-            <%= @company.phone %>
+           <p>
+            <strong>Sitio Web:</strong>
+            <%= @company.web %>
           </p>
           <p>
             <strong>Teléfono celular:</strong>

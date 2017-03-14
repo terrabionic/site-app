@@ -69,6 +69,6 @@ class SubsectorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subsector_params
-      params.require(:subsector).permit(:name, :sector_id)
+      params.require(:subsector).permit(:name, :sector_id, :code)
     end
 end

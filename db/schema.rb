@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170227234537) do
+ActiveRecord::Schema.define(version: 20170310204344) do
+
+  create_table "Branches_Companies", id: false, force: :cascade do |t|
+    t.integer "branch_id",  null: false
+    t.integer "company_id", null: false
+  end
+
+  add_index "Branches_Companies", ["branch_id", "company_id"], name: "index_Branches_Companies_on_branch_id_and_company_id"
+  add_index "Branches_Companies", ["company_id", "branch_id"], name: "index_Branches_Companies_on_company_id_and_branch_id"
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -24,6 +32,16 @@ ActiveRecord::Schema.define(version: 20170227234537) do
   add_index "answers", ["possible_answer_id"], name: "index_answers_on_possible_answer_id"
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
   add_index "answers", ["reply_id"], name: "index_answers_on_reply_id"
+
+  create_table "branches", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "subsector_id"
+    t.integer  "code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "branches", ["subsector_id"], name: "index_branches_on_subsector_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -84,6 +102,9 @@ ActiveRecord::Schema.define(version: 20170227234537) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "activity_id"
+    t.integer  "subsector_id"
+    t.integer  "state_company_id"
+    t.string   "web"
   end
 
   add_index "companies", ["activity_id"], name: "index_companies_on_activity_id"
@@ -91,6 +112,8 @@ ActiveRecord::Schema.define(version: 20170227234537) do
   add_index "companies", ["emprered_id"], name: "index_companies_on_emprered_id"
   add_index "companies", ["municipio_id"], name: "index_companies_on_municipio_id"
   add_index "companies", ["sector_id"], name: "index_companies_on_sector_id"
+  add_index "companies", ["state_company_id"], name: "index_companies_on_state_company_id"
+  add_index "companies", ["subsector_id"], name: "index_companies_on_subsector_id"
   add_index "companies", ["survey_analysis_id"], name: "index_companies_on_survey_analysis_id"
   add_index "companies", ["user_login_id"], name: "index_companies_on_user_login_id"
 
@@ -105,6 +128,17 @@ ActiveRecord::Schema.define(version: 20170227234537) do
 
   create_table "economic_activities", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "event_monitors", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string   "allDay"
+    t.string   "address"
+    t.string   "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -213,9 +247,16 @@ ActiveRecord::Schema.define(version: 20170227234537) do
     t.datetime "image_updated_at"
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "subsectors", force: :cascade do |t|
     t.string   "name"
     t.integer  "sector_id"
+    t.integer  "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

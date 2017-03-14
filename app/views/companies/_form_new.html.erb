@@ -56,6 +56,19 @@
       <% end %>
     </div><!-- .sector-cool -->
   </div>
+
+  <div class="field">
+    Subsector:
+    <%= f.grouped_collection_select :subsector_id, Sector.all, :subsectors, :name ,:id, :name %>
+  </div>
+
+  <%= f.fields_for(@company_branch) do |bc| %>
+    <div class="field">
+      Rama:<br />
+      <%= f.grouped_collection_select :branches, Subsector.all, :branches, :name ,:id, :name, {},{ :multiple => true, :size => 5 } %>
+    </div>
+  <% end %>
+  
   <hr/>
   <h2>Crear cuenta de usuario</h2>
   <div class="field">

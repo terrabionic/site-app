@@ -18,6 +18,32 @@
     <%= f.text_field :vat %>
   </div>
   <div class="field">
+    Sector:
+    <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
+
+    <div id="sector-cool" class="sector-cool">
+      <% Sector.all.each do |sector| %>
+        <div class="sector-cool__item" data-val="<%= sector.id %>">
+          <%= image_tag (sector.image.url(:thumb)) %>
+          <%= sector.name %>
+        </div>
+      <% end %>
+    </div><!-- .sector-cool -->
+  </div>
+
+  <div class="field">
+    Subsector:
+    <%= f.grouped_collection_select :subsector_id, Sector.all, :subsectors, :name ,:id, :name %>
+  </div>
+
+  <%= f.fields_for(@company_branch) do |bc| %>
+    <div class="field">
+      Rama:<br />
+      <%= f.grouped_collection_select :branches, Subsector.all, :branches, :name ,:id, :name, {},{ :multiple => true, :size => 5 } %>
+    </div>
+  <% end %>
+
+  <div class="field">
     <strong>Calle:</strong><br>
     <%= f.text_field :street %>
   </div>
@@ -30,6 +56,10 @@
     <%= f.select :municipio_id, options_for_select(Municipio.all.map{|s|[s.name, s.id]}) %>
   </div>
   <div class="field">
+    <strong>Estado:</strong><br>
+    <%= f.select :state_company_id, options_for_select(State.all.map{|s|[s.name, s.id]}) %>
+  </div>
+  <div class="field">
     <strong>Latitud:</strong><br>
     <%= f.text_field :latitude %>
   </div>
@@ -40,6 +70,18 @@
   <div class="field">
     <strong>Celular:</strong><br>
     <%= f.text_field :cel %>
+  </div>
+  <div class="field">
+    <strong>Teléfono:</strong><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <strong>Email Empresa::</strong><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <strong>Sitio web:</strong><br>
+    <%= f.text_field :web %>
   </div>
   <div class="field">
     <strong>Fecha de inicio de operaciones:</strong><br>
