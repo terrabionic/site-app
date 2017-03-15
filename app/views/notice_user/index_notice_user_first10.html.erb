@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <% if current_user.is? 'admin' %>
+      <%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
+    <% else %>
+      <%= link_to 'Atrás', index_manager_user_path, class: "back-button" %>
+    <% end %>
+    <h1 class="main-headline inline-block">Noticias</h1>
+    
+    <table class="site-table">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Titulo</th>
+          <th>Link</th>
+          <th>Descripción</th>
+          <th>Fecha de publicación</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if @notices %>
+          <% @notices.each do |notice| %>
+            <tr>
+              <td><%= image_tag (notice.image_notice.url(:thumb)) %></td>
+              <td><%= link_to notice.title, notice %></td>
+              <td><%= notice.link %></td>
+              <td><%= notice.description %></td>
+              <td><%= notice.date_pub %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'Ver todos', index_notice_user_path %>
+  </div>
+</div>
+<%= render "shared/footer" %>

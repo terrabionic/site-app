@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170310204344) do
+ActiveRecord::Schema.define(version: 20170315002337) do
 
   create_table "Branches_Companies", id: false, force: :cascade do |t|
     t.integer "branch_id",  null: false
@@ -185,6 +185,33 @@ ActiveRecord::Schema.define(version: 20170310204344) do
   end
 
   add_index "municipios", ["region_id"], name: "index_municipios_on_region_id"
+
+  create_table "notices", force: :cascade do |t|
+    t.string   "title"
+    t.string   "link"
+    t.integer  "sector_id"
+    t.text     "description"
+    t.boolean  "active"
+    t.datetime "date_pub"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "image_notice_file_name"
+    t.string   "image_notice_content_type"
+    t.integer  "image_notice_file_size"
+    t.datetime "image_notice_updated_at"
+  end
+
+  add_index "notices", ["sector_id"], name: "index_notices_on_sector_id"
+
+  create_table "pagefeeds", force: :cascade do |t|
+    t.string   "title"
+    t.string   "link"
+    t.integer  "sector_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "pagefeeds", ["sector_id"], name: "index_pagefeeds_on_sector_id"
 
   create_table "possible_answers", force: :cascade do |t|
     t.integer  "question_id"

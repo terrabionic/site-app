@@ -15,6 +15,7 @@
 	    <h1 class="main-headline">
 			Monitor empresarial
 		</h1>
+		<%= link_to 'NOTICIAS', index_notice_user_first10_path%>
 		<%= link_to 'CALENDARIO EVENTOS', event_monitors_path %>
 		<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
 		  <div class="buscador-empresarial">
