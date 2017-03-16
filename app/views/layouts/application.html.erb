@@ -34,7 +34,7 @@
 					<% if current_user.company.done %>
 			          <% if current_user.company.stage == 'Reporte' %>
 			            <%= link_to results_company_path do %>
-			            	<%= image_tag "logotipo-header.png" %>	
+			            	<%= image_tag "logotipo-header.png" %>
 			            <% end %>
 			          <% else %>
 			            <%= link_to index_company_path do %>
@@ -64,12 +64,15 @@
 					<% elsif current_user.is? 'company' %>
 						<% if current_user.company.done %>
 				          <% if current_user.company.stage == 'Reporte' %>
+				          	<%= Notification.where('user_id = ? AND user_read = ?', current_user.id, false).length %> <%= link_to 'Noti' , index_notification_user_first_path%>
 				            <%= link_to 'DASHBOARD', results_company_path %>
 				          <% else %>
 				            <%= link_to 'DASHBOARD', index_company_path %>
+				            <%= Notification.where('user_id = ? AND user_read = ?', current_user.id, false).length %> <%= link_to 'Noti' , index_notification_user_first_path%>
 				          <% end %>
 				        <% else %>
 				          <%= link_to 'DASHBOARD', index_company_path %>
+				          <%= Notification.where('user_id = ? AND user_read = ?', current_user.id, false).length %> <%= link_to 'Noti' , index_notification_user_first_path%>
 				        <% end %>
 					<% end %>
 				</span><!-- .header-actions__item -->

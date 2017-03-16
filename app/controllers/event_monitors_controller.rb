@@ -27,7 +27,14 @@ class EventMonitorsController < ApplicationController
   # POST /event_monitors.json
   def create
     @event_monitor = EventMonitor.new(event_monitor_params)
-
+    @users = User.all
+    @users.each do |user|
+      if user.company
+        notifications_params = { title: @event_monitor.title, event: @event_monitor, user_read: false, date_pub: Time.now, user_id: user.id }
+        Notification.create(notifications_params)
+      end
+    end
+    
     respond_to do |format|
       if @event_monitor.save
         format.html { redirect_to @event_monitor, notice: 'Event monitor was successfully created.' }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315002337) do
+ActiveRecord::Schema.define(version: 20170316172557) do
 
   create_table "Branches_Companies", id: false, force: :cascade do |t|
     t.integer "branch_id",  null: false
@@ -202,6 +202,21 @@ ActiveRecord::Schema.define(version: 20170315002337) do
   end
 
   add_index "notices", ["sector_id"], name: "index_notices_on_sector_id"
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "event_id"
+    t.integer  "notice_id"
+    t.datetime "date_pub"
+    t.integer  "user_id"
+    t.boolean  "user_read"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "notifications", ["event_id"], name: "index_notifications_on_event_id"
+  add_index "notifications", ["notice_id"], name: "index_notifications_on_notice_id"
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id"
 
   create_table "pagefeeds", force: :cascade do |t|
     t.string   "title"
