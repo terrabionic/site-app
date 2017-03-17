@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <%= link_to 'Atrás', sections_index_path, class: "back-button" %>
+
+    <h1 class="main-headline inline-block">RSS de noticias</h1>
+    <p>
+      <%= link_to 'Nuevo RSS de Noticia', new_pagefeed_path, class: "btn" %>
+    </p>
+
+      <table class="site-table">
+        <thead>
+          <tr>
+            <th>Titulo</th>
+            <th>Link</th>
+            <th>Sector</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @pagefeeds.each do |pagefeed| %>
+            <tr>
+              <td><%= link_to pagefeed.title, pagefeed %></td>
+              <td><%= pagefeed.link %></td>
+              <td>
+                <% if pagefeed.sector %>
+                  <%= pagefeed.sector.name %>
+                <% end %>
+              </td>
+              <td><%=link_to "Obtener Noticias", get_notice_tofeed_url_path(pagefeed_id: pagefeed), method: :post %></td>
+              <td><%= link_to 'Eliminar', pagefeed, method: :delete, data: { confirm: 'Estas seguro de eliminarlo?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>
+<%= render "shared/footer" %>

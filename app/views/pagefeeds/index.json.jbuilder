@@ -1,0 +1,1 @@
+json.array! @pagefeeds, partial: 'pagefeeds/pagefeed', as: :pagefeed

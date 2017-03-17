@@ -1,4 +1,25 @@
 FactoryGirl.define do
+  factory :notification do
+    title "MyString"
+    event nil
+    notice nil
+    date_pub "2017-03-16 11:25:57"
+    user nil
+    user_read false
+  end
+  factory :notice do
+    title "MyString"
+    link "MyString"
+    sector nil
+    description "MyText"
+    active false
+    date_pub "2017-03-14 18:22:57"
+  end
+  factory :pagefeed do
+    title "MyString"
+    link "MyString"
+    sector nil
+  end
   factory :event_monitor do
     title "MyString"
     start_at "2017-03-10 14:43:44"

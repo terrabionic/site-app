@@ -11,6 +11,7 @@
   <div class="main">
 
   	<div class="form-container--large">
+
   		  		
   		<div class="header-and-buttons">
   			<div class="header-and-buttons__left">
@@ -19,10 +20,13 @@
 				</h1>	
   			</div>
 			<div class="header-and-buttons__right">
+				<%= link_to 'NOTICIAS', index_notice_user_first10_path, class: "btn--emerald" %>
 				<%= link_to 'CALENDARIO EVENTOS', event_monitors_path, class: "btn--emerald" %> 		
 			</div>
   		</div>
 		
+
+  	
 		<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
 		  <div class="buscador-empresarial">
 		    <div class="ordenar-field">

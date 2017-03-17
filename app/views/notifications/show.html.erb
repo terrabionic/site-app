@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <%= link_to 'Atrás', companies_path, class: "back-button" %>
+  
+    <p>
+      <strong>Titulo:</strong>
+      <%= @notification.title %>
+    </p>
+
+    <% if @notification.event %>
+      <p>
+        <strong>Calendario de eventos</strong>
+      </p>
+    <% end %>
+
+    <% if @notification.notice %>
+      <p>
+        <strong>Noticia</strong>
+      </p>
+    <% end %>
+    <p>
+      <strong>Fehca:</strong>
+      <%= @notification.date_pub %>
+    </p>
+
+    <p>
+      <strong>Usuario:</strong>
+      <% if @notification.user %>
+        <%= @notification.user.name %>
+      <% end %>
+    </p>
+
+  </div>
+</div>
+<%= render "shared/footer" %>

@@ -1,0 +1,42 @@
+<%= form_for(@notice) do |f| %>
+  <% if @notice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notice.errors.count, "error") %> prohibited this notice from being saved:</h2>
+
+      <ul>
+      <% @notice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    Imagen:
+    <%= f.file_field :image_notice %>
+  </div>
+
+  <div class="field">
+    Titulo:<br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    Link:<br>
+    <%= f.text_field :link %>
+  </div>
+  <div class="field">
+    Sector:
+    <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
+  </div>
+  <div class="field">
+    Descripción:<br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    Fecha de publicación:<br>
+    <%= f.datetime_select :date_pub %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Guardar'%>
+  </div>
+<% end %>

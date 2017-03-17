@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <%= link_to 'Atrás', pagefeeds_path, class: "back-button" %>
+
+    <h1 class="main-headline inline-block mr-1"><%= @pagefeed.title %></h1>
+
+      	<%= link_to 'Editar', edit_pagefeed_path(@pagefeed), class: "btn--gris btn--small" %>
+
+		<p>
+		  <strong>Title:</strong>
+		  <%= @pagefeed.title %>
+		</p>
+
+		<p>
+		  <strong>Link:</strong>
+		  <%= @pagefeed.link %>
+		</p>
+
+		<p>
+		  <strong>Sector:</strong>
+		  <% if @pagefeed.sector %>
+		  	<%= @pagefeed.sector.name %>
+		  <% end %>
+		</p>
+		<%=link_to "Obtener Noticias", get_notice_tofeed_url_path(pagefeed_id: @pagefeed), method: :post %>
+  </div>
+</div>
+<%= render "shared/footer" %>

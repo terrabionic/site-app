@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <h1 class="main-headline inline-block">Tus Notificaciones</h1>
+    <br>
+    <% @notifications.each do |notification| %>
+      <p>
+        <%= notification.title %><br>
+        <% if notification.event %>
+          <strong>Calendario de eventos</strong>
+        <% end %>
+        <% if notification.notice %>
+          <strong>Noticia</strong>
+        <% end %>
+      </p>
+    <% end %>
+    <%= link_to 'Mas notificaciones', notifications_path %>
+  </div>
+</div>
+<%= render "shared/footer" %>

@@ -1,0 +1,1 @@
+json.partial! "pagefeeds/pagefeed", pagefeed: @pagefeed
