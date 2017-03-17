@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <%= link_to 'Atrás', sections_index_path, class: "back-button" %>
+    <h1 class="main-headline inline-block">Noticias</h1>
+    <p>
+      <%= link_to 'Nueva Noticia', new_notice_path, class: "btn" %>
+    </p>
+    
+
+
+    <table class="site-table">
+      <thead>
+        <tr>
+          <th>Titulo</th>
+          <th>Link</th>
+          <th>Sector</th>
+          <th>Descripción</th>
+          <th>Publicado</th>
+          <th>Fecha de publicación</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @notices.each do |notice| %>
+          <tr>
+            <td><%= link_to notice.title, notice %></td>
+            <td><%= notice.link %></td>
+            <td>
+              <% if notice.sector%>
+                <%= notice.sector.name %>
+              <% end %>
+            </td>
+            <td><%= notice.description %></td>
+            <td>
+              <% if notice.active %>
+                Publicado
+              <% else %>
+                No publicado
+              <% end %>
+            </td>
+            <td><%= notice.date_pub %></td>
+            <td>
+              <% unless notice.active %>
+                <%=link_to "Publicar Noticias", publish_notice_path(notice_id: notice), method: :post %>  
+              <% end %>
+            </td>
+            <td><%= link_to 'Eliminar', notice, method: :delete, data: { confirm: 'Seguro que desea eliminarlo?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+<%= render "shared/footer" %>

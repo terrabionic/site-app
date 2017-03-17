@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <% if current_user.company.done %>
+      <% if current_user.company.stage == 'Reporte' %>
+        <%= link_to 'Atrás', results_company_path , class: "back-button"%>
+      <% else %>
+        <%= link_to 'Atrás', index_company_path, class: "back-button" %>
+      <% end %>
+    <% else %>
+      <%= link_to 'Atrás', index_company_path, class: "back-button"%>
+    <% end %>
+
+    <h1 class="main-headline inline-block">Tus Notificaciones</h1>
+    <br>
+    <% @notifications.each do |notification| %>
+      <p>
+        <%= notification.title %><br>
+        <% if notification.event %>
+          <strong>Calendario de eventos</strong>
+        <% end %>
+        <% if notification.notice %>
+          <strong>Noticia</strong>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+</div>
+<%= render "shared/footer" %>

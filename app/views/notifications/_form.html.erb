@@ -1,0 +1,41 @@
+<%= form_for(@notification) do |f| %>
+  <% if @notification.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notification.errors.count, "error") %> prohibited this notification from being saved:</h2>
+
+      <ul>
+      <% @notification.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    Evento:
+    <%= f.select :event_id, options_for_select(EventMonitor.all.map{|s|[s.title, s.id]}) %>
+  </div>
+  <div class="field">
+    Noticia:
+    <%= f.select :notice_id, options_for_select(Notice.all.map{|s|[s.title, s.id]}) %>
+  </div>
+  <div class="field">
+    <%= f.label :date_pub %><br>
+    <%= f.datetime_select :date_pub %>
+  </div>
+  <div class="field">
+    Usuario:
+    <%= f.select :user_id, options_for_select(User.all.map{|s|[s.name, s.id]}) %>
+  </div>
+  <div class="field">
+    <%= f.label :user_read %><br>
+    <%= f.check_box :user_read %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Guardar'%>
+  </div>
+<% end %>

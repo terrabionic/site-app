@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :notifications
+  resources :notices
+  resources :pagefeeds
   resources :event_monitors
   resources :states
   resources :branches
@@ -115,5 +118,11 @@ Rails.application.routes.draw do
   get '/business_manager/company_municipal_admin', to: 'business_manager#company_municipal_admin', as: 'company_municipal_admin'
   get '/business_manager/business_directory_admin', to: 'business_manager#business_directory_admin', as: 'business_directory_admin'
 
+  post "/get_notice_tofeed_url", to: "pagefeeds#get_notice_tofeed_url"
+  post "/publish_notice", to: "notices#publish_notice"
+  get '/notice_user/index_notice_user_first10', to: 'notice_user#index_notice_user_first10', as: 'index_notice_user_first10'
+  get '/notice_user/index_notice_user', to: 'notice_user#index_notice_user', as: 'index_notice_user'
+
+  get '/notification_user/index_notification_user_first', to: 'notification_user#index_notification_user_first', as: 'index_notification_user_first'
 
 end

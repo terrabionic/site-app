@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <%= link_to 'Atrás', notices_path, class: "back-button" %>
+
+    <h1 class="main-headline inline-block mr-1"><%= @notice.title %></h1>
+
+    
+      <%= link_to 'Editar', edit_notice_path(@notice), class: "btn--gris btn--small" %>
+    
+      <p class="empresa-logo">
+        <strong>Imagen:</strong>
+        <br>
+        <%= image_tag @notice.image_notice.url(:medium) %>
+      </p>
+      <p>
+        <strong>Link:</strong>
+        <%= @notice.link %>
+      </p>
+
+      <p>
+        <strong>Sector:</strong>
+        <% if @notice.sector %>
+          <%= @notice.sector.name %>
+        <% end %>
+      </p>
+
+      <p>
+        <strong>Descripción:</strong>
+        <%= @notice.description %>
+      </p>
+
+      <p>
+        <strong>Publicado:</strong>
+        <% if @notice.active %>
+          Publicado
+        <% else %>
+          No publicado
+        <% end %>
+      </p>
+
+      <p>
+        <strong>Fecha de publicación:</strong>
+        <%= @notice.date_pub %>
+      </p>
+
+    
+  </div>
+</div>
+<%= render "shared/footer" %>

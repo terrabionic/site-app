@@ -1,0 +1,2 @@
+module PagefeedsHelper
+end
