@@ -1574,6 +1574,55 @@ select {
 	}
 }
 
+.mapa-botones {
+	clear: both;
+}
+
+
+.mapa-botones__left {
+	float: left;
+	width: 20%;
+}
+
+.mapa-botones__right {
+	float: right;
+	width: 80%;
+}
+
+.boton-mapa {
+	display: block;
+	color: #042F50;
+	font-weight: bold;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	overflow: hidden;
+	
+	& + & {
+		border-top: 1px solid #f2f2f2;
+	}
+
+	&:hover {
+		color: #042F50;
+		text-decoration: unerline;
+	}
+	svg {
+		display: inline-block;
+		width: 30px;
+		vertical-align: middle;
+		line-height: 0;
+		float: right;
+		path {
+			fill: #6EB330;
+		}
+	}
+}
+
+.fc-left {
+	h2 {
+		color: #042F50;
+	}
+}
+
 @media (max-width: 1024px) {
 
 	.monitor-estatal {

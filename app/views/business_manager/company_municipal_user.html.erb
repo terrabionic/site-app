@@ -21,7 +21,7 @@
 
   <div class="main">
     <%= link_to 'Atrás', :back, class: "back-button" %>
-    <h1>NIVEL MUNICIPAL</h1>
+    <h1 class="main-headline inline-block">NIVEL MUNICIPAL</h1>
     <table class="site-table">
         <thead>
           <tr>
@@ -37,7 +37,7 @@
             <% @company_am.each do |company_list| %>
               <tr>
                 <td>
-                  <strong><%= company_list[0].name %></strong>
+                  <strong class="color-blue"><%= company_list[0].name %></strong>
                 </td>
                 <td>
                   <%= company_list[1] %> empresas

@@ -20,171 +20,189 @@
   </div><!-- .nav -->
 
   <div class="main">
-    <h1>SECTOR <%= @sector.name %></h1>
-    <%= link_to 'NOTICIAS', index_notice_user_first10_path%>
-    <%= link_to 'CALENDARIO EVENTOS', event_monitors_path %>
-    <table border="1" cellpadding="1" cellspacing="1" style="width:500px;">
-		<tbody>
-			<tr>
-				<td colspan="2">
-					<%= form_tag(index_manager_user_path(), :method => "get", id: "search") do %>
-					  <div class="row buscador" style="max-width: none; margin-left: -15px;">
-					    <div class="medium-6 columns ordenar-field">
 
-					    	<strong>PUEDES FILTRAR POR: </strong>
-					  		<%= select_tag(:level, options_for_select([['Todo', ''],['Regional', 'regional'], ['Municipal', 'municipal']],params[:level]), :onchange => "this.form.submit();") %>
-					    
-					    	<%= select_tag :location, options_for_select(@municipios.map{|s|[s.name, s.id]},params[:location]) %>
+    <div class="form-container--large">
 
-					    	<%= submit_tag "Buscar" %>    
-					    </div>
-					  </div>
-					<% end %>
-				</td>
-			</tr>
-			<tr>
-				<td>
+  		<div class="header-and-buttons">
+  			<div class="header-and-buttons__left">
+	  			<h1 class="main-headline">
+					SECTOR <%= @sector.name %>
+				</h1>	
+  			</div>
+			<div class="header-and-buttons__right">
+				<%= link_to 'NOTICIAS', index_notice_user_first10_path, class: "btn--emerald" %>
+	    		<%= link_to 'CALENDARIO EVENTOS', event_monitors_path, class: "btn--emerald" %>
+			</div>
+  		</div>
+
+		<%= form_tag(index_manager_user_path(), :method => "get", id: "search") do %>
+	    <div class="ordenar-field">
+
+	    	<strong>PUEDES FILTRAR POR: </strong>
+	  		<%= select_tag(:level, options_for_select([['Todo', ''],['Regional', 'regional'], ['Municipal', 'municipal']],params[:level]), :onchange => "this.form.submit();") %>
+	    
+	    	<%= select_tag :location, options_for_select(@municipios.map{|s|[s.name, s.id]},params[:location]) %>
+
+	    	<%= submit_tag "Buscar" %>    
+	    </div>
+		<% end %>
+		
+		<div class="mapa-botones">
+			<div class="mapa-botones__left">
+				<a href="#" class="boton-mapa">
 					PROVEEDORES
-				</td>
-				<td colspan="1" rowspan="3">
-					<div style='width: 800px;'>
-					  <div id="map" style='width: 800px; height: 400px;'></div>
-					</div>
-					<script type="text/javascript">
-						handler = Gmaps.build('Google');
-						handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-						  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-						  handler.bounds.extendWith(markers);
-						  handler.fitMapToBounds();
-						});
-					</script>
-				</td>
-			</tr>
-			<tr>
-				<td>
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><path d="M12.5,8c0.3,0,0.5,0.1,0.7,0.3l7,7c0.4,0.4,0.4,1,0,1.4l-7,7c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l6.3-6.3l-6.3-6.3  c-0.4-0.4-0.4-1,0-1.4C12,8.1,12.2,8,12.5,8z"/>
+				</a>
+				<a href="#" class="boton-mapa">
 					COMPETENCIA
-				</td>
-			</tr>
-			<tr>
-				<td>
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><path d="M12.5,8c0.3,0,0.5,0.1,0.7,0.3l7,7c0.4,0.4,0.4,1,0,1.4l-7,7c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l6.3-6.3l-6.3-6.3  c-0.4-0.4-0.4-1,0-1.4C12,8.1,12.2,8,12.5,8z"/>
+				</a>
+				<a href="#" class="boton-mapa">
 					DISTRIBUIDORES
-				</td>
-			</tr>
-		</tbody>
-	</table>
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><path d="M12.5,8c0.3,0,0.5,0.1,0.7,0.3l7,7c0.4,0.4,0.4,1,0,1.4l-7,7c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l6.3-6.3l-6.3-6.3  c-0.4-0.4-0.4-1,0-1.4C12,8.1,12.2,8,12.5,8z"/>
+				</a>
+			</div>
 
-	<div style='width: 800px;'>
-	  <div id="map" style='width: 800px; height: 400px;'></div>
-	</div>
-	<script type="text/javascript">
-		handler = Gmaps.build('Google');
-		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-		  markers = handler..addMarkers(<%=raw @hash.to_json %>);
-		  handler.bounds.extendWith(markers);
-		  handler.fitMapToBounds();
-		});
-	</script>
-	<hr>
-	<h2>TOTAL DE EMPRESAS</h2>
-	<%= link_to 'DIRECTORIO DE EMPRESAS', business_directory_user_path %>
-	<ul>
-        <li><a href="#estatal" aria-selected="true">NIVEL ESTATAL</a></li>
-        <li><a href="#regional">NIVEL REGIONAL</a></li>
-        <li><a href="#municipal">NIVEL MUNICIPAL</a></li>
-    </ul><!-- .tabs -->
+			<div class="mapa-botones__right">
+				<div id="map"></div>
+				<script type="text/javascript">
+					handler = Gmaps.build('Google');
+					handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+					  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+					  handler.bounds.extendWith(markers);
+					  handler.fitMapToBounds();
+					});
+				</script>
+			</div>
+		</div>
+		
+		<hr>
 
-    <div>
+		<div class="head-gris">
+			<h2>TOTAL DE EMPRESAS</h2>	
+			<%= link_to 'DIRECTORIO DE EMPRESAS', business_directory_user_path, class: "btn--azul" %>
+		</div>
 
-        <div id="estatal">
-          <strong>Grafica</strong>
-          <%= @companies_all.length %> / <%= @companies_states.length %>
+		<ul class="tabs tabs-monitor" data-tabs id="example-tabs">
+	        <li class="tabs-title is-active"><a href="#estatal" aria-selected="true">NIVEL ESTATAL</a></li>
+	        <li class="tabs-title"><a href="#regional">NIVEL REGIONAL</a></li>
+	        <li class="tabs-title"><a href="#municipal">NIVEL MUNICIPAL</a></li>
+	    </ul><!-- .tabs -->
 
-          <h4><%= @sector.name %></h4>
-          <h4><%= @companies_states.length %> empresas</h4>
+	    <div class="tabs-content" data-tabs-content="example-tabs">
 
-        </div>
-          
-        <div id="regional">
-          
-          	<table class="site-table">
-		      <thead>
-		        <tr>
-		          <th>UBICACIÓN</th>
-		          <th>NÚMERO DE EMPRESAS</th>
-		          <th>PORCENTAJE DEL SECTOR</th>
-		        </tr>
-		      </thead>
+			<div class="tabs-panel is-active" id="estatal">
 
-		      <% if @user.company %>
-			      <tbody>
-			      	<% @municipios_first_five.each do |municipio| %>
-				      	<tr>
-				      		<td>
-				        		<strong><%= municipio.name %></strong><br>
-				        		<%= municipio.region.name %>
-				        	</td>
-				        	<td>
-					        	<% @municipio_count = Company.where("municipio_id = ? AND sector_id = ?", municipio.id ,@sector.id).length %>
-					        	<%= @municipio_count %> empresas
-				        	</td>
-				        	<td>
-				        		<% if @municipio_count > 0 %>
-				        			- <%= @sector.name %> <%= (@municipio_count * 100)/@companies_sectors.length %> %
-				        		<% else %>
-				        			- <%= @sector.name %> 0 %
-				        		<% end %>
-				        	</td>
-				      	</tr>
-				    <% end %>
-			      </tbody>
-		      <% end %>
-			</table>
-			<%= link_to 'VER TODAS LAS REGONES', company_regional_user_path %>
-        </div>
+				<div class="row">
+					<div class="large-4 columns">
+						<div id="chart-monitor-estatal" data-rows='[["Obtenido", <%= obtenido= (@companies_states.length * 100)/@companies_all.length %>], ["no obtenido", <%= 100 - obtenido %>]]' style="width: 300px; height: 250px;"></div>
+					</div>
+					<div class="large-8 columns monitor-estatal">
+				        <h4><%= @sector.name %></h4>
+		          		<h5><%= @companies_states.length %> empresas</h5>					
+					</div>
+				</div>
+		         
+	        </div>
+	          
+	        <div class="tabs-panel" id="regional">
+	          
+	          	<table class="site-table">
+			      <thead>
+			        <tr>
+			          <th>UBICACIÓN</th>
+			          <th>NÚMERO DE EMPRESAS</th>
+			          <th>PORCENTAJE DEL SECTOR</th>
+			        </tr>
+			      </thead>
 
-        <div id="municipal">
-          	<div>
-	          	<h4>Detalle</h4>
-	          	<hr>
-	          	<% @company_am_2.each do |company_list| %>
-	          		<strong>- <%= (company_list[1] * 100)/@companies_sectors.length %> % / <%= company_list[1] %> empresas</strong> <br>
-	          		<%= company_list[0].name %>
-	          		<br>
-	          	<% end %>
-          	</div>
-          	<table class="site-table">
-		      <thead>
-		        <tr>
-		          <th>ACTIVIDAD ECONÓMICA</th>
-		          <th>NÚMERO DE EMPRESAS</th>
-		          <th>SECTOR</th>
-		          <th>MUNICIPIO</th>
-		        </tr>
-		      </thead>
+			      <% if @user.company %>
+				      <tbody>
+				      	<% @municipios_first_five.each do |municipio| %>
+					      	<tr>
+					      		<td>
+					        		<strong class="color-blue"><%= municipio.name %></strong><br>
+					        		<%= municipio.region.name %>
+					        	</td>
+					        	<td>
+						        	<% @municipio_count = Company.where("municipio_id = ? AND sector_id = ?", municipio.id ,@sector.id).length %>
+						        	<%= @municipio_count %> empresas
+					        	</td>
+					        	<td>
+					        		<% if @municipio_count > 0 %>
+					        			- <%= @sector.name %> <%= (@municipio_count * 100)/@companies_sectors.length %> %
+					        		<% else %>
+					        			- <%= @sector.name %> 0 %
+					        		<% end %>
+					        	</td>
+					      	</tr>
+					    <% end %>
+				      </tbody>
+			      <% end %>
+				</table>
+				<%= link_to 'VER TODAS LAS REGIONES', company_regional_user_path, class: "btn" %>
+	        </div>
 
-		      <% if @user.company %>
-			      <tbody>
-			      	<% @company_am_2.each do |company_list| %>
-				      	<tr>
-				      		<td>
-				        		<strong><%= company_list[0].name %></strong>
-				        	</td>
-				        	<td>
-					        	<%= company_list[1] %> empresas
-				        	</td>
-				        	<td>
-				        		<%= company_list[2].name %>
-				        	</td>
-				        	<td>
-				        		<%= company_list[3].name %>
-				        	</td>
-				      	</tr>
-				    <% end %>
-			      </tbody>
-		      <% end %>
-			</table>
-			<%= link_to 'VER TODAS LAS ACTIVIDADES ECONÓMICAS', company_municipal_user_path %>
-        </div>
+	        <div class="tabs-panel" id="municipal">
+
+	        	<div class="row">
+
+	          		<div class="large-4 columns">
+		          		<% last = @company_am_2.last %>
+			          	<div id="chart-monitor-detalle" data-rows='[<% @company_am_2.each do |company_list| %>["Obtenido", <%= (company_list[1] * 100)/@companies_sectors.length %>]<% if company_list != last %>,<% end %><% end %>]' style="width: 300px; height: 250px;"></div>
+	          		</div>
+
+	          		<div class="large-8 columns detalle-monitor">
+			          	<h4>Detalle</h4>
+			          	<hr>
+			          	<% @company_am_2.each do |company_list| %>
+			          		<strong>- <%= (company_list[1] * 100)/@companies_sectors.length %> % / <%= company_list[1] %> empresas</strong> <br>
+			          		<%= company_list[0].name %>
+			          		<br>
+			          	<% end %>
+	          		</div>
+		          	
+		          	
+	          	</div>
+
+	          	<br>
+	          	<br>
+
+	          	<table class="site-table">
+			      <thead>
+			        <tr>
+			          <th>ACTIVIDAD ECONÓMICA</th>
+			          <th>NÚMERO DE EMPRESAS</th>
+			          <th>SECTOR</th>
+			          <th>MUNICIPIO</th>
+			        </tr>
+			      </thead>
+
+			      <% if @user.company %>
+				      <tbody>
+				      	<% @company_am_2.each do |company_list| %>
+					      	<tr>
+					      		<td>
+					        		<strong class="color-blue"><%= company_list[0].name %></strong>
+					        	</td>
+					        	<td>
+						        	<%= company_list[1] %> empresas
+					        	</td>
+					        	<td>
+					        		<%= company_list[2].name %>
+					        	</td>
+					        	<td>
+					        		<%= company_list[3].name %>
+					        	</td>
+					      	</tr>
+					    <% end %>
+				      </tbody>
+			      <% end %>
+				</table>
+				<%= link_to 'VER TODAS LAS ACTIVIDADES ECONÓMICAS', company_municipal_user_path, class: "btn" %>
+	        </div>
+
+	    </div>
 
     </div>
 

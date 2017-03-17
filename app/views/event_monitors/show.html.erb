@@ -5,11 +5,8 @@
   <%= render 'shared/nav' %>
   
   <div class="main">
-    <%= link_to 'Atrás', event_monitors_path %>
-    <p>
-      <strong>Nombre del evento:</strong>
-      <%= @event_monitor.title %>
-    </p>
+    <%= link_to 'Atrás', event_monitors_path, class: "back-button" %>
+    <h1 class="main-headline inline-block"><%= @event_monitor.title %></h1>
 
     <p>
       <strong>Fecha inicio:</strong>

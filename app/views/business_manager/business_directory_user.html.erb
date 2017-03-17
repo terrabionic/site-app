@@ -12,14 +12,14 @@
 
   		<div class="form-container--large">
   			<%= link_to 'Atrás', :back, class: "back-button" %>
-	    	<h1 class="main-headline">
+	    	<h1 class="main-headline inline-block">
 	    		<% if @sector %>
 					SECTOR <%= @sector.name %>
 				<% end %>
 			</h1>
 			<div>
   				<%= form_tag(business_directory_user_path(), :method => "get", id: "search") do %>
-				  <div>
+				  <div class="filtros-monitor">
 				    <div>
 						<strong class="hide">EMPRESA: </strong>
 						<%= text_field_tag :search, params[:search], placeholder: "Buscar Empresa" %>
@@ -43,7 +43,7 @@
 			      	<% @companies.each do |company| %>
 				      	<tr>
 				      		<td>
-				        		<strong><%= company.company_name %></strong><br>
+				        		<strong class="color-blue"><%= company.company_name %></strong><br>
 				        		<% if company.activity %>
 				        			<%= company.activity.name %>
 				        		<% end %>
@@ -67,7 +67,10 @@
 				        			<br>
 				        		<% end %>
 				        		<% if company.web %>
-				        			<%= company.web %> 
+				        			<span class="color-green">
+				        				<%= company.web %> 
+				        			</span>
+				        			
 				        		<% end %>
 				        	</td>
 				      	</tr>

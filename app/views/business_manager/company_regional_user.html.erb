@@ -20,8 +20,8 @@
   </div><!-- .nav -->
 
   <div class="main">
-  <%= link_to 'Atrás', :back, class: "back-button" %>
-  <h1>NIVEL REGIONAL</h1>
+  <%= link_to 'Atrás', :back, class: "back-button"  %>
+  <h1 class="main-headline inline-block">NIVEL REGIONAL</h1>
     <table class="site-table">
       <thead>
         <tr>
@@ -36,7 +36,7 @@
           <% @municipios_all.each do |municipio| %>
             <tr>
               <td>
-                <strong><%= municipio.name %></strong><br>
+                <strong class="color-blue"><%= municipio.name %></strong><br>
                 <%= municipio.region.name %>
               </td>
               <td>
