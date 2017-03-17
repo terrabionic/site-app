@@ -11,11 +11,18 @@
   <div class="main">
 
   	<div class="form-container--large">
-  		
-	    <h1 class="main-headline">
-			Monitor empresarial
-		</h1>
-		<%= link_to 'CALENDARIO EVENTOS', event_monitors_path %>
+  		  		
+  		<div class="header-and-buttons">
+  			<div class="header-and-buttons__left">
+	  			<h1 class="main-headline">
+					Monitor empresarial
+				</h1>	
+  			</div>
+			<div class="header-and-buttons__right">
+				<%= link_to 'CALENDARIO EVENTOS', event_monitors_path, class: "btn--emerald" %> 		
+			</div>
+  		</div>
+		
 		<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
 		  <div class="buscador-empresarial">
 		    <div class="ordenar-field">
@@ -37,178 +44,199 @@
 
 		<div id="map"></div>
 
-	</div>
+	
 
-	<script type="text/javascript">
+		<script type="text/javascript">
 
-		handler = Gmaps.build('Google');
+			handler = Gmaps.build('Google');
 
-		handler.buildMap({
-			internal: {id: 'map'},
-			provider: {
-				mapTypeId: google.maps.MapTypeId.ROADMAP,
-				styles: [	{"featureType":"all",		"stylers":[			{"saturation":0},			{"hue":"#e7ecf0"}		]	},	{"featureType":"road",		"stylers":[			{"saturation":-70}		]	},	{"featureType":"transit",		"stylers":[			{"visibility":"off"}		]	},	{"featureType":"poi",		"stylers":[			{"visibility":"off"}		]	},	{"featureType":"water",		"stylers":[			{"visibility":"simplified"},			{"saturation":-60}		]	}]
-			} 
-			
-		}, function(){
-		  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-		  handler.bounds.extendWith(markers);
-		  handler.fitMapToBounds();
-		  handler.getMap().setZoom(15);
-		});
-	</script>
+			handler.buildMap({
+				internal: {id: 'map'},
+				provider: {
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					styles: [	{"featureType":"all",		"stylers":[			{"saturation":0},			{"hue":"#e7ecf0"}		]	},	{"featureType":"road",		"stylers":[			{"saturation":-70}		]	},	{"featureType":"transit",		"stylers":[			{"visibility":"off"}		]	},	{"featureType":"poi",		"stylers":[			{"visibility":"off"}		]	},	{"featureType":"water",		"stylers":[			{"visibility":"simplified"},			{"saturation":-60}		]	}]
+				} 
+				
+			}, function(){
+			  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+			  handler.bounds.extendWith(markers);
+			  handler.fitMapToBounds();
+			  handler.getMap().setZoom(15);
+			});
+		</script>
 
-	<hr>
-	<h2>TOTAL DE EMPRESAS</h2>
-	<%= link_to 'DIRECTORIO DE EMPRESAS', business_directory_admin_path %>
-	<ul>
-        <li><a href="#estatal" aria-selected="true">NIVEL ESTATAL</a></li>
-        <li><a href="#regional">NIVEL REGIONAL</a></li>
-        <li><a href="#municipal">NIVEL MUNICIPAL</a></li>
-    </ul><!-- .tabs -->
+		<hr>
 
-    <div>
-        <div id="estatal">
-       		<div>
+		<div class="head-gris">
+			<h2>TOTAL DE EMPRESAS</h2>	
+			<%= link_to 'DIRECTORIO DE EMPRESAS', business_directory_admin_path, class: "btn--azul" %>
+		</div>
+		
+		
+		<ul class="tabs tabs-monitor" data-tabs id="example-tabs">
+	        <li class="tabs-title is-active"><a href="#estatal" aria-selected="true">NIVEL ESTATAL</a></li>
+	        <li class="tabs-title"><a href="#regional">NIVEL REGIONAL</a></li>
+	        <li class="tabs-title"><a href="#municipal">NIVEL MUNICIPAL</a></li>
+	    </ul><!-- .tabs -->
+
+	    <div class="tabs-content" data-tabs-content="example-tabs">
+
+	        <div class="tabs-panel is-active" id="estatal">
+	       		
        			<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
-				  <div>
-				    <div>
+				  <div class="filtros-monitor">
+				    
+			    	<strong>PUEDES FILTRAR POR: </strong>
 
-				    	<strong>PUEDES FILTRAR POR: </strong>
+			    	<strong class="hide">SECTOR: </strong>
+					<%= select_tag :sector_municipal, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector_municipal]) %>
 
-				    	<strong class="hide">SECTOR: </strong>
-						<%= select_tag :sector_municipal, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector_municipal]) %>
+			    	<strong class="hide">MUNICIPIO: </strong>
+			    	<%= select_tag :location_municipal, options_for_select(Municipio.all.map{|s|[s.name, s.id]}, params[:location_municipal]), {:include_blank => 'Todos'} %>
+			    	
 
-				    	<strong class="hide">MUNICIPIO: </strong>
-				    	<%= select_tag :location_municipal, options_for_select(Municipio.all.map{|s|[s.name, s.id]}, params[:location_municipal]), {:include_blank => 'Todos'} %>
-				    	
-
-				    	<%= submit_tag "Buscar" %>    
-				    </div>
+			    	<%= submit_tag "Filtrar" %>    
+				    
 		  		  </div>
 				<% end %>
-       		</div>
-        	<strong>Grafica</strong>
-        	<% if @companies_all.length > 0 %>
-	        	<%= (@companies_states.length * 100)/@companies_all.length %> %
-	        <% else %>
-	        	0 %
-	        <% end %>
-	        <h4><%= @sector_municipal.name %></h4>
-	        <h4><%= @companies_states.length %> empresas</h4>
-        </div>
-        <div id="regional">
 
-       		<div>
-       			<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
-				  <div>
-				    <div>
+				<div class="row">
+					<div class="large-4 columns">
+						<div id="chart-monitor-estatal" data-rows='[["Obtenido", <%= obtenido= (@companies_states.length * 100)/@companies_all.length %>], ["no obtenido", <%= 100 - obtenido %>]]' style="width: 300px; height: 250px;"></div>
+					</div>
+					<div class="large-8 columns monitor-estatal">
+				        <h4><%= @sector_municipal.name %></h4>
+				        <h5><%= @companies_states.length %> empresas</h5>						
+					</div>
+				</div>
+		       
+
+	        </div>
+
+	        <div class="tabs-panel" id="regional">
+	       		
+	   			<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
+				  <div class="filtros-monitor">
 
 				    	<strong>PUEDES FILTRAR POR: </strong>
 
 				    	<strong class="hide">REGION: </strong>
 				    	<%= select_tag :locationr_region, options_for_select(Region.all.map{|s|[s.name, s.id]}, params[:locationr_region]), {:include_blank => 'Todos'} %>
 				    	
-				    	<%= submit_tag "Buscar" %>    
-				    </div>
+				    	<%= submit_tag "Filtrar" %>    
 		  		  </div>
 				<% end %>
-       		</div>
 
-          	<table class="site-table">
-		      <thead>
-		        <tr>
-		          <th>UBICACIÓN</th>
-		          <th>NÚMERO DE EMPRESAS</th>
-		          <th>PORCENTAJE DEL SECTOR</th>
-		        </tr>
-		      </thead>
 
-			      <tbody>
-			      	<% @municipios_first_five.each do |municipio| %>
-			      		<% @municipio_count = Company.where("municipio_id = ?", municipio.id).length %>
-			      		<% if @municipio_count > 0 %>
-					      	<tr>
-					      		<td>
-					        		<strong><%= municipio.name %></strong><br>
-					        		<%= municipio.region.name %>
-					        	</td>
-					        	<td>
-						        	<%= @municipio_count %> empresas
-					        	</td>
-					        	<td>
-					        		<% Sector.all.each do |sector| %>
-					        			<% @companies_sector_mun = Company.where("municipio_id = ? AND sector_id = ?", municipio.id, sector.id).length %>
-					        			<% if @companies_sector_mun > 0 %>
-					        		      - <%= sector.name %> <%= (@companies_sector_mun * 100)/@municipio_count%>%<br />
-					        		  	<% end %>
-					        		<% end %>
-					        	</td>
-					      	</tr>
+	          	<table class="site-table">
+			      <thead>
+			        <tr>
+			          <th>UBICACIÓN</th>
+			          <th>NÚMERO DE EMPRESAS</th>
+			          <th>PORCENTAJE DEL SECTOR</th>
+			        </tr>
+			      </thead>
+
+				      <tbody>
+				      	<% @municipios_first_five.each do |municipio| %>
+				      		<% @municipio_count = Company.where("municipio_id = ?", municipio.id).length %>
+				      		<% if @municipio_count > 0 %>
+						      	<tr>
+						      		<td>
+						        		<strong><%= municipio.name %></strong><br>
+						        		<%= municipio.region.name %>
+						        	</td>
+						        	<td>
+							        	<%= @municipio_count %> empresas
+						        	</td>
+						        	<td>
+						        		<% Sector.all.each do |sector| %>
+						        			<% @companies_sector_mun = Company.where("municipio_id = ? AND sector_id = ?", municipio.id, sector.id).length %>
+						        			<% if @companies_sector_mun > 0 %>
+						        		      - <%= sector.name %> <%= (@companies_sector_mun * 100)/@municipio_count%>%<br />
+						        		  	<% end %>
+						        		<% end %>
+						        	</td>
+						      	</tr>
+						    <% end %>
 					    <% end %>
+				      </tbody>
+				</table>
+	        	<%= link_to 'VER TODAS LAS REGONES', company_regional_admin_path, class: "btn" %>
+	        </div>
+	        <div class="tabs-panel" id="municipal">
+
+       			<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
+				  <div class="filtros-monitor">
+				    
+			    	<strong>PUEDES FILTRAR POR: </strong>
+
+			    	<strong class="hide">SECTOR: </strong>
+			    	<%= select_tag :sector_mun, options_for_select(Sector.all.map{|s|[s.name, s.id]}, params[:sector_mun]) %>
+			    	
+			    	<%= submit_tag "Filtrar" %>    
+				    
+		  		  </div>
+				<% end %>
+	       		
+
+	          	<div class="row">
+
+	          		<div class="large-4 columns">
+		          		<% last = @company_am_2.last %>
+			          	<div id="chart-monitor-detalle" data-rows='[<% @company_am_2.each do |company_list| %>["Obtenido", <%= (company_list[1] * 100)/@companies_sectors_mun.length %>]<% if company_list != last %>,<% end %><% end %>]' style="width: 300px; height: 250px;"></div>
+	          		</div>
+		          	
+					<div class="large-8 columns detalle-monitor">
+						<h4>Detalle</h4>
+
+			          	<% @company_am_2.each do |company_list| %>
+			          		<strong>- <%= (company_list[1] * 100)/@companies_sectors_mun.length %> % / <%= company_list[1] %> empresas</strong> <br>
+			          		<%= company_list[0].name %>
+			          		<br>
+			          	<% end %>
+						
+					</div>
+		          	
+	          	</div>
+
+	          	<br>
+	          	<br>
+
+	          	<table class="site-table">
+			      <thead>
+			        <tr>
+			          <th>ACTIVIDAD ECONÓMICA</th>
+			          <th>NÚMERO DE EMPRESAS</th>
+			          <th>SECTOR</th>
+			          <th>MUNICIPIO</th>
+			        </tr>
+			      </thead>
+			      <tbody>
+			      	<% @company_am_2.each do |company_list| %>
+				      	<tr>
+				      		<td>
+				        		<strong><%= company_list[0].name %></strong>
+				        	</td>
+				        	<td>
+					        	<%= company_list[1] %> empresas
+				        	</td>
+				        	<td>
+				        		<%= company_list[2].name %>
+				        	</td>
+				        	<td>
+				        		<%= company_list[3].name %>
+				        	</td>
+				      	</tr>
 				    <% end %>
 			      </tbody>
-			</table>
-        	<%= link_to 'VER TODAS LAS REGONES', company_regional_admin_path %>
-        </div>
-        <div id="municipal">
+				</table>
+	        	<%= link_to 'VER TODAS LAS ACTIVIDADES ECONÓMICAS', company_municipal_admin_path, class: "btn" %>
+	        </div><!-- municipal -->
+	    </div><!-- .tabs-content-->
 
-       		<div>
-       			<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
-				  <div>
-				    <div>
+	</div><!-- form-container-large -->
 
-				    	<strong>PUEDES FILTRAR POR: </strong>
-
-				    	<strong class="hide">SECTOR: </strong>
-				    	<%= select_tag :sector_mun, options_for_select(Sector.all.map{|s|[s.name, s.id]}, params[:sector_mun]) %>
-				    	
-				    	<%= submit_tag "Buscar" %>    
-				    </div>
-		  		  </div>
-				<% end %>
-       		</div>
-
-          	<div>
-	          	<h4>Detalle</h4>
-	          	<hr>
-	          	<% @company_am_2.each do |company_list| %>
-	          		<strong>- <%= (company_list[1] * 100)/@companies_sectors_mun.length %> % / <%= company_list[1] %> empresas</strong> <br>
-	          		<%= company_list[0].name %>
-	          		<br>
-	          	<% end %>
-          	</div>
-          	<table class="site-table">
-		      <thead>
-		        <tr>
-		          <th>ACTIVIDAD ECONÓMICA</th>
-		          <th>NÚMERO DE EMPRESAS</th>
-		          <th>SECTOR</th>
-		          <th>MUNICIPIO</th>
-		        </tr>
-		      </thead>
-		      <tbody>
-		      	<% @company_am_2.each do |company_list| %>
-			      	<tr>
-			      		<td>
-			        		<strong><%= company_list[0].name %></strong>
-			        	</td>
-			        	<td>
-				        	<%= company_list[1] %> empresas
-			        	</td>
-			        	<td>
-			        		<%= company_list[2].name %>
-			        	</td>
-			        	<td>
-			        		<%= company_list[3].name %>
-			        	</td>
-			      	</tr>
-			    <% end %>
-		      </tbody>
-			</table>
-        	<%= link_to 'VER TODAS LAS ACTIVIDADES ECONÓMICAS', company_municipal_admin_path %>
-        </div>
-    </div>
   </div><!-- .main -->
 </div><!-- .layout -->
 

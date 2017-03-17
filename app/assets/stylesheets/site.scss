@@ -1060,6 +1060,16 @@ select {
 	}
 }
 
+.btn--emerald {
+	@extend %btn;
+	background: #22A89E;
+}
+
+.btn--azul {
+	@extend %btn;
+	background: #002F52;
+}
+
 .small-label {
 	color: gray;
 	font-size: .9em;
@@ -1431,7 +1441,144 @@ select {
 	height: 500px;
 }
 
+.header-and-buttons {
+	overflow: hidden;
+	margin-bottom: 1em;
+}
+
+.header-and-buttons__right {
+	float: right;
+}
+
+.header-and-buttons__left {
+	float: left;
+}
+
+.head-gris {
+	background: #F4F5F6;
+	padding: 1em;
+	overflow: hidden;
+
+	h2 {
+		font-size: 27px;
+		text-transform: uppercase;
+		margin: 0;
+		color: #012F53;
+		font-weight: 500;
+		float: left;
+	}
+
+	.btn--azul {
+		float: right;
+	}
+}
+
+.tabs-monitor {
+	a {
+		color: white !important;
+		font-size: 15px;
+		font-weight: 500;
+		&:hover {
+			background: none !important;
+		}
+	}
+
+	a[aria-selected='true'] {
+		background: none !important;
+		color: white !important;
+	}
+
+	li {
+		width: 33.33%;
+		text-align: center;
+		position: relative;
+
+		&.is-active {
+
+			&:before {
+				content: "";
+				border-top: 10px solid;
+				border-right: 10px solid transparent;
+				border-left: 10px solid transparent;
+				position: absolute;
+				top: 99%;
+				left: 50%;
+				margin-left: -10px;
+			}
+
+		}
+		
+
+		&:nth-child(1) {
+			background: #002F52 !important;
+			&:before {
+				border-top-color: #002F52;
+			}
+		}
+		&:nth-child(2) {
+			background: #12A99F !important;
+			&:before {
+				border-top-color: #12A99F;
+			}
+		}
+		&:nth-child(3) {
+			background: #6FB430 !important;
+			&:before {
+				border-top-color: #6FB430;
+			}
+		}
+	}
+}
+
+.filtros-monitor {
+	margin-bottom: 1.5em;
+	strong {
+		color: #8C949B;
+		display: block;
+		margin-bottom: 1em;
+		margin-top: 1em;
+	}
+	input,
+	select {
+		display: inline;
+		width: auto;
+	}
+}
+
+.monitor-estatal {
+	h4 {
+		position: relative;
+		display: inline-block;
+		&:before {
+			content: "";
+			width: 100%;
+			left: 0;
+			top: 100%;
+			height: 1px;
+			background: #f2f2f2;
+			display: block;
+			position: absolute;
+		}
+	}
+}
+
+.detalle-monitor {
+	color: #859199;
+
+	strong {
+		color: #6EB330;
+	}
+
+	h4 {
+		color: #002E51;
+	}
+}
+
 @media (max-width: 1024px) {
+
+	.monitor-estatal {
+		margin-top: 20px;
+	}
 
 	.buscador-empresarial {
 		background: white;

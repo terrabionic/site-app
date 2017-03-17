@@ -21,10 +21,10 @@
 
   <div class="main">
     <%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
-    <h1>NIVEL MUNICIPAL</h1>
+    <h1 class="main-headline inline-block">NIVEL MUNICIPAL</h1>
     <div>
       <%= form_tag(company_municipal_admin_path(), :method => "get", id: "search") do %>
-        <div>
+        <div class="filtros-monitor">
           <div>
 
             <strong>PUEDES FILTRAR POR: </strong>

@@ -103,6 +103,76 @@ var siteApp = (function($) {
 
 		var $chartIndividual = $('.js-chart-category');
 
+		var $chartMonitorEstatal = $('#chart-monitor-estatal');
+
+		var $chartMonitorDetalle = $('#chart-monitor-detalle');
+
+		if ($chartMonitorDetalle.length) {
+
+			var data = new google.visualization.DataTable();
+
+			data.addColumn('string', 'Category');
+
+			data.addColumn('number', 'Points');
+
+			data.addRows($chartMonitorDetalle.data('rows'));
+			
+		    var options = {
+				colors:['#032E4D','#032E4D', '#032E4D','#032E4D','#032E4D','#032E4D', '#032E4D','#032E4D'],
+				legend: {
+					position: 'none'
+				},
+				tooltip: {
+					trigger: 'none'
+				},
+				chartArea: {
+					left: 0,
+					top: 0,
+					width:'100%',
+					height: '100%'
+				},
+				enableInteractivity: false
+		    };
+
+		    var chart = new google.visualization.PieChart(document.getElementById('chart-monitor-detalle'));
+
+		    chart.draw(data, options);	
+
+		}
+
+		if ($chartMonitorEstatal.length) {
+
+			var data = new google.visualization.DataTable();
+
+			data.addColumn('string', 'Category');
+
+			data.addColumn('number', 'Points');
+
+			data.addRows($chartMonitorEstatal.data('rows'));
+			
+		    var options = {
+				colors:['#032E4D','#F4F5F7'],
+				legend: {
+					position: 'none'
+				},
+				tooltip: {
+					trigger: 'none'
+				},
+				chartArea: {
+					left: 0,
+					top: 0,
+					width:'100%',
+					height: '100%'
+				},
+				enableInteractivity: false
+		    };
+
+		    var chart = new google.visualization.PieChart(document.getElementById('chart-monitor-estatal'));
+
+		    chart.draw(data, options);	
+
+		}
+
 		if ($chartCategories.length) {
 
 			var data = new google.visualization.DataTable();
@@ -205,6 +275,14 @@ var siteApp = (function($) {
 		});
 	};
 
+	var monitor = function() {
+		if ($('.tabs-monitor').length) {
+			$('.tabs-monitor').on('change.zf.tabs', function() {
+				charts();
+			});
+		}
+	};
+
 	var ready = function() {
 		menuProfile();
 		sectorCool();
@@ -215,10 +293,11 @@ var siteApp = (function($) {
 		passwordMessage();
 		toggleFiltersEmpresarial();
 		buscadorEmpresarial();
+		monitor();
 	};
 
 	return {
-		ready: ready
+		ready: ready,
 	};
 
 })(jQuery);
