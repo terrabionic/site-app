@@ -1,42 +1,61 @@
 <p id="notice"><%= notice %></p>
 
 <div class="layout">
+
   <%= render 'shared/nav' %>
+
   <div class="main">
+
     <% if current_user.is? 'admin' %>
       <%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
     <% else %>
       <%= link_to 'Atrás', index_manager_user_path, class: "back-button" %>
     <% end %>
-    <h1 class="main-headline inline-block">Noticias</h1>
-    
-    <table class="site-table">
-      <thead>
-        <tr>
-          <th>Imagen</th>
-          <th>Titulo</th>
-          <th>Link</th>
-          <th>Descripción</th>
-          <th>Fecha de publicación</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
 
-      <tbody>
-        <% if @notices %>
-          <% @notices.each do |notice| %>
-            <tr>
-              <td><%= image_tag (notice.image_notice.url(:thumb)) %></td>
-              <td><%= link_to notice.title, notice %></td>
-              <td><%= notice.link %></td>
-              <td><%= notice.description %></td>
-              <td><%= notice.date_pub %></td>
-            </tr>
-          <% end %>
+    <h1 class="main-headline inline-block">Noticias</h1>
+
+    <div class="form-container--large">
+
+      <div class="row small-up-1 medium-up-2 large-up-3">
+        
+      <% if @notices %>
+
+        <% @notices.each do |notice| %>
+
+          <div class="column column-block noticia">
+
+            <a class="noticia__image" href="<%= notice.link %>">
+              <%= image_tag (notice.image_notice.url) %>  
+            </a>
+
+            <%= link_to notice.title, notice, class: "noticia__title" %>
+
+            <p class="noticia__meta"><%= notice.date_pub %></p>
+            
+            <p class="noticia__description"><%= notice.description %></p>
+            
+          </div><!-- .notice -->
+
         <% end %>
-      </tbody>
-    </table>
-    <%= link_to 'Ver todos', index_notice_user_path %>
-  </div>
-</div>
+
+      <% end %>
+
+      </div><!-- .row -->
+
+      <br>
+
+      <div class="row">
+        <div class="large-12 columns">
+          <%= link_to 'Ver todos', index_notice_user_path, class: "btn" %>      
+        </div>
+      </div>
+
+      <br>
+
+    </div><!-- .form-container-large -->
+
+  </div><!-- .main -->
+
+</div><!-- .layout -->
+
 <%= render "shared/footer" %>
