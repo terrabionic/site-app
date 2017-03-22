@@ -6,18 +6,7 @@
 
 <div class="layout">
 
-  <div class="nav">
-    <a href="#" class="nav__item">
-      <%= image_tag "calificacion-empresa-tab.png" %>      
-      <span>Calificación de la empresa</span>
-    </a>
-
-    <%= link_to index_manager_user_path, class: "nav__item" do %>
-      <%= image_tag "calificacion-empresa-tab.png" %>      
-      <span>Monitor Empresarial</span>
-    <% end %>
-    
-  </div><!-- .nav -->
+  <%= render 'shared/nav' %>
 
   <div class="main">
     <%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
@@ -52,14 +41,14 @@
             <% @municipio_count = Company.where("municipio_id = ?", municipio.id).length %>
             <% if @municipio_count > 0 %>
                 <tr>
-                  <td>
-                    <strong><%= municipio.name %></strong><br>
+                  <td data-title="Ubicación">
+                    <strong class="color-blue"><%= municipio.name %></strong><br>
                     <%= municipio.region.name %>
                   </td>
-                  <td>
+                  <td data-title="Número de empresas">
                     <%= @municipio_count %> empresas
                   </td>
-                  <td>
+                  <td data-title="Porcentaje del sector">
                     <% Sector.all.each do |sector| %>
                       <% @companies_sector_mun = Company.where("municipio_id = ? AND sector_id = ?", municipio.id, sector.id).length %>
                       <% if @companies_sector_mun > 0 %>

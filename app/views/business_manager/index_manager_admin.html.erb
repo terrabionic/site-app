@@ -146,14 +146,14 @@
 				      		<% @municipio_count = Company.where("municipio_id = ?", municipio.id).length %>
 				      		<% if @municipio_count > 0 %>
 						      	<tr>
-						      		<td>
-						        		<strong><%= municipio.name %></strong><br>
+						      		<td data-title="Ubicación">
+						        		<strong class="color-blue"><%= municipio.name %></strong><br>
 						        		<%= municipio.region.name %>
 						        	</td>
-						        	<td>
+						        	<td data-title="Número de empresas">
 							        	<%= @municipio_count %> empresas
 						        	</td>
-						        	<td>
+						        	<td data-title="Porcentaje del sector">
 						        		<% Sector.all.each do |sector| %>
 						        			<% @companies_sector_mun = Company.where("municipio_id = ? AND sector_id = ?", municipio.id, sector.id).length %>
 						        			<% if @companies_sector_mun > 0 %>
@@ -166,7 +166,7 @@
 					    <% end %>
 				      </tbody>
 				</table>
-	        	<%= link_to 'VER TODAS LAS REGONES', company_regional_admin_path, class: "btn" %>
+	        	<%= link_to 'VER TODAS LAS REGIONES', company_regional_admin_path, class: "btn" %>
 	        </div>
 	        <div class="tabs-panel" id="municipal">
 
@@ -219,16 +219,16 @@
 			      <tbody>
 			      	<% @company_am_2.each do |company_list| %>
 				      	<tr>
-				      		<td>
-				        		<strong><%= company_list[0].name %></strong>
+				      		<td data-title="Actividad económica">
+				        		<strong class="color-blue"><%= company_list[0].name %></strong>
 				        	</td>
-				        	<td>
+				        	<td data-title="Número de empresas">
 					        	<%= company_list[1] %> empresas
 				        	</td>
-				        	<td>
+				        	<td data-title="Sector">
 				        		<%= company_list[2].name %>
 				        	</td>
-				        	<td>
+				        	<td data-title="Municipio">
 				        		<%= company_list[3].name %>
 				        	</td>
 				      	</tr>

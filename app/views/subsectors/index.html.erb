@@ -10,10 +10,10 @@
       <%= link_to 'Nuevo Subsector', new_subsector_path, class: "btn" %>
     </p>
 
-    <table>
+    <table class="site-table">
       <thead>
         <tr>
-          <th>Codigo</th>
+          <th>Código</th>
           <th>Nombre</th>
           <th>Sector</th>
           <th colspan="2"></th>
@@ -23,13 +23,13 @@
       <tbody>
         <% @subsectors.each do |subsector| %>
           <tr>
-            <td>
+            <td data-title="Código">
               <%= subsector.code %>
             </td>
-            <td>
+            <td data-title="Nombre">
               <%= link_to subsector.name, subsector %>
             </td>
-            <td>
+            <td data-title="Sector">
               <% if subsector.sector %>
                 <%= subsector.sector.name %>
               <% end %>

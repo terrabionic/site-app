@@ -1,5 +1,19 @@
-<%= link_to 'atrás', municipios_path %>
-<h1>Editar Municipio</h1>
+<div class="layout">
+	
+	<%= render 'shared/nav' %>
 
-<%= render 'form' %>
+	<div class="main">
+		
+		<div class="form-container">
+			<%= link_to 'atrás', municipios_path, class: "back-button" %>
+			<h1 class="main-headline inline-block">Editar Municipio</h1>
 
+			<%= render 'form' %>
+
+		</div>
+
+
+	</div>
+</div>
+
+<%= render "shared/footer" %>

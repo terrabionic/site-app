@@ -48,7 +48,7 @@
                 <%=link_to "Publicar Noticias", publish_notice_path(notice_id: notice), method: :post %>  
               <% end %>
             </td>
-            <td><%= link_to 'Eliminar', notice, method: :delete, data: { confirm: 'Seguro que desea eliminarlo?' } %></td>
+            <td><%= link_to 'Eliminar', notice, method: :delete, data: { confirm: 'Seguro que desea eliminarlo?' }, class: "btn--red" %></td>
           </tr>
         <% end %>
       </tbody>

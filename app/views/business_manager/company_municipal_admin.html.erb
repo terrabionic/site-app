@@ -6,18 +6,7 @@
 
 <div class="layout">
 
-  <div class="nav">
-    <a href="#" class="nav__item">
-      <%= image_tag "calificacion-empresa-tab.png" %>      
-      <span>Calificación de la empresa</span>
-    </a>
-
-    <%= link_to index_manager_user_path, class: "nav__item" do %>
-      <%= image_tag "calificacion-empresa-tab.png" %>      
-      <span>Monitor Empresarial</span>
-    <% end %>
-    
-  </div><!-- .nav -->
+  <%= render 'shared/nav' %>
 
   <div class="main">
     <%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
@@ -49,16 +38,16 @@
       <tbody>
         <% @company_am.each do |company_list| %>
           <tr>
-            <td>
-              <strong><%= company_list[0].name %></strong>
+            <td data-title="Actividad económica">
+              <strong class="color-blue"><%= company_list[0].name %></strong>
             </td>
-            <td>
+            <td data-title="Número de empresas">
               <%= company_list[1] %> empresas
             </td>
-            <td>
+            <td data-title="Sector">
               <%= company_list[2].name %>
             </td>
-            <td>
+            <td data-title="Municipio">
               <%= company_list[3].name %>
             </td>
           </tr>

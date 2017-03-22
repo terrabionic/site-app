@@ -8,23 +8,23 @@
     <%= link_to 'Atrás', event_monitors_path, class: "back-button" %>
     <h1 class="main-headline inline-block"><%= @event_monitor.title %></h1>
 
-    <p>
-      <strong>Fecha inicio:</strong>
+    <p class="color-gray">
+      <strong class="color-blue">Fecha inicio:</strong>
       <%= @event_monitor.start_at %>
     </p>
 
-    <p>
-      <strong>Fecha fin:</strong>
+    <p class="color-gray">
+      <strong class="color-blue">Fecha fin:</strong>
       <%= @event_monitor.end_at %>
     </p>
 
-    <p>
-      <strong>Dirección:</strong>
+    <p class="color-gray">
+      <strong class="color-blue">Dirección:</strong>
       <%= @event_monitor.address %>
     </p>
 
-    <p>
-      <strong>Sitio web:</strong>
+    <p class="color-gray">
+      <strong class="color-blue">Sitio web:</strong>
       <%= @event_monitor.website %>
     </p>
     <% if can? :update, @event_monitor %>

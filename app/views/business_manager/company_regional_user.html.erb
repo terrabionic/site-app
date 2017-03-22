@@ -35,15 +35,15 @@
         <tbody>
           <% @municipios_all.each do |municipio| %>
             <tr>
-              <td>
+              <td data-title="Ubicación">
                 <strong class="color-blue"><%= municipio.name %></strong><br>
                 <%= municipio.region.name %>
               </td>
-              <td>
+              <td data-title="Número de empresas">
                 <% @municipio_count = Company.where("municipio_id = ? AND sector_id = ?", municipio.id ,@sector.id).length %>
                 <%= @municipio_count %> empresas
               </td>
-              <td>
+              <td data-title="Porcentaje del sector">
                 <% if @municipio_count > 0 %>
                   - <%= @sector.name %> <%= (@municipio_count * 100)/@companies_sectors.length %> %
                 <% else %>

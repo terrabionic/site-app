@@ -1,0 +1,106 @@
+Searching 5659 files for "PROVEEDORES"
+
+/Users/ubaldoomana/Documents/siteapp/app/views/business_manager/index_manager_user.html.erb:
+   51  			<div class="mapa-botones__left">
+   52  				<a href="#" class="boton-mapa">
+   53: 					PROVEEDORES
+   54  					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><path d="M12.5,8c0.3,0,0.5,0.1,0.7,0.3l7,7c0.4,0.4,0.4,1,0,1.4l-7,7c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l6.3-6.3l-6.3-6.3  c-0.4-0.4-0.4-1,0-1.4C12,8.1,12.2,8,12.5,8z"/>
+   55  				</a>
+
+/Users/ubaldoomana/Documents/siteapp/app/views/companies/report_ic.pdf.erb:
+  111  
+  112      <ul style="list-style-type:circle;">
+  113:       <li>Para identificar Distribuidores, proveedores, clientes&nbsp; y&nbsp; competidores.</li>
+  114        <li>Distribuci&oacute;n de Unidades Econ&oacute;micas por Municipio</li>
+  115        <li>Total de empresas de los sectores Textil y Metalmec&aacute;nica</li>
+
+/Users/ubaldoomana/Documents/siteapp/app/views/companies/report_ic.pdf.erb~:
+  111  
+  112      <ul style="list-style-type:circle;">
+  113:       <li>Para identificar Distribuidores, proveedores, clientes&nbsp; y&nbsp; competidores.</li>
+  114        <li>Distribuci&oacute;n de Unidades Econ&oacute;micas por Municipio</li>
+  115        <li>Total de empresas de los sectores Textil y Metalmec&aacute;nica</li>
+
+/Users/ubaldoomana/Documents/siteapp/app/views/survey_analyses/_form.html.erb:
+   36  
+   37      <ul style="list-style-type:circle;">
+   38:       <li>Para identificar Distribuidores, proveedores, clientes&nbsp; y&nbsp; competidores.</li>
+   39        <li>Distribuci&oacute;n de Unidades Econ&oacute;micas por Municipio</li>
+   40        <li>Total de empresas de los sectores Textil y Metalmec&aacute;nica</li>
+
+/Users/ubaldoomana/Documents/siteapp/app/views/survey_analyses/show.html.erb:
+   69  
+   70          <ul style="list-style-type:circle;">
+   71:           <li>Para identificar Distribuidores, proveedores, clientes&nbsp; y&nbsp; competidores.</li>
+   72            <li>Distribuci&oacute;n de Unidades Econ&oacute;micas por Municipio</li>
+   73            <li>Total de empresas de los sectores Textil y Metalmec&aacute;nica</li>
+
+/Users/ubaldoomana/Documents/siteapp/app/views/survey_analyses/show.html.erb~:
+   69  
+   70          <ul style="list-style-type:circle;">
+   71:           <li>Para identificar Distribuidores, proveedores, clientes&nbsp; y&nbsp; competidores.</li>
+   72            <li>Distribuci&oacute;n de Unidades Econ&oacute;micas por Municipio</li>
+   73            <li>Total de empresas de los sectores Textil y Metalmec&aacute;nica</li>
+
+6 matches across 6 files
+
+
+Searching 5659 files for "PUEDES FILTRAR POR: "
+
+/Users/ubaldoomana/Documents/siteapp/app/views/business_manager/business_directory_admin.html.erb:
+   19  			    <div class="row">
+   20  			    	<div class="medium-6 columns">
+   21: 			    		<strong>PUEDES FILTRAR POR: </strong>
+   22  			    		<%= select_tag :sector, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector]), {:include_blank => 'Todos'} %>
+   23  			    	</div>
+
+/Users/ubaldoomana/Documents/siteapp/app/views/business_manager/company_municipal_admin.html.erb:
+   28            <div>
+   29  
+   30:             <strong>PUEDES FILTRAR POR: </strong>
+   31  
+   32              <strong class="hide">SECTOR: </strong>
+
+/Users/ubaldoomana/Documents/siteapp/app/views/business_manager/company_regional_admin.html.erb:
+   28            <div>
+   29  
+   30:             <strong>PUEDES FILTRAR POR: </strong>
+   31  
+   32              <strong class="hide">REGION: </strong>
+
+/Users/ubaldoomana/Documents/siteapp/app/views/business_manager/index_manager_admin.html.erb:
+   32  		    <div class="ordenar-field">
+   33  
+   34: 		    	<strong>PUEDES FILTRAR POR: </strong>
+   35  
+   36  		    	<strong class="hide">SECTOR: </strong>
+   ..
+   91  				  <div class="filtros-monitor">
+   92  				    
+   93: 			    	<strong>PUEDES FILTRAR POR: </strong>
+   94  
+   95  			    	<strong class="hide">SECTOR: </strong>
+   ..
+  123  				  <div class="filtros-monitor">
+  124  
+  125: 				    	<strong>PUEDES FILTRAR POR: </strong>
+  126  
+  127  				    	<strong class="hide">REGION: </strong>
+  ...
+  174  				  <div class="filtros-monitor">
+  175  				    
+  176: 			    	<strong>PUEDES FILTRAR POR: </strong>
+  177  
+  178  			    	<strong class="hide">SECTOR: </strong>
+
+/Users/ubaldoomana/Documents/siteapp/app/views/business_manager/index_manager_user.html.erb:
+   39  	    <div class="ordenar-field">
+   40  
+   41: 	    	<strong>PUEDES FILTRAR POR: </strong>
+   42  	  		<%= select_tag(:level, options_for_select([['Todo', ''],['Regional', 'regional'], ['Municipal', 'municipal']],params[:level]), :onchange => "this.form.submit();") %>
+   43  	    
+
+/Users/ubaldoomana/Documents/siteapp/log/development.log:
+    <binary>
+
+11 matches across 6 files

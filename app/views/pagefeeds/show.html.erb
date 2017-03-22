@@ -26,7 +26,7 @@
 		  	<%= @pagefeed.sector.name %>
 		  <% end %>
 		</p>
-		<%=link_to "Obtener Noticias", get_notice_tofeed_url_path(pagefeed_id: @pagefeed), method: :post %>
+		<%=link_to "Obtener Noticias", get_notice_tofeed_url_path(pagefeed_id: @pagefeed), method: :post, class: "btn" %>
   </div>
 </div>
 <%= render "shared/footer" %>

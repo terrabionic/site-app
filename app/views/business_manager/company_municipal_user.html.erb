@@ -36,16 +36,16 @@
           <tbody>
             <% @company_am.each do |company_list| %>
               <tr>
-                <td>
+                <td data-title="Actividad económica">
                   <strong class="color-blue"><%= company_list[0].name %></strong>
                 </td>
-                <td>
+                <td data-title="Número de empresas">
                   <%= company_list[1] %> empresas
                 </td>
-                <td>
+                <td data-title="Sector">
                   <%= company_list[2].name %>
                 </td>
-                <td>
+                <td data-title="Municipio">
                   <%= company_list[3].name %>
                 </td>
               </tr>

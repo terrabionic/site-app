@@ -1388,7 +1388,10 @@ select {
 }
 
 [id*="event_start_at"],
-[id*="event_end_at"] {
+[id*="event_end_at"],
+[id*="event_monitor_start_at"],
+[id*="event_monitor_end_at"]
+ {
 	display: inline-block;
 	width: auto;
 }
@@ -1423,8 +1426,11 @@ select {
 		height: 39px;
 	}
 
-	
-	
+	.mapa-botones__left {
+		display: none;
+	}
+
+
 }
 
 .contenedor-monitor {
@@ -1658,11 +1664,28 @@ select {
 		margin-top: 20px;
 	}
 
+	.mapa-botones {
+		.mapa-botones__left {
+			display: none;
+		}
+
+		.mapa-botones__right {
+			width: 100%;
+		}
+	}
+
 	.buscador-empresarial {
 		background: white;
 		padding: 0;
 		border: 1px solid #f2f2f2;
 		margin-bottom: 1rem;
+
+		.mapa-botones__left {
+			float: none;
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+		}
 
 		strong {
 			background: #043051;
@@ -1873,9 +1896,33 @@ select {
 		display: none;
 	}
 
+	.header-and-buttons__right {
+		width: 100%;
+		
+		a {
+			margin-bottom: 1em;
+		}
+	}
+
 }
 
 @media (max-width: 640px) {
+
+	.back-button {
+		margin-bottom: 20px;
+		display: block;
+	}
+
+	#event_monitor_start_at_4i,
+	#event_monitor_start_at_5i,
+	#event_monitor_end_at_4i,
+	#event_monitor_end_at_5i,
+	#event_start_at_4i,
+	#event_start_at_5i,
+	#event_end_at_4i,
+	#event_end_at_5i {
+		width: 120px;
+	}
 
 	.search-field {
 		span {

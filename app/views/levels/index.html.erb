@@ -23,7 +23,7 @@
 	  <tbody>
 		<% @levels.each do |level| %>
 		  <tr>
-			<td><%= image_tag (level.image.url(:thumb)) %></td>
+			<td data-title="Imagen"><%= image_tag (level.image.url(:thumb)) %></td>
 			<td data-title="Nombre"><%= link_to level.title, edit_level_path(level) %></td>
 			<td><%= link_to 'Eliminar', level, method: :delete, data: { confirm: 'Seguro que desea eliminarlo?' } %></td>
 		  </tr>

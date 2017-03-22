@@ -36,15 +36,37 @@
   		</div>
 
 		<%= form_tag(index_manager_user_path(), :method => "get", id: "search") do %>
-	    <div class="ordenar-field">
 
-	    	<strong>PUEDES FILTRAR POR: </strong>
-	  		<%= select_tag(:level, options_for_select([['Todo', ''],['Regional', 'regional'], ['Municipal', 'municipal']],params[:level]), :onchange => "this.form.submit();") %>
-	    
-	    	<%= select_tag :location, options_for_select(@municipios.map{|s|[s.name, s.id]},params[:location]) %>
+		<div class="buscador-empresarial">
 
-	    	<%= submit_tag "Buscar" %>    
-	    </div>
+		    <div class="ordenar-field">
+
+		    	<strong>PUEDES FILTRAR POR: </strong>
+
+			    <div class="mapa-botones__left">
+					<a href="#" class="boton-mapa">
+						PROVEEDORES
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><path d="M12.5,8c0.3,0,0.5,0.1,0.7,0.3l7,7c0.4,0.4,0.4,1,0,1.4l-7,7c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l6.3-6.3l-6.3-6.3  c-0.4-0.4-0.4-1,0-1.4C12,8.1,12.2,8,12.5,8z"/>
+					</a>
+					<a href="#" class="boton-mapa">
+						COMPETENCIA
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><path d="M12.5,8c0.3,0,0.5,0.1,0.7,0.3l7,7c0.4,0.4,0.4,1,0,1.4l-7,7c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l6.3-6.3l-6.3-6.3  c-0.4-0.4-0.4-1,0-1.4C12,8.1,12.2,8,12.5,8z"/>
+					</a>
+					<a href="#" class="boton-mapa">
+						DISTRIBUIDORES
+						<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><path d="M12.5,8c0.3,0,0.5,0.1,0.7,0.3l7,7c0.4,0.4,0.4,1,0,1.4l-7,7c-0.4,0.4-1,0.4-1.4,0s-0.4-1,0-1.4l6.3-6.3l-6.3-6.3  c-0.4-0.4-0.4-1,0-1.4C12,8.1,12.2,8,12.5,8z"/>
+					</a>
+				</div>
+
+		    	<%= select_tag(:level, options_for_select([['Todo', ''],['Regional', 'regional'], ['Municipal', 'municipal']],params[:level]), :onchange => "this.form.submit();") %>
+
+		    	<%= select_tag :location, options_for_select(@municipios.map{|s|[s.name, s.id]},params[:location]) %>
+		    	<strong class="hide">UBICACIÓN: </strong>    
+
+		    	<%= submit_tag "Buscar" %>    
+		    </div>
+		</div>
+
 		<% end %>
 		
 		<div class="mapa-botones">
@@ -120,15 +142,15 @@
 				      <tbody>
 				      	<% @municipios_first_five.each do |municipio| %>
 					      	<tr>
-					      		<td>
+					      		<td data-title="Ubicación">
 					        		<strong class="color-blue"><%= municipio.name %></strong><br>
 					        		<%= municipio.region.name %>
 					        	</td>
-					        	<td>
+					        	<td data-title="Número de empresas">
 						        	<% @municipio_count = Company.where("municipio_id = ? AND sector_id = ?", municipio.id ,@sector.id).length %>
 						        	<%= @municipio_count %> empresas
 					        	</td>
-					        	<td>
+					        	<td data-title="Porcentaje del sector">
 					        		<% if @municipio_count > 0 %>
 					        			- <%= @sector.name %> <%= (@municipio_count * 100)/@companies_sectors.length %> %
 					        		<% else %>
@@ -182,16 +204,16 @@
 				      <tbody>
 				      	<% @company_am_2.each do |company_list| %>
 					      	<tr>
-					      		<td>
+					      		<td data-title="Actividad económica">
 					        		<strong class="color-blue"><%= company_list[0].name %></strong>
 					        	</td>
-					        	<td>
+					        	<td data-title="Número de empresas">
 						        	<%= company_list[1] %> empresas
 					        	</td>
-					        	<td>
+					        	<td data-title="Sector">
 					        		<%= company_list[2].name %>
 					        	</td>
-					        	<td>
+					        	<td data-title="Municipio">
 					        		<%= company_list[3].name %>
 					        	</td>
 					      	</tr>
