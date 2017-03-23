@@ -1,7 +1,6 @@
-  <div class="nav">
+<div class="nav">
 
-
-    <% if current_user.is? 'admin' %>
+  <% if current_user.is? 'admin' %>
       <%= link_to companies_path, class: "nav__item" do %>
         <%= image_tag "icon-administrar-secciones.png" %>      
         <span>Dashboard</span>
@@ -42,27 +41,21 @@
           <% end %>
     <% end %>
 
-    <%= link_to sections_index_path, class: "nav__item" do %>
-      <%= image_tag "icon-administrar-secciones.png" %>      
-      <span>Administrar secciones</span>
+    <%= link_to results_company_path, class: "nav__item" do %>
+      <%= image_tag "calificacion-empresa-tab.png" %>      
+      <span>Calificación de la empresa</span>
     <% end %>
 
     <%= link_to events_path, class: "nav__item" do %>
-    	<%= image_tag "icon-calendario.png" %>
-    	<span>Calendario cursos</span>
+      <%= image_tag "icon-calendario.png" %>      
+      <span>Calendario cursos</span>
     <% end %>
 
-    <a href="#" class="nav__item hide">
-      <%= image_tag "calificacion-empresa-tab.png" %>      
-      <span>Calificación de la empresa</span>
-    </a>
-
-    <%= link_to index_manager_admin_path, class: "nav__item" do %>
+    <%= link_to index_manager_user_path, class: "nav__item" do %>
       <%= image_tag "monitor-empresarial.png" %>      
       <span>Monitor Empresarial</span>
     <% end %>
 
-    nav(admin)
-
+    nav(empresario)
     
-  </div>
+</div><!-- .nav -->
