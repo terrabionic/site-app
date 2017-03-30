@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <div class="layout">
-  
-  <%= render 'shared/nav' %>
+  <% if current_user.is? 'admin' %>
+    <%= render 'shared/nav' %>
+  <% else %>
+    <%= render 'shared/nav_empresario' %>
+  <% end %>
 
   <div class="main">
     <% if current_user.is? 'admin' %>

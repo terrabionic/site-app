@@ -2,7 +2,11 @@
 
 <div class="layout">
 
-  <%= render 'shared/nav' %>
+  <% if current_user.is? 'admin' %>
+    <%= render 'shared/nav' %>
+  <% else %>
+    <%= render 'shared/nav_empresario' %>
+  <% end %>
   
   <div class="main">
     <%= link_to 'Atrás', event_monitors_path, class: "back-button" %>

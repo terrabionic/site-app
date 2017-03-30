@@ -2,15 +2,23 @@
 
 <div class="layout">
   
-  <%= render 'shared/nav' %>
+  <% if current_user.is? 'admin' %>
+    <%= render 'shared/nav' %>
+  <% else %>
+    <%= render 'shared/nav_empresario' %>
+  <% end %>
 
   <div class="main">
     
     <%= link_to 'Atrás', companies_path, class: "back-button" %>
     <h1 class="main-headline inline-block">Lista de Cursos</h1>
     <p>
-      <%= link_to 'Nuevo Curso', new_event_path, class: "btn" %>  
-      <%= link_to 'Nivel de Curso', levels_path, class: "btn" %>
+      <% if can? :create, @events %>
+        <%= link_to 'Nuevo Curso', new_event_path, class: "btn" %>
+      <% end %> 
+      <% if can? :read, Level %>
+        <%= link_to 'Nivel de Curso', levels_path, class: "btn" %>
+      <% end %>
     </p>
 	
     

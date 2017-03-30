@@ -48,6 +48,7 @@ class Ability
             end
 
             can :read, EventMonitor
+            can :read, Event
 
         elsif user.is? 'consultant'
 
