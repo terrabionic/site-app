@@ -6,18 +6,7 @@
 
 <div class="layout">
 
-  <div class="nav">
-    <a href="#" class="nav__item">
-      <%= image_tag "calificacion-empresa-tab.png" %>      
-      <span>Calificación de la empresa</span>
-    </a>
-
-    <%= link_to index_manager_user_path, class: "nav__item" do %>
-      <%= image_tag "calificacion-empresa-tab.png" %>      
-      <span>Monitor Empresarial</span>
-    <% end %>
-    
-  </div><!-- .nav -->
+  <%= render 'shared/nav_empresario' %>
 
   <div class="main">
     <%= link_to 'Atrás', :back, class: "back-button" %>

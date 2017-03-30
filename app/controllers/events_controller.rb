@@ -7,7 +7,6 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
-    authorize! :read, @events
     add_breadcrumb 'Cursos', events_path
   end
 
