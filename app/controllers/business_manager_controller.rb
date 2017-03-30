@@ -160,7 +160,9 @@ class BusinessManagerController < ApplicationController
 		end
 
 		Company.where("sector_id = ?", params[:sector_mun]).group_by(&:activity).each do |activity, company_sectors|
-			@company_activities.push(activity)
+			if activity
+				@company_activities.push(activity)
+			end
 		end
 
 		Municipio.all.each do |municipio|
@@ -205,7 +207,9 @@ class BusinessManagerController < ApplicationController
 			@companies_sectors = Company.where("sector_id = ?", @sector.id)
 
 			Company.where("sector_id = ?", @sector.id).group_by(&:activity).each do |activity, company_sectors|
-				@company_activities.push(activity)
+				if activity
+					@company_activities.push(activity)
+				end
 			end
 			Municipio.all.each do |municipio|
 				@company_activities.each do |activity|
@@ -246,7 +250,9 @@ class BusinessManagerController < ApplicationController
 		end
 
 		Company.where("sector_id = ?", params[:sector_mun]).group_by(&:activity).each do |activity, company_sectors|
-			@company_activities.push(activity)
+			if activity
+				@company_activities.push(activity)
+			end
 		end
 
 		Municipio.all.each do |municipio|
