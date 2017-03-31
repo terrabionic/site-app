@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316172557) do
+ActiveRecord::Schema.define(version: 20170330225549) do
 
   create_table "Branches_Companies", id: false, force: :cascade do |t|
     t.integer "branch_id",  null: false
@@ -193,12 +193,13 @@ ActiveRecord::Schema.define(version: 20170316172557) do
     t.text     "description"
     t.boolean  "active"
     t.datetime "date_pub"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.string   "image_notice_file_name"
     t.string   "image_notice_content_type"
     t.integer  "image_notice_file_size"
     t.datetime "image_notice_updated_at"
+    t.boolean  "priority",                  default: false
   end
 
   add_index "notices", ["sector_id"], name: "index_notices_on_sector_id"

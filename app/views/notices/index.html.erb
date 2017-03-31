@@ -17,9 +17,9 @@
           <th>Titulo</th>
           <th>Link</th>
           <th>Sector</th>
-          <th>Descripción</th>
           <th>Publicado</th>
           <th>Fecha de publicación</th>
+          <th>Principal</th>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -34,7 +34,6 @@
                 <%= notice.sector.name %>
               <% end %>
             </td>
-            <td><%= notice.description %></td>
             <td>
               <% if notice.active %>
                 Publicado
@@ -43,6 +42,13 @@
               <% end %>
             </td>
             <td><%= notice.date_pub %></td>
+            <td>
+              <% if notice.priority%>
+                SI
+              <% else %>
+                NO
+              <% end %>
+            </td>
             <td>
               <% unless notice.active %>
                 <%=link_to "Publicar Noticias", publish_notice_path(notice_id: notice), method: :post %>  
