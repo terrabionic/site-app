@@ -16,6 +16,23 @@
       <%= link_to 'Atrás', index_manager_user_path, class: "back-button" %>
     <% end %>
 
+    <h1 class="main-headline inline-block">Pincipales tendencias</h1>
+
+    <div>
+      <% if @priority_notices %>
+        <% @priority_notices.each do |priority_notice| %>
+          <div>
+         
+          <%= link_to priority_notice.title, notice%>
+
+          <p><%= priority_notice.date_pub %></p>
+          
+          <p><%= priority_notice.description %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
     <h1 class="main-headline inline-block">Noticias</h1>
 
     <div class="form-container--large">
@@ -50,13 +67,27 @@
 
       <div class="row">
         <div class="large-12 columns">
-          <%= link_to 'Ver todos', index_notice_user_path, class: "btn" %>      
+          <%= link_to 'Ver todos', index_notice_user_path, class: "btn" %>
         </div>
       </div>
 
       <br>
 
     </div><!-- .form-container-large -->
+
+    <div>
+      
+      <h1 class="main-headline inline-block">PRÓXIMOS EVENTOS</h1>
+      <%= link_to 'Ver calendario', event_monitors_path %>
+      <br>
+      <% @events.each do |event| %>
+        <%= event.title%><br>
+        <%= event.start_at.strftime("Fecha: %m/%d/%Y")%><br>
+        <%= event.website%><br>
+        <hr>
+        <br>
+      <% end %>
+    </div>
 
   </div><!-- .main -->
 

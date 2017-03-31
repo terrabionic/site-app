@@ -7,18 +7,16 @@
     <%= render 'shared/nav_empresario' %>
   <% end %>
   <div class="main">
-
-    <div class="form-container--large">
-
-      <% if current_user.is? 'admin' %>
+    <% if current_user.is? 'admin' %>
         <%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
       <% else %>
         <%= link_to 'Atrás', index_manager_user_path, class: "back-button" %>
       <% end %>
       <h1 class="main-headline inline-block">Noticias</h1>
-      <%= link_to 'Lista', list_notice_user_path %> 
+      <%= link_to 'Grid', index_notice_user_path %>
 
-      <%= form_tag(index_notice_user_path(), :method => "get", id: "search") do %>
+    
+      <%= form_tag(list_notice_user_path(), :method => "get", id: "search") do %>
         <div>
           <div>
 
@@ -33,23 +31,23 @@
       <div class="row small-up-1 medium-up-2 large-up-3">
         <% if @notices %>
           <% @notices.each do |notice| %>
-            <div class="column column-block noticia">
+            <div >
             <a class="noticia__image" href="<%= notice.link %>">
               <%= image_tag (notice.image_notice.url) %>  
             </a>
 
-            <%= link_to notice.title, notice, class: "noticia__title" %>
+            <%= link_to notice.title, notice %>
 
-            <p class="noticia__meta"><%= notice.date_pub %></p>
+            <p><%= notice.date_pub %></p>
             
-            <p class="noticia__description"><%= notice.description %></p>
+            <p><%= notice.description %></p>
 
             </div>
           <% end %>
         <% end %>
       </div>
-      
-    </div>
+    
+        
   </div>
 </div>
 <%= render "shared/footer" %>

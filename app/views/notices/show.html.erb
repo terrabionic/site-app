@@ -22,6 +22,16 @@
       </p>
 
       <p>
+        <strong>Principal:</strong>
+        <% if @notice.priority %>
+          SI
+        <% else %>
+          NO
+        <% end %>
+      </p>
+
+
+      <p>
         <strong>Sector:</strong>
         <% if @notice.sector %>
           <%= @notice.sector.name %>

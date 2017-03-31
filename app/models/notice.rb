@@ -6,6 +6,10 @@ class Notice < ActiveRecord::Base
   validates :link, presence: true
   validates :sector, presence: true
   validates :date_pub, presence: true
+
+  def self.search(search)
+    where("title LIKE ?", "%#{search}%")
+  end
   
 
 end
