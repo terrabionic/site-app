@@ -2,7 +2,12 @@
 
 <div class="layout">
 
-  <%= render 'shared/nav' %>
+  <% if current_user.is? 'admin' %>
+    <%= render 'shared/nav' %>
+  <% else %>
+    <%= render 'shared/nav_empresario' %>
+  <% end %>
+  
   
   <div class="main">
     <p>
@@ -43,7 +48,9 @@
     <p>
       
     </p>
-    <%= link_to 'Editar', edit_event_path(@event), class: "btn" %>
+    <% if can? :update, @event %>
+      <%= link_to 'Editar', edit_event_path(@event), class: "btn" %>
+    <% end %>
     <%= link_to 'Atras', events_path, class: "btn" %>
 
   </div>

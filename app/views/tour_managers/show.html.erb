@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Welcom:</strong>
+  <%= @tour_manager.welcom %>
+</p>
+
+<p>
+  <strong>Map:</strong>
+  <%= @tour_manager.map %>
+</p>
+
+<p>
+  <strong>Filter search:</strong>
+  <%= @tour_manager.filter_search %>
+</p>
+
+<p>
+  <strong>First step:</strong>
+  <%= @tour_manager.first_step %>
+</p>
+
+<p>
+  <strong>Second step:</strong>
+  <%= @tour_manager.second_step %>
+</p>
+
+<p>
+  <strong>Third step text:</strong>
+  <%= @tour_manager.third_step %>
+</p>
+
+<p>
+  <strong>Search field:</strong>
+  <%= @tour_manager.search_field %>
+</p>
+
+<%= link_to 'Edit', edit_tour_manager_path(@tour_manager) %> |
+<%= link_to 'Back', tour_managers_path %>

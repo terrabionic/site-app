@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <%= link_to 'Atrás', sections_index_path, class: "back-button" %>
+    <h1 class="main-headline inline-block">Tour</h1>
+    <p>
+      <% if TourManager.all.length() <= 0%>
+        <%= link_to 'Nuevo Tour', new_tour_manager_path, class: "btn" %>
+      <% end %>
+    </p>
+
+    <table class="site-table">
+      <thead>
+        <tr>
+          <th colspan="2"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @tour_managers.each do |tour_manager| %>
+          <tr>
+            <td><%= link_to 'Tour Monitor Empresarial', edit_tour_manager_path(tour_manager) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<%= render "shared/footer" %>

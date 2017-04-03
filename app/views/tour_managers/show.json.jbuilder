@@ -1,0 +1,1 @@
+json.partial! "tour_managers/tour_manager", tour_manager: @tour_manager

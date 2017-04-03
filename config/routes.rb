@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tour_managers
   resources :notification_managers
   resources :notifications
   resources :notices
@@ -58,6 +59,7 @@ Rails.application.routes.draw do
   post "/asignar_emprered", to: "asigns#action_asign_emprered"
   # Editar usuario
   get '/users/:id/edit_user', to: 'users#edit_user', as: 'edit_user'
+  get '/users/:id/edit_profile', to: 'users#edit_profile', as: 'edit_profile'
   # Editar Contraseña
   get '/users/:id/edit_password', to: 'users#edit_password', as: 'edit_password'
   # Editar usuario

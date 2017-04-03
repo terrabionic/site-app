@@ -1,4 +1,13 @@
 FactoryGirl.define do
+  factory :tour_manager do
+    welcom "MyText"
+    map "MyText"
+    filter_search "MyText"
+    first_step "MyText"
+    second_step "MyText"
+    third_step_text "MyString"
+    search_field "MyText"
+  end
   factory :notification_manager do
     title "MyString"
     event nil
