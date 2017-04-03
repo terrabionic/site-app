@@ -19,9 +19,8 @@
             <strong>PUEDES FILTRAR POR: </strong>
 
             <strong class="hide">REGION: </strong>
-            <%= select_tag :locationr_region, options_for_select(Region.all.map{|s|[s.name, s.id]}, params[:locationr_region]), {:include_blank => 'Todos'} %>
-            
-            <%= submit_tag "Buscar" %>    
+            <%= select_tag :locationr_region, options_for_select(Region.all.map{|s|[s.name, s.id]}, params[:locationr_region]), {:onchange => "this.form.submit();",:include_blank => 'Todos'} %>
+
           </div>
         </div>
       <% end %>

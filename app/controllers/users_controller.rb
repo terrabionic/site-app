@@ -51,6 +51,12 @@ class UsersController < ApplicationController
     add_breadcrumb 'Editar_' + @user.name, edit_user_path(@user)
   end
 
+  def edit_profile
+    @user = User.find(params[:id])
+    add_breadcrumb @user.name, user_path(@user)
+    add_breadcrumb 'Editar_' + @user.name, edit_profile_path(@user)
+  end
+
   def edit_password
     @user = User.find(params[:id])
   end
@@ -94,7 +100,11 @@ class UsersController < ApplicationController
     if params[:user][:password]
       redirect_to root_path
     else
-      redirect_to show_user_admin_path(@user)
+      if current_user.is? 'admin'
+        redirect_to show_user_admin_path(@user)
+      else
+        redirect_to root_path
+      end
     end
   end
 

@@ -19,7 +19,7 @@
 			    <div class="row">
 			    	<div class="medium-6 columns">
 			    		<strong>PUEDES FILTRAR POR: </strong>
-			    		<%= select_tag :sector, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector]), {:include_blank => 'Todos'} %>
+			    		<%= select_tag :sector, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector]), {:onchange => "this.form.submit();",:include_blank => 'Todos'} %>
 			    	</div>
 			    	<div class="medium-6 columns">
 			    		<strong>BUSCAR POR EMPRESA: </strong>

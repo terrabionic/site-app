@@ -19,9 +19,8 @@
             <strong>PUEDES FILTRAR POR: </strong>
 
             <strong class="hide">SECTOR: </strong>
-            <%= select_tag :sector_mun, options_for_select(Sector.all.map{|s|[s.name, s.id]}, params[:sector_mun]) %>
-            
-            <%= submit_tag "Buscar" %>    
+            <%= select_tag :sector_mun, options_for_select(Sector.all.map{|s|[s.name, s.id]}, params[:sector_mun]), {:onchange => "this.form.submit();"} %>
+  
           </div>
         </div>
       <% end %>

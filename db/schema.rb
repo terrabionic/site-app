@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331194304) do
+ActiveRecord::Schema.define(version: 20170403180221) do
 
   create_table "Branches_Companies", id: false, force: :cascade do |t|
     t.integer "branch_id",  null: false
@@ -314,6 +314,7 @@ ActiveRecord::Schema.define(version: 20170331194304) do
   create_table "subsectors", force: :cascade do |t|
     t.string   "name"
     t.integer  "sector_id"
+    t.integer  "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -343,6 +344,18 @@ ActiveRecord::Schema.define(version: 20170331194304) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tour_managers", force: :cascade do |t|
+    t.text     "welcom"
+    t.text     "map"
+    t.text     "filter_search"
+    t.text     "first_step"
+    t.text     "second_step"
+    t.text     "third_step"
+    t.text     "search_field"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|

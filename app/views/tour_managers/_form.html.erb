@@ -1,0 +1,45 @@
+<%= form_for(@tour_manager) do |f| %>
+  <% if @tour_manager.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tour_manager.errors.count, "error") %> prohibited this tour_manager from being saved:</h2>
+
+      <ul>
+      <% @tour_manager.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <strong>Bienvenido:</strong><br>
+    <%= f.text_area :welcom %>
+  </div>
+  <div class="field">
+    <strong>Mapa:</strong><br>
+    <%= f.text_area :map %>
+  </div>
+  <div class="field">
+    <strong>Filtro de búsqueda:</strong><br>
+    <%= f.text_area :filter_search %>
+  </div>
+  <div class="field">
+    <strong>Primer paso del filtro:</strong><br>
+    <%= f.text_area :first_step %>
+  </div>
+  <div class="field">
+    <strong>Segundo paso del filtro:</strong><br>
+    <%= f.text_area :second_step %>
+  </div>
+  <div class="field">
+    <strong>Tercer paso del filtro:</strong><br>
+    <%= f.text_area :third_step %>
+  </div>
+  <div class="field">
+    <strong>Buscar:</strong><br>
+    <%= f.text_area :search_field %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Guardar'%>
+  </div>
+<% end %>

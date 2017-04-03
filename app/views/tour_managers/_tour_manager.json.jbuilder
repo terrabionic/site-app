@@ -1,0 +1,2 @@
+json.extract! tour_manager, :id, :welcom, :map, :filter_search, :first_step, :second_step, :third_step_text, :search_field, :created_at, :updated_at
+json.url tour_manager_url(tour_manager, format: :json)
