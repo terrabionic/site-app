@@ -4,7 +4,17 @@ class NotificationManagersController < ApplicationController
   # GET /notification_managers
   # GET /notification_managers.json
   def index
-    @notification_managers = NotificationManager.all.order("created_at DESC")
+    unless params[:type].blank?
+       if params[:type] == 'events'
+        @notification_managers = NotificationManager.where('notice_id is NULL',).order("created_at DESC")
+       elsif params[:type] == 'notice'
+        @notification_managers = NotificationManager.where('event_id is NULL',).order("created_at DESC")
+       end
+    else
+      @notification_managers = NotificationManager.all.order("created_at DESC")
+    end 
+    
+
   end
 
   # GET /notification_managers/1
@@ -66,6 +76,7 @@ class NotificationManagersController < ApplicationController
   def send_notification
     @notificationm = NotificationManager.find(params[:notificationm_id])
     @notificationm.active = true
+    @notificationm.date_pub = Time.now
     @notificationm.save
     
     @companies = Company.where('sector_id = ?', @notificationm.sector.id)

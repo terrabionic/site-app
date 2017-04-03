@@ -29,6 +29,6 @@
     <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]},@notification_manager.sector_id),include_blank: true %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Guardar' %>
   </div>
 <% end %>
