@@ -10,6 +10,18 @@
       <%= link_to 'Nueva Notificación', new_notification_manager_path, class: "btn" %>
     </p>
 
+    <%= form_tag(notification_managers_path, :method => "get", id: "search") do %>
+      <div>
+        <div>
+
+          <strong>PUEDES FILTRAR POR: </strong><br>
+
+          <strong>TIPO: </strong>
+          <%= select_tag :type, options_for_select([['Noticias', 'notice'], ['Calendario de eventos', 'events']], params[:type]), {:onchange => "this.form.submit();" , :include_blank => 'Todos'} %>
+        </div>
+      </div>
+    <% end %>
+
     <table class="site-table">
       <thead>
         <tr>
