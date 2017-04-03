@@ -1,0 +1,34 @@
+<%= form_for(@notification_manager) do |f| %>
+  <% if @notification_manager.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@notification_manager.errors.count, "error") %> prohibited this notification_manager from being saved:</h2>
+
+      <ul>
+      <% @notification_manager.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <strong>Título:</strong><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <strong>Evento:</strong><br>
+    <%= f.select :event_id, options_for_select(EventMonitor.all.map{|s|[s.title, s.id]}, @notification_manager.event_id),include_blank: true %>
+
+  </div>
+  <div class="field">
+    <strong>Noticia:</strong><br>
+    <%= f.select :notice_id, options_for_select(Notice.all.map{|s|[s.title, s.id]},@notification_manager.notice_id),include_blank: true  %>
+  </div>
+  <div class="field">
+  <strong>Sector:</strong><br>
+    <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]},@notification_manager.sector_id),include_blank: true %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

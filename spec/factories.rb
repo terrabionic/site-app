@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :notification_manager do
+    title "MyString"
+    event nil
+    notice nil
+    date_pub "2017-03-31"
+    sector nil
+  end
   factory :notification do
     title "MyString"
     event nil

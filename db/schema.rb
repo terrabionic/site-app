@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330225549) do
+ActiveRecord::Schema.define(version: 20170331194304) do
 
   create_table "Branches_Companies", id: false, force: :cascade do |t|
     t.integer "branch_id",  null: false
@@ -204,6 +204,21 @@ ActiveRecord::Schema.define(version: 20170330225549) do
 
   add_index "notices", ["sector_id"], name: "index_notices_on_sector_id"
 
+  create_table "notification_managers", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "event_id"
+    t.integer  "notice_id"
+    t.date     "date_pub"
+    t.integer  "sector_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "active",     default: false
+  end
+
+  add_index "notification_managers", ["event_id"], name: "index_notification_managers_on_event_id"
+  add_index "notification_managers", ["notice_id"], name: "index_notification_managers_on_notice_id"
+  add_index "notification_managers", ["sector_id"], name: "index_notification_managers_on_sector_id"
+
   create_table "notifications", force: :cascade do |t|
     t.string   "title"
     t.integer  "event_id"
@@ -299,7 +314,6 @@ ActiveRecord::Schema.define(version: 20170330225549) do
   create_table "subsectors", force: :cascade do |t|
     t.string   "name"
     t.integer  "sector_id"
-    t.integer  "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

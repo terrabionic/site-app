@@ -20,7 +20,9 @@ class BusinessManagerController < ApplicationController
 			@companies_states = Company.where("state_company_id = ? AND sector_id = ?", @user.company.state_company.id,@sector.id)
 			@companies_sectors = Company.where("sector_id = ?", @sector.id)
 			Company.where("sector_id = ?", @sector.id).group_by(&:activity).each do |activity, company_sectors|
-				@company_activities.push(activity)
+				if activity
+					@company_activities.push(activity)
+				end
 			end
 			Municipio.all.each do |municipio|
 				@company_activities.each do |activity|

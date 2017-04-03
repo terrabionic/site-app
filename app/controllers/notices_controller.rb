@@ -66,13 +66,6 @@ class NoticesController < ApplicationController
     @notice.active = true
     @notice.save
     
-    @companies = Company.where('sector_id = ?', @notice.sector.id)
-    @companies.each do |company|
-      if company.user_login
-        notifications_params = { title: @notice.title, notice: @notice, user_read: false, date_pub: Time.now, user_id: company.user_login.id }
-        Notification.create(notifications_params)
-      end
-    end
     @notices = Notice.all
     respond_to do |format|
       format.html { redirect_to notices_path(@notices) }

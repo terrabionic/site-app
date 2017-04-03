@@ -1,0 +1,16 @@
+<div class="layout">
+	<%= render 'shared/nav' %>
+
+	<div class="main">
+		<div class="form-container">
+			<%= link_to 'Atrás', @notification_manager, class: "back-button" %>
+			<h1 class="main-headline inline-block">Notificación</h1>
+
+			<%= render 'form' %>
+		</div>
+		
+	</div>
+
+</div>
+
+<%= render "shared/footer" %>

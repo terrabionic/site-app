@@ -29,7 +29,7 @@
     <%= f.select :sector_id, options_for_select(Sector.all.map{|s|[s.name, s.id]}) %>
   </div>
   <div>
-    Principal:
+    Noticia destacada:
     <%= f.check_box :priority, {}, true, false %>
   </div>
   <div class="field">

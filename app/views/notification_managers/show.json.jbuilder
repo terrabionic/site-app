@@ -1,0 +1,1 @@
+json.partial! "notification_managers/notification_manager", notification_manager: @notification_manager
