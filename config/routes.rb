@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :notification_managers
   resources :notifications
   resources :notices
   resources :pagefeeds
@@ -120,10 +121,15 @@ Rails.application.routes.draw do
 
   post "/get_notice_tofeed_url", to: "pagefeeds#get_notice_tofeed_url"
   post "/publish_notice", to: "notices#publish_notice"
+
   get '/notice_user/index_notice_user_first10', to: 'notice_user#index_notice_user_first10', as: 'index_notice_user_first10'
   get '/notice_user/index_notice_user', to: 'notice_user#index_notice_user', as: 'index_notice_user'
   get '/notice_user/list_notice_user', to: 'notice_user#list_notice_user', as: 'list_notice_user'
 
+  post "/send_notification", to: "notification_managers#send_notification"
+
   get '/notification_user/index_notification_user_first', to: 'notification_user#index_notification_user_first', as: 'index_notification_user_first'
+
+  post "/show_notification", to: "notifications#show_notification"
 
 end

@@ -7,7 +7,7 @@ class NotificationsController < ApplicationController
     #@notifications = Notification.all
     @user = current_user
     @notifications = []
-    @notifications = Notification.where('user_id = ?',@user.id).limit(10).order("created_at ASC")
+    @notifications = Notification.where('user_id = ?',@user.id).limit(10).order("created_at DESC")
   end
 
   # GET /notifications/1
@@ -62,6 +62,21 @@ class NotificationsController < ApplicationController
       format.html { redirect_to notifications_url, notice: 'Notification was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def show_notification
+    @notification =  Notification.find(params[:notification_id])
+    @notification.user_read = true
+    @notification.save
+    unless @notification.notice.blank?
+      respond_to do |format|
+        format.html { redirect_to notice_path(@notification.notice) }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to event_monitor_path(@notification.event) }
+      end
+    end    
   end
 
   private

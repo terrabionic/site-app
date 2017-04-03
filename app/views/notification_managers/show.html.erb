@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="layout">
+  <%= render 'shared/nav' %>
+  <div class="main">
+    <%= link_to 'Atrás', notification_managers_path, class: "back-button" %>
+
+    <h1 class="main-headline inline-block mr-1"><%= @notification_manager.title %></h1>
+
+    
+      <%= link_to 'Editar', edit_notification_manager_path(@notification_manager), class: "btn--gris btn--small" %>
+
+      <p>
+        <strong>Categoría:</strong>
+        <% if @notification_manager.event %>
+          Evento
+        <% else %>
+          Noticia
+        <% end %>
+      </p>
+
+      <p>
+        <% if @notification_manager.active %>
+          Enviado
+        <% else %>
+          No enviado
+        <% end %>
+      </p>
+
+      <p>
+        <strong>Fecha de Publicación:</strong>
+        <%= @notification_manager.date_pub %>
+      </p>
+
+      <p>
+        <strong>Sector:</strong>
+        <% if @notification_manager.sector %>
+          <%= @notification_manager.sector.name %>
+        <% end %>
+      </p>
+
+  </div>
+</div>
+<%= render "shared/footer" %>

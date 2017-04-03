@@ -22,10 +22,10 @@
       <% if @priority_notices %>
         <% @priority_notices.each do |priority_notice| %>
           <div>
-         
+          <%= image_tag (priority_notice.image_notice.url) %> 
           <%= link_to priority_notice.title, notice%>
 
-          <p><%= priority_notice.date_pub %></p>
+          <p><%= priority_notice.date_pub.strftime("Fecha: %d-%m-%Y") %></p>
           
           <p><%= priority_notice.description %></p>
           </div>
@@ -51,7 +51,7 @@
 
             <%= link_to notice.title, notice, class: "noticia__title" %>
 
-            <p class="noticia__meta"><%= notice.date_pub %></p>
+            <p class="noticia__meta"><%= notice.date_pub.strftime("Fecha: %d-%m-%Y") %></p>
             
             <p class="noticia__description"><%= notice.description %></p>
             
@@ -82,7 +82,7 @@
       <br>
       <% @events.each do |event| %>
         <%= event.title%><br>
-        <%= event.start_at.strftime("Fecha: %m/%d/%Y")%><br>
+        <%= event.start_at.strftime("Fecha: %d/%m/%Y")%><br>
         <%= event.website%><br>
         <hr>
         <br>

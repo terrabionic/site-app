@@ -10,7 +10,7 @@
       <div class="row buscador" style="max-width: none; margin-left: -15px;">
         <div class="medium-6 columns ordenar-field">
         <strong>Ordenar</strong>
-      <%= select_tag(:order, options_for_select([['', 'created_at'],['Empresa', 'company_name'], ['Estado', 'state'], ['Sector', 'sector_id']], 3)) %>    
+      <%= select_tag(:order, options_for_select([['', 'created_at'],['Empresa', 'company_name'], ['Estado', 'state'], ['Sector', 'sector_id']],params[:order]), :onchange => "this.form.submit();") %>    
         </div>
         <div class="medium-6 columns search-field">
           <span class="icon-buscador"></span>

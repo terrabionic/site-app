@@ -1,0 +1,1 @@
+json.array! @notification_managers, partial: 'notification_managers/notification_manager', as: :notification_manager
