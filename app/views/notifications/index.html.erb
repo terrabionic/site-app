@@ -17,13 +17,17 @@
     <br>
     <% @notifications.each do |notification| %>
       <p>
-        <%= notification.title %><br>
-        <% if notification.event %>
-          <strong>Calendario de eventos</strong>
-        <% end %>
-        <% if notification.notice %>
-          <strong>Noticia</strong>
-        <% end %>
+          <% if notification.event %>
+            <%=link_to  notification.title, show_notification_path(notification_id: notification), method: :post %> <br>
+            <strong>Calendario de eventos</strong>
+          <% end %>
+          <% if notification.notice %>
+            <a href="<%= notification.notice.link %>" target="_blank">
+                <%= notification.title %>  
+            </a>
+            <br>
+            <strong>Noticia</strong>
+          <% end %>
       </p>
     <% end %>
   </div>

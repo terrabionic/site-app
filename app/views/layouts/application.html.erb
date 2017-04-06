@@ -64,15 +64,72 @@
 					<% elsif current_user.is? 'company' %>
 						<% if current_user.company.done %>
 				          <% if current_user.company.stage == 'Reporte' %>
-				          	<%= Notification.where('user_id = ? AND user_read = ?', current_user.id, false).length %> <%= link_to 'Noti' , index_notification_user_first_path%>
+					          <div>
+						          <% @notifications = Notification.where('user_id = ? AND user_read = ?', current_user.id, false) %>
+						          <%= @notifications.length %> ICONO NOTIF
+						          <% @notifications.each do |notification| %>
+						          	<p>
+								        <% if notification.event %>
+								          <%=link_to  notification.title, show_notification_path(notification_id: notification), method: :post %> <br>
+								          <strong>Calendario de eventos</strong>
+								        <% end %>
+								        <% if notification.notice %>
+								          <a href="<%= notification.notice.link %>" target="_blank">
+								              <%= notification.title %>  
+								          </a>
+								          <br>
+								          <strong>Noticia</strong>
+								        <% end %>
+								    </p>
+						          <% end %>
+						          <%= link_to 'Mas notificaciones', notifications_path %>
+						       </div>
 				            <%= link_to 'DASHBOARD', results_company_path %>
 				          <% else %>
-				            <%= link_to 'DASHBOARD', index_company_path %>
-				            <%= Notification.where('user_id = ? AND user_read = ?', current_user.id, false).length %> <%= link_to 'Noti' , index_notification_user_first_path%>
+					          <div>
+						          <% @notifications = Notification.where('user_id = ? AND user_read = ?', current_user.id, false) %>
+						          <%= @notifications.length %> ICONO NOTIF
+						          <% @notifications.each do |notification| %>
+						          	<p>
+								        <% if notification.event %>
+								          <%=link_to  notification.title, show_notification_path(notification_id: notification), method: :post %> <br>
+								          <strong>Calendario de eventos</strong>
+								        <% end %>
+								        <% if notification.notice %>
+								          <a href="<%= notification.notice.link %>" target="_blank">
+								              <%= notification.title %>  
+								          </a>
+								          <br>
+								          <strong>Noticia</strong>
+								        <% end %>
+								    </p>
+						          <% end %>
+						          <%= link_to 'Mas notificaciones', notifications_path %>
+						       </div>
+						       <%= link_to 'DASHBOARD', index_company_path %>
 				          <% end %>
 				        <% else %>
-				          <%= link_to 'DASHBOARD', index_company_path %>
-				          <%= Notification.where('user_id = ? AND user_read = ?', current_user.id, false).length %> <%= link_to 'Noti' , index_notification_user_first_path%>
+				          <div>
+					          <% @notifications = Notification.where('user_id = ? AND user_read = ?', current_user.id, false) %>
+					          <%= @notifications.length %> ICONO NOTIF
+					          <% @notifications.each do |notification| %>
+					          	<p>
+							        <% if notification.event %>
+							          <%=link_to  notification.title, show_notification_path(notification_id: notification), method: :post %> <br>
+							          <strong>Calendario de eventos</strong>
+							        <% end %>
+							        <% if notification.notice %>
+							          <a href="<%= notification.notice.link %>" target="_blank">
+							              <%= notification.title %>  
+							          </a>
+							          <br>
+							          <strong>Noticia</strong>
+							        <% end %>
+							    </p>
+					          <% end %>
+					          <%= link_to 'Mas notificaciones', notifications_path %>
+					       </div>
+					       <%= link_to 'DASHBOARD', index_company_path %>
 				        <% end %>
 					<% end %>
 				</span><!-- .header-actions__item -->

@@ -221,6 +221,8 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1.json
   def update
     branches_new = []
+    subbranches_new = []
+    types_new = []
     respond_to do |format|
       if @company.update(company_params)
         if params[:company][:branches]
