@@ -1,26 +1,47 @@
 class EventMonitorsController < ApplicationController
   before_action :set_event_monitor, only: [:show, :edit, :update, :destroy]
 
+  add_breadcrumb "Inicio", :root_path
+
   # GET /event_monitors
   # GET /event_monitors.json
   def index
     @event_monitors = EventMonitor.all
+    if current_user.is? 'admin'
+      add_breadcrumb "Monitor Empresarial", index_manager_admin_path
+      add_breadcrumb "Eventos", event_monitors_path
+    else
+      add_breadcrumb "Monitor Empresarial", index_manager_user_path
+      add_breadcrumb "Eventos", event_monitors_path
+    end
   end
 
   # GET /event_monitors/1
   # GET /event_monitors/1.json
   def show
+    if current_user.is? 'admin'
+      add_breadcrumb "Monitor Empresarial", index_manager_admin_path
+      add_breadcrumb "Eventos", event_monitors_path
+    else
+      add_breadcrumb "Monitor Empresarial", index_manager_user_path
+      add_breadcrumb "Eventos", event_monitors_path
+    end
   end
 
   # GET /event_monitors/new
   def new
     @event_monitor = EventMonitor.new
     authorize! :create, @event_monitor
+    add_breadcrumb "Monitor Empresarial", index_manager_admin_path
+    add_breadcrumb "Eventos", event_monitors_path
   end
 
   # GET /event_monitors/1/edit
   def edit
     authorize! :update, @event_monitor
+    add_breadcrumb "Monitor Empresarial", index_manager_admin_path
+    add_breadcrumb "Eventos", event_monitors_path
+    add_breadcrumb @event_monitor.title, event_monitor_path(@event_monitor)
   end
 
   # POST /event_monitors

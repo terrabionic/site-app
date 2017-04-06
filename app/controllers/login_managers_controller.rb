@@ -46,8 +46,7 @@ class LoginManagersController < ApplicationController
   def update
     respond_to do |format|
       if @login_manager.update(login_manager_params)
-        format.html { redirect_to @login_manager, notice: '' }
-        format.json { render :show, status: :ok, location: @login_manager }
+        format.html { redirect_to sections_index_path }
       else
         format.html { render :edit }
         format.json { render json: @login_manager.errors, status: :unprocessable_entity }

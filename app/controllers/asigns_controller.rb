@@ -6,7 +6,7 @@ class AsignsController < ApplicationController
 		@role_agente = Role.where("role = ?", 'agente')
 		@agents = false
 		if @role_agente.length > 0
-			@agents = User.where("role_id = ?",@role_agente[0].id)
+			@agents = User.where("role_id = ?",@role_agente[0].id).paginate(:page => params[:page], :per_page => 10)
 		end
 		@company = Company.find(params[:id])
 	end
@@ -36,7 +36,7 @@ class AsignsController < ApplicationController
 		
 		@role_emprered = Role.where("role = ?", 'emprered')
 		if @role_emprered.length > 0
-			@emprereds = User.where("role_id = ?",@role_emprered[0].id)
+			@emprereds = User.where("role_id = ?",@role_emprered[0].id).paginate(:page => params[:page], :per_page => 10)
 		end
 		@company = Company.find(params[:id])
 		add_breadcrumb 'Cambiar ' + @company.company_name, asignar_emprered_path(@company)

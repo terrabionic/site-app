@@ -78,6 +78,30 @@
         </tr>
         <tr>
           <td>
+            SUBRAMA
+          </td>
+          <td>
+            <%= link_to 'Editar', subbranches_path, class: "btn--link" %>
+          </td>
+          <td>
+            <%= link_to 'Crear Nueva', new_subbranch_path, class: "btn--link" %>
+            <span class="small-label">Subrama</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            CLASE
+          </td>
+          <td>
+            <%= link_to 'Editar', types_path, class: "btn--link" %>
+          </td>
+          <td>
+            <%= link_to 'Crear Nueva', new_type_path, class: "btn--link" %>
+            <span class="small-label">Clase</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
             ACTIVIDADES ECONÓMICAS
           </td>
           <td>
@@ -177,7 +201,7 @@
             TOUR(Monitor Empresarial)
           </td>
           <td colspan="2">
-            <%= link_to 'Editar', tour_managers_path, class: "btn--link" %>
+            <%= link_to 'Editar', edit_tour_manager_path(id: @tour_manager), class: "btn--link" %>
           </td>
         </tr>
         <tr>

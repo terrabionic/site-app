@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="layout">
+	<%= render 'shared/nav' %>
+	<div class="main">
+		<%= link_to 'Atrás', subbranches_path, class: "back-button" %>
+
+		<h1 class="main-headline inline-block mr-1"><%= @subbranch.name %></h1>
+
+		
+		<%= link_to 'Editar', edit_subbranch_path(@subbranch), class: "btn--gris btn--small" %>
+
+		<p>
+		  <strong>Rama:</strong>
+		  <% if @subbranch.branch %>
+		  	<%= @subbranch.branch.name %>
+		  <% end %>
+		</p>
+
+		<p>
+		  <strong>Code:</strong>
+		  <%= @subbranch.code %>
+		</p>
+
+	</div>
+</div>
+<%= render "shared/footer" %>

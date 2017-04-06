@@ -1,7 +1,8 @@
 class BusinessManagerController < ApplicationController
+	add_breadcrumb "Inicio", :root_path
 
 	def index_manager_user
-
+		add_breadcrumb "Monitor Empresarial", index_manager_user_path
 		@user = current_user
 		@municipios = []
 		@companies = []
@@ -13,6 +14,7 @@ class BusinessManagerController < ApplicationController
 		@hash = []
 		@company_am = []
 		@company_am_2 = []
+		@tourmanager = TourManager.first
 		if @user.company
 			@sector = @user.company.sector
 			@companies_all = Company.all
@@ -72,6 +74,7 @@ class BusinessManagerController < ApplicationController
 	end
 
 	def index_manager_admin
+		add_breadcrumb "Monitor Empresarial", index_manager_admin_path
 		@municipios = []
 		@companies = Company.all
 		authorize! :read, @companies
@@ -80,7 +83,7 @@ class BusinessManagerController < ApplicationController
 		@company_am = []
 		@company_am_2 = []
 		@company_activities = []
-
+		@tourmanager = TourManager.first
 		if level == 'regional'
 			if params[:location]
 				if params[:sector]
@@ -188,16 +191,21 @@ class BusinessManagerController < ApplicationController
 	end
 
 	def company_regional_user
+		add_breadcrumb "Monitor Empresarial", index_manager_user_path
+		add_breadcrumb "Nivel regional", company_regional_user_path
+		num_page = 20
 		@user = current_user
 		@municipios_all = []
 		if @user.company
 			@sector = @user.company.sector
-			@municipios_all = Municipio.all
+			@municipios_all = Municipio.all.paginate(:page => params[:page], :per_page => num_page)
 			@companies_sectors = Company.where("sector_id = ?", @sector.id)
 		end
 	end
 
 	def company_municipal_user
+		add_breadcrumb "Monitor Empresarial", index_manager_user_path
+		add_breadcrumb "Nivel municipal", company_municipal_user_path
 		@user = current_user
 		@municipios_all = []
 		@company_am = []
@@ -226,18 +234,23 @@ class BusinessManagerController < ApplicationController
 	end
 
 	def company_regional_admin
+		add_breadcrumb "Monitor Empresarial", index_manager_admin_path
+		add_breadcrumb "Nivel regional", company_regional_admin_path
+		num_page = 20
 		if params[:locationr_region]
 			if params[:locationr_region].length > 0
-				@municipios_all = Municipio.where("region_id = ?",params[:locationr_region])
+				@municipios_all = Municipio.where("region_id = ?",params[:locationr_region]).paginate(:page => params[:page], :per_page => num_page)
 			else
-				@municipios_all = Municipio.all
+				@municipios_all = Municipio.all.paginate(:page => params[:page], :per_page => num_page)
 			end
 		else
-			@municipios_all = Municipio.all
+			@municipios_all = Municipio.all.paginate(:page => params[:page], :per_page => num_page)
 		end
 	end
 
 	def company_municipal_admin
+		add_breadcrumb "Monitor Empresarial", index_manager_admin_path
+		add_breadcrumb "Nivel municipal", company_municipal_admin_path
 		@company_am = []
 		@company_am_2 = []
 		@company_activities = []
@@ -269,54 +282,60 @@ class BusinessManagerController < ApplicationController
 	end
 
 	def business_directory_user
+		add_breadcrumb "Monitor Empresarial", index_manager_user_path
+		add_breadcrumb "Directorio de empresas", business_directory_user_path
 		@user = current_user
 		@sector = false
+		num_page = 20
 		if @user.company
 			@sector = @user.company.sector
 			if params[:search]
 				if params[:search].length > 0
-					@companies = Company.where("sector_id = ? AND company_name LIKE ?", @sector.id,params[:search])
+					@companies = Company.where("sector_id = ? AND company_name LIKE ?", @sector.id,params[:search]).paginate(:page => params[:page], :per_page => num_page)
 				else
-					@companies = Company.where("sector_id = ?", @sector.id)
+					@companies = Company.where("sector_id = ?", @sector.id).paginate(:page => params[:page], :per_page => num_page)
 				end
 			else
-				@companies = Company.where("sector_id = ?", @sector.id)
+				@companies = Company.where("sector_id = ?", @sector.id).paginate(:page => params[:page], :per_page => num_page)
 			end
 		end
 	end
 
 	def business_directory_admin
+		add_breadcrumb "Monitor Empresarial", index_manager_admin_path
+		add_breadcrumb "Directorio de empresas", business_directory_admin_path
+		num_page = 20
 		if params[:sector]
 			if params[:sector].length > 0
 				if params[:search]
 					if params[:search].length > 0
-						@companies = Company.where("sector_id = ? AND company_name LIKE ?", params[:sector],params[:search])
+						@companies = Company.where("sector_id = ? AND company_name LIKE ?", params[:sector],params[:search]).paginate(:page => params[:page], :per_page => num_page)
 					else
-						@companies = Company.where("sector_id = ?", params[:sector])
+						@companies = Company.where("sector_id = ?", params[:sector]).paginate(:page => params[:page], :per_page => num_page)
 					end
 				else
-					@companies = Company.where("sector_id = ?", params[:sector])
+					@companies = Company.where("sector_id = ?", params[:sector]).paginate(:page => params[:page], :per_page => num_page)
 				end
 			else
 				if params[:search]
 					if params[:search].length > 0
-						@companies = Company.where("company_name LIKE ?", params[:search])
+						@companies = Company.where("company_name LIKE ?", params[:search]).paginate(:page => params[:page], :per_page => num_page)
 					else
-						@companies = Company.all
+						@companies = Company.all.paginate(:page => params[:page], :per_page => num_page)
 					end
 				else
-					@companies = Company.all
+					@companies = Company.all.paginate(:page => params[:page], :per_page => num_page)
 				end
 			end
 		else
 			if params[:search]
 				if params[:search].length > 0
-					@companies = Company.where("company_name LIKE ?", params[:search])
+					@companies = Company.where("company_name LIKE ?", params[:search]).paginate(:page => params[:page], :per_page => num_page)
 				else
-					@companies = Company.all
+					@companies = Company.all.paginate(:page => params[:page], :per_page => num_page)
 				end
 			else
-				@companies = Company.all
+				@companies = Company.all.paginate(:page => params[:page], :per_page => num_page)
 			end
 		end
 	end

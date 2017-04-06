@@ -1,45 +1,46 @@
   <div class="nav">
 
-
-    <% if current_user.is? 'admin' %>
-      <%= link_to companies_path, class: "nav__item" do %>
-        <%= image_tag "icon-administrar-secciones.png" %>      
-        <span>Dashboard</span>
-      <% end %>
-    <% elsif current_user.is? 'consultant' %>
-      <%= link_to companies_path, class: "nav__item" do %>
-        <%= image_tag "icon-administrar-secciones.png" %>      
-        <span>Dashboard</span>
-      <% end %>
-    <% elsif current_user.is? 'emprered' %>
-      <%= link_to index_emprered_path, class: "nav__item" do %>
-        <%= image_tag "icon-administrar-secciones.png" %>      
-        <span>Dashboard</span>
-      <% end %>
-    <% elsif current_user.is? 'agente' %>
-      <%= link_to index_agenteae_path, class: "nav__item" do %>
-        <%= image_tag "icon-administrar-secciones.png" %>      
-        <span>Dashboard</span>
-      <% end %>
-    <% elsif current_user.is? 'company' %>
-      <% if current_user.company.done %>
-        <% if current_user.company.stage == 'Reporte' %>
-          <%= link_to results_company_path, class: "nav__item" do %>
-            <%= image_tag "icon-administrar-secciones.png" %>      
-            <span>Dashboard</span>
-          <% end %>
-        <% else %>
-          <%= link_to index_company_path, class: "nav__item" do %>
-            <%= image_tag "icon-administrar-secciones.png" %>      
-            <span>Dashboard</span>
-          <% end %>
+    <% if current_user %>
+      <% if current_user.is? 'admin' %>
+        <%= link_to companies_path, class: "nav__item" do %>
+          <%= image_tag "icon-administrar-secciones.png" %>      
+          <span>Dashboard</span>
         <% end %>
+      <% elsif current_user.is? 'consultant' %>
+        <%= link_to companies_path, class: "nav__item" do %>
+          <%= image_tag "icon-administrar-secciones.png" %>      
+          <span>Dashboard</span>
+        <% end %>
+      <% elsif current_user.is? 'emprered' %>
+        <%= link_to index_emprered_path, class: "nav__item" do %>
+          <%= image_tag "icon-administrar-secciones.png" %>      
+          <span>Dashboard</span>
+        <% end %>
+      <% elsif current_user.is? 'agente' %>
+        <%= link_to index_agenteae_path, class: "nav__item" do %>
+          <%= image_tag "icon-administrar-secciones.png" %>      
+          <span>Dashboard</span>
+        <% end %>
+      <% elsif current_user.is? 'company' %>
+        <% if current_user.company.done %>
+          <% if current_user.company.stage == 'Reporte' %>
+            <%= link_to results_company_path, class: "nav__item" do %>
+              <%= image_tag "icon-administrar-secciones.png" %>      
+              <span>Dashboard</span>
+            <% end %>
           <% else %>
             <%= link_to index_company_path, class: "nav__item" do %>
               <%= image_tag "icon-administrar-secciones.png" %>      
               <span>Dashboard</span>
             <% end %>
           <% end %>
+            <% else %>
+              <%= link_to index_company_path, class: "nav__item" do %>
+                <%= image_tag "icon-administrar-secciones.png" %>      
+                <span>Dashboard</span>
+              <% end %>
+            <% end %>
+      <% end %>
     <% end %>
 
     <%= link_to sections_index_path, class: "nav__item" do %>

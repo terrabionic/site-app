@@ -1,0 +1,29 @@
+<%= form_for(@subbranch) do |f| %>
+  <% if @subbranch.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subbranch.errors.count, "error") %> prohibited this subbranch from being saved:</h2>
+
+      <ul>
+      <% @subbranch.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <strong>Nombre:</strong><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <strong>Rama:</strong><br>
+    <%= f.select :branch_id, options_for_select(Branch.all.map{|s|[s.name, s.id]}) %>
+  </div>
+  <div class="field">
+    <strong>Código:</strong><br>
+    <%= f.number_field :code %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Guardar' %>
+  </div>
+<% end %>

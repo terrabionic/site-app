@@ -1,0 +1,1 @@
+json.partial! "subbranches/subbranch", subbranch: @subbranch

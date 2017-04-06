@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170403180221) do
+ActiveRecord::Schema.define(version: 20170405173532) do
 
   create_table "Branches_Companies", id: false, force: :cascade do |t|
     t.integer "branch_id",  null: false
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(version: 20170403180221) do
 
   add_index "Branches_Companies", ["branch_id", "company_id"], name: "index_Branches_Companies_on_branch_id_and_company_id"
   add_index "Branches_Companies", ["company_id", "branch_id"], name: "index_Branches_Companies_on_company_id_and_branch_id"
+
+  create_table "Companies_Subbranches", id: false, force: :cascade do |t|
+    t.integer "subbranch_id", null: false
+    t.integer "company_id",   null: false
+  end
+
+  add_index "Companies_Subbranches", ["company_id", "subbranch_id"], name: "index_Companies_Subbranches_on_company_id_and_subbranch_id"
+  add_index "Companies_Subbranches", ["subbranch_id", "company_id"], name: "index_Companies_Subbranches_on_subbranch_id_and_company_id"
+
+  create_table "Companies_Types", id: false, force: :cascade do |t|
+    t.integer "type_id",    null: false
+    t.integer "company_id", null: false
+  end
 
   create_table "answers", force: :cascade do |t|
     t.integer  "reply_id"
@@ -311,6 +324,16 @@ ActiveRecord::Schema.define(version: 20170403180221) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "subbranches", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "branch_id"
+    t.integer  "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "subbranches", ["branch_id"], name: "index_subbranches_on_branch_id"
+
   create_table "subsectors", force: :cascade do |t|
     t.string   "name"
     t.integer  "sector_id"
@@ -357,6 +380,16 @@ ActiveRecord::Schema.define(version: 20170403180221) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  create_table "types", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "subbranch_id"
+    t.integer  "code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "types", ["subbranch_id"], name: "index_types_on_subbranch_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

@@ -4,6 +4,7 @@ class SectionsController < ApplicationController
 
   def index
     @login_manager = LoginManager.first
+    @tour_manager = TourManager.first
     unless @login_manager
 		@login_manager = LoginManager.create()
     end

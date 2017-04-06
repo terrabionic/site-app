@@ -41,7 +41,7 @@ class TourManagersController < ApplicationController
   def update
     respond_to do |format|
       if @tour_manager.update(tour_manager_params)
-        format.html { redirect_to tour_managers_path, notice: '' }
+        format.html { redirect_to sections_index_path, notice: '' }
       else
         format.html { render :edit }
         format.json { render json: @tour_manager.errors, status: :unprocessable_entity }

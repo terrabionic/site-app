@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="layout">
+	<%= render 'shared/nav' %>
+	<div class="main">
+		<%= link_to 'Atrás', types_path, class: "back-button" %>
+
+		<h1 class="main-headline inline-block mr-1"><%= @type.name %></h1>
+
+		
+		<%= link_to 'Editar', edit_type_path(@type), class: "btn--gris btn--small" %>
+
+		<p>
+		  <strong>Subrama:</strong>
+		  <% if @type.subbranch %>
+		  	<%= @type.subbranch.name %>
+		  <% end %>
+		</p>
+
+		<p>
+		  <strong>Código:</strong>
+		  <%= @type.code %>
+		</p>
+
+	</div>
+</div>
+<%= render "shared/footer" %>

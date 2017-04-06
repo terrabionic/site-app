@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @users = User.all.paginate(:page => params[:page], :per_page => 20)
     add_breadcrumb 'Usuarios', users_path
     authorize! :update, @user
   end

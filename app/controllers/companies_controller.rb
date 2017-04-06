@@ -7,27 +7,28 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
+    num_page = 20
     #@companies = Company.all
     if params[:search]
       if params[:order]
         if params[:order] == 'sector_id'
-          @companies = Company.joins(:sector).search(params[:search]).order(" name DESC")
+          @companies = Company.joins(:sector).search(params[:search]).order(" name DESC").paginate(:page => params[:page], :per_page => num_page)
         else
-          @companies = Company.search(params[:search]).order("? DESC",params[:order])
+          @companies = Company.search(params[:search]).order("? DESC",params[:order]).paginate(:page => params[:page], :per_page => num_page)
         end
       else
-        @companies = Company.search(params[:search]).order("created_at DESC")
+        @companies = Company.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => num_page)
       end
     else
       if params[:order]
         if params[:order] == 'sector_id'
           
-          @companies = Company.joins(:sector).order(" name DESC")
+          @companies = Company.joins(:sector).order(" name DESC").paginate(:page => params[:page], :per_page => num_page)
         else
-          @companies = Company.all.order("? DESC",params[:order])
+          @companies = Company.all.order("? DESC",params[:order]).paginate(:page => params[:page], :per_page => num_page)
         end
       else
-        @companies = Company.all
+        @companies = Company.all.paginate(:page => params[:page], :per_page => num_page)
       end
     end
     @users = User.all
@@ -125,11 +126,14 @@ class CompaniesController < ApplicationController
     @company = Company.new
     @branches = Branch.all
     @company_branch = @company.branches.build
+    @company_subbranch = @company.subbranches.build
+    @company_type = @company.types.build
   end
 
   # GET /companies/1/edit
   def edit
     authorize! :update, @company
+    @branches = Branch.all
     add_breadcrumb @company.company_name, company_path(@company)
     add_breadcrumb "Editar " + @company.company_name, edit_company_path(@company)
   end
@@ -140,6 +144,8 @@ class CompaniesController < ApplicationController
     add_breadcrumb "Editar Site " + @company.company_name, edit_company_path(@company)
     @branches = Branch.all
     @company_branch = @company.branches.build
+    @company_subbranch = @company.subbranches.build
+    @company_type = @company.types.build
   end
 
   def show_reply
@@ -161,6 +167,8 @@ class CompaniesController < ApplicationController
     #@company = Company.new(company_params)
     @user = current_user
     branches_new = []
+    subbranches_new = []
+    types_new = []
     @company = @user.companies.build(company_params)
     
     if params[:company][:branches]
@@ -171,6 +179,25 @@ class CompaniesController < ApplicationController
       end
     end
     @company.branches = branches_new
+
+    if params[:company][:subbranches]
+      params[:company][:subbranches].each do |subbranch|
+        if subbranch.to_i > 0
+          subbranches_new.push(Subbranch.find(subbranch.to_i))
+        end
+      end
+    end
+    @company.subbranches = subbranches_new
+
+    if params[:company][:types]
+      params[:company][:types].each do |type|
+        if type.to_i > 0
+          types_new.push(Type.find(type.to_i))
+        end
+      end
+    end
+    @company.types = types_new
+
     t_start =Time.now
     t_end = t_start + 345600
     @company.date_start = t_start
@@ -193,8 +220,34 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
   def update
+    branches_new = []
     respond_to do |format|
       if @company.update(company_params)
+        if params[:company][:branches]
+          params[:company][:branches].each do |branch|
+            if branch.to_i > 0
+              branches_new.push(Branch.find(branch.to_i))
+            end
+          end
+        end
+        @company.branches = branches_new
+        if params[:company][:subbranches]
+          params[:company][:subbranches].each do |subbranch|
+            if subbranch.to_i > 0
+              subbranches_new.push(Subbranch.find(subbranch.to_i))
+            end
+          end
+        end
+        @company.subbranches = subbranches_new
+
+        if params[:company][:types]
+          params[:company][:types].each do |type|
+            if type.to_i > 0
+              types_new.push(Type.find(type.to_i))
+            end
+          end
+        end
+        @company.types = types_new
         registration_completed
         format.html { redirect_to @company, notice: 'La Empresa se ha actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @company }
