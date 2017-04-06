@@ -9,14 +9,14 @@ class NoticeUserController < ApplicationController
     if current_user.is? 'admin'
       add_breadcrumb "Monitor Empresarial", index_manager_admin_path
       add_breadcrumb "Noticias destacadas", index_notice_user_first10_path
-      @notices = Notice.where('active = ? AND priority = ?',true,false).limit(10).order("updated_at ASC")
-      @priority_notices = Notice.where('active = ? AND priority = ?',true,true).limit(10).order("updated_at ASC")
+      @notices = Notice.where('active = ? AND priority = ?',true,false).limit(10).order("updated_at DESC")
+      @priority_notices = Notice.where('active = ? AND priority = ?',true,true).limit(10).order("updated_at DESC")
     else
       add_breadcrumb "Monitor Empresarial", index_manager_user_path
       add_breadcrumb "Noticias destacadas", index_notice_user_first10_path
       if @user.company
-        @notices = Notice.where('sector_id = ? AND active = ? AND priority = ?',@user.company.sector.id,true,false).limit(10).order("updated_at ASC")
-        @priority_notices = Notice.where('sector_id = ? AND active = ? AND priority = ?',@user.company.sector.id,true,true).limit(10).order("updated_at ASC")
+        @notices = Notice.where('sector_id = ? AND active = ? AND priority = ?',@user.company.sector.id,true,false).limit(10).order("updated_at DESC")
+        @priority_notices = Notice.where('sector_id = ? AND active = ? AND priority = ?',@user.company.sector.id,true,true).limit(10).order("updated_at DESC")
       end
     end
     @events = EventMonitor.limit(10)
@@ -34,22 +34,22 @@ class NoticeUserController < ApplicationController
       if params[:search]
         if params[:search].length > 0
           if params[:show_notice] == 'recent'
-            @notices = Notice.where('active = ? AND lower(title) LIKE lower(?)',true,"%#{params[:search]}%").limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+            @notices = Notice.where('active = ? AND lower(title) LIKE lower(?)',true,"%#{params[:search]}%").limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           else
-            @notices = Notice.where('active = ? AND lower(title) LIKE lower(?)',true,"%#{params[:search]}%").order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+            @notices = Notice.where('active = ? AND lower(title) LIKE lower(?)',true,"%#{params[:search]}%").order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           end
         else
           if params[:show_notice] == 'recent'
-            @notices = Notice.where('active = ?',true).limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+            @notices = Notice.where('active = ?',true).limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           else
-            @notices = Notice.where('active = ?',true).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+            @notices = Notice.where('active = ?',true).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           end
         end
       else
         if params[:show_notice] == 'recent'
-          @notices = Notice.where('active = ?',true).limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+          @notices = Notice.where('active = ?',true).limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
         else
-          @notices = Notice.where('active = ?',true).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+          @notices = Notice.where('active = ?',true).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
         end
       end
       
@@ -62,22 +62,22 @@ class NoticeUserController < ApplicationController
         if params[:search]
           if params[:search].length > 0
             if params[:show_notice] == 'recent'
-              @notices = Notice.where('sector_id = ? AND active = ? AND lower(title) LIKE lower(?)',@user.company.sector.id,true,"%#{params[:search]}%").limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ? AND lower(title) LIKE lower(?)',@user.company.sector.id,true,"%#{params[:search]}%").limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
             else
-              @notices = Notice.where('sector_id = ? AND active = ? AND lower(title) LIKE lower(?)',@user.company.sector.id,true,"%#{params[:search]}%").order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ? AND lower(title) LIKE lower(?)',@user.company.sector.id,true,"%#{params[:search]}%").order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
             end
           else
             if params[:show_notice] == 'recent'
-              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
             else
-              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
             end
           end
         else
           if params[:show_notice] == 'recent'
-              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           else
-              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           end
         end
     	else
@@ -97,22 +97,22 @@ class NoticeUserController < ApplicationController
       if params[:search]
         if params[:search].length > 0
           if params[:show_notice] == 'recent'
-            @notices = Notice.where('active = ? AND lower(title) LIKE lower(?)',true,"%#{params[:search]}%").limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+            @notices = Notice.where('active = ? AND lower(title) LIKE lower(?)',true,"%#{params[:search]}%").limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           else
-            @notices = Notice.where('active = ? AND lower(title) LIKE lower(?)',true,"%#{params[:search]}%").order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+            @notices = Notice.where('active = ? AND lower(title) LIKE lower(?)',true,"%#{params[:search]}%").order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           end
         else
           if params[:show_notice] == 'recent'
-            @notices = Notice.where('active = ?',true).limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+            @notices = Notice.where('active = ?',true).limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           else
-            @notices = Notice.where('active = ?',true).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+            @notices = Notice.where('active = ?',true).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           end
         end
       else
         if params[:show_notice] == 'recent'
-          @notices = Notice.where('active = ?',true).limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+          @notices = Notice.where('active = ?',true).limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
         else
-          @notices = Notice.where('active = ?',true).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+          @notices = Notice.where('active = ?',true).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
         end
       end
       
@@ -124,22 +124,22 @@ class NoticeUserController < ApplicationController
         if params[:search]
           if params[:search].length > 0
             if params[:show_notice] == 'recent'
-              @notices = Notice.where('sector_id = ? AND active = ? AND lower(title) LIKE lower(?)',@user.company.sector.id,true,"%#{params[:search]}%").limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ? AND lower(title) LIKE lower(?)',@user.company.sector.id,true,"%#{params[:search]}%").limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
             else
-              @notices = Notice.where('sector_id = ? AND active = ? AND lower(title) LIKE lower(?)',@user.company.sector.id,true,"%#{params[:search]}%").order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ? AND lower(title) LIKE lower(?)',@user.company.sector.id,true,"%#{params[:search]}%").order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
             end
           else
             if params[:show_notice] == 'recent'
-              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
             else
-              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
             end
           end
         else
           if params[:show_notice] == 'recent'
-              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).limit(15).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).limit(15).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           else
-              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).order("updated_at ASC").paginate(:page => params[:page], :per_page => num_page)
+              @notices = Notice.where('sector_id = ? AND active = ?',@user.company.sector.id,true).order("updated_at DESC").paginate(:page => params[:page], :per_page => num_page)
           end
         end
       else

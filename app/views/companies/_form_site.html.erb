@@ -46,14 +46,14 @@
   <%= f.fields_for(@company_subbranch) do |bc| %>
     <div class="field">
       Subrama:<br />
-      <%= f.grouped_collection_select :subbranches, Branch.all, :subbranches, :name ,:id, :name, {{:selected => @company.subbranches.map{|s| s.id } }},{ :multiple => true, :size => 5 } %>
+      <%= f.grouped_collection_select :subbranches, Branch.all, :subbranches, :name ,:id, :name, {:selected => @company.subbranches.map{|s| s.id } },{ :multiple => true, :size => 5 } %>
     </div>
   <% end %>
 
   <%= f.fields_for(@company_type) do |bc| %>
     <div class="field">
       Clase:<br />
-      <%= f.grouped_collection_select :types, Subbranch.all, :types, :name ,:id, :name, {{:selected => @company.types.map{|s| s.id } }},{ :multiple => true, :size => 5 } %>
+      <%= f.grouped_collection_select :types, Subbranch.all, :types, :name ,:id, :name, {:selected => @company.types.map{|s| s.id } },{ :multiple => true, :size => 5 } %>
     </div>
   <% end %>
 
