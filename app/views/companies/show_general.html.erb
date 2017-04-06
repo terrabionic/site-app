@@ -74,6 +74,40 @@
     </p>
 
     <p>
+      <strong>Subsector:</strong>
+      <% if @company.subsector %>
+        <%= @company.subsector.name %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Ramas:</strong>
+      <% if @company.branches %>
+        <% @company.branches.each do |branch| %>
+          <%= branch.name %>, 
+        <% end %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Subramas:</strong>
+      <% if @company.subbranches %>
+        <% @company.subbranches.each do |subbranch| %>
+          <%= subbranch.name %>, 
+        <% end %>
+      <% end %>
+    </p>
+
+    <p>
+      <strong>Clases:</strong>
+      <% if @company.types %>
+        <% @company.types.each do |type| %>
+          <%= type.name %>, 
+        <% end %>
+      <% end %>
+    </p>
+
+    <p>
       <strong>Consultor Emprered:</strong>
       <% unless @states.include?(@company.state) %>
         <% if current_user.is? 'admin' %>

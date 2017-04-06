@@ -3,51 +3,53 @@ class CompanyrolesController < ApplicationController
 	add_breadcrumb "Inicio", :root_path
 
 	def index_emprered
+		num_page = 20
 		if params[:search]
 	      if params[:order]
 	        if params[:order] == 'sector_id'
-	          @companies = Company.joins(:sector).search(params[:search]).order(" name DESC")
+	          @companies = Company.joins(:sector).search(params[:search]).order(" name DESC").paginate(:page => params[:page], :per_page => num_page)
 	        else
-	          @companies = Company.search(params[:search]).order("? DESC",params[:order])
+	          @companies = Company.search(params[:search]).order("? DESC",params[:order]).paginate(:page => params[:page], :per_page => num_page)
 	        end
 	      else
-	        @companies = Company.search(params[:search]).order("created_at DESC")
+	        @companies = Company.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => num_page)
 	      end
 	    else
 	      if params[:order]
 	        if params[:order] == 'sector_id'
 	          
-	          @companies = Company.joins(:sector).order(" name DESC")
+	          @companies = Company.joins(:sector).order(" name DESC").paginate(:page => params[:page], :per_page => num_page)
 	        else
-	          @companies = Company.all.order("? DESC",params[:order])
+	          @companies = Company.all.order("? DESC",params[:order]).paginate(:page => params[:page], :per_page => num_page)
 	        end
 	      else
-	        @companies = Company.all
+	        @companies = Company.all.paginate(:page => params[:page], :per_page => num_page)
 	      end
 	    end
 	end
 
 	def index_agenteae
+		num_page = 20
 		if params[:search]
 	      if params[:order]
 	        if params[:order] == 'sector_id'
-	          @companies = Company.joins(:sector).search(params[:search]).order(" name DESC")
+	          @companies = Company.joins(:sector).search(params[:search]).order(" name DESC").paginate(:page => params[:page], :per_page => num_page)
 	        else
-	          @companies = Company.search(params[:search]).order("? DESC",params[:order])
+	          @companies = Company.search(params[:search]).order("? DESC",params[:order]).paginate(:page => params[:page], :per_page => num_page)
 	        end
 	      else
-	        @companies = Company.search(params[:search]).order("created_at DESC")
+	        @companies = Company.search(params[:search]).order("created_at DESC").paginate(:page => params[:page], :per_page => num_page)
 	      end
 	    else
 	      if params[:order]
 	        if params[:order] == 'sector_id'
 	          
-	          @companies = Company.joins(:sector).order(" name DESC")
+	          @companies = Company.joins(:sector).order(" name DESC").paginate(:page => params[:page], :per_page => num_page)
 	        else
-	          @companies = Company.all.order("? DESC",params[:order])
+	          @companies = Company.all.order("? DESC",params[:order]).paginate(:page => params[:page], :per_page => num_page)
 	        end
 	      else
-	        @companies = Company.all
+	        @companies = Company.all.paginate(:page => params[:page], :per_page => num_page)
 	      end
 	    end
 	end

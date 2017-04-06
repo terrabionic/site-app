@@ -21,6 +21,7 @@
 //= require moment
 //= require fullcalendar
 
+
 //Override the default confirm dialog by rails
 $.rails.allowAction = function(link){
 	if (link.data('confirm') == undefined){

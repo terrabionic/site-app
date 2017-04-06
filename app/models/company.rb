@@ -19,9 +19,12 @@ class Company < ActiveRecord::Base
   validates :sector, presence: true
   validates :email_user, presence: true
   validates :name, presence: true
+
   has_attached_file :image_logo, styles: { medium: '200x200>', thumb: '48x48>' }
   validates_attachment_content_type :image_logo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   has_and_belongs_to_many :branches
+  has_and_belongs_to_many :subbranches, class_name: 'Subbranch'
+  has_and_belongs_to_many :types, class_name: 'Type'
   
 
   def self.search(search)

@@ -1,0 +1,1 @@
+json.array! @subbranches, partial: 'subbranches/subbranch', as: :subbranch

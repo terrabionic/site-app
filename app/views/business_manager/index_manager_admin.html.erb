@@ -234,7 +234,18 @@
 	        	<%= link_to 'VER TODAS LAS ACTIVIDADES ECONÓMICAS', company_municipal_admin_path, class: "btn" %>
 	        </div><!-- municipal -->
 	    </div><!-- .tabs-content-->
-
+	   <div>
+	   	<strong>Tour</strong>
+	   	<% if @tourmanager %>
+	   		<strong>welcom</strong> <%= @tourmanager.welcom %>
+	   		<strong>map</strong> <%= @tourmanager.map %>
+	   		<strong>filter_search</strong> <%= @tourmanager.filter_search %>
+	   		<strong>first_step</strong> <%= @tourmanager.first_step %>
+	   		<strong>second_step</strong> <%= @tourmanager.second_step %>
+	   		<strong>third_step</strong> <%= @tourmanager.third_step %>
+	   		<strong>search_field</strong> <%= @tourmanager.search_field %>
+	   	<% end %>
+	   </div>
 	</div><!-- form-container-large -->
 
   </div><!-- .main -->

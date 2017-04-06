@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :types
+  resources :subbranches
   resources :tour_managers
   resources :notification_managers
   resources :notifications

@@ -36,6 +36,9 @@ gem 'momentjs-rails'
 # Gemas para generar excel
 gem 'axlsx_rails'
 
+# Gema de paginacion
+gem 'will_paginate'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

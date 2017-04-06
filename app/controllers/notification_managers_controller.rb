@@ -4,14 +4,15 @@ class NotificationManagersController < ApplicationController
   # GET /notification_managers
   # GET /notification_managers.json
   def index
+    num_page = 20
     unless params[:type].blank?
        if params[:type] == 'events'
-        @notification_managers = NotificationManager.where('notice_id is NULL',).order("created_at DESC")
+        @notification_managers = NotificationManager.where('notice_id is NULL',).order("created_at DESC").paginate(:page => params[:page], :per_page => num_page)
        elsif params[:type] == 'notice'
-        @notification_managers = NotificationManager.where('event_id is NULL',).order("created_at DESC")
+        @notification_managers = NotificationManager.where('event_id is NULL',).order("created_at DESC").paginate(:page => params[:page], :per_page => num_page)
        end
     else
-      @notification_managers = NotificationManager.all.order("created_at DESC")
+      @notification_managers = NotificationManager.all.order("created_at DESC").paginate(:page => params[:page], :per_page => num_page)
     end 
     
 

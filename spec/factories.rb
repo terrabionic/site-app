@@ -1,4 +1,19 @@
 FactoryGirl.define do
+  factory :type do
+    name "MyString"
+    subbranch nil
+    code 1
+  end
+  factory :company_class do
+    name "MyString"
+    subbranch nil
+    code 1
+  end
+  factory :subbranch do
+    name "MyString"
+    branch nil
+    code 1
+  end
   factory :tour_manager do
     welcom "MyText"
     map "MyText"

@@ -7,4 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Role.create(name: 'Administrador', description: 'Administrador del sistema', role: 'admin')
-LoginManager.create(email_contact: 'admin@site.com') 
+LoginManager.create(email_contact: 'admin@site.com')
+TourManager.create(welcom: 'Bienvenido')
