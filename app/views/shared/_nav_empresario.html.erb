@@ -40,10 +40,13 @@
             <% end %>
           <% end %>
     <% end %>
-
-    <%= link_to results_company_path, class: "nav__item" do %>
-      <%= image_tag "calificacion-empresa-tab.png" %>      
-      <span>Calificación de la empresa</span>
+    <% if current_user.company.done %>
+      <% if current_user.company.stage == 'Reporte' %>
+        <%= link_to results_company_path, class: "nav__item" do %>
+          <%= image_tag "calificacion-empresa-tab.png" %>      
+          <span>Calificación de la empresa</span>
+        <% end %>
+      <% end %>
     <% end %>
 
     <%= link_to events_path, class: "nav__item" do %>
