@@ -277,7 +277,7 @@ class CompaniesController < ApplicationController
 
   def registration_completed
     if not @company.completed
-      if @company.vat.length > 0 && @company.street.length > 0 && @company.street2.length > 0 && @company.latitude.length > 0 && @company.longitude.length > 0  && @company.cel.length > 0 && @company.date_start && @company.line_business.length > 0 && @company.num_workers > 0 && @company.annual_sales.length > 0 && @company.company_history.length > 0 && @company.company_products.length > 0 && @company.company_market.length > 0 && @company.company_problems.length > 0 && @company.name_director.length > 0 && @company.survey_period.length > 0 && @company.name_created.length > 0
+      if @company.vat.present? && @company.street.present? && @company.present? && @company.latitude.present? && @company.longitude.present?  && @company.cel.present? && @company.date_start.present? && @company.line_business.present? && @company.num_workers.present? && @company.annual_sales.present? && @company.company_history.present? && @company.company_products.present? && @company.company_market.present? && @company.company_problems.present? && @company.name_director.present? && @company.survey_period.present? && @company.name_created.present?
         @company.completed = true
         @company.save
       end
