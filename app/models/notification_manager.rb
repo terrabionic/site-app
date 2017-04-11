@@ -1,5 +1,5 @@
 class NotificationManager < ActiveRecord::Base
-  belongs_to :event
+  belongs_to :event, class_name: 'EventMonitor'
   belongs_to :notice
   belongs_to :sector
 
