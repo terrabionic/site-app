@@ -22,7 +22,7 @@
   </div>
   <div class="field">
     <strong>Noticia:</strong><br>
-    <%= f.select :notice_id, options_for_select(Notice.all.map{|s|[s.title, s.id]},@notification_manager.notice_id),include_blank: true  %>
+    <%= f.select :notice_id, options_for_select(Notice.where('active = ?', true).map{|s|[s.title, s.id]},@notification_manager.notice_id),include_blank: true  %>
   </div>
   <div class="field">
   <strong>Sector:</strong><br>
