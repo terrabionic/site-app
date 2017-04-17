@@ -59,15 +59,17 @@ class BusinessManagerController < ApplicationController
 
 			if @companies
 				@hash = Gmaps4rails.build_markers(@companies) do |company, marker|
+					label_name = '<strong>'+company.municipio.name+'</strong> | ' + company.municipio.region.name + '<br>' + company.company_name + '<br>' + 'Sector: ' + company.sector.name + '<br>' + company.web
 					marker.lat company.latitude
 					marker.lng company.longitude
-					marker.infowindow company.company_name
+					marker.infowindow label_name
 				end
 			else
 				@hash = Gmaps4rails.build_markers([@user.company]) do |company, marker|
+					label_name = '<strong>'+company.municipio.name+'</strong> | ' + company.municipio.region.name + '<br>' + company.company_name + '<br>' + 'Sector: ' + company.sector.name + '<br>' + company.web
 					marker.lat company.latitude
 					marker.lng company.longitude
-					marker.infowindow company.company_name
+					marker.infowindow label_name
 				end
 			end
 		end
@@ -111,9 +113,10 @@ class BusinessManagerController < ApplicationController
 
 		if @companies
 			@hash = Gmaps4rails.build_markers(@companies) do |company, marker|
+				label_name = '<strong>'+company.municipio.name+'</strong> | ' + company.municipio.region.name + '<br>' + company.company_name + '<br>' + 'Sector: ' + company.sector.name + '<br>' + company.web
 				marker.lat company.latitude
 				marker.lng company.longitude
-				marker.infowindow company.company_name
+				marker.infowindow label_name
 			end
 		end
 
@@ -138,8 +141,10 @@ class BusinessManagerController < ApplicationController
 			end
 		else
 			@sector_municipal = Sector.first
-			params[:sector_municipal] = @sector_municipal.id
-			@companies_states = Company.where("sector_id = ?", params[:sector_municipal])
+			if @sector_municipal
+				params[:sector_municipal] = @sector_municipal.id
+				@companies_states = Company.where("sector_id = ?", params[:sector_municipal])
+			end
 		end
 
 		# REGIONAL
@@ -160,8 +165,10 @@ class BusinessManagerController < ApplicationController
 			@companies_sectors_mun = Company.where("sector_id = ?", params[:sector_mun])
 		else
 			@sector_mun = Sector.first
-			params[:sector_mun] = @sector_mun.id
-			@companies_sectors_mun = Company.where("sector_id = ?", params[:sector_mun])
+			if @sector_mun
+				params[:sector_mun] = @sector_mun.id
+				@companies_sectors_mun = Company.where("sector_id = ?", params[:sector_mun])
+			end
 		end
 
 		Company.where("sector_id = ?", params[:sector_mun]).group_by(&:activity).each do |activity, company_sectors|
