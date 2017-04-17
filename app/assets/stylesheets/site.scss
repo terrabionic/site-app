@@ -316,6 +316,50 @@ select {
 	}
 }
 
+.events-list {
+	font-size: 0;
+
+}
+
+.events-list__item {
+	display: inline-block;
+	font-size: 14px;
+	width: 50%;
+	margin-bottom: 20px;
+	position: relative;
+
+	&:after {
+		content: "\e916";
+		font-family: icomoon;
+		position: absolute;
+		top: 50%;
+		right: 1rem;
+		line-height: 0;
+	}
+
+	figure {
+		display: table;
+
+		img {
+			display: table-cell;
+			vertical-align: middle;
+		}
+
+		figcaption {
+			display: table-cell;
+			vertical-align: middle;
+			padding-left: 1rem;
+			font-size: 13px;
+			color: #979FA6;
+
+			h5 {
+				font-size: 14px;
+				color: #6FB530;
+				font-weight: 500;
+			}
+		}
+	}
+}
 
 
 .header-actions__item--dashboard {
@@ -509,6 +553,54 @@ select {
 	}
 }
 
+.pleca-button {
+	display: table;
+	width: 100%;
+	background: #F3F4F5;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	margin-bottom: 2rem;
+}
+
+.pleca-button__title {
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 27px;
+	margin: 0;
+	color: #002F52;
+	font-weight: 500;
+
+}
+
+.pleca-button__link {
+	display: table-cell;
+	vertical-align: middle;
+	margin: 0;
+	color: white !important;
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 500;
+	text-align: left;
+	border-radius: 4px;
+	background: #002E50;
+	padding-left: 1rem;
+	position: relative;
+	
+	&:after {
+		content: "\e916";
+		font-family: icomoon;
+		vertical-align: middle;
+		margin-left: 1em;
+		position: absolute;
+		right: 1rem;
+		top: 50%;
+		line-height: 0;
+	}
+	
+}
+
 .actions-emprered {
 	@extend %clearfix;
 	margin-bottom: 1.618rem;
@@ -677,6 +769,101 @@ select {
 
 	&.is-active {
 		background: #EEEFF1;
+	}
+}
+
+.slider-noticias {
+	margin-left: 15px;
+	margin-bottom: 90px;
+
+	.slick-arrow {
+		width: 32.5%;
+		position: absolute;
+		top: 100%;
+		left: 0;
+		z-index: 10;
+		padding: 20px 0;
+		background: #F4F5F6;
+		color: #043041;
+		font-weight: 500;
+		&:hover {
+			background: #EAECEC;
+		}
+	}
+
+	.slick-prev {
+		&:before {
+			content: "\e915";
+			font-family: icomoon;
+			vertical-align: middle;
+			margin-right: 1em;
+		}
+	}
+
+	.slick-next {
+		left: 32.5%;
+		&:after {
+			content: "\e916";
+			font-family: icomoon;
+			vertical-align: middle;
+			margin-left: 1em;
+		}
+	}
+}
+
+.slider-noticias__item {
+	figure {
+		@extend %clearfix;
+		margin: 0;
+
+		img,
+		figcaption {
+			float: left;
+		}
+
+		img {
+			width: 65%;
+		}
+
+		figcaption {
+			width: 35%;
+			padding-left: 30px;
+
+			p {
+				color: #154061;
+				font-size: 14px;
+				line-height: normal;
+			}
+
+			em {
+				font-style: normal;
+
+				a {
+					@extend %btn;
+					font-weight: normal;
+					display: block;
+					background: #6FB430;
+					color: white;
+					text-align: center;
+					font-weight: 500;
+				}
+			}
+
+			a {
+				display: block;
+				color: #012F51;
+				font-size: 18px;
+				margin-bottom: 1em;
+				font-weight: 500;
+			}
+
+			span {
+				font-size: 14px;
+				color: #8F99A1;
+				display: block;
+				margin-bottom: 1.5em;
+			}
+		}
 	}
 }
 
@@ -1660,6 +1847,40 @@ select {
 
 @media (max-width: 1024px) {
 
+	.slider-noticias {
+		margin-left: 0;
+		padding-top: 55px;
+		margin-bottom: 40px;
+
+		.slick-arrow {
+			top: 0;
+			width: 50%;
+		}
+
+		.slick-next {
+			left: 50%;
+		}
+	}
+
+	.slider-noticias__item {
+	
+		figure {
+			img {
+				width: 100%;
+				float: none;
+				margin-bottom: 20px;
+			}
+
+			figcaption {
+				width: 100%;
+				float: none;
+				padding: 0;
+
+			}
+		}
+
+	}
+
 	.monitor-estatal {
 		margin-top: 20px;
 	}
@@ -1824,6 +2045,7 @@ select {
 
 @media (max-width: 768px) {
 
+
 	.buscador {
 		margin-bottom: 1.618rem;
 	}
@@ -1907,6 +2129,32 @@ select {
 }
 
 @media (max-width: 640px) {
+
+	.events-list__item {
+		width: 100%;
+
+		figure {
+			margin-left: 0;
+		}
+	}
+
+	.pleca-button {
+		display: block;
+	}
+
+	.pleca-button__title {
+		display: block;
+	}
+
+	.pleca-button__link {
+		display: block;
+		text-align: left;
+		margin-top: 1.5rem;
+		padding-left: 1.2rem;
+		width: 200px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
 
 	.back-button {
 		margin-bottom: 20px;

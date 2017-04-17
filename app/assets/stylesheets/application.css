@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require foundation.css
+ *= require slick.css 
  *= require vex.css
  *= require vex-theme-default.css
  *= require_tree .

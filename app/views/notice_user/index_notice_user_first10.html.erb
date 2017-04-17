@@ -10,32 +10,33 @@
 
   <div class="main">
 
-    <% if current_user.is? 'admin' %>
-      <%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
-    <% else %>
-      <%= link_to 'Atrás', index_manager_user_path, class: "back-button" %>
-    <% end %>
-
-    <h1 class="main-headline inline-block">Pincipales tendencias</h1>
-
-    <div>
-      <% if @priority_notices %>
-        <% @priority_notices.each do |priority_notice| %>
-          <div>
-          <%= image_tag (priority_notice.image_notice.url) %> 
-          <%= link_to priority_notice.title, notice%>
-
-          <p><%= priority_notice.date_pub.strftime("Fecha: %d-%m-%Y") %></p>
-          
-          <p><%= priority_notice.description %></p>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-
-    <h1 class="main-headline inline-block">Noticias</h1>
-
     <div class="form-container--large">
+
+      <% if current_user.is? 'admin' %>
+        <%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
+      <% else %>
+        <%= link_to 'Atrás', index_manager_user_path, class: "back-button" %>
+      <% end %>
+
+      <h1 class="main-headline inline-block">Pincipales tendencias</h1>
+
+      <div class="slider-noticias">
+        <% if @priority_notices %>
+          <% @priority_notices.each do |priority_notice| %>
+            <div class="slider-noticias__item">
+              <figure>
+                <%= image_tag (priority_notice.image_notice.url) %>     
+                <figcaption>
+                  <%= link_to priority_notice.title, notice%>
+                  <span><%= priority_notice.date_pub.strftime("%d-%m-%Y") %></span>
+                  <p><%= priority_notice.description %></p>
+                  <em><%= link_to 'Ver artículo completo', notice%></em>
+                </figcaption>
+              </figure>
+            </div>
+          <% end %>
+        <% end %>
+      </div>    
 
       <div class="row small-up-1 medium-up-2 large-up-3">
         
@@ -67,27 +68,38 @@
 
       <div class="row">
         <div class="large-12 columns">
-          <%= link_to 'Ver todos', index_notice_user_path, class: "btn" %>
+          <%= link_to 'Ver todas las noticias', index_notice_user_path, class: "btn" %>
         </div>
       </div>
 
       <br>
 
-    </div><!-- .form-container-large -->
+      <div class="proximos-eventos">
 
-    <div>
-      
-      <h1 class="main-headline inline-block">PRÓXIMOS EVENTOS</h1>
-      <%= link_to 'Ver calendario', event_monitors_path %>
-      <br>
-      <% @events.each do |event| %>
-        <%= event.title%><br>
-        <%= event.start_at.strftime("Fecha: %d/%m/%Y")%><br>
-        <%= event.website%><br>
-        <hr>
-        <br>
-      <% end %>
-    </div>
+        <div class="pleca-button">
+          <h1 class="pleca-button__title">PRÓXIMOS EVENTOS</h1>
+          <%= link_to 'Ver calendario', event_monitors_path, class: "pleca-button__link" %>  
+        </div>
+        
+        <div class="events-list">
+        <% @events.each do |event| %>
+          <div class="events-list__item">
+            <figure>
+              <%= image_tag("calendar.png") %>  
+              <figcaption>
+                <h5><%= event.title%></h5>
+                <p>
+                  <%= event.start_at.strftime("Fecha: %d/%m/%Y")%><br>
+                  <%= event.website%>  
+                </p>
+              </figcaption>
+            </figure>
+          </div>
+        <% end %>
+        </div>
+      </div>
+
+    </div><!-- .form-container-large -->
 
   </div><!-- .main -->
 

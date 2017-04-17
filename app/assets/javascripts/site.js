@@ -283,6 +283,14 @@ var siteApp = (function($) {
 		}
 	};
 
+	var sliders = function() {
+		$('.slider-noticias').slick({
+			fade: true,
+			prevArrow: '<button type="button" class="slick-prev">Anterior</button>',
+			nextArrow: '<button type="button" class="slick-next">Siguiente</button>'
+		});
+	};
+
 	var ready = function() {
 		menuProfile();
 		sectorCool();
@@ -294,6 +302,7 @@ var siteApp = (function($) {
 		toggleFiltersEmpresarial();
 		buscadorEmpresarial();
 		monitor();
+		sliders();
 	};
 
 	return {

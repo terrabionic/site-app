@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406193056) do
+ActiveRecord::Schema.define(version: 20170405173532) do
 
   create_table "Branches_Companies", id: false, force: :cascade do |t|
     t.integer "branch_id",  null: false
@@ -129,6 +129,16 @@ ActiveRecord::Schema.define(version: 20170406193056) do
   add_index "companies", ["subsector_id"], name: "index_companies_on_subsector_id"
   add_index "companies", ["survey_analysis_id"], name: "index_companies_on_survey_analysis_id"
   add_index "companies", ["user_login_id"], name: "index_companies_on_user_login_id"
+
+  create_table "company_classes", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "subbranch_id"
+    t.integer  "code"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "company_classes", ["subbranch_id"], name: "index_company_classes_on_subbranch_id"
 
   create_table "contacts", force: :cascade do |t|
     t.string   "name"
@@ -337,9 +347,9 @@ ActiveRecord::Schema.define(version: 20170406193056) do
   create_table "subsectors", force: :cascade do |t|
     t.string   "name"
     t.integer  "sector_id"
+    t.integer  "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "code"
   end
 
   add_index "subsectors", ["sector_id"], name: "index_subsectors_on_sector_id"
