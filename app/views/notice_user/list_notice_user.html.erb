@@ -6,41 +6,71 @@
   <% else %>
     <%= render 'shared/nav_empresario' %>
   <% end %>
+
   <div class="main">
+    <div class="form-container--large">
+
     <% if current_user.is? 'admin' %>
         <%= link_to 'Atrás', index_manager_admin_path, class: "back-button" %>
       <% else %>
         <%= link_to 'Atrás', index_manager_user_path, class: "back-button" %>
       <% end %>
       <h1 class="main-headline inline-block">Noticias</h1>
-      <%= link_to 'Grid', index_notice_user_path %>
 
-    
-      <%= form_tag(list_notice_user_path(), :method => "get", id: "search") do %>
-        <div>
+      <div class="noticias-actions">
+        <%= link_to index_notice_user_path do %>
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 29 28.8" style="enable-background:new 0 0 29 28.8;" xml:space="preserve">
+          <style type="text/css">
+            .st0{fill:#12A99F;}
+          </style>
+          <g>
+            <path class="st0" d="M10.8,0H1C0.4,0,0,0.5,0,1v9.8c0,0.6,0.5,1,1,1h9.8c0.6,0,1-0.5,1-1V1.1C11.8,0.5,11.4,0,10.8,0z M9.8,9.8H2.1
+              V2.1h7.7L9.8,9.8z"/>
+            <path class="st0" d="M28,0h-9.8c-0.6,0-1,0.5-1,1v9.8c0,0.6,0.5,1,1,1H28c0.6,0,1-0.5,1-1V1.1C29,0.5,28.6,0,28,0z M27,9.8h-7.7
+              V2.1H27V9.8z"/>
+            <path class="st0" d="M10.8,17H1c-0.6,0-1,0.5-1,1v9.8c0,0.6,0.5,1,1,1h9.8c0.6,0,1-0.5,1-1V18C11.8,17.4,11.4,17,10.8,17z
+               M9.8,26.7H2.1V19h7.7L9.8,26.7z"/>
+            <path class="st0" d="M28,17h-9.8c-0.6,0-1,0.5-1,1v9.8c0,0.6,0.5,1,1,1H28c0.6,0,1-0.5,1-1V18C29,17.4,28.6,17,28,17z M27,26.7
+              h-7.7V19H27V26.7z"/>
+          </g>
+          </svg>
+
+        <% end %> 
+
+        <%= form_tag(index_notice_user_path(), :method => "get", id: "search") do %>
           <div>
+            <div>
 
-            <%= select_tag(:show_notice, options_for_select([['Todo', 'all'],['Recientes', 'recent']],params[:show_notice]), :onchange => "this.form.submit();") %>
+              <%= select_tag(:show_notice, options_for_select([['Todo', 'all'],['Recientes', 'recent']],params[:show_notice]), :onchange => "this.form.submit();") %>
 
-           <%= text_field_tag :search, params[:search], placeholder: "Buscar un tema" %>
-
-            <%= submit_tag "Buscar" %>    
+              <span>
+                <%= text_field_tag :search, params[:search], placeholder: "Buscar un tema" %> 
+              </span>
+             
+              <%= submit_tag "Buscar" %>    
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div><!-- .noticias-actions -->
+
+
       <div class="row small-up-1 medium-up-2 large-up-3">
         <% if @notices %>
           <% @notices.each do |notice| %>
-            <div >
-            <a class="noticia__image" href="<%= notice.link %>">
-              <%= image_tag (notice.image_notice.url) %>  
-            </a>
+            <div class="noticia--list">
+              <a class="noticia__image" href="<%= notice.link %>">
+                <%= image_tag (notice.image_notice.url) %>  
+              </a>
 
-            <%= link_to notice.title, notice %>
+              <div class="noticia--list__content">
+                <%= link_to notice.title, notice %>
 
-            <p><%= notice.date_pub.strftime("Fecha: %d-%m-%Y") %></p>
+                <span><%= notice.date_pub.strftime("%d-%m-%Y") %></span>
             
-            <p><%= notice.description %></p>
+                <p><%= notice.description %></p>
+                <em><%= link_to 'Ver noticia', notice %></em>
+              </div>
 
             </div>
           <% end %>
@@ -48,6 +78,8 @@
       </div>
     
       <%= will_paginate(@notices) %>
-  </div>
+
+      </div>
+  </div><!-- main -->
 </div>
 <%= render "shared/footer" %>
