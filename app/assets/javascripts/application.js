@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require foundation.js
 //= require slick.js
+//= require intro.js
 //= require vex.combined.js
 //= require underscore
 //= require gmaps/google

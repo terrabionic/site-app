@@ -6,7 +6,74 @@
 
 <div class="layout">
 
-  <%= render 'shared/nav' %>
+  <div class="nav">
+
+    <% if current_user %>
+      <% if current_user.is? 'admin' %>
+        <%= link_to companies_path, class: "nav__item" do %>
+          <%= image_tag "icon-administrar-secciones.png" %>      
+          <span>Dashboard</span>
+        <% end %>
+      <% elsif current_user.is? 'consultant' %>
+        <%= link_to companies_path, class: "nav__item" do %>
+          <%= image_tag "icon-administrar-secciones.png" %>      
+          <span>Dashboard</span>
+        <% end %>
+      <% elsif current_user.is? 'emprered' %>
+        <%= link_to index_emprered_path, class: "nav__item" do %>
+          <%= image_tag "icon-administrar-secciones.png" %>      
+          <span>Dashboard</span>
+        <% end %>
+      <% elsif current_user.is? 'agente' %>
+        <%= link_to index_agenteae_path, class: "nav__item" do %>
+          <%= image_tag "icon-administrar-secciones.png" %>      
+          <span>Dashboard</span>
+        <% end %>
+      <% elsif current_user.is? 'company' %>
+        <% if current_user.company.done %>
+          <% if current_user.company.stage == 'Reporte' %>
+            <%= link_to results_company_path, class: "nav__item" do %>
+              <%= image_tag "icon-administrar-secciones.png" %>      
+              <span>Dashboard</span>
+            <% end %>
+          <% else %>
+            <%= link_to index_company_path, class: "nav__item" do %>
+              <%= image_tag "icon-administrar-secciones.png" %>      
+              <span>Dashboard</span>
+            <% end %>
+          <% end %>
+            <% else %>
+              <%= link_to index_company_path, class: "nav__item" do %>
+                <%= image_tag "icon-administrar-secciones.png" %>      
+                <span>Dashboard</span>
+              <% end %>
+            <% end %>
+      <% end %>
+    <% end %>
+
+    <%= link_to sections_index_path, class: "nav__item" do %>
+      <%= image_tag "icon-administrar-secciones.png" %>      
+      <span>Administrar secciones</span>
+    <% end %>
+
+    <%= link_to events_path, class: "nav__item" do %>
+    	<%= image_tag "icon-calendario.png" %>
+    	<span>Calendario cursos</span>
+    <% end %>
+
+    <a href="#" class="nav__item hide">
+      <%= image_tag "calificacion-empresa-tab.png" %>      
+      <span>Calificación de la empresa</span>
+    </a>
+
+	<div data-step="1" data-intro="<%= @tourmanager.welcom %>" data-position="right">
+	    <%= link_to index_manager_admin_path, class: "nav__item" do %>
+	      <%= image_tag "monitor-empresarial.png" %>      
+	      <span>Monitor Empresarial</span>
+	    <% end %>
+    </div>
+    
+  </div><!-- nav -->
 
   <div class="main">
 
@@ -24,29 +91,37 @@
 				<%= link_to 'CALENDARIO EVENTOS', event_monitors_path, class: "btn--emerald" %> 		
 			</div>
   		</div>
-		
-
   	
 		<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
-		  <div class="buscador-empresarial">
+		  <div class="buscador-empresarial" data-step="3" data-intro="<%= @tourmanager.filter_search %>">
 		    <div class="ordenar-field">
 
 		    	<strong>PUEDES FILTRAR POR: </strong>
 
 		    	<strong class="hide">SECTOR: </strong>
-				<%= select_tag :sector, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector]), {:include_blank => 'Sector'} %>
+		    	<span class="inline-block" data-step="4" data-intro="<%= @tourmanager.first_step %>">
+			    	<%= select_tag :sector, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector]), {:include_blank => 'Sector'} %>	
+		    	</span>
+				
 
 		    	<strong class="hide">NIVEL: </strong>
-		  		<%= select_tag :level, options_for_select([['Regional', 'regional'], ['Municipal', 'municipal']], params[:level]), {:include_blank => 'Nivel'} %>
+		    	<span class="inline-block" data-step="5" data-intro="<%= @tourmanager.second_step %>">
+			  		<%= select_tag :level, options_for_select([['Regional', 'regional'], ['Municipal', 'municipal']], params[:level]), {:include_blank => 'Nivel'} %>
+		  		</span>
 		    	<strong class="hide">UBICACIÓN: </strong>
-		    	<%= select_tag :location, options_for_select(@municipios.map{|s|[s.name, s.id]},params[:location]), {:include_blank => 'Region'} %>
-
-		    	<%= submit_tag "Buscar" %>    
+		    	<span class="inline-block" data-step="6" data-intro="<%= @tourmanager.third_step %>">
+			    	<%= select_tag :location, options_for_select(@municipios.map{|s|[s.name, s.id]},params[:location]), {:include_blank => 'Region'} %>
+		    	</span>
+				
+				<span class="inline-block" data-step="7" data-intro="<%= @tourmanager.search_field %>">
+					<%= submit_tag "Buscar" %>    	
+				</span>
+		    	
 		    </div>
 		  </div>
 		<% end %>
 
-		<div id="map"></div>
+		<div id="map" data-step="2" data-intro="<%= @tourmanager.map %>" ></div>
 
 	
 
@@ -242,16 +317,13 @@
 	        </div><!-- municipal -->
 	    </div><!-- .tabs-content-->
 	   <div>
-	   	<strong>Tour</strong>
-	   	<% if @tourmanager %>
-	   		<strong>welcom</strong> <%= @tourmanager.welcom %>
-	   		<strong>map</strong> <%= @tourmanager.map %>
-	   		<strong>filter_search</strong> <%= @tourmanager.filter_search %>
-	   		<strong>first_step</strong> <%= @tourmanager.first_step %>
-	   		<strong>second_step</strong> <%= @tourmanager.second_step %>
-	   		<strong>third_step</strong> <%= @tourmanager.third_step %>
-	   		<strong>search_field</strong> <%= @tourmanager.search_field %>
-	   	<% end %>
+	   <div class="hide">
+		   	<strong>Tour</strong>
+		   	<% if @tourmanager %>
+		   		<strong>third_step</strong> <%= @tourmanager.third_step %>
+		   		<strong>search_field</strong> 
+		   	<% end %>
+	   	</div>
 	   </div>
 	</div><!-- form-container-large -->
 

@@ -12,6 +12,7 @@
  *
  *= require foundation.css
  *= require slick.css 
+ *= require introjs.css 
  *= require vex.css
  *= require vex-theme-default.css
  *= require_tree .
