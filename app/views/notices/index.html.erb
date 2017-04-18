@@ -27,21 +27,21 @@
       <tbody>
         <% @notices.each do |notice| %>
           <tr>
-            <td><%= link_to notice.title, notice %></td>
-            <td><%= notice.link %></td>
-            <td>
+            <td data-title="Título"><%= link_to notice.title, notice %></td>
+            <td data-title="Link"><%= notice.link %></td>
+            <td data-title="Sector">
               <% if notice.sector%>
                 <%= notice.sector.name %>
               <% end %>
             </td>
-            <td>
+            <td data-title="Publicación">
               <% if notice.active %>
                 Publicado
               <% else %>
                 No publicado
               <% end %>
             </td>
-            <td><%= notice.date_pub %></td>
+            <td data-title="Fecha"><%= notice.date_pub %></td>
             <td>
               <% if notice.priority%>
                 SI
@@ -49,7 +49,7 @@
                 NO
               <% end %>
             </td>
-            <td>
+            <td data-title="">
               <% unless notice.active %>
                 <%=link_to "Publicar Noticias", publish_notice_path(notice_id: notice), method: :post %>  
               <% end %>
