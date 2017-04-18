@@ -4,23 +4,26 @@
 <div class="layout">
   <%= render 'shared/nav' %>
   <div class="main">
+    <div class="form-container__large">
     <%= link_to 'Atrás', sections_index_path, class: "back-button" %>
     <h1 class="main-headline inline-block">Notificaciones</h1>
     <p>
       <%= link_to 'Nueva Notificación', new_notification_manager_path, class: "btn" %>
     </p>
 
-    <%= form_tag(notification_managers_path, :method => "get", id: "search") do %>
-      <div>
+    <div class="form-lined">
+      <%= form_tag(notification_managers_path, :method => "get", id: "search") do %>
         <div>
+          <div>
 
-          <strong>PUEDES FILTRAR POR: </strong><br>
+            <strong>PUEDES FILTRAR POR: </strong><br>
 
-          <strong>TIPO: </strong>
-          <%= select_tag :type, options_for_select([['Noticias', 'notice'], ['Calendario de eventos', 'events']], params[:type]), {:onchange => "this.form.submit();" , :include_blank => 'Todos'} %>
+            <strong>TIPO: </strong>
+            <%= select_tag :type, options_for_select([['Noticias', 'notice'], ['Calendario de eventos', 'events']], params[:type]), {:onchange => "this.form.submit();" , :include_blank => 'Todos'} %>
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
     <table class="site-table">
       <thead>
@@ -63,6 +66,7 @@
       </tbody>
     </table>
     <%= will_paginate(@notification_managers) %>
-  </div>
+      </div>
+  </div><!-- .main -->
 </div>
 <%= render "shared/footer" %>

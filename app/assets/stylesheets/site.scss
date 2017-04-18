@@ -111,6 +111,13 @@ select {
 	}
 }
 
+.form-lined {
+	* {
+		display: inline-block;
+		width: auto;
+	}
+}
+
 .search-field {
 	text-align: right;
 	span {
