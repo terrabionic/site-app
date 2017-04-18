@@ -291,6 +291,12 @@ var siteApp = (function($) {
 		});
 	};
 
+	var introJS = function() {
+		if ($('*[data-step]').length) {
+			introJs().start();
+		}
+	};
+
 	var ready = function() {
 		menuProfile();
 		sectorCool();
@@ -303,6 +309,7 @@ var siteApp = (function($) {
 		buscadorEmpresarial();
 		monitor();
 		sliders();
+		introJS();
 	};
 
 	return {

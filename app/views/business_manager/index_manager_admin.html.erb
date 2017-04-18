@@ -66,7 +66,7 @@
       <span>Calificación de la empresa</span>
     </a>
 
-	<div data-step="1" data-intro="<%= @tourmanager.welcom %>" data-position="right">
+	<div data-intro="<%= @tourmanager.welcom %>" data-position="right">
 	    <%= link_to index_manager_admin_path, class: "nav__item" do %>
 	      <%= image_tag "monitor-empresarial.png" %>      
 	      <span>Monitor Empresarial</span>
@@ -93,27 +93,27 @@
   		</div>
   	
 		<%= form_tag(index_manager_admin_path(), :method => "get", id: "search") do %>
-		  <div class="buscador-empresarial" data-step="3" data-intro="<%= @tourmanager.filter_search %>">
+		  <div class="buscador-empresarial" data-intro="<%= @tourmanager.filter_search %>">
 		    <div class="ordenar-field">
 
 		    	<strong>PUEDES FILTRAR POR: </strong>
 
 		    	<strong class="hide">SECTOR: </strong>
-		    	<span class="inline-block" data-step="4" data-intro="<%= @tourmanager.first_step %>">
+		    	<span class="inline-block" data-intro="<%= @tourmanager.first_step %>">
 			    	<%= select_tag :sector, options_for_select(Sector.all.map{|s|[s.name, s.id]},params[:sector]), {:include_blank => 'Sector'} %>	
 		    	</span>
 				
 
 		    	<strong class="hide">NIVEL: </strong>
-		    	<span class="inline-block" data-step="5" data-intro="<%= @tourmanager.second_step %>">
+		    	<span class="inline-block" data-intro="<%= @tourmanager.second_step %>">
 			  		<%= select_tag :level, options_for_select([['Regional', 'regional'], ['Municipal', 'municipal']], params[:level]), {:include_blank => 'Nivel'} %>
 		  		</span>
 		    	<strong class="hide">UBICACIÓN: </strong>
-		    	<span class="inline-block" data-step="6" data-intro="<%= @tourmanager.third_step %>">
+		    	<span class="inline-block" data-intro="<%= @tourmanager.third_step %>">
 			    	<%= select_tag :location, options_for_select(@municipios.map{|s|[s.name, s.id]},params[:location]), {:include_blank => 'Region'} %>
 		    	</span>
 				
-				<span class="inline-block" data-step="7" data-intro="<%= @tourmanager.search_field %>">
+				<span class="inline-block" data-intro="<%= @tourmanager.search_field %>">
 					<%= submit_tag "Buscar" %>    	
 				</span>
 		    	
@@ -121,7 +121,7 @@
 		  </div>
 		<% end %>
 
-		<div id="map" data-step="2" data-intro="<%= @tourmanager.map %>" ></div>
+		<div id="map" data-intro="<%= @tourmanager.map %>" ></div>
 
 	
 
