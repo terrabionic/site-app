@@ -150,10 +150,14 @@
 				<div id="map" data-step="2" data-intro="<%= @tourmanager.map %>"></div>
 				<script type="text/javascript">
 					handler = Gmaps.build('Google');
-					handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+					handler.buildMap({ provider: {
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					styles: [	{"featureType":"all",		"stylers":[			{"saturation":0},			{"hue":"#e7ecf0"}		]	},	{"featureType":"road",		"stylers":[			{"saturation":-70}		]	},	{"featureType":"transit",		"stylers":[			{"visibility":"off"}		]	},	{"featureType":"poi",		"stylers":[			{"visibility":"off"}		]	},	{"featureType":"water",		"stylers":[			{"visibility":"simplified"},			{"saturation":-60}		]	}]
+				}, internal: {id: 'map'}}, function(){
 					  markers = handler.addMarkers(<%=raw @hash.to_json %>);
 					  handler.bounds.extendWith(markers);
 					  handler.fitMapToBounds();
+					  handler.getMap().setZoom(15);
 					});
 				</script>
 			</div>
