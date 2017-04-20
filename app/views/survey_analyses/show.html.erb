@@ -232,21 +232,26 @@
 
         <h2 class="pleca">Cursos</h2>
 	<% @events.keys.each do |keys| %>
-	  <h2><%= keys %></h2>
+	  <h4><%= keys %></h4>
 	  <hr>
 	  <% @events[keys].each do |event| %>
-	    <p>
-	      <div>
-	        <%= event.title %><br>
-	        <%= event.name_exhibitor %><br>
-	        <%= event.price %><br>
+	    <div class="curso-item">
+	      <div class="curso-item__left">
+          <%= image_tag("calendar.png") %>
+          <div>
+            <strong><%= event.title %></strong>
+            <%= event.name_exhibitor %><br>
+            <%= event.price %><br>  
+          </div>
 	      </div>
-	      <div class="curso-info">
-	        <%= image_tag event.level.image.url(:medium) %><%= event.level.title %><br>
-	        Fecha del evento<br>
-	        <%= event.start_at %><br>
+	      <div class="curso-item__right">
+	        <%= image_tag event.level.image.url(:medium) %><%= event.level.title %>
+          <p>
+
+	        <strong>Fecha del evento</strong>
+	        <%= event.start_at %></p>
 	      </div>
-	    </p>
+	    </div>
 	    <hr>
 	  <% end %>
 	<% end %>

@@ -16,7 +16,7 @@
     <h1 class="main-headline inline-block">Tus Notificaciones</h1>
     <br>
     <% @notifications.each do |notification| %>
-      <p>
+      <p class="single-notificacion">
           <% if notification.event %>
             <%=link_to  notification.title, show_notification_path(notification_id: notification), method: :post %> <br>
             <strong>Calendario de eventos</strong>

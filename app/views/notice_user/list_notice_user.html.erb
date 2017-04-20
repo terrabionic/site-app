@@ -38,6 +38,28 @@
 
         <% end %> 
 
+        <%= link_to list_notice_user_path, class: "is-active" do %>
+          <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 32 23" style="enable-background:new 0 0 32 23;" xml:space="preserve">
+          <style type="text/css">
+            .st0{fill:#12A99F;}
+          </style>
+          <g id="XMLID_1296_">
+            <path id="XMLID_1306_" class="st0" d="M12.6,3h17.9C31.3,3,32,2.3,32,1.5S31.3,0,30.5,0H12.6c-0.8,0-1.5,0.7-1.5,1.5S11.8,3,12.6,3
+              z"/>
+            <path id="XMLID_1316_" class="st0" d="M30.5,10H12.6c-0.8,0-1.5,0.7-1.5,1.5s0.7,1.5,1.5,1.5h17.9c0.8,0,1.5-0.7,1.5-1.5
+              S31.3,10,30.5,10z"/>
+            <path id="XMLID_1317_" class="st0" d="M30.5,20H12.6c-0.8,0-1.5,0.7-1.5,1.5s0.7,1.5,1.5,1.5h17.9c0.8,0,1.5-0.7,1.5-1.5
+              S31.3,20,30.5,20z"/>
+            <path id="XMLID_1318_" class="st0" d="M5.9,0H1.5C0.7,0,0,0.7,0,1.5S0.7,3,1.5,3h4.4c0.8,0,1.5-0.7,1.5-1.5S6.7,0,5.9,0z"/>
+            <path id="XMLID_1319_" class="st0" d="M5.9,10H1.5C0.7,10,0,10.7,0,11.5S0.7,13,1.5,13h4.4c0.8,0,1.5-0.7,1.5-1.5S6.7,10,5.9,10z"
+              />
+            <path id="XMLID_1320_" class="st0" d="M5.9,20H1.5C0.7,20,0,20.7,0,21.5S0.7,23,1.5,23h4.4c0.8,0,1.5-0.7,1.5-1.5S6.7,20,5.9,20z"
+              />
+          </g>
+          </svg>
+        <% end %> 
+
         <%= form_tag(index_notice_user_path(), :method => "get", id: "search") do %>
           <div>
             <div>
@@ -59,17 +81,22 @@
         <% if @notices %>
           <% @notices.each do |notice| %>
             <div class="noticia--list">
-              <a class="noticia__image" href="<%= notice.link %>">
+              <a class="noticia__image" href="<%= notice.link %>" target="_blank">
                 <%= image_tag (notice.image_notice.url) %>  
               </a>
 
               <div class="noticia--list__content">
-                <%= link_to notice.title, notice %>
+                <a href="<%= notice.link %>" target="_blank">
+                  <%= notice.title %>
+                </a>
 
                 <span><%= notice.date_pub.strftime("%d-%m-%Y") %></span>
             
                 <p><%= notice.description %></p>
-                <em><%= link_to 'Ver noticia', notice %></em>
+                <em>
+                  <a href="<%= notice.link %>" target="_blank">Ver noticia</a>
+                  
+                </em>
               </div>
 
             </div>

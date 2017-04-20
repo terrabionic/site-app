@@ -48,6 +48,14 @@
 	            <% end %>
 	          <% end %>
 	    <% end %>
+
+	    <span class="inline-block" data-step="1" data-intro="<%= @tourmanager.welcom %>" data-position="bottom">
+		    <%= link_to index_manager_user_path, class: "nav__item" do %>
+		      <%= image_tag "monitor-empresarial.png" %>      
+		      <span>Monitor Empresarial</span>
+		    <% end %>
+	   </span>
+	    
 	    <% if current_user.company.done %>
 	      <% if current_user.company.stage == 'Reporte' %>
 	        <%= link_to results_company_path, class: "nav__item" do %>
@@ -62,12 +70,6 @@
 	      <span>Calendario cursos</span>
 	    <% end %>
 
-	    <span class="inline-block" data-step="1" data-intro="<%= @tourmanager.welcom %>" data-position="right">
-		    <%= link_to index_manager_user_path, class: "nav__item" do %>
-		      <%= image_tag "monitor-empresarial.png" %>      
-		      <span>Monitor Empresarial</span>
-		    <% end %>
-	   </span>
 
 	    
 	    

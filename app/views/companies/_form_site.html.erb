@@ -31,27 +31,27 @@
     </div><!-- .sector-cool -->
   </div>
 
-  <div class="field">
+  <div class="field js-dependent-start">
     Subsector:
     <%= f.grouped_collection_select :subsector_id, Sector.all, :subsectors, :name ,:id, :name, {:selected => [@company.subsector_id] } %>
   </div>
 
   <%= f.fields_for(@company_branch) do |bc| %>
-    <div class="field">
+    <div class="field js-field-group">
       Rama:<br />
       <%= f.grouped_collection_select :branches, Subsector.all, :branches, :name ,:id, :name, {:selected => @company.branches.map{|s| s.id } }, { :multiple => true, :size => 5 } %>
     </div>
   <% end %>
 
   <%= f.fields_for(@company_subbranch) do |bc| %>
-    <div class="field">
+    <div class="field js-field-group">
       Subrama:<br />
       <%= f.grouped_collection_select :subbranches, Branch.all, :subbranches, :name ,:id, :name, {:selected => @company.subbranches.map{|s| s.id } },{ :multiple => true, :size => 5 } %>
     </div>
   <% end %>
 
   <%= f.fields_for(@company_type) do |bc| %>
-    <div class="field">
+    <div class="field js-field-group">
       Clase:<br />
       <%= f.grouped_collection_select :types, Subbranch.all, :types, :name ,:id, :name, {:selected => @company.types.map{|s| s.id } },{ :multiple => true, :size => 5 } %>
     </div>

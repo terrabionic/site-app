@@ -18,19 +18,25 @@
         <%= link_to 'Atrás', index_manager_user_path, class: "back-button" %>
       <% end %>
 
-      <h1 class="main-headline inline-block">Pincipales tendencias</h1>
+      <h1 class="main-headline inline-block">Principales tendencias</h1>
 
       <div class="slider-noticias">
         <% if @priority_notices %>
           <% @priority_notices.each do |priority_notice| %>
             <div class="slider-noticias__item">
               <figure>
-                <%= image_tag (priority_notice.image_notice.url) %>     
+                <a href="<%= priority_notice.link %>" target="_blank">
+                  <%= image_tag (priority_notice.image_notice.url) %> 
+                </a>
                 <figcaption>
-                  <%= link_to priority_notice.title, notice%>
+                  <a href="<%= priority_notice.link %>" target="_blank"><%= priority_notice.title %></a>
                   <span><%= priority_notice.date_pub.strftime("%d-%m-%Y") %></span>
                   <p><%= priority_notice.description %></p>
-                  <em><%= link_to 'Ver artículo completo', notice%></em>
+                  <em>
+                    <a href="<%= priority_notice.link %>" target="_blank">
+                      Ver artículo completo
+                    </a>
+                  </em>
                 </figcaption>
               </figure>
             </div>
@@ -87,7 +93,9 @@
             <figure>
               <%= image_tag("calendar.png") %>  
               <figcaption>
-                <h5><%= event.title%></h5>
+                <h5>
+                  <%= link_to event.title, event_path(event) %>
+                  </h5>
                 <p>
                   <%= event.start_at.strftime("Fecha: %d/%m/%Y")%><br>
                   <%= event.website%>  

@@ -407,6 +407,10 @@ select {
 	margin-bottom: 20px;
 	position: relative;
 
+	a {
+		color: #70B23A;
+	}
+
 	&:after {
 		content: "\e916";
 		font-family: icomoon;
@@ -620,6 +624,9 @@ select {
 		display: block;
 		padding: 1rem;
 		&:hover {
+			background: #EAECEC;
+		}
+		&.is-active {
 			background: #EAECEC;
 		}
 	}
@@ -2049,7 +2056,108 @@ select {
 	}
 }
 
+.curso-item {
+	@extend %clearfix;
+}
+
+.curso-item__left {
+	float: left;
+	width: 50%;
+	@extend %clearfix;
+
+	img {
+		float: left;
+		margin-right: 20px;
+	}
+
+	div {
+		float: left;
+		font-size: 14px;
+		color: #8F999F;
+
+		strong {
+			color: #6BB530;
+			display: block;
+			
+		}
+		
+	}
+}
+
+.curso-item__right {
+	float: right;
+	width: 50%;
+	@extend %clearfix;
+	color: #8F999F;
+	font-size: 14px;
+
+	img {
+		width: 25px;
+		margin-right: 10px;
+	}
+
+	p {
+		margin-top: 10px;
+		strong {
+			display: block;
+			color: #6BB530;
+		}
+	}
+}
+
+.new_notification_manager {
+	h2 {
+		display: none;
+	}
+
+	ul {
+		color: #D0011B;
+	}
+}
+
+.pagination {
+	text-align: center !important;
+	color: gray;
+
+	a {
+		color: inherit;
+	}
+
+	* {
+		display: inline-block !important;
+	}
+
+	.current {
+		background: #71B23A;
+	}
+}
+
+.single-notificacion {
+	font-size: 14px;
+
+	strong {
+		color: #9AA1A6;	
+		font-weight: normal;
+
+	}
+	
+	a {
+		text-transform: uppercase;
+		color: #6BB530;
+		font-weight: bold;
+	}
+}
+
 @media (max-width: 1024px) {
+
+	.buscador-empresarial {
+		.inline-block {
+			text-align: center;
+			select {
+				display: inline-block;
+			}
+		}
+	}
 
 	.slider-noticias {
 		margin-left: 0;
@@ -2104,6 +2212,8 @@ select {
 		padding: 0;
 		border: 1px solid #f2f2f2;
 		margin-bottom: 1rem;
+
+
 
 		.mapa-botones__left {
 			float: none;
@@ -2344,6 +2454,25 @@ select {
 
 @media (max-width: 640px) {
 
+	.head-gris {
+		h2 {
+			margin-bottom: 10px;
+		}
+		.btn--azul {
+			float: none;
+			
+		}
+	}
+
+	.curso-item__right {
+		width: 100%;
+		margin-top: 30px;
+	}
+
+	.curso-item__left {
+		width: 100%;
+	}
+
 	.noticia--list {
 		.noticia__image {
 			float: none;
@@ -2412,7 +2541,7 @@ select {
 
 	.back-button {
 		margin-bottom: 20px;
-		display: block;
+		// display: block;
 	}
 
 	#event_monitor_start_at_4i,
