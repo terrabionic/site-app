@@ -57,27 +57,27 @@
     </div><!-- .sector-cool -->
   </div>
 
-  <div class="field">
+  <div class="field js-dependent-start">
     Subsector:
     <%= f.grouped_collection_select :subsector_id, Sector.all, :subsectors, :name ,:id, :name %>
   </div>
 
   <%= f.fields_for(@company_branch) do |bc| %>
-    <div class="field">
+    <div class="field js-field-group">
       Rama:<br />
       <%= f.grouped_collection_select :branches, Subsector.all, :branches, :name ,:id, :name, {},{ :multiple => true, :size => 5 } %>
     </div>
   <% end %>
 
   <%= f.fields_for(@company_subbranch) do |bc| %>
-    <div class="field">
+    <div class="field js-field-group">
       Subrama:<br />
       <%= f.grouped_collection_select :subbranches, Branch.all, :subbranches, :name ,:id, :name, {},{ :multiple => true, :size => 5 } %>
     </div>
   <% end %>
 
   <%= f.fields_for(@company_subbranch) do |bc| %>
-    <div class="field">
+    <div class="field js-field-group">
       Clase:<br />
       <%= f.grouped_collection_select :types, Subbranch.all, :types, :name ,:id, :name, {},{ :multiple => true, :size => 5 } %>
     </div>

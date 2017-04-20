@@ -42,18 +42,18 @@
 			      <tbody>
 			      	<% @companies.each do |company| %>
 				      	<tr>
-				      		<td>
+				      		<td data-title="Empresa">
 				        		<strong class="color-blue"><%= company.company_name %></strong><br>
 				        		<% if company.activity %>
 				        			<%= company.activity.name %>
 				        		<% end %>
 				        	</td>
-				        	<td>
+				        	<td data-title="Dirección">
 				        		<% if company.address %>
 				        			<%= company.address %> 
 				        		<% end %>
 				        	</td>
-				        	<td>
+				        	<td data-title="Contacto">
 				        		<% if company.name_director %>
 				        			<%= company.name_director %>
 				        			<br>

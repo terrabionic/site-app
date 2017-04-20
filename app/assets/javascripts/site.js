@@ -297,6 +297,116 @@ var siteApp = (function($) {
 		}
 	};
 
+	var notificaciones = function() {
+		$('.menu-notificaciones > span').click(function() {
+			$(this).next().toggle();
+		});
+	};
+
+	var initFieldOptions = function() {
+		if (!$('.js-field-group').length) {
+			return;
+		}
+		$('.js-field-group').each(function() {
+			createCustomOptions(this);
+		});
+	};
+
+	var createCustomOptions = function(ele) {
+		$(ele).find('optgroup').each(function() {
+			$(ele).after(
+				'<fieldset class="group-wrapper" data-label="' + $(this).attr('label') + '" data-select="' + $(this).parent().attr('id') + '">' +
+					createControls(this) + 
+				'</fieldset>'
+			);
+
+		});
+	};
+
+	var createControls = function(ele) {
+		var html = '';
+
+		$(ele).children('option').each(function() {
+			html += '<div class="question-item">'+
+						'<p><label class="radio-custom">' + 
+							'<input type="radio" value="' + $(this).attr('value') + '">' + 
+							'<span></span>' +
+							$(this).text() + 
+						'</label></p>' + 
+					'</div>';
+		});
+
+		return html;
+	};
+
+	var dependentDropdowns = function() {
+		dependentStart();
+		dependentStepTwo();
+
+		$('body').on('click', '.group-wrapper :radio', function() {
+			// Uncheck other elements
+			$(this).parent().parent().parent().siblings().each(function(index, domEle) {
+				$(domEle).find(':radio').prop('checked', false);
+			});
+			// get select selector
+			var select = $(this).parent().parent().parent().parent().data('select');
+			// get value
+			var val = $(this).val();
+			// get select domEle
+			var selectEle = $('#' + select);
+			// change select
+			selectEle.val(val).change();
+			// find option
+			var currentOption = $(selectEle).find('option[value="' + val + '"]');
+			// get group name
+			var groupName = $(currentOption).text();
+
+			// hide other groups
+			selectEle.find('option').each(function() {
+				$('.group-wrapper[data-label="' + $(this).text() + '"]').hide();
+			});
+		
+			// get wrapper
+			var groupWrapper = $('.group-wrapper').filter('[data-label="' + groupName + '"]');
+			// get wrapper
+			groupWrapper.show();
+
+			// show group
+			$('#' + groupWrapper.data('select')).parent().show()
+		});
+	};
+
+	var dependentStepTwo = function() {
+
+	};
+
+	var dependentStart = function() {
+		if (!$('.js-dependent-start').length) {
+			return false;
+		}
+		$('.js-dependent-start').show();
+		var value = $('.js-dependent-start select').val()
+		var currentOption = $('.js-dependent-start select').find('option[value="' + value + '"]');
+		var groupName = $(currentOption).text();
+		
+		var groupWrapper = $('.group-wrapper').filter('[data-label="' + groupName + '"]');
+
+
+		groupWrapper.show();
+
+
+		var value = $('.js-dependent-start select').on('change', function() {
+			var value = $('.js-dependent-start select').val()
+			var currentOption = $('.js-dependent-start select').find('option[value="' + value + '"]');
+			var groupName = $(currentOption).text();
+			
+			var groupWrapper = $('.group-wrapper').filter('[data-label="' + groupName + '"]');
+
+			$('.group-wrapper').hide();
+			groupWrapper.show();
+		});
+	};
+
 	var ready = function() {
 		menuProfile();
 		sectorCool();
@@ -310,6 +420,9 @@ var siteApp = (function($) {
 		monitor();
 		sliders();
 		introJS();
+		notificaciones();
+		initFieldOptions();
+		dependentDropdowns();
 	};
 
 	return {

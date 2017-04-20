@@ -12,7 +12,7 @@
     
     <%= link_to 'Atrás', companies_path, class: "back-button" %>
     <h1 class="main-headline inline-block">Lista de Cursos</h1>
-    <p>
+    <p class="space-buttons">
       <% if can? :create, @events %>
         <%= link_to 'Nuevo Curso', new_event_path, class: "btn" %>
       <% end %> 

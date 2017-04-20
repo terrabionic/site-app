@@ -1,0 +1,29 @@
+<div class="menu-notificaciones">
+	<% @notifications = Notification.where('user_id = ? AND user_read = ?', current_user.id, false) %>
+
+  <span>
+    <em>
+      <%= @notifications.length %>
+    </em>
+     <i class="icon-alertas"></i>  
+  </span>
+	
+  <div class="menu-notificaciones__toggle">
+  	<% @notifications.each do |notification| %>
+  		<p>
+          	<% if notification.event %>
+            		<%=link_to  notification.title, show_notification_path(notification_id: notification), method: :post %> <br>
+            		<strong>Calendario de eventos</strong>
+          	<% end %>
+          	<% if notification.notice %>
+            		<a href="<%= notification.notice.link %>" target="_blank">
+                		<%= notification.title %>  
+            		</a>
+            		<br>
+            		<strong>Noticia</strong>
+          	<% end %>
+      	</p>
+    	<% end %>
+    	<%= link_to 'Ver más', notifications_path %>
+    </div>
+</div>
