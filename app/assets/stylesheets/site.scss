@@ -92,6 +92,9 @@ select {
 	border-radius: 4px !important;
 }
 
+.hide-desktop {
+	display: none;
+}
 
 .ordenar-field {
 	strong {
@@ -1828,6 +1831,17 @@ select {
 		display: none;
 	}
 
+	.radio-custom {
+		color: white;
+		display: inline-block;
+		margin: 0 .5em;
+		margin-bottom: 20px;
+
+		&:last-of-type {
+			margin-right: 20px;
+		}
+	}
+
 
 }
 
@@ -1983,14 +1997,10 @@ select {
 }
 
 
-.mapa-botones__left {
-	float: left;
-	width: 20%;
-}
 
 .mapa-botones__right {
 	float: right;
-	width: 80%;
+	width: 100%;
 }
 
 .boton-mapa {
@@ -2150,6 +2160,10 @@ select {
 
 @media (max-width: 1024px) {
 
+	.hide-desktop {
+		display: block;
+	}
+
 	.buscador-empresarial {
 		.inline-block {
 			text-align: center;
@@ -2213,6 +2227,19 @@ select {
 		border: 1px solid #f2f2f2;
 		margin-bottom: 1rem;
 
+		.radio-custom {
+			display: none;
+			color: #042F50;
+			margin-top: 1em;
+			margin-bottom: 1em;
+			width: 90%;
+			margin-left: auto !important;
+			margin-right: auto !important; 
+
+			&:last-of-type {
+				margin-bottom: 25px;
+			}
+		}
 
 
 		.mapa-botones__left {
