@@ -14,6 +14,7 @@ class BusinessManagerController < ApplicationController
 		@hash = []
 		@company_am = []
 		@company_am_2 = []
+		@companies_type = []
 		@tourmanager = TourManager.first
 		if @user.company
 			@sector = @user.company.sector
@@ -56,17 +57,74 @@ class BusinessManagerController < ApplicationController
 				@municipios = []
 				@companies = Company.where("sector_id = ?", @sector.id)
 			end
-
+			if @companies
+				print @companies,"@companies-----------+  "
+				print params[:type_code],"-params[:type_cpode]---"
+				if params[:type_code] == 'prov'
+					print "Entra PROV"
+					@companies.each do |company|
+						company.types.each do |type|
+							print type.code_id,"type.code_id"
+							if type.code_id == '313'
+								@companies_type.push(company)
+							elsif type.code_id == '314'
+								@companies_type.push(company)
+							end 
+						end
+					end
+				elsif params[:type_code] == 'comp'
+					print "Entra COMP"
+					@companies.each do |company|
+						company.types.each do |type|
+							print type.code_id,"type.code_id"
+							if type.code_id == '313'
+								@companies_type.push(company)
+							elsif type.code_id == '314'
+								@companies_type.push(company)
+							elsif type.code_id == '315'
+								@companies_type.push(company)
+							end 
+						end
+					end
+				elsif params[:type_code] == 'clie'
+					print "Entra CLIE"
+					@companies.each do |company|
+						company.types.each do |type|
+							print type.code_id,"type.code_id"
+							if type.code_id == '314'
+								@companies_type.push(company)
+							elsif type.code_id == '315'
+								@companies_type.push(company)
+							end 
+						end
+					end
+				end
+				@companies = @companies_type
+			end
 			if @companies
 				@hash = Gmaps4rails.build_markers(@companies) do |company, marker|
-					label_name = '<strong>'+company.municipio.name+'</strong> | ' + company.municipio.region.name + '<br>' + company.company_name + '<br>' + 'Sector: ' + company.sector.name + '<br>' + company.web
+					label_name = ""
+					if company.municipio
+						label_name = label_name + "<strong>" + company.municipio.name + "<strong> | " + company.municipio.region.name + '<br>'
+					end
+					label_name = label_name + company.company_name + '<br>' + 'Sector: ' + company.sector.name
+					if company.web
+						label_name = label_name + '<br>' + company.web
+					end
 					marker.lat company.latitude
 					marker.lng company.longitude
 					marker.infowindow label_name
 				end
 			else
 				@hash = Gmaps4rails.build_markers([@user.company]) do |company, marker|
-					label_name = '<strong>'+company.municipio.name+'</strong> | ' + company.municipio.region.name + '<br>' + company.company_name + '<br>' + 'Sector: ' + company.sector.name + '<br>' + company.web
+					label_name = ""
+					if company.municipio
+						label_name = label_name + "<strong>" + company.municipio.name + "<strong> | " + company.municipio.region.name + '<br>'
+					end
+					label_name = label_name + company.company_name + '<br>' + 'Sector: ' + company.sector.name
+					if company.web
+						label_name = label_name + '<br>' + company.web
+					end
 					marker.lat company.latitude
 					marker.lng company.longitude
 					marker.infowindow label_name
@@ -113,7 +171,14 @@ class BusinessManagerController < ApplicationController
 
 		if @companies
 			@hash = Gmaps4rails.build_markers(@companies) do |company, marker|
-				label_name = '<strong>'+company.municipio.name+'</strong> | ' + company.municipio.region.name + '<br>' + company.company_name + '<br>' + 'Sector: ' + company.sector.name + '<br>' + company.web
+				label_name = ""
+				if company.municipio
+					label_name = label_name + "<strong>" + company.municipio.name + "<strong> | " + company.municipio.region.name + '<br>'
+				end
+				label_name = label_name + company.company_name + '<br>' + 'Sector: ' + company.sector.name
+				if company.web
+					label_name = label_name + '<br>' + company.web
+				end
 				marker.lat company.latitude
 				marker.lng company.longitude
 				marker.infowindow label_name
