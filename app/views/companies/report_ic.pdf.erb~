@@ -284,12 +284,15 @@
       <% @events[keys].each do |event| %>
       <p>
       <div>
-        <%= event.title %><br>
+        <span style="width: 20px; display: inline-block;">
+          <%= wicked_pdf_image_tag event.level.image.url(:medium) %>  
+        </span>
+        <%= event.title %>
+        <div style="height: 10px;"></div>
         <%= event.name_exhibitor %><br>
         <%= event.price %><br>
       </div>
       <div>
-        <%= wicked_pdf_image_tag event.level.image.url(:medium) %><br>
         Fecha del evento<br>
         <%= event.start_at %><br>
       </div>

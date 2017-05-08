@@ -185,6 +185,7 @@ select {
 	left: -100px;
 	width: 200px;
 	top: 120%;
+	z-index: 60;
 
 	p {
 		border-bottom: 1px solid #F0F2F2;
@@ -2315,7 +2316,7 @@ select {
 	}
 
 	.breadcrumbs-wrapper {
-		margin-top: 110px;
+		margin-top: 90px;
 	}
 
 	.nav {
@@ -2337,7 +2338,7 @@ select {
 		border-bottom: 0;
 		float:none;
 		height: 90px;
-		width: 130px;
+		width: 140px;
 		display: inline-block;
 
 		span {
@@ -2395,6 +2396,14 @@ select {
 }
 
 @media (max-width: 768px) {
+
+
+
+	.header-actions__item {
+		&:after {
+			display: none;
+		}
+	}
 
 
 	.buscador {
@@ -2466,7 +2475,12 @@ select {
 	}
 
 	.header-actions__item--dashboard {
-		display: none;
+		padding-left: 0;
+		padding-right: 20px;
+		>a {
+			display: none;	
+		}
+		
 	}
 
 	.header-and-buttons__right {
@@ -2480,6 +2494,25 @@ select {
 }
 
 @media (max-width: 640px) {
+
+	.nav {
+		top: 98px;
+	}
+
+	.breadcrumbs-wrapper {
+		display: none;
+	}
+
+	.main {
+		padding-top: 150px;
+	}
+
+	.header-actions {
+		position: absolute;
+		right: 20px;
+		top: 30px;
+
+	}
 
 	.head-gris {
 		h2 {
@@ -2617,6 +2650,11 @@ select {
 	}
 
 	.header-actions__item--dropdown {
+		padding-left: 20px;
+
+		&:before {
+			font-size: 30px;
+		}
 
 		> div {
 			min-width: 0;
@@ -2637,6 +2675,10 @@ select {
 }
 
 @media (max-width: 320px) {
+
+	.header-actions {
+		top: 25px;
+	}
 	
 	.general-chart {
 		#chart-categories {
