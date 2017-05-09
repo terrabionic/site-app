@@ -19,10 +19,9 @@
 //= require vex.combined.js
 //= require underscore
 //= require gmaps/google
-//= require_tree .
 //= require moment
 //= require fullcalendar
-
+//= require_tree .
 
 //Override the default confirm dialog by rails
 $.rails.allowAction = function(link){

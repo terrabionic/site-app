@@ -108,9 +108,11 @@ select {
 }
 
 .gm-style-iw {
-	color: #1B2655;
 	strong {
 		color: #66A730;
+		strong {
+			color: #1B2655;	
+		}
 	}
 }
 
@@ -139,6 +141,14 @@ select {
 		vertical-align: middle;
 		margin: 0;
 
+	}
+}
+
+.fc-view-container + .fc-toolbar {
+	display: none;
+
+	& + .fc-view-container {
+		display: none;
 	}
 }
 
