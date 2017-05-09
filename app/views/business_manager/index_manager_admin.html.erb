@@ -139,6 +139,11 @@
 			  handler.fitMapToBounds();
 			  handler.getMap().setZoom(15);
 			});
+
+			// Fix map
+			if($('#map > div').html() != '') {
+				location.reload();
+			}
 		</script>
 
 		<hr>
