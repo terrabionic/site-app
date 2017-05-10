@@ -292,7 +292,7 @@ var siteApp = (function($) {
 	};
 
 	var introJS = function() {
-		if ($('*[data-step]').length) {
+		if ($('*[data-step]').length && window.location.href.indexOf('commit=Buscar') == -1) {
 			if ($(window).width() > 1024) {
 				introJs().start();
 			}
