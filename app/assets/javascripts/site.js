@@ -293,8 +293,10 @@ var siteApp = (function($) {
 
 	var introJS = function() {
 		if ($('*[data-step]').length && window.location.href.indexOf('commit=Buscar') == -1) {
-			if ($(window).width() > 1024) {
-				introJs().start();
+			if ($('#level').val() == "") {
+				if ($(window).width() > 1024) {
+					introJs().start();
+				}
 			}
 		}
 	};
