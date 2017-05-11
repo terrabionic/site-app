@@ -140,9 +140,16 @@
 			  handler.getMap().setZoom(15);
 			});
 
-			// Fix map
-			if($('#map > div').html() != '') {
-				location.reload();
+			// Valor por default del formulario para mostrar mapa en Textil, regional, region 1
+			if (window.location.href.indexOf('?') == -1) {
+				$('#sector').val(1);
+				$('#level').val('regional');
+				$('#search').submit();
+			}
+
+			if (window.location.href.indexOf('?') != -1 && window.location.href.indexOf('commit=Buscar') == -1) {
+				$('#location').val(1);
+				$('#location').parent().next().find('[type="submit"]').click();
 			}
 		</script>
 
