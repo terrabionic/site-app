@@ -85,7 +85,7 @@ Rails.application.configure do
       domain: "grupoaltegra.com.mx",
       authentication: :login,
       enable_starttls_auto: true,
-      user_name: "informacion@grupoaltegra.com.mx",
+      user_name: "alejandro.gutierrezolvera@hidalgo.gob.mx",
       password: "Estecorreoesde1CRM#",
   }
   
