@@ -45,7 +45,7 @@ Rails.application.configure do
       authentication: :login,
       enable_starttls_auto: true,
       user_name: "alejandro.gutierrezolvera@hidalgo.gob.mx",
-      password: "Estecorreoesde1CRM#",
+      password: "godisgreatpuma57",
   }
 
   # Raises error for missing translations
