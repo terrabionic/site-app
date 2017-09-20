@@ -80,9 +80,9 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-      address: "s137842.gridserver.com",
+      address: "smtp.gmail.com",
       port: 587,
-      domain: "grupoaltegra.com.mx",
+      domain: "hidalgo.gob.mx",
       authentication: :login,
       enable_starttls_auto: true,
       user_name: "alejandro.gutierrezolvera@hidalgo.gob.mx",
